@@ -113,3 +113,18 @@ claimed.**
   stationary loss. A1 is in between. A3 is close to v0.6, because the v0.6 detector rarely fires
   and fires at most once per family. If neither A1 nor A2 improves abrupt and delayed vs v0.6,
   the hypothesis is not supported.
+
+## Amendment 1 (implementation bug found after dev run 1; constants unchanged)
+
+Dev run 1 (`reports/v09/agent_a/run1_invalid_gamma_shadowed/`) is **invalid for A1 and A2**.
+The class constant was named `gamma`, but `caver5.policies.BayesianPolicy.__init__` sets an
+instance attribute `self.gamma = 1.0`, which shadowed it. So A1 and A2 ran with γ = 1 and were
+run-for-run identical to CAVER-v0.6: 800/800 matched (scenario, seed) runs had identical
+outcomes, alarms, posterior snapshot and entropy, checked mechanically.
+`tests/test_v09_temporal.py::test_continuous_decay_scales_all_families` exposed the bug.
+
+Fix: rename the attribute to `decay_gamma`. The **values are unchanged** (A1 γ = 0.981366,
+A2 γ = 0.95, A3 τ = 0.2). New regression tests check that the instance keeps the constant and
+that A1/A2 diverge from v0.6. A3 and all baselines were unaffected; their run-2 results must
+match run 1 exactly, and this is verified below. Run 1's candidate results were not used for
+any decision. Run 2 is the dev result of record.

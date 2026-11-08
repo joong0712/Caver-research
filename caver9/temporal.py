@@ -46,12 +46,14 @@ GM_GAMMA = 1 - 0.25 * math.sqrt(BREAKPOINTS / HORIZON)
 class TemporalV06Base(CAVERv06):
     """CAVER-v0.6 with two optional recency hooks; defaults == v0.6.
 
-    `gamma`        per-update discount applied to every family (1.0 = off).
+    `decay_gamma`  per-update discount applied to every family (1.0 = off).
+                   (Not named `gamma`: BayesianPolicy.__init__ sets an instance
+                   attribute `gamma = 1.0` that would shadow a class constant.)
     `alarm_shrink` one-shot global multiplier applied on a detector alarm
                    (None = off).
     """
     name = 'TA-v0.6-equivalent'
-    gamma = 1.0
+    decay_gamma = 1.0
     alarm_shrink = None
 
     def __init__(self, rng: random.Random):
@@ -88,8 +90,8 @@ class TemporalV06Base(CAVERv06):
                 self._scale_all(self.alarm_shrink)
                 self.shrink_log.append({'family': family, 'eval_step': self.detector.step,
                                         'factor': self.alarm_shrink})
-        if self.gamma < 1.0:                           # continuous decay
-            self._scale_all(self.gamma)
+        if self.decay_gamma < 1.0:                     # continuous decay
+            self._scale_all(self.decay_gamma)
         self.successes[family] += int(newly_found)
         self.failures[family] += int(not newly_found)
         self.counts[family] += 1
@@ -98,13 +100,13 @@ class TemporalV06Base(CAVERv06):
 class DecayGM(TemporalV06Base):
     """A1: continuous decay with the Garivier-Moulines gamma (memory ~54 probes)."""
     name = 'A1-Decay.981'
-    gamma = GM_GAMMA
+    decay_gamma = GM_GAMMA
 
 
 class DecayFast(TemporalV06Base):
     """A2: continuous decay, fast (memory ~20 probes)."""
     name = 'A2-Decay.95'
-    gamma = 0.95
+    decay_gamma = 0.95
 
 
 class AlarmShrink(TemporalV06Base):
