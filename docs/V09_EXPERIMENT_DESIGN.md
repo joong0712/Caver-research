@@ -139,3 +139,40 @@ configurations** (purpose: per-config outcome stability; count: 30 runs).
 * Prior art: discounted UCB and sliding-window UCB (Garivier & Moulines 2011), GLR restarts,
   ε-greedy variants and recency bonuses are known methods. v0.9 makes **no novelty claim** for
   them.
+
+## Amendment 1 (Lead, after A/B/C dev reports, before any integration run)
+
+**Independent verification.** The lead re-ran each nominated or closest candidate with its own
+script (`caver8.benchmark.run_policy`, salt `v09dev`, 200 seeds, real table), without the
+agents' dev scripts. Every reported number reproduced exactly:
+
+| agent | candidate | dev §7 | verified Δ vs v0.6, stationary / abrupt / delayed |
+|---|---|---|---|
+| A | A1-Decay.981 (closest; not nominated) | fails stationary (lower bound −0.66) | −0.40 / +0.985 / +1.19 |
+| B | **B-DR-Bayes (B2), nominated** | passes | +0.135 / +1.035 / +1.435 |
+| C | **C9-UCBMean (C2), nominated** | passes | −0.02 / +0.99 / +1.255 |
+
+**Eligible combinations (§6.3: only components that passed on dev).** A nominated none, so A+B,
+A+C and A+B+C are excluded and A1 is reported only. **B+C** is eligible.
+
+**B+C candidate, frozen now: `V09-BC`.**
+* Reward and models from B2: the discovery model (Beta, undiscounted, learns `newly_found`) and
+  the recent-violation model (Beta, per-step discount 0.97, learns `violated`).
+* Combined mean 0.6·mean_disc + 0.4·mean_viol (B's starting weights, not tuned).
+* Exploration from C2: + 0.5·√(2 ln t / n_arm), where t = learned probes and n_arm = the arm's
+  undiscounted probe count; arms with n = 0 go first.
+* No change detector, sentinel or ε. B2 has none, and C's post-hoc ablation found the detector
+  reset added nothing.
+* No other constants were introduced.
+
+**Ablations on dev (same seeds):**
+* `V09-BC`
+* BC − violation model (w_viol = 0; this is C2's rule without a detector)
+* BC − UCB bonus (B2's optimistic bonuses instead; this equals B2)
+* B2, C2, v0.6 and UCB1
+
+**Choosing the single v0.9 candidate on dev.** Among {B2, C2, V09-BC}, pick the one that passes
+§7 on dev with the largest mean of the abrupt and delayed Δ vs v0.6. If two are within 0.1 of each
+other, prefer the simpler one (fewer components). V09-BC is preferred only if it passes §7 on dev
+and beats **both** B2 and C2 in abrupt **and** delayed with paired CIs above 0. Otherwise the
+simpler component is chosen. The chosen candidate is frozen, then the final holdout runs once.
