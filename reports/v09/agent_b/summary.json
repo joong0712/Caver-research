@@ -1,0 +1,3734 @@
+{
+  "meta": {
+    "salt": "v09dev",
+    "seeds": [
+      0,
+      199
+    ],
+    "n_seeds": 200,
+    "scenarios": [
+      "stationary",
+      "abrupt",
+      "delayed",
+      "recovery"
+    ],
+    "table": "reports/v08/outcome_table_real.json",
+    "table_cli_kind": "real",
+    "benchmark_is_table_replay": true,
+    "train_budget": 90,
+    "eval_budget": 90,
+    "policies": [
+      "Random",
+      "UCB1",
+      "CAVER-v0.3",
+      "CAVER-v0.6",
+      "B-UCB1-NewFP",
+      "B-UCB1-Combined",
+      "B-DR-TS",
+      "B-DR-Bayes",
+      "B-DR-v06",
+      "B-DR-TS[disc]",
+      "B-DR-TS[viol]",
+      "B-DR-TS[recent-disc]",
+      "B-DR-Bayes[disc]",
+      "B-DR-Bayes[viol]",
+      "B-DR-v06[disc]",
+      "B-DR-v06[viol]"
+    ],
+    "candidates": [
+      "B-DR-TS",
+      "B-DR-Bayes",
+      "B-DR-v06"
+    ],
+    "ablations": [
+      "B-DR-TS[disc]",
+      "B-DR-TS[viol]",
+      "B-DR-TS[recent-disc]",
+      "B-DR-Bayes[disc]",
+      "B-DR-Bayes[viol]",
+      "B-DR-v06[disc]",
+      "B-DR-v06[viol]"
+    ],
+    "fair_ucb": [
+      "B-UCB1-NewFP",
+      "B-UCB1-Combined"
+    ],
+    "recovery_cap": {
+      "abrupt": 91,
+      "delayed": 46,
+      "recovery": 61
+    },
+    "jobs": 2,
+    "cpu_basis": "thread CPU time inside select+observe_outcome+update, per probe (train+eval)",
+    "ci": "normal approx, mean +/- 1.96 sd/sqrt(n); paired on matched seeds",
+    "elapsed_s": 24.8
+  },
+  "criteria": {
+    "B-DR-TS": {
+      "c1_stationary_noninferior_vs_v06": false,
+      "c2_abrupt_gt_v06": true,
+      "c2_delayed_gt_v06": false,
+      "c2_abrupt_close_to_ucb1": false,
+      "c2_delayed_close_to_ucb1": false,
+      "c3_abrupt_faster_recovery_vs_v06": true,
+      "c3_delayed_faster_recovery_vs_v06": true,
+      "c4_recovery_noninferior_vs_v06": false,
+      "all": false,
+      "hypothesis_supported_vs_own_disc": false
+    },
+    "B-DR-Bayes": {
+      "c1_stationary_noninferior_vs_v06": true,
+      "c2_abrupt_gt_v06": true,
+      "c2_delayed_gt_v06": true,
+      "c2_abrupt_close_to_ucb1": true,
+      "c2_delayed_close_to_ucb1": true,
+      "c3_abrupt_faster_recovery_vs_v06": true,
+      "c3_delayed_faster_recovery_vs_v06": true,
+      "c4_recovery_noninferior_vs_v06": true,
+      "all": true,
+      "hypothesis_supported_vs_own_disc": true
+    },
+    "B-DR-v06": {
+      "c1_stationary_noninferior_vs_v06": false,
+      "c2_abrupt_gt_v06": true,
+      "c2_delayed_gt_v06": true,
+      "c2_abrupt_close_to_ucb1": true,
+      "c2_delayed_close_to_ucb1": true,
+      "c3_abrupt_faster_recovery_vs_v06": true,
+      "c3_delayed_faster_recovery_vs_v06": true,
+      "c4_recovery_noninferior_vs_v06": true,
+      "all": false,
+      "hypothesis_supported_vs_own_disc": true
+    }
+  },
+  "primary": "B-DR-Bayes",
+  "summary": {
+    "stationary": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.165,
+        "unique_false_pass_ci": [
+          8.8027,
+          9.5273
+        ],
+        "unique_defects": 11.395,
+        "unique_defects_ci": [
+          10.9957,
+          11.7943
+        ],
+        "fp_recall": 0.5446,
+        "fp_recall_ci": [
+          0.5284,
+          0.5608
+        ],
+        "eval_entropy": 0.9938,
+        "eval_entropy_ci": [
+          0.9932,
+          0.9944
+        ],
+        "cpu_us_per_probe": 3.268,
+        "cpu_us_per_probe_ci": [
+          3.1388,
+          3.3973
+        ],
+        "first_find_at": 8.05,
+        "first_find_at_ci": [
+          7.0475,
+          9.0525
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -2.51,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -2.875,
+          -2.145
+        ],
+        "d_ufp_vs_UCB1": -1.8,
+        "d_ufp_vs_UCB1_ci": [
+          -2.1668,
+          -1.4332
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 10.965,
+        "unique_false_pass_ci": [
+          10.5079,
+          11.4221
+        ],
+        "unique_defects": 13.37,
+        "unique_defects_ci": [
+          12.8959,
+          13.8441
+        ],
+        "fp_recall": 0.6454,
+        "fp_recall_ci": [
+          0.6274,
+          0.6634
+        ],
+        "eval_entropy": 0.9655,
+        "eval_entropy_ci": [
+          0.9633,
+          0.9677
+        ],
+        "cpu_us_per_probe": 8.8694,
+        "cpu_us_per_probe_ci": [
+          8.518,
+          9.2208
+        ],
+        "first_find_at": 6.17,
+        "first_find_at_ci": [
+          5.3585,
+          6.9815
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.71,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.9996,
+          -0.4204
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 12.05,
+        "unique_false_pass_ci": [
+          11.5752,
+          12.5248
+        ],
+        "unique_defects": 14.53,
+        "unique_defects_ci": [
+          14.0262,
+          15.0338
+        ],
+        "fp_recall": 0.712,
+        "fp_recall_ci": [
+          0.6941,
+          0.7299
+        ],
+        "eval_entropy": 0.9057,
+        "eval_entropy_ci": [
+          0.903,
+          0.9084
+        ],
+        "cpu_us_per_probe": 10.2691,
+        "cpu_us_per_probe_ci": [
+          9.8536,
+          10.6847
+        ],
+        "first_find_at": 4.755,
+        "first_find_at_ci": [
+          4.1551,
+          5.3549
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.375,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.1079,
+          0.6421
+        ],
+        "d_ufp_vs_UCB1": 1.085,
+        "d_ufp_vs_UCB1_ci": [
+          0.8103,
+          1.3597
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 11.675,
+        "unique_false_pass_ci": [
+          11.2633,
+          12.0867
+        ],
+        "unique_defects": 13.965,
+        "unique_defects_ci": [
+          13.5173,
+          14.4127
+        ],
+        "fp_recall": 0.6931,
+        "fp_recall_ci": [
+          0.6773,
+          0.7089
+        ],
+        "eval_entropy": 0.9402,
+        "eval_entropy_ci": [
+          0.9384,
+          0.9421
+        ],
+        "cpu_us_per_probe": 13.2603,
+        "cpu_us_per_probe_ci": [
+          12.7393,
+          13.7813
+        ],
+        "first_find_at": 5.095,
+        "first_find_at_ci": [
+          4.3817,
+          5.8083
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_UCB1": 0.71,
+        "d_ufp_vs_UCB1_ci": [
+          0.4204,
+          0.9996
+        ]
+      },
+      "B-UCB1-NewFP": {
+        "n": 200,
+        "unique_false_pass": 11.11,
+        "unique_false_pass_ci": [
+          10.67,
+          11.55
+        ],
+        "unique_defects": 13.355,
+        "unique_defects_ci": [
+          12.8938,
+          13.8162
+        ],
+        "fp_recall": 0.6567,
+        "fp_recall_ci": [
+          0.6399,
+          0.6735
+        ],
+        "eval_entropy": 0.9694,
+        "eval_entropy_ci": [
+          0.9675,
+          0.9714
+        ],
+        "cpu_us_per_probe": 8.9981,
+        "cpu_us_per_probe_ci": [
+          8.6226,
+          9.3737
+        ],
+        "first_find_at": 7.085,
+        "first_find_at_ci": [
+          6.1768,
+          7.9932
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.565,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.8586,
+          -0.2714
+        ],
+        "d_ufp_vs_UCB1": 0.145,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1295,
+          0.4195
+        ]
+      },
+      "B-UCB1-Combined": {
+        "n": 200,
+        "unique_false_pass": 11.185,
+        "unique_false_pass_ci": [
+          10.7443,
+          11.6257
+        ],
+        "unique_defects": 13.465,
+        "unique_defects_ci": [
+          12.9896,
+          13.9404
+        ],
+        "fp_recall": 0.6606,
+        "fp_recall_ci": [
+          0.644,
+          0.6771
+        ],
+        "eval_entropy": 0.968,
+        "eval_entropy_ci": [
+          0.966,
+          0.97
+        ],
+        "cpu_us_per_probe": 9.3048,
+        "cpu_us_per_probe_ci": [
+          8.9111,
+          9.6986
+        ],
+        "first_find_at": 6.59,
+        "first_find_at_ci": [
+          5.6749,
+          7.5051
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.49,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.7543,
+          -0.2257
+        ],
+        "d_ufp_vs_UCB1": 0.22,
+        "d_ufp_vs_UCB1_ci": [
+          -0.06,
+          0.5
+        ]
+      },
+      "B-DR-TS": {
+        "n": 200,
+        "unique_false_pass": 11.275,
+        "unique_false_pass_ci": [
+          10.8407,
+          11.7093
+        ],
+        "unique_defects": 13.655,
+        "unique_defects_ci": [
+          13.1941,
+          14.1159
+        ],
+        "fp_recall": 0.666,
+        "fp_recall_ci": [
+          0.6501,
+          0.682
+        ],
+        "eval_entropy": 0.9575,
+        "eval_entropy_ci": [
+          0.9553,
+          0.9596
+        ],
+        "cpu_us_per_probe": 29.3237,
+        "cpu_us_per_probe_ci": [
+          28.2276,
+          30.4199
+        ],
+        "first_find_at": 5.65,
+        "first_find_at_ci": [
+          4.927,
+          6.373
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.4,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.6669,
+          -0.1331
+        ],
+        "d_ufp_vs_UCB1": 0.31,
+        "d_ufp_vs_UCB1_ci": [
+          0.0379,
+          0.5821
+        ],
+        "d_ufp_vs_own_disc": -0.205,
+        "d_ufp_vs_own_disc_ci": [
+          -0.483,
+          0.073
+        ]
+      },
+      "B-DR-Bayes": {
+        "n": 200,
+        "unique_false_pass": 11.81,
+        "unique_false_pass_ci": [
+          11.3427,
+          12.2773
+        ],
+        "unique_defects": 14.205,
+        "unique_defects_ci": [
+          13.7098,
+          14.7002
+        ],
+        "fp_recall": 0.698,
+        "fp_recall_ci": [
+          0.6795,
+          0.7165
+        ],
+        "eval_entropy": 0.9374,
+        "eval_entropy_ci": [
+          0.935,
+          0.9399
+        ],
+        "cpu_us_per_probe": 19.4713,
+        "cpu_us_per_probe_ci": [
+          18.7269,
+          20.2157
+        ],
+        "first_find_at": 5.01,
+        "first_find_at_ci": [
+          4.3643,
+          5.6557
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.135,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.1382,
+          0.4082
+        ],
+        "d_ufp_vs_UCB1": 0.845,
+        "d_ufp_vs_UCB1_ci": [
+          0.5522,
+          1.1378
+        ],
+        "d_ufp_vs_own_disc": -0.415,
+        "d_ufp_vs_own_disc_ci": [
+          -0.6773,
+          -0.1527
+        ]
+      },
+      "B-DR-v06": {
+        "n": 200,
+        "unique_false_pass": 11.415,
+        "unique_false_pass_ci": [
+          10.9956,
+          11.8344
+        ],
+        "unique_defects": 13.835,
+        "unique_defects_ci": [
+          13.3844,
+          14.2856
+        ],
+        "fp_recall": 0.6771,
+        "fp_recall_ci": [
+          0.6608,
+          0.6934
+        ],
+        "eval_entropy": 0.9541,
+        "eval_entropy_ci": [
+          0.9522,
+          0.956
+        ],
+        "cpu_us_per_probe": 20.2251,
+        "cpu_us_per_probe_ci": [
+          19.346,
+          21.1041
+        ],
+        "first_find_at": 5.005,
+        "first_find_at_ci": [
+          4.351,
+          5.659
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.26,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.5027,
+          -0.0173
+        ],
+        "d_ufp_vs_UCB1": 0.45,
+        "d_ufp_vs_UCB1_ci": [
+          0.1664,
+          0.7336
+        ],
+        "d_ufp_vs_own_disc": -0.26,
+        "d_ufp_vs_own_disc_ci": [
+          -0.5027,
+          -0.0173
+        ]
+      },
+      "B-DR-TS[disc]": {
+        "n": 200,
+        "unique_false_pass": 11.48,
+        "unique_false_pass_ci": [
+          11.0809,
+          11.8791
+        ],
+        "unique_defects": 13.84,
+        "unique_defects_ci": [
+          13.4101,
+          14.2699
+        ],
+        "fp_recall": 0.6828,
+        "fp_recall_ci": [
+          0.6672,
+          0.6984
+        ],
+        "eval_entropy": 0.9423,
+        "eval_entropy_ci": [
+          0.94,
+          0.9445
+        ],
+        "cpu_us_per_probe": 19.5961,
+        "cpu_us_per_probe_ci": [
+          18.8828,
+          20.3093
+        ],
+        "first_find_at": 5.62,
+        "first_find_at_ci": [
+          4.8495,
+          6.3905
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.195,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.4724,
+          0.0824
+        ],
+        "d_ufp_vs_UCB1": 0.515,
+        "d_ufp_vs_UCB1_ci": [
+          0.2138,
+          0.8162
+        ]
+      },
+      "B-DR-TS[viol]": {
+        "n": 200,
+        "unique_false_pass": 10.495,
+        "unique_false_pass_ci": [
+          10.0563,
+          10.9337
+        ],
+        "unique_defects": 12.88,
+        "unique_defects_ci": [
+          12.4235,
+          13.3365
+        ],
+        "fp_recall": 0.619,
+        "fp_recall_ci": [
+          0.6012,
+          0.6369
+        ],
+        "eval_entropy": 0.9811,
+        "eval_entropy_ci": [
+          0.9798,
+          0.9825
+        ],
+        "cpu_us_per_probe": 19.7506,
+        "cpu_us_per_probe_ci": [
+          18.9856,
+          20.5156
+        ],
+        "first_find_at": 6.22,
+        "first_find_at_ci": [
+          5.4665,
+          6.9735
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -1.18,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.4937,
+          -0.8663
+        ],
+        "d_ufp_vs_UCB1": -0.47,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7794,
+          -0.1606
+        ]
+      },
+      "B-DR-TS[recent-disc]": {
+        "n": 200,
+        "unique_false_pass": 10.4,
+        "unique_false_pass_ci": [
+          9.9809,
+          10.8191
+        ],
+        "unique_defects": 12.745,
+        "unique_defects_ci": [
+          12.3092,
+          13.1808
+        ],
+        "fp_recall": 0.6143,
+        "fp_recall_ci": [
+          0.5974,
+          0.6312
+        ],
+        "eval_entropy": 0.9839,
+        "eval_entropy_ci": [
+          0.9827,
+          0.985
+        ],
+        "cpu_us_per_probe": 21.7237,
+        "cpu_us_per_probe_ci": [
+          20.9382,
+          22.5093
+        ],
+        "first_find_at": 6.595,
+        "first_find_at_ci": [
+          5.7139,
+          7.4761
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -1.275,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.5829,
+          -0.9671
+        ],
+        "d_ufp_vs_UCB1": -0.565,
+        "d_ufp_vs_UCB1_ci": [
+          -0.8823,
+          -0.2477
+        ]
+      },
+      "B-DR-Bayes[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.225,
+        "unique_false_pass_ci": [
+          11.7675,
+          12.6825
+        ],
+        "unique_defects": 14.52,
+        "unique_defects_ci": [
+          14.0435,
+          14.9965
+        ],
+        "fp_recall": 0.7236,
+        "fp_recall_ci": [
+          0.7071,
+          0.74
+        ],
+        "eval_entropy": 0.9101,
+        "eval_entropy_ci": [
+          0.9075,
+          0.9126
+        ],
+        "cpu_us_per_probe": 14.5643,
+        "cpu_us_per_probe_ci": [
+          13.9663,
+          15.1623
+        ],
+        "first_find_at": 4.715,
+        "first_find_at_ci": [
+          4.1301,
+          5.2999
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.55,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.3189,
+          0.7811
+        ],
+        "d_ufp_vs_UCB1": 1.26,
+        "d_ufp_vs_UCB1_ci": [
+          0.9772,
+          1.5428
+        ]
+      },
+      "B-DR-Bayes[viol]": {
+        "n": 200,
+        "unique_false_pass": 11.11,
+        "unique_false_pass_ci": [
+          10.6755,
+          11.5445
+        ],
+        "unique_defects": 13.415,
+        "unique_defects_ci": [
+          12.9469,
+          13.8831
+        ],
+        "fp_recall": 0.6575,
+        "fp_recall_ci": [
+          0.6401,
+          0.6749
+        ],
+        "eval_entropy": 0.9622,
+        "eval_entropy_ci": [
+          0.96,
+          0.9644
+        ],
+        "cpu_us_per_probe": 14.3109,
+        "cpu_us_per_probe_ci": [
+          13.7557,
+          14.8662
+        ],
+        "first_find_at": 6.425,
+        "first_find_at_ci": [
+          5.529,
+          7.321
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.565,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.8465,
+          -0.2835
+        ],
+        "d_ufp_vs_UCB1": 0.145,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1446,
+          0.4346
+        ]
+      },
+      "B-DR-v06[disc]": {
+        "n": 200,
+        "unique_false_pass": 11.675,
+        "unique_false_pass_ci": [
+          11.2633,
+          12.0867
+        ],
+        "unique_defects": 13.965,
+        "unique_defects_ci": [
+          13.5173,
+          14.4127
+        ],
+        "fp_recall": 0.6931,
+        "fp_recall_ci": [
+          0.6773,
+          0.7089
+        ],
+        "eval_entropy": 0.9402,
+        "eval_entropy_ci": [
+          0.9384,
+          0.9421
+        ],
+        "cpu_us_per_probe": 15.4664,
+        "cpu_us_per_probe_ci": [
+          14.8253,
+          16.1075
+        ],
+        "first_find_at": 5.095,
+        "first_find_at_ci": [
+          4.3817,
+          5.8083
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_ufp_vs_UCB1": 0.71,
+        "d_ufp_vs_UCB1_ci": [
+          0.4204,
+          0.9996
+        ]
+      },
+      "B-DR-v06[viol]": {
+        "n": 200,
+        "unique_false_pass": 10.715,
+        "unique_false_pass_ci": [
+          10.2937,
+          11.1363
+        ],
+        "unique_defects": 13.14,
+        "unique_defects_ci": [
+          12.7024,
+          13.5776
+        ],
+        "fp_recall": 0.6344,
+        "fp_recall_ci": [
+          0.6173,
+          0.6515
+        ],
+        "eval_entropy": 0.9716,
+        "eval_entropy_ci": [
+          0.9699,
+          0.9732
+        ],
+        "cpu_us_per_probe": 19.6086,
+        "cpu_us_per_probe_ci": [
+          18.8266,
+          20.3906
+        ],
+        "first_find_at": 6.555,
+        "first_find_at_ci": [
+          5.6544,
+          7.4556
+        ],
+        "first_find_none_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.96,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.2406,
+          -0.6794
+        ],
+        "d_ufp_vs_UCB1": -0.25,
+        "d_ufp_vs_UCB1_ci": [
+          -0.5569,
+          0.0569
+        ]
+      }
+    },
+    "abrupt": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 10.47,
+        "unique_false_pass_ci": [
+          10.0903,
+          10.8497
+        ],
+        "unique_defects": 12.83,
+        "unique_defects_ci": [
+          12.4275,
+          13.2325
+        ],
+        "fp_recall": 0.5437,
+        "fp_recall_ci": [
+          0.5294,
+          0.558
+        ],
+        "eval_entropy": 0.9932,
+        "eval_entropy_ci": [
+          0.9926,
+          0.9938
+        ],
+        "cpu_us_per_probe": 3.1311,
+        "cpu_us_per_probe_ci": [
+          3.0114,
+          3.2508
+        ],
+        "first_find_at": 6.725,
+        "first_find_at_ci": [
+          5.9247,
+          7.5253
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 8.125,
+        "recovery_steps_ci": [
+          7.0573,
+          9.1927
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -1.72,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -2.1242,
+          -1.3158
+        ],
+        "d_rec_vs_CAVER-v0.6": -8.745,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -10.6043,
+          -6.8857
+        ],
+        "d_ufp_vs_UCB1": -2.29,
+        "d_ufp_vs_UCB1_ci": [
+          -2.7226,
+          -1.8574
+        ],
+        "d_rec_vs_UCB1": -2.44,
+        "d_rec_vs_UCB1_ci": [
+          -3.989,
+          -0.891
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.76,
+        "unique_false_pass_ci": [
+          12.2325,
+          13.2875
+        ],
+        "unique_defects": 15.12,
+        "unique_defects_ci": [
+          14.5925,
+          15.6475
+        ],
+        "fp_recall": 0.6587,
+        "fp_recall_ci": [
+          0.6391,
+          0.6783
+        ],
+        "eval_entropy": 0.9661,
+        "eval_entropy_ci": [
+          0.9642,
+          0.968
+        ],
+        "cpu_us_per_probe": 8.256,
+        "cpu_us_per_probe_ci": [
+          7.9569,
+          8.555
+        ],
+        "first_find_at": 8.535,
+        "first_find_at_ci": [
+          7.5576,
+          9.5124
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.565,
+        "recovery_steps_ci": [
+          9.3631,
+          11.7669
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.57,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.2094,
+          0.9306
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.305,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.3686,
+          -4.2414
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 11.935,
+        "unique_false_pass_ci": [
+          11.4294,
+          12.4406
+        ],
+        "unique_defects": 14.185,
+        "unique_defects_ci": [
+          13.6548,
+          14.7152
+        ],
+        "fp_recall": 0.6192,
+        "fp_recall_ci": [
+          0.5985,
+          0.6398
+        ],
+        "eval_entropy": 0.9136,
+        "eval_entropy_ci": [
+          0.9108,
+          0.9164
+        ],
+        "cpu_us_per_probe": 9.3413,
+        "cpu_us_per_probe_ci": [
+          9.0003,
+          9.6824
+        ],
+        "first_find_at": 13.36,
+        "first_find_at_ci": [
+          11.8419,
+          14.8781
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 23.03,
+        "recovery_steps_ci": [
+          21.0624,
+          24.9976
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.255,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.6202,
+          0.1102
+        ],
+        "d_rec_vs_CAVER-v0.6": 6.16,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          4.013,
+          8.307
+        ],
+        "d_ufp_vs_UCB1": -0.825,
+        "d_ufp_vs_UCB1_ci": [
+          -1.2008,
+          -0.4492
+        ],
+        "d_rec_vs_UCB1": 12.465,
+        "d_rec_vs_UCB1_ci": [
+          10.2289,
+          14.7011
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.19,
+        "unique_false_pass_ci": [
+          11.7072,
+          12.6728
+        ],
+        "unique_defects": 14.195,
+        "unique_defects_ci": [
+          13.7154,
+          14.6746
+        ],
+        "fp_recall": 0.6322,
+        "fp_recall_ci": [
+          0.6134,
+          0.6509
+        ],
+        "eval_entropy": 0.9506,
+        "eval_entropy_ci": [
+          0.9486,
+          0.9527
+        ],
+        "cpu_us_per_probe": 12.1711,
+        "cpu_us_per_probe_ci": [
+          11.7003,
+          12.6418
+        ],
+        "first_find_at": 11.935,
+        "first_find_at_ci": [
+          10.6976,
+          13.1724
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 16.87,
+        "recovery_steps_ci": [
+          15.2009,
+          18.5391
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_UCB1": -0.57,
+        "d_ufp_vs_UCB1_ci": [
+          -0.9306,
+          -0.2094
+        ],
+        "d_rec_vs_UCB1": 6.305,
+        "d_rec_vs_UCB1_ci": [
+          4.2414,
+          8.3686
+        ]
+      },
+      "B-UCB1-NewFP": {
+        "n": 200,
+        "unique_false_pass": 12.995,
+        "unique_false_pass_ci": [
+          12.4876,
+          13.5024
+        ],
+        "unique_defects": 15.195,
+        "unique_defects_ci": [
+          14.6673,
+          15.7227
+        ],
+        "fp_recall": 0.6736,
+        "fp_recall_ci": [
+          0.6539,
+          0.6933
+        ],
+        "eval_entropy": 0.9673,
+        "eval_entropy_ci": [
+          0.9654,
+          0.9693
+        ],
+        "cpu_us_per_probe": 8.0809,
+        "cpu_us_per_probe_ci": [
+          7.7595,
+          8.4024
+        ],
+        "first_find_at": 7.6,
+        "first_find_at_ci": [
+          6.7798,
+          8.4202
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.205,
+        "recovery_steps_ci": [
+          8.2362,
+          10.1738
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.805,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.4479,
+          1.1621
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.665,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.6377,
+          -5.6923
+        ],
+        "d_ufp_vs_UCB1": 0.235,
+        "d_ufp_vs_UCB1_ci": [
+          -0.0815,
+          0.5515
+        ],
+        "d_rec_vs_UCB1": -1.36,
+        "d_rec_vs_UCB1_ci": [
+          -2.759,
+          0.039
+        ]
+      },
+      "B-UCB1-Combined": {
+        "n": 200,
+        "unique_false_pass": 12.92,
+        "unique_false_pass_ci": [
+          12.4394,
+          13.4006
+        ],
+        "unique_defects": 15.18,
+        "unique_defects_ci": [
+          14.6841,
+          15.6759
+        ],
+        "fp_recall": 0.67,
+        "fp_recall_ci": [
+          0.6519,
+          0.6881
+        ],
+        "eval_entropy": 0.9674,
+        "eval_entropy_ci": [
+          0.9654,
+          0.9694
+        ],
+        "cpu_us_per_probe": 8.0663,
+        "cpu_us_per_probe_ci": [
+          7.749,
+          8.3836
+        ],
+        "first_find_at": 7.66,
+        "first_find_at_ci": [
+          6.8356,
+          8.4844
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.025,
+        "recovery_steps_ci": [
+          8.1302,
+          9.9198
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.73,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.3813,
+          1.0787
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.845,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.6997,
+          -5.9903
+        ],
+        "d_ufp_vs_UCB1": 0.16,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1654,
+          0.4854
+        ],
+        "d_rec_vs_UCB1": -1.54,
+        "d_rec_vs_UCB1_ci": [
+          -2.8981,
+          -0.1819
+        ]
+      },
+      "B-DR-TS": {
+        "n": 200,
+        "unique_false_pass": 12.52,
+        "unique_false_pass_ci": [
+          12.0106,
+          13.0294
+        ],
+        "unique_defects": 14.81,
+        "unique_defects_ci": [
+          14.2902,
+          15.3298
+        ],
+        "fp_recall": 0.647,
+        "fp_recall_ci": [
+          0.6281,
+          0.6659
+        ],
+        "eval_entropy": 0.9644,
+        "eval_entropy_ci": [
+          0.9625,
+          0.9662
+        ],
+        "cpu_us_per_probe": 27.0301,
+        "cpu_us_per_probe_ci": [
+          26.1708,
+          27.8893
+        ],
+        "first_find_at": 9.39,
+        "first_find_at_ci": [
+          8.4327,
+          10.3473
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 12.585,
+        "recovery_steps_ci": [
+          11.2766,
+          13.8934
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.33,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.0009,
+          0.6591
+        ],
+        "d_rec_vs_CAVER-v0.6": -4.285,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -6.2996,
+          -2.2704
+        ],
+        "d_ufp_vs_UCB1": -0.24,
+        "d_ufp_vs_UCB1_ci": [
+          -0.6238,
+          0.1438
+        ],
+        "d_rec_vs_UCB1": 2.02,
+        "d_rec_vs_UCB1_ci": [
+          0.4336,
+          3.6064
+        ],
+        "d_ufp_vs_own_disc": 0.75,
+        "d_ufp_vs_own_disc_ci": [
+          0.3731,
+          1.1269
+        ],
+        "d_rec_vs_own_disc": -0.68,
+        "d_rec_vs_own_disc_ci": [
+          -2.5517,
+          1.1917
+        ]
+      },
+      "B-DR-Bayes": {
+        "n": 200,
+        "unique_false_pass": 13.225,
+        "unique_false_pass_ci": [
+          12.7296,
+          13.7204
+        ],
+        "unique_defects": 15.405,
+        "unique_defects_ci": [
+          14.8849,
+          15.9251
+        ],
+        "fp_recall": 0.6838,
+        "fp_recall_ci": [
+          0.666,
+          0.7016
+        ],
+        "eval_entropy": 0.9423,
+        "eval_entropy_ci": [
+          0.9399,
+          0.9447
+        ],
+        "cpu_us_per_probe": 17.6359,
+        "cpu_us_per_probe_ci": [
+          16.9745,
+          18.2973
+        ],
+        "first_find_at": 10.625,
+        "first_find_at_ci": [
+          9.6297,
+          11.6203
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 14.445,
+        "recovery_steps_ci": [
+          13.0826,
+          15.8074
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 1.035,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.6697,
+          1.4003
+        ],
+        "d_rec_vs_CAVER-v0.6": -2.425,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -4.1704,
+          -0.6796
+        ],
+        "d_ufp_vs_UCB1": 0.465,
+        "d_ufp_vs_UCB1_ci": [
+          0.1205,
+          0.8095
+        ],
+        "d_rec_vs_UCB1": 3.88,
+        "d_rec_vs_UCB1_ci": [
+          2.2335,
+          5.5265
+        ],
+        "d_ufp_vs_own_disc": 0.975,
+        "d_ufp_vs_own_disc_ci": [
+          0.611,
+          1.339
+        ],
+        "d_rec_vs_own_disc": -7.46,
+        "d_rec_vs_own_disc_ci": [
+          -9.4016,
+          -5.5184
+        ]
+      },
+      "B-DR-v06": {
+        "n": 200,
+        "unique_false_pass": 12.715,
+        "unique_false_pass_ci": [
+          12.2679,
+          13.1621
+        ],
+        "unique_defects": 14.965,
+        "unique_defects_ci": [
+          14.5126,
+          15.4174
+        ],
+        "fp_recall": 0.661,
+        "fp_recall_ci": [
+          0.6441,
+          0.6778
+        ],
+        "eval_entropy": 0.9623,
+        "eval_entropy_ci": [
+          0.9606,
+          0.9639
+        ],
+        "cpu_us_per_probe": 18.0363,
+        "cpu_us_per_probe_ci": [
+          17.3962,
+          18.6764
+        ],
+        "first_find_at": 10.39,
+        "first_find_at_ci": [
+          9.4305,
+          11.3495
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 13.66,
+        "recovery_steps_ci": [
+          12.4023,
+          14.9177
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.525,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.1959,
+          0.8541
+        ],
+        "d_rec_vs_CAVER-v0.6": -3.21,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -4.8379,
+          -1.5821
+        ],
+        "d_ufp_vs_UCB1": -0.045,
+        "d_ufp_vs_UCB1_ci": [
+          -0.3993,
+          0.3093
+        ],
+        "d_rec_vs_UCB1": 3.095,
+        "d_rec_vs_UCB1_ci": [
+          1.4909,
+          4.6991
+        ],
+        "d_ufp_vs_own_disc": 0.525,
+        "d_ufp_vs_own_disc_ci": [
+          0.1959,
+          0.8541
+        ],
+        "d_rec_vs_own_disc": -3.21,
+        "d_rec_vs_own_disc_ci": [
+          -4.8379,
+          -1.5821
+        ]
+      },
+      "B-DR-TS[disc]": {
+        "n": 200,
+        "unique_false_pass": 11.77,
+        "unique_false_pass_ci": [
+          11.2626,
+          12.2774
+        ],
+        "unique_defects": 13.93,
+        "unique_defects_ci": [
+          13.4209,
+          14.4391
+        ],
+        "fp_recall": 0.6081,
+        "fp_recall_ci": [
+          0.5879,
+          0.6283
+        ],
+        "eval_entropy": 0.9467,
+        "eval_entropy_ci": [
+          0.9444,
+          0.9491
+        ],
+        "cpu_us_per_probe": 18.4819,
+        "cpu_us_per_probe_ci": [
+          17.8198,
+          19.1439
+        ],
+        "first_find_at": 9.195,
+        "first_find_at_ci": [
+          8.0985,
+          10.2915
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 13.265,
+        "recovery_steps_ci": [
+          11.5857,
+          14.9443
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.42,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.8172,
+          -0.0228
+        ],
+        "d_rec_vs_CAVER-v0.6": -3.605,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -5.7441,
+          -1.4659
+        ],
+        "d_ufp_vs_UCB1": -0.99,
+        "d_ufp_vs_UCB1_ci": [
+          -1.3967,
+          -0.5833
+        ],
+        "d_rec_vs_UCB1": 2.7,
+        "d_rec_vs_UCB1_ci": [
+          0.7535,
+          4.6465
+        ]
+      },
+      "B-DR-TS[viol]": {
+        "n": 200,
+        "unique_false_pass": 11.665,
+        "unique_false_pass_ci": [
+          11.2105,
+          12.1195
+        ],
+        "unique_defects": 14.08,
+        "unique_defects_ci": [
+          13.6176,
+          14.5424
+        ],
+        "fp_recall": 0.6042,
+        "fp_recall_ci": [
+          0.5872,
+          0.6212
+        ],
+        "eval_entropy": 0.9817,
+        "eval_entropy_ci": [
+          0.9805,
+          0.983
+        ],
+        "cpu_us_per_probe": 19.1649,
+        "cpu_us_per_probe_ci": [
+          18.449,
+          19.8807
+        ],
+        "first_find_at": 8.015,
+        "first_find_at_ci": [
+          7.0025,
+          9.0275
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.305,
+        "recovery_steps_ci": [
+          9.0715,
+          11.5385
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.525,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.8884,
+          -0.1616
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.565,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.5478,
+          -4.5822
+        ],
+        "d_ufp_vs_UCB1": -1.095,
+        "d_ufp_vs_UCB1_ci": [
+          -1.4772,
+          -0.7128
+        ],
+        "d_rec_vs_UCB1": -0.26,
+        "d_rec_vs_UCB1_ci": [
+          -1.8788,
+          1.3588
+        ]
+      },
+      "B-DR-TS[recent-disc]": {
+        "n": 200,
+        "unique_false_pass": 12.37,
+        "unique_false_pass_ci": [
+          11.9027,
+          12.8373
+        ],
+        "unique_defects": 14.645,
+        "unique_defects_ci": [
+          14.1712,
+          15.1188
+        ],
+        "fp_recall": 0.6413,
+        "fp_recall_ci": [
+          0.6238,
+          0.6588
+        ],
+        "eval_entropy": 0.9817,
+        "eval_entropy_ci": [
+          0.9806,
+          0.9829
+        ],
+        "cpu_us_per_probe": 20.5367,
+        "cpu_us_per_probe_ci": [
+          19.7709,
+          21.3025
+        ],
+        "first_find_at": 7.8,
+        "first_find_at_ci": [
+          6.8348,
+          8.7652
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.495,
+        "recovery_steps_ci": [
+          8.3735,
+          10.6165
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.18,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.2293,
+          0.5893
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.375,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.1974,
+          -5.5526
+        ],
+        "d_ufp_vs_UCB1": -0.39,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7755,
+          -0.0045
+        ],
+        "d_rec_vs_UCB1": -1.07,
+        "d_rec_vs_UCB1_ci": [
+          -2.6158,
+          0.4758
+        ]
+      },
+      "B-DR-Bayes[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.25,
+        "unique_false_pass_ci": [
+          11.7055,
+          12.7945
+        ],
+        "unique_defects": 14.235,
+        "unique_defects_ci": [
+          13.6852,
+          14.7848
+        ],
+        "fp_recall": 0.6325,
+        "fp_recall_ci": [
+          0.6118,
+          0.6533
+        ],
+        "eval_entropy": 0.915,
+        "eval_entropy_ci": [
+          0.912,
+          0.9179
+        ],
+        "cpu_us_per_probe": 13.4558,
+        "cpu_us_per_probe_ci": [
+          12.9339,
+          13.9778
+        ],
+        "first_find_at": 13.735,
+        "first_find_at_ci": [
+          12.2413,
+          15.2287
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 21.905,
+        "recovery_steps_ci": [
+          19.9703,
+          23.8397
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.06,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.3099,
+          0.4299
+        ],
+        "d_rec_vs_CAVER-v0.6": 5.035,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          3.1343,
+          6.9357
+        ],
+        "d_ufp_vs_UCB1": -0.51,
+        "d_ufp_vs_UCB1_ci": [
+          -0.9117,
+          -0.1083
+        ],
+        "d_rec_vs_UCB1": 11.34,
+        "d_rec_vs_UCB1_ci": [
+          9.1031,
+          13.5769
+        ]
+      },
+      "B-DR-Bayes[viol]": {
+        "n": 200,
+        "unique_false_pass": 13.19,
+        "unique_false_pass_ci": [
+          12.7005,
+          13.6795
+        ],
+        "unique_defects": 15.675,
+        "unique_defects_ci": [
+          15.1748,
+          16.1752
+        ],
+        "fp_recall": 0.684,
+        "fp_recall_ci": [
+          0.6664,
+          0.7015
+        ],
+        "eval_entropy": 0.9604,
+        "eval_entropy_ci": [
+          0.9584,
+          0.9624
+        ],
+        "cpu_us_per_probe": 13.1853,
+        "cpu_us_per_probe_ci": [
+          12.6948,
+          13.6758
+        ],
+        "first_find_at": 8.83,
+        "first_find_at_ci": [
+          7.877,
+          9.783
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 11.555,
+        "recovery_steps_ci": [
+          10.3922,
+          12.7178
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 1,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.6436,
+          1.3564
+        ],
+        "d_rec_vs_CAVER-v0.6": -5.315,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -7.1077,
+          -3.5223
+        ],
+        "d_ufp_vs_UCB1": 0.43,
+        "d_ufp_vs_UCB1_ci": [
+          0.0918,
+          0.7682
+        ],
+        "d_rec_vs_UCB1": 0.99,
+        "d_rec_vs_UCB1_ci": [
+          -0.5691,
+          2.5491
+        ]
+      },
+      "B-DR-v06[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.19,
+        "unique_false_pass_ci": [
+          11.7072,
+          12.6728
+        ],
+        "unique_defects": 14.195,
+        "unique_defects_ci": [
+          13.7154,
+          14.6746
+        ],
+        "fp_recall": 0.6322,
+        "fp_recall_ci": [
+          0.6134,
+          0.6509
+        ],
+        "eval_entropy": 0.9506,
+        "eval_entropy_ci": [
+          0.9486,
+          0.9527
+        ],
+        "cpu_us_per_probe": 14.0436,
+        "cpu_us_per_probe_ci": [
+          13.5086,
+          14.5785
+        ],
+        "first_find_at": 11.935,
+        "first_find_at_ci": [
+          10.6976,
+          13.1724
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 16.87,
+        "recovery_steps_ci": [
+          15.2009,
+          18.5391
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_rec_vs_CAVER-v0.6": 0,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_ufp_vs_UCB1": -0.57,
+        "d_ufp_vs_UCB1_ci": [
+          -0.9306,
+          -0.2094
+        ],
+        "d_rec_vs_UCB1": 6.305,
+        "d_rec_vs_UCB1_ci": [
+          4.2414,
+          8.3686
+        ]
+      },
+      "B-DR-v06[viol]": {
+        "n": 200,
+        "unique_false_pass": 12.945,
+        "unique_false_pass_ci": [
+          12.4647,
+          13.4253
+        ],
+        "unique_defects": 15.345,
+        "unique_defects_ci": [
+          14.8741,
+          15.8159
+        ],
+        "fp_recall": 0.6706,
+        "fp_recall_ci": [
+          0.6525,
+          0.6888
+        ],
+        "eval_entropy": 0.9707,
+        "eval_entropy_ci": [
+          0.9691,
+          0.9722
+        ],
+        "cpu_us_per_probe": 18.1352,
+        "cpu_us_per_probe_ci": [
+          17.5005,
+          18.7698
+        ],
+        "first_find_at": 8.43,
+        "first_find_at_ci": [
+          7.5122,
+          9.3478
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.44,
+        "recovery_steps_ci": [
+          9.3742,
+          11.5058
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.755,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.3926,
+          1.1174
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.43,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.2128,
+          -4.6472
+        ],
+        "d_ufp_vs_UCB1": 0.185,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1755,
+          0.5455
+        ],
+        "d_rec_vs_UCB1": -0.125,
+        "d_rec_vs_UCB1_ci": [
+          -1.6645,
+          1.4145
+        ]
+      }
+    },
+    "delayed": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.98,
+        "unique_false_pass_ci": [
+          9.5902,
+          10.3698
+        ],
+        "unique_defects": 12.265,
+        "unique_defects_ci": [
+          11.8275,
+          12.7025
+        ],
+        "fp_recall": 0.3307,
+        "fp_recall_ci": [
+          0.3187,
+          0.3427
+        ],
+        "eval_entropy": 0.9883,
+        "eval_entropy_ci": [
+          0.9873,
+          0.9893
+        ],
+        "cpu_us_per_probe": 2.8465,
+        "cpu_us_per_probe_ci": [
+          2.7288,
+          2.9642
+        ],
+        "first_find_at": 7.48,
+        "first_find_at_ci": [
+          6.5304,
+          8.4296
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 7.87,
+        "recovery_steps_ci": [
+          6.9277,
+          8.8123
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -2.355,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -2.8802,
+          -1.8298
+        ],
+        "d_rec_vs_CAVER-v0.6": -9.66,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -11.493,
+          -7.827
+        ],
+        "d_ufp_vs_UCB1": -3.01,
+        "d_ufp_vs_UCB1_ci": [
+          -3.5914,
+          -2.4286
+        ],
+        "d_rec_vs_UCB1": -2.085,
+        "d_rec_vs_UCB1_ci": [
+          -3.4955,
+          -0.6745
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.99,
+        "unique_false_pass_ci": [
+          12.4653,
+          13.5147
+        ],
+        "unique_defects": 15.265,
+        "unique_defects_ci": [
+          14.7239,
+          15.8061
+        ],
+        "fp_recall": 0.4292,
+        "fp_recall_ci": [
+          0.4137,
+          0.4446
+        ],
+        "eval_entropy": 0.9634,
+        "eval_entropy_ci": [
+          0.9609,
+          0.9658
+        ],
+        "cpu_us_per_probe": 7.8894,
+        "cpu_us_per_probe_ci": [
+          7.5213,
+          8.2574
+        ],
+        "first_find_at": 6.24,
+        "first_find_at_ci": [
+          5.4001,
+          7.0799
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.955,
+        "recovery_steps_ci": [
+          8.7776,
+          11.1324
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.655,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.1004,
+          1.2096
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.575,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.4999,
+          -5.6501
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 11.885,
+        "unique_false_pass_ci": [
+          11.4565,
+          12.3135
+        ],
+        "unique_defects": 13.95,
+        "unique_defects_ci": [
+          13.4909,
+          14.4091
+        ],
+        "fp_recall": 0.3946,
+        "fp_recall_ci": [
+          0.3811,
+          0.4082
+        ],
+        "eval_entropy": 0.7519,
+        "eval_entropy_ci": [
+          0.7443,
+          0.7595
+        ],
+        "cpu_us_per_probe": 8.9737,
+        "cpu_us_per_probe_ci": [
+          8.5939,
+          9.3535
+        ],
+        "first_find_at": 4.95,
+        "first_find_at_ci": [
+          4.3247,
+          5.5753
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 25.37,
+        "recovery_steps_ci": [
+          23.5324,
+          27.2076
+        ],
+        "recovery_censored_rate": 0.11,
+        "d_ufp_vs_CAVER-v0.6": -0.45,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.8997,
+          -0.0003
+        ],
+        "d_rec_vs_CAVER-v0.6": 7.84,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          5.7316,
+          9.9484
+        ],
+        "d_ufp_vs_UCB1": -1.105,
+        "d_ufp_vs_UCB1_ci": [
+          -1.6425,
+          -0.5675
+        ],
+        "d_rec_vs_UCB1": 15.415,
+        "d_rec_vs_UCB1_ci": [
+          13.3128,
+          17.5172
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.335,
+        "unique_false_pass_ci": [
+          11.8895,
+          12.7805
+        ],
+        "unique_defects": 14.255,
+        "unique_defects_ci": [
+          13.7789,
+          14.7311
+        ],
+        "fp_recall": 0.4082,
+        "fp_recall_ci": [
+          0.3951,
+          0.4214
+        ],
+        "eval_entropy": 0.8591,
+        "eval_entropy_ci": [
+          0.8532,
+          0.865
+        ],
+        "cpu_us_per_probe": 11.3477,
+        "cpu_us_per_probe_ci": [
+          10.8532,
+          11.8422
+        ],
+        "first_find_at": 4.925,
+        "first_find_at_ci": [
+          4.2503,
+          5.5997
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 17.53,
+        "recovery_steps_ci": [
+          15.7955,
+          19.2645
+        ],
+        "recovery_censored_rate": 0.04,
+        "d_ufp_vs_UCB1": -0.655,
+        "d_ufp_vs_UCB1_ci": [
+          -1.2096,
+          -0.1004
+        ],
+        "d_rec_vs_UCB1": 7.575,
+        "d_rec_vs_UCB1_ci": [
+          5.6501,
+          9.4999
+        ]
+      },
+      "B-UCB1-NewFP": {
+        "n": 200,
+        "unique_false_pass": 13.27,
+        "unique_false_pass_ci": [
+          12.7339,
+          13.8061
+        ],
+        "unique_defects": 15.39,
+        "unique_defects_ci": [
+          14.8519,
+          15.9281
+        ],
+        "fp_recall": 0.4373,
+        "fp_recall_ci": [
+          0.4218,
+          0.4529
+        ],
+        "eval_entropy": 0.9624,
+        "eval_entropy_ci": [
+          0.9599,
+          0.9649
+        ],
+        "cpu_us_per_probe": 7.5905,
+        "cpu_us_per_probe_ci": [
+          7.2683,
+          7.9127
+        ],
+        "first_find_at": 7.25,
+        "first_find_at_ci": [
+          6.2027,
+          8.2973
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.305,
+        "recovery_steps_ci": [
+          8.2951,
+          10.3149
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": 0.935,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.3871,
+          1.4829
+        ],
+        "d_rec_vs_CAVER-v0.6": -8.225,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -10.062,
+          -6.388
+        ],
+        "d_ufp_vs_UCB1": 0.28,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1932,
+          0.7532
+        ],
+        "d_rec_vs_UCB1": -0.65,
+        "d_rec_vs_UCB1_ci": [
+          -2.0655,
+          0.7655
+        ]
+      },
+      "B-UCB1-Combined": {
+        "n": 200,
+        "unique_false_pass": 13.37,
+        "unique_false_pass_ci": [
+          12.8423,
+          13.8977
+        ],
+        "unique_defects": 15.695,
+        "unique_defects_ci": [
+          15.1579,
+          16.2321
+        ],
+        "fp_recall": 0.4415,
+        "fp_recall_ci": [
+          0.4256,
+          0.4573
+        ],
+        "eval_entropy": 0.9643,
+        "eval_entropy_ci": [
+          0.9619,
+          0.9668
+        ],
+        "cpu_us_per_probe": 7.738,
+        "cpu_us_per_probe_ci": [
+          7.4,
+          8.076
+        ],
+        "first_find_at": 6.04,
+        "first_find_at_ci": [
+          5.2823,
+          6.7977
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.13,
+        "recovery_steps_ci": [
+          8.9052,
+          11.3548
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": 1.035,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.5039,
+          1.5661
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.4,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.4673,
+          -5.3327
+        ],
+        "d_ufp_vs_UCB1": 0.38,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1012,
+          0.8612
+        ],
+        "d_rec_vs_UCB1": 0.175,
+        "d_rec_vs_UCB1_ci": [
+          -1.2979,
+          1.6479
+        ]
+      },
+      "B-DR-TS": {
+        "n": 200,
+        "unique_false_pass": 12.75,
+        "unique_false_pass_ci": [
+          12.2813,
+          13.2187
+        ],
+        "unique_defects": 14.79,
+        "unique_defects_ci": [
+          14.3088,
+          15.2712
+        ],
+        "fp_recall": 0.421,
+        "fp_recall_ci": [
+          0.4075,
+          0.4345
+        ],
+        "eval_entropy": 0.9264,
+        "eval_entropy_ci": [
+          0.9222,
+          0.9306
+        ],
+        "cpu_us_per_probe": 26.5426,
+        "cpu_us_per_probe_ci": [
+          25.5317,
+          27.5536
+        ],
+        "first_find_at": 4.93,
+        "first_find_at_ci": [
+          4.355,
+          5.505
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 12.695,
+        "recovery_steps_ci": [
+          11.3651,
+          14.0249
+        ],
+        "recovery_censored_rate": 0.02,
+        "d_ufp_vs_CAVER-v0.6": 0.415,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.0713,
+          0.9013
+        ],
+        "d_rec_vs_CAVER-v0.6": -4.835,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -6.8427,
+          -2.8273
+        ],
+        "d_ufp_vs_UCB1": -0.24,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7517,
+          0.2717
+        ],
+        "d_rec_vs_UCB1": 2.74,
+        "d_rec_vs_UCB1_ci": [
+          1.018,
+          4.462
+        ],
+        "d_ufp_vs_own_disc": 0.645,
+        "d_ufp_vs_own_disc_ci": [
+          0.155,
+          1.135
+        ],
+        "d_rec_vs_own_disc": -2.53,
+        "d_rec_vs_own_disc_ci": [
+          -4.3241,
+          -0.7359
+        ]
+      },
+      "B-DR-Bayes": {
+        "n": 200,
+        "unique_false_pass": 13.77,
+        "unique_false_pass_ci": [
+          13.3063,
+          14.2337
+        ],
+        "unique_defects": 15.835,
+        "unique_defects_ci": [
+          15.3606,
+          16.3094
+        ],
+        "fp_recall": 0.4558,
+        "fp_recall_ci": [
+          0.4422,
+          0.4694
+        ],
+        "eval_entropy": 0.8883,
+        "eval_entropy_ci": [
+          0.8824,
+          0.8943
+        ],
+        "cpu_us_per_probe": 17.4838,
+        "cpu_us_per_probe_ci": [
+          16.7042,
+          18.2634
+        ],
+        "first_find_at": 5.135,
+        "first_find_at_ci": [
+          4.4378,
+          5.8322
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 15.14,
+        "recovery_steps_ci": [
+          13.6979,
+          16.5821
+        ],
+        "recovery_censored_rate": 0.02,
+        "d_ufp_vs_CAVER-v0.6": 1.435,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.9793,
+          1.8907
+        ],
+        "d_rec_vs_CAVER-v0.6": -2.39,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -4.3256,
+          -0.4544
+        ],
+        "d_ufp_vs_UCB1": 0.78,
+        "d_ufp_vs_UCB1_ci": [
+          0.2915,
+          1.2685
+        ],
+        "d_rec_vs_UCB1": 5.185,
+        "d_rec_vs_UCB1_ci": [
+          3.454,
+          6.916
+        ],
+        "d_ufp_vs_own_disc": 1.15,
+        "d_ufp_vs_own_disc_ci": [
+          0.6584,
+          1.6416
+        ],
+        "d_rec_vs_own_disc": -7.55,
+        "d_rec_vs_own_disc_ci": [
+          -9.5271,
+          -5.5729
+        ]
+      },
+      "B-DR-v06": {
+        "n": 200,
+        "unique_false_pass": 13.365,
+        "unique_false_pass_ci": [
+          12.8685,
+          13.8615
+        ],
+        "unique_defects": 15.46,
+        "unique_defects_ci": [
+          14.9694,
+          15.9506
+        ],
+        "fp_recall": 0.441,
+        "fp_recall_ci": [
+          0.4268,
+          0.4552
+        ],
+        "eval_entropy": 0.9205,
+        "eval_entropy_ci": [
+          0.9156,
+          0.9255
+        ],
+        "cpu_us_per_probe": 17.5086,
+        "cpu_us_per_probe_ci": [
+          16.7195,
+          18.2977
+        ],
+        "first_find_at": 5.425,
+        "first_find_at_ci": [
+          4.6451,
+          6.2049
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 14.44,
+        "recovery_steps_ci": [
+          12.9715,
+          15.9085
+        ],
+        "recovery_censored_rate": 0.02,
+        "d_ufp_vs_CAVER-v0.6": 1.03,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.5865,
+          1.4735
+        ],
+        "d_rec_vs_CAVER-v0.6": -3.09,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -5.0869,
+          -1.0931
+        ],
+        "d_ufp_vs_UCB1": 0.375,
+        "d_ufp_vs_UCB1_ci": [
+          -0.1262,
+          0.8762
+        ],
+        "d_rec_vs_UCB1": 4.485,
+        "d_rec_vs_UCB1_ci": [
+          2.8012,
+          6.1688
+        ],
+        "d_ufp_vs_own_disc": 1.03,
+        "d_ufp_vs_own_disc_ci": [
+          0.5865,
+          1.4735
+        ],
+        "d_rec_vs_own_disc": -3.09,
+        "d_rec_vs_own_disc_ci": [
+          -5.0869,
+          -1.0931
+        ]
+      },
+      "B-DR-TS[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.105,
+        "unique_false_pass_ci": [
+          11.6594,
+          12.5506
+        ],
+        "unique_defects": 14.11,
+        "unique_defects_ci": [
+          13.653,
+          14.567
+        ],
+        "fp_recall": 0.3997,
+        "fp_recall_ci": [
+          0.387,
+          0.4124
+        ],
+        "eval_entropy": 0.856,
+        "eval_entropy_ci": [
+          0.8498,
+          0.8621
+        ],
+        "cpu_us_per_probe": 17.9831,
+        "cpu_us_per_probe_ci": [
+          17.1963,
+          18.77
+        ],
+        "first_find_at": 5.15,
+        "first_find_at_ci": [
+          4.5268,
+          5.7732
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 15.225,
+        "recovery_steps_ci": [
+          13.6381,
+          16.8119
+        ],
+        "recovery_censored_rate": 0.02,
+        "d_ufp_vs_CAVER-v0.6": -0.23,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.6895,
+          0.2295
+        ],
+        "d_rec_vs_CAVER-v0.6": -2.305,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -4.2847,
+          -0.3253
+        ],
+        "d_ufp_vs_UCB1": -0.885,
+        "d_ufp_vs_UCB1_ci": [
+          -1.415,
+          -0.355
+        ],
+        "d_rec_vs_UCB1": 5.27,
+        "d_rec_vs_UCB1_ci": [
+          3.3375,
+          7.2025
+        ]
+      },
+      "B-DR-TS[viol]": {
+        "n": 200,
+        "unique_false_pass": 11.92,
+        "unique_false_pass_ci": [
+          11.4665,
+          12.3735
+        ],
+        "unique_defects": 14.27,
+        "unique_defects_ci": [
+          13.7868,
+          14.7532
+        ],
+        "fp_recall": 0.3956,
+        "fp_recall_ci": [
+          0.3815,
+          0.4096
+        ],
+        "eval_entropy": 0.9762,
+        "eval_entropy_ci": [
+          0.9744,
+          0.978
+        ],
+        "cpu_us_per_probe": 18.3821,
+        "cpu_us_per_probe_ci": [
+          17.6483,
+          19.1158
+        ],
+        "first_find_at": 6.7,
+        "first_find_at_ci": [
+          5.8683,
+          7.5317
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.69,
+        "recovery_steps_ci": [
+          9.4783,
+          11.9017
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": -0.415,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.9421,
+          0.1121
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.84,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.7316,
+          -4.9484
+        ],
+        "d_ufp_vs_UCB1": -1.07,
+        "d_ufp_vs_UCB1_ci": [
+          -1.5916,
+          -0.5484
+        ],
+        "d_rec_vs_UCB1": 0.735,
+        "d_rec_vs_UCB1_ci": [
+          -0.838,
+          2.308
+        ]
+      },
+      "B-DR-TS[recent-disc]": {
+        "n": 200,
+        "unique_false_pass": 11.77,
+        "unique_false_pass_ci": [
+          11.2916,
+          12.2484
+        ],
+        "unique_defects": 13.94,
+        "unique_defects_ci": [
+          13.4345,
+          14.4455
+        ],
+        "fp_recall": 0.3888,
+        "fp_recall_ci": [
+          0.3744,
+          0.4031
+        ],
+        "eval_entropy": 0.9753,
+        "eval_entropy_ci": [
+          0.9735,
+          0.9771
+        ],
+        "cpu_us_per_probe": 19.7788,
+        "cpu_us_per_probe_ci": [
+          18.9908,
+          20.5668
+        ],
+        "first_find_at": 6.71,
+        "first_find_at_ci": [
+          5.8042,
+          7.6158
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.545,
+        "recovery_steps_ci": [
+          8.4891,
+          10.6009
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.565,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.0872,
+          -0.0428
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.985,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.8285,
+          -6.1415
+        ],
+        "d_ufp_vs_UCB1": -1.22,
+        "d_ufp_vs_UCB1_ci": [
+          -1.7322,
+          -0.7078
+        ],
+        "d_rec_vs_UCB1": -0.41,
+        "d_rec_vs_UCB1_ci": [
+          -1.7818,
+          0.9618
+        ]
+      },
+      "B-DR-Bayes[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.62,
+        "unique_false_pass_ci": [
+          12.1491,
+          13.0909
+        ],
+        "unique_defects": 14.49,
+        "unique_defects_ci": [
+          14.016,
+          14.964
+        ],
+        "fp_recall": 0.4177,
+        "fp_recall_ci": [
+          0.4037,
+          0.4317
+        ],
+        "eval_entropy": 0.7546,
+        "eval_entropy_ci": [
+          0.7471,
+          0.7621
+        ],
+        "cpu_us_per_probe": 12.5661,
+        "cpu_us_per_probe_ci": [
+          12.0557,
+          13.0764
+        ],
+        "first_find_at": 4.63,
+        "first_find_at_ci": [
+          4.0267,
+          5.2333
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 22.69,
+        "recovery_steps_ci": [
+          20.9886,
+          24.3914
+        ],
+        "recovery_censored_rate": 0.065,
+        "d_ufp_vs_CAVER-v0.6": 0.285,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.1771,
+          0.7471
+        ],
+        "d_rec_vs_CAVER-v0.6": 5.16,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          3.1275,
+          7.1925
+        ],
+        "d_ufp_vs_UCB1": -0.37,
+        "d_ufp_vs_UCB1_ci": [
+          -0.9534,
+          0.2134
+        ],
+        "d_rec_vs_UCB1": 12.735,
+        "d_rec_vs_UCB1_ci": [
+          10.7414,
+          14.7286
+        ]
+      },
+      "B-DR-Bayes[viol]": {
+        "n": 200,
+        "unique_false_pass": 13.56,
+        "unique_false_pass_ci": [
+          13.0259,
+          14.0941
+        ],
+        "unique_defects": 15.875,
+        "unique_defects_ci": [
+          15.3574,
+          16.3926
+        ],
+        "fp_recall": 0.4466,
+        "fp_recall_ci": [
+          0.4313,
+          0.4619
+        ],
+        "eval_entropy": 0.9524,
+        "eval_entropy_ci": [
+          0.9494,
+          0.9555
+        ],
+        "cpu_us_per_probe": 12.3414,
+        "cpu_us_per_probe_ci": [
+          11.8751,
+          12.8076
+        ],
+        "first_find_at": 6.165,
+        "first_find_at_ci": [
+          5.2429,
+          7.0871
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.93,
+        "recovery_steps_ci": [
+          8.7554,
+          11.1046
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 1.225,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.7163,
+          1.7337
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.6,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.5105,
+          -5.6895
+        ],
+        "d_ufp_vs_UCB1": 0.57,
+        "d_ufp_vs_UCB1_ci": [
+          0.041,
+          1.099
+        ],
+        "d_rec_vs_UCB1": -0.025,
+        "d_rec_vs_UCB1_ci": [
+          -1.536,
+          1.486
+        ]
+      },
+      "B-DR-v06[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.335,
+        "unique_false_pass_ci": [
+          11.8895,
+          12.7805
+        ],
+        "unique_defects": 14.255,
+        "unique_defects_ci": [
+          13.7789,
+          14.7311
+        ],
+        "fp_recall": 0.4082,
+        "fp_recall_ci": [
+          0.3951,
+          0.4214
+        ],
+        "eval_entropy": 0.8591,
+        "eval_entropy_ci": [
+          0.8532,
+          0.865
+        ],
+        "cpu_us_per_probe": 13.2737,
+        "cpu_us_per_probe_ci": [
+          12.7371,
+          13.8102
+        ],
+        "first_find_at": 4.925,
+        "first_find_at_ci": [
+          4.2503,
+          5.5997
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 17.53,
+        "recovery_steps_ci": [
+          15.7955,
+          19.2645
+        ],
+        "recovery_censored_rate": 0.04,
+        "d_ufp_vs_CAVER-v0.6": 0,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_rec_vs_CAVER-v0.6": 0,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_ufp_vs_UCB1": -0.655,
+        "d_ufp_vs_UCB1_ci": [
+          -1.2096,
+          -0.1004
+        ],
+        "d_rec_vs_UCB1": 7.575,
+        "d_rec_vs_UCB1_ci": [
+          5.6501,
+          9.4999
+        ]
+      },
+      "B-DR-v06[viol]": {
+        "n": 200,
+        "unique_false_pass": 12.925,
+        "unique_false_pass_ci": [
+          12.4607,
+          13.3893
+        ],
+        "unique_defects": 15.235,
+        "unique_defects_ci": [
+          14.7383,
+          15.7317
+        ],
+        "fp_recall": 0.4276,
+        "fp_recall_ci": [
+          0.4138,
+          0.4415
+        ],
+        "eval_entropy": 0.9647,
+        "eval_entropy_ci": [
+          0.9622,
+          0.9673
+        ],
+        "cpu_us_per_probe": 17.4344,
+        "cpu_us_per_probe_ci": [
+          16.7082,
+          18.1605
+        ],
+        "first_find_at": 6.225,
+        "first_find_at_ci": [
+          5.2919,
+          7.1581
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.03,
+        "recovery_steps_ci": [
+          8.9022,
+          11.1578
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": 0.59,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.1613,
+          1.0187
+        ],
+        "d_rec_vs_CAVER-v0.6": -7.5,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.4371,
+          -5.5629
+        ],
+        "d_ufp_vs_UCB1": -0.065,
+        "d_ufp_vs_UCB1_ci": [
+          -0.5604,
+          0.4304
+        ],
+        "d_rec_vs_UCB1": 0.075,
+        "d_rec_vs_UCB1_ci": [
+          -1.4618,
+          1.6118
+        ]
+      }
+    },
+    "recovery": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.485,
+        "unique_false_pass_ci": [
+          9.0771,
+          9.8929
+        ],
+        "unique_defects": 11.73,
+        "unique_defects_ci": [
+          11.2826,
+          12.1774
+        ],
+        "fp_recall": 0.264,
+        "fp_recall_ci": [
+          0.254,
+          0.274
+        ],
+        "eval_entropy": 0.9876,
+        "eval_entropy_ci": [
+          0.9865,
+          0.9886
+        ],
+        "cpu_us_per_probe": 3.2176,
+        "cpu_us_per_probe_ci": [
+          3.0403,
+          3.3948
+        ],
+        "first_find_at": 6.535,
+        "first_find_at_ci": [
+          5.75,
+          7.32
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 8.695,
+        "recovery_steps_ci": [
+          7.4703,
+          9.9197
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": -2.615,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -3.1036,
+          -2.1264
+        ],
+        "d_rec_vs_CAVER-v0.6": -10.77,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -13.328,
+          -8.212
+        ],
+        "d_ufp_vs_UCB1": -2.805,
+        "d_ufp_vs_UCB1_ci": [
+          -3.4045,
+          -2.2055
+        ],
+        "d_rec_vs_UCB1": -0.2,
+        "d_rec_vs_UCB1_ci": [
+          -1.94,
+          1.54
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.29,
+        "unique_false_pass_ci": [
+          11.7296,
+          12.8504
+        ],
+        "unique_defects": 14.65,
+        "unique_defects_ci": [
+          14.0843,
+          15.2157
+        ],
+        "fp_recall": 0.3411,
+        "fp_recall_ci": [
+          0.3277,
+          0.3545
+        ],
+        "eval_entropy": 0.9582,
+        "eval_entropy_ci": [
+          0.955,
+          0.9614
+        ],
+        "cpu_us_per_probe": 8.7482,
+        "cpu_us_per_probe_ci": [
+          8.2937,
+          9.2026
+        ],
+        "first_find_at": 5.7,
+        "first_find_at_ci": [
+          4.8901,
+          6.5099
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 8.895,
+        "recovery_steps_ci": [
+          7.539,
+          10.251
+        ],
+        "recovery_censored_rate": 0.01,
+        "d_ufp_vs_CAVER-v0.6": 0.19,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.3655,
+          0.7455
+        ],
+        "d_rec_vs_CAVER-v0.6": -10.57,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -13.1342,
+          -8.0058
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 12.41,
+        "unique_false_pass_ci": [
+          11.9092,
+          12.9108
+        ],
+        "unique_defects": 14.7,
+        "unique_defects_ci": [
+          14.2219,
+          15.1781
+        ],
+        "fp_recall": 0.3445,
+        "fp_recall_ci": [
+          0.3329,
+          0.356
+        ],
+        "eval_entropy": 0.6481,
+        "eval_entropy_ci": [
+          0.6382,
+          0.658
+        ],
+        "cpu_us_per_probe": 10.3104,
+        "cpu_us_per_probe_ci": [
+          9.7914,
+          10.8295
+        ],
+        "first_find_at": 4.9,
+        "first_find_at_ci": [
+          4.2483,
+          5.5517
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 27.78,
+        "recovery_steps_ci": [
+          24.9623,
+          30.5977
+        ],
+        "recovery_censored_rate": 0.21,
+        "d_ufp_vs_CAVER-v0.6": 0.31,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.117,
+          0.737
+        ],
+        "d_rec_vs_CAVER-v0.6": 8.315,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          5.1138,
+          11.5162
+        ],
+        "d_ufp_vs_UCB1": 0.12,
+        "d_ufp_vs_UCB1_ci": [
+          -0.4143,
+          0.6543
+        ],
+        "d_rec_vs_UCB1": 18.885,
+        "d_rec_vs_UCB1_ci": [
+          15.7338,
+          22.0362
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.1,
+        "unique_false_pass_ci": [
+          11.6457,
+          12.5543
+        ],
+        "unique_defects": 14.01,
+        "unique_defects_ci": [
+          13.5362,
+          14.4838
+        ],
+        "fp_recall": 0.3381,
+        "fp_recall_ci": [
+          0.3267,
+          0.3495
+        ],
+        "eval_entropy": 0.807,
+        "eval_entropy_ci": [
+          0.7989,
+          0.8151
+        ],
+        "cpu_us_per_probe": 12.9486,
+        "cpu_us_per_probe_ci": [
+          12.3449,
+          13.5523
+        ],
+        "first_find_at": 5.155,
+        "first_find_at_ci": [
+          4.475,
+          5.835
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 19.465,
+        "recovery_steps_ci": [
+          17.0778,
+          21.8522
+        ],
+        "recovery_censored_rate": 0.095,
+        "d_ufp_vs_UCB1": -0.19,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7455,
+          0.3655
+        ],
+        "d_rec_vs_UCB1": 10.57,
+        "d_rec_vs_UCB1_ci": [
+          8.0058,
+          13.1342
+        ]
+      },
+      "B-UCB1-NewFP": {
+        "n": 200,
+        "unique_false_pass": 12.31,
+        "unique_false_pass_ci": [
+          11.7754,
+          12.8446
+        ],
+        "unique_defects": 14.64,
+        "unique_defects_ci": [
+          14.0861,
+          15.1939
+        ],
+        "fp_recall": 0.3423,
+        "fp_recall_ci": [
+          0.3293,
+          0.3554
+        ],
+        "eval_entropy": 0.9606,
+        "eval_entropy_ci": [
+          0.9575,
+          0.9638
+        ],
+        "cpu_us_per_probe": 9.0535,
+        "cpu_us_per_probe_ci": [
+          8.609,
+          9.4979
+        ],
+        "first_find_at": 6.2,
+        "first_find_at_ci": [
+          5.3579,
+          7.0421
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 8.835,
+        "recovery_steps_ci": [
+          7.6892,
+          9.9808
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": 0.21,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.3122,
+          0.7322
+        ],
+        "d_rec_vs_CAVER-v0.6": -10.63,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -13.176,
+          -8.084
+        ],
+        "d_ufp_vs_UCB1": 0.02,
+        "d_ufp_vs_UCB1_ci": [
+          -0.5319,
+          0.5719
+        ],
+        "d_rec_vs_UCB1": -0.06,
+        "d_rec_vs_UCB1_ci": [
+          -1.8055,
+          1.6855
+        ]
+      },
+      "B-UCB1-Combined": {
+        "n": 200,
+        "unique_false_pass": 12.11,
+        "unique_false_pass_ci": [
+          11.6058,
+          12.6142
+        ],
+        "unique_defects": 14.46,
+        "unique_defects_ci": [
+          13.9514,
+          14.9686
+        ],
+        "fp_recall": 0.3369,
+        "fp_recall_ci": [
+          0.325,
+          0.3488
+        ],
+        "eval_entropy": 0.961,
+        "eval_entropy_ci": [
+          0.958,
+          0.9641
+        ],
+        "cpu_us_per_probe": 9.1335,
+        "cpu_us_per_probe_ci": [
+          8.6814,
+          9.5857
+        ],
+        "first_find_at": 5.705,
+        "first_find_at_ci": [
+          4.9659,
+          6.4441
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.09,
+        "recovery_steps_ci": [
+          8.6973,
+          11.4827
+        ],
+        "recovery_censored_rate": 0.015,
+        "d_ufp_vs_CAVER-v0.6": 0.01,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.5102,
+          0.5302
+        ],
+        "d_rec_vs_CAVER-v0.6": -9.375,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -12.1833,
+          -6.5667
+        ],
+        "d_ufp_vs_UCB1": -0.18,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7076,
+          0.3476
+        ],
+        "d_rec_vs_UCB1": 1.195,
+        "d_rec_vs_UCB1_ci": [
+          -0.7037,
+          3.0937
+        ]
+      },
+      "B-DR-TS": {
+        "n": 200,
+        "unique_false_pass": 11.64,
+        "unique_false_pass_ci": [
+          11.1531,
+          12.1269
+        ],
+        "unique_defects": 14,
+        "unique_defects_ci": [
+          13.5039,
+          14.4961
+        ],
+        "fp_recall": 0.3241,
+        "fp_recall_ci": [
+          0.3118,
+          0.3363
+        ],
+        "eval_entropy": 0.9116,
+        "eval_entropy_ci": [
+          0.9059,
+          0.9173
+        ],
+        "cpu_us_per_probe": 30.2915,
+        "cpu_us_per_probe_ci": [
+          28.9956,
+          31.5873
+        ],
+        "first_find_at": 6.085,
+        "first_find_at_ci": [
+          5.2529,
+          6.9171
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 12.915,
+        "recovery_steps_ci": [
+          11.2624,
+          14.5676
+        ],
+        "recovery_censored_rate": 0.025,
+        "d_ufp_vs_CAVER-v0.6": -0.46,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.9482,
+          0.0282
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.55,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -9.3518,
+          -3.7482
+        ],
+        "d_ufp_vs_UCB1": -0.65,
+        "d_ufp_vs_UCB1_ci": [
+          -1.2109,
+          -0.0891
+        ],
+        "d_rec_vs_UCB1": 4.02,
+        "d_rec_vs_UCB1_ci": [
+          2.0391,
+          6.0009
+        ],
+        "d_ufp_vs_own_disc": -0.295,
+        "d_ufp_vs_own_disc_ci": [
+          -0.7891,
+          0.1991
+        ],
+        "d_rec_vs_own_disc": -6.8,
+        "d_rec_vs_own_disc_ci": [
+          -9.6671,
+          -3.9329
+        ]
+      },
+      "B-DR-Bayes": {
+        "n": 200,
+        "unique_false_pass": 13.065,
+        "unique_false_pass_ci": [
+          12.5414,
+          13.5886
+        ],
+        "unique_defects": 15.335,
+        "unique_defects_ci": [
+          14.8066,
+          15.8634
+        ],
+        "fp_recall": 0.3636,
+        "fp_recall_ci": [
+          0.3514,
+          0.3758
+        ],
+        "eval_entropy": 0.8661,
+        "eval_entropy_ci": [
+          0.8587,
+          0.8736
+        ],
+        "cpu_us_per_probe": 19.663,
+        "cpu_us_per_probe_ci": [
+          18.7494,
+          20.5765
+        ],
+        "first_find_at": 5.235,
+        "first_find_at_ci": [
+          4.4411,
+          6.0289
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 13.48,
+        "recovery_steps_ci": [
+          11.9103,
+          15.0497
+        ],
+        "recovery_censored_rate": 0.015,
+        "d_ufp_vs_CAVER-v0.6": 0.965,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.4889,
+          1.4411
+        ],
+        "d_rec_vs_CAVER-v0.6": -5.985,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.7274,
+          -3.2426
+        ],
+        "d_ufp_vs_UCB1": 0.775,
+        "d_ufp_vs_UCB1_ci": [
+          0.2135,
+          1.3365
+        ],
+        "d_rec_vs_UCB1": 4.585,
+        "d_rec_vs_UCB1_ci": [
+          2.6974,
+          6.4726
+        ],
+        "d_ufp_vs_own_disc": 0.265,
+        "d_ufp_vs_own_disc_ci": [
+          -0.189,
+          0.719
+        ],
+        "d_rec_vs_own_disc": -11.24,
+        "d_rec_vs_own_disc_ci": [
+          -13.922,
+          -8.558
+        ]
+      },
+      "B-DR-v06": {
+        "n": 200,
+        "unique_false_pass": 12.4,
+        "unique_false_pass_ci": [
+          11.9133,
+          12.8867
+        ],
+        "unique_defects": 14.605,
+        "unique_defects_ci": [
+          14.1461,
+          15.0639
+        ],
+        "fp_recall": 0.3448,
+        "fp_recall_ci": [
+          0.3334,
+          0.3562
+        ],
+        "eval_entropy": 0.9019,
+        "eval_entropy_ci": [
+          0.8962,
+          0.9076
+        ],
+        "cpu_us_per_probe": 19.4108,
+        "cpu_us_per_probe_ci": [
+          18.4721,
+          20.3495
+        ],
+        "first_find_at": 5.625,
+        "first_find_at_ci": [
+          4.7847,
+          6.4653
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 13.395,
+        "recovery_steps_ci": [
+          11.7849,
+          15.0051
+        ],
+        "recovery_censored_rate": 0.015,
+        "d_ufp_vs_CAVER-v0.6": 0.3,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.1198,
+          0.7198
+        ],
+        "d_rec_vs_CAVER-v0.6": -6.07,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -8.5705,
+          -3.5695
+        ],
+        "d_ufp_vs_UCB1": 0.11,
+        "d_ufp_vs_UCB1_ci": [
+          -0.4111,
+          0.6311
+        ],
+        "d_rec_vs_UCB1": 4.5,
+        "d_rec_vs_UCB1_ci": [
+          2.5123,
+          6.4877
+        ],
+        "d_ufp_vs_own_disc": 0.3,
+        "d_ufp_vs_own_disc_ci": [
+          -0.1198,
+          0.7198
+        ],
+        "d_rec_vs_own_disc": -6.07,
+        "d_rec_vs_own_disc_ci": [
+          -8.5705,
+          -3.5695
+        ]
+      },
+      "B-DR-TS[disc]": {
+        "n": 200,
+        "unique_false_pass": 11.935,
+        "unique_false_pass_ci": [
+          11.4408,
+          12.4292
+        ],
+        "unique_defects": 13.765,
+        "unique_defects_ci": [
+          13.2708,
+          14.2592
+        ],
+        "fp_recall": 0.3314,
+        "fp_recall_ci": [
+          0.32,
+          0.3427
+        ],
+        "eval_entropy": 0.8157,
+        "eval_entropy_ci": [
+          0.8064,
+          0.8251
+        ],
+        "cpu_us_per_probe": 19.7869,
+        "cpu_us_per_probe_ci": [
+          18.9006,
+          20.6733
+        ],
+        "first_find_at": 5.45,
+        "first_find_at_ci": [
+          4.6441,
+          6.2559
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 19.715,
+        "recovery_steps_ci": [
+          17.2612,
+          22.1688
+        ],
+        "recovery_censored_rate": 0.095,
+        "d_ufp_vs_CAVER-v0.6": -0.165,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.6048,
+          0.2748
+        ],
+        "d_rec_vs_CAVER-v0.6": 0.25,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -2.9048,
+          3.4048
+        ],
+        "d_ufp_vs_UCB1": -0.355,
+        "d_ufp_vs_UCB1_ci": [
+          -0.8831,
+          0.1731
+        ],
+        "d_rec_vs_UCB1": 10.82,
+        "d_rec_vs_UCB1_ci": [
+          8.3424,
+          13.2976
+        ]
+      },
+      "B-DR-TS[viol]": {
+        "n": 200,
+        "unique_false_pass": 11.09,
+        "unique_false_pass_ci": [
+          10.6475,
+          11.5325
+        ],
+        "unique_defects": 13.625,
+        "unique_defects_ci": [
+          13.1572,
+          14.0928
+        ],
+        "fp_recall": 0.3085,
+        "fp_recall_ci": [
+          0.2982,
+          0.3189
+        ],
+        "eval_entropy": 0.9695,
+        "eval_entropy_ci": [
+          0.9675,
+          0.9715
+        ],
+        "cpu_us_per_probe": 20.6233,
+        "cpu_us_per_probe_ci": [
+          19.6547,
+          21.5919
+        ],
+        "first_find_at": 6.275,
+        "first_find_at_ci": [
+          5.3966,
+          7.1534
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 8.935,
+        "recovery_steps_ci": [
+          7.8119,
+          10.0581
+        ],
+        "recovery_censored_rate": 0.01,
+        "d_ufp_vs_CAVER-v0.6": -1.01,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.4955,
+          -0.5245
+        ],
+        "d_rec_vs_CAVER-v0.6": -10.53,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -13.1051,
+          -7.9549
+        ],
+        "d_ufp_vs_UCB1": -1.2,
+        "d_ufp_vs_UCB1_ci": [
+          -1.7561,
+          -0.6439
+        ],
+        "d_rec_vs_UCB1": 0.04,
+        "d_rec_vs_UCB1_ci": [
+          -1.7149,
+          1.7949
+        ]
+      },
+      "B-DR-TS[recent-disc]": {
+        "n": 200,
+        "unique_false_pass": 11.26,
+        "unique_false_pass_ci": [
+          10.7598,
+          11.7602
+        ],
+        "unique_defects": 13.565,
+        "unique_defects_ci": [
+          13.0523,
+          14.0777
+        ],
+        "fp_recall": 0.3129,
+        "fp_recall_ci": [
+          0.3009,
+          0.3248
+        ],
+        "eval_entropy": 0.9721,
+        "eval_entropy_ci": [
+          0.9698,
+          0.9743
+        ],
+        "cpu_us_per_probe": 21.6301,
+        "cpu_us_per_probe_ci": [
+          20.6544,
+          22.6058
+        ],
+        "first_find_at": 6.69,
+        "first_find_at_ci": [
+          5.8464,
+          7.5336
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.07,
+        "recovery_steps_ci": [
+          7.8977,
+          10.2423
+        ],
+        "recovery_censored_rate": 0,
+        "d_ufp_vs_CAVER-v0.6": -0.84,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -1.3741,
+          -0.3059
+        ],
+        "d_rec_vs_CAVER-v0.6": -10.395,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -13.0918,
+          -7.6982
+        ],
+        "d_ufp_vs_UCB1": -1.03,
+        "d_ufp_vs_UCB1_ci": [
+          -1.5902,
+          -0.4698
+        ],
+        "d_rec_vs_UCB1": 0.175,
+        "d_rec_vs_UCB1_ci": [
+          -1.6437,
+          1.9937
+        ]
+      },
+      "B-DR-Bayes[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.8,
+        "unique_false_pass_ci": [
+          12.3445,
+          13.2555
+        ],
+        "unique_defects": 14.54,
+        "unique_defects_ci": [
+          14.0742,
+          15.0058
+        ],
+        "fp_recall": 0.3574,
+        "fp_recall_ci": [
+          0.3464,
+          0.3683
+        ],
+        "eval_entropy": 0.6567,
+        "eval_entropy_ci": [
+          0.6465,
+          0.6669
+        ],
+        "cpu_us_per_probe": 14.3353,
+        "cpu_us_per_probe_ci": [
+          13.6651,
+          15.0056
+        ],
+        "first_find_at": 4.88,
+        "first_find_at_ci": [
+          4.2595,
+          5.5005
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 24.72,
+        "recovery_steps_ci": [
+          22.2158,
+          27.2242
+        ],
+        "recovery_censored_rate": 0.14,
+        "d_ufp_vs_CAVER-v0.6": 0.7,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.3404,
+          1.0596
+        ],
+        "d_rec_vs_CAVER-v0.6": 5.255,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          2.1438,
+          8.3662
+        ],
+        "d_ufp_vs_UCB1": 0.51,
+        "d_ufp_vs_UCB1_ci": [
+          -0.0263,
+          1.0463
+        ],
+        "d_rec_vs_UCB1": 15.825,
+        "d_rec_vs_UCB1_ci": [
+          13.1414,
+          18.5086
+        ]
+      },
+      "B-DR-Bayes[viol]": {
+        "n": 200,
+        "unique_false_pass": 12.38,
+        "unique_false_pass_ci": [
+          11.8047,
+          12.9553
+        ],
+        "unique_defects": 14.905,
+        "unique_defects_ci": [
+          14.327,
+          15.483
+        ],
+        "fp_recall": 0.3434,
+        "fp_recall_ci": [
+          0.3297,
+          0.3571
+        ],
+        "eval_entropy": 0.9465,
+        "eval_entropy_ci": [
+          0.9428,
+          0.9502
+        ],
+        "cpu_us_per_probe": 14.184,
+        "cpu_us_per_probe_ci": [
+          13.5331,
+          14.8349
+        ],
+        "first_find_at": 5.695,
+        "first_find_at_ci": [
+          4.8311,
+          6.5589
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 9.465,
+        "recovery_steps_ci": [
+          8.1279,
+          10.8021
+        ],
+        "recovery_censored_rate": 0.005,
+        "d_ufp_vs_CAVER-v0.6": 0.28,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.2824,
+          0.8424
+        ],
+        "d_rec_vs_CAVER-v0.6": -10,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -12.6175,
+          -7.3825
+        ],
+        "d_ufp_vs_UCB1": 0.09,
+        "d_ufp_vs_UCB1_ci": [
+          -0.4972,
+          0.6772
+        ],
+        "d_rec_vs_UCB1": 0.57,
+        "d_rec_vs_UCB1_ci": [
+          -1.3101,
+          2.4501
+        ]
+      },
+      "B-DR-v06[disc]": {
+        "n": 200,
+        "unique_false_pass": 12.1,
+        "unique_false_pass_ci": [
+          11.6457,
+          12.5543
+        ],
+        "unique_defects": 14.01,
+        "unique_defects_ci": [
+          13.5362,
+          14.4838
+        ],
+        "fp_recall": 0.3381,
+        "fp_recall_ci": [
+          0.3267,
+          0.3495
+        ],
+        "eval_entropy": 0.807,
+        "eval_entropy_ci": [
+          0.7989,
+          0.8151
+        ],
+        "cpu_us_per_probe": 15.3538,
+        "cpu_us_per_probe_ci": [
+          14.6067,
+          16.101
+        ],
+        "first_find_at": 5.155,
+        "first_find_at_ci": [
+          4.475,
+          5.835
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 19.465,
+        "recovery_steps_ci": [
+          17.0778,
+          21.8522
+        ],
+        "recovery_censored_rate": 0.095,
+        "d_ufp_vs_CAVER-v0.6": 0,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_rec_vs_CAVER-v0.6": 0,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          0.0,
+          0.0
+        ],
+        "d_ufp_vs_UCB1": -0.19,
+        "d_ufp_vs_UCB1_ci": [
+          -0.7455,
+          0.3655
+        ],
+        "d_rec_vs_UCB1": 10.57,
+        "d_rec_vs_UCB1_ci": [
+          8.0058,
+          13.1342
+        ]
+      },
+      "B-DR-v06[viol]": {
+        "n": 200,
+        "unique_false_pass": 11.89,
+        "unique_false_pass_ci": [
+          11.3767,
+          12.4033
+        ],
+        "unique_defects": 14.545,
+        "unique_defects_ci": [
+          14.0404,
+          15.0496
+        ],
+        "fp_recall": 0.3311,
+        "fp_recall_ci": [
+          0.3185,
+          0.3438
+        ],
+        "eval_entropy": 0.9559,
+        "eval_entropy_ci": [
+          0.9524,
+          0.9595
+        ],
+        "cpu_us_per_probe": 19.9705,
+        "cpu_us_per_probe_ci": [
+          18.9663,
+          20.9747
+        ],
+        "first_find_at": 5.94,
+        "first_find_at_ci": [
+          5.0797,
+          6.8003
+        ],
+        "first_find_none_rate": 0,
+        "recovery_steps": 10.175,
+        "recovery_steps_ci": [
+          8.8186,
+          11.5314
+        ],
+        "recovery_censored_rate": 0.01,
+        "d_ufp_vs_CAVER-v0.6": -0.21,
+        "d_ufp_vs_CAVER-v0.6_ci": [
+          -0.7074,
+          0.2874
+        ],
+        "d_rec_vs_CAVER-v0.6": -9.29,
+        "d_rec_vs_CAVER-v0.6_ci": [
+          -11.8431,
+          -6.7369
+        ],
+        "d_ufp_vs_UCB1": -0.4,
+        "d_ufp_vs_UCB1_ci": [
+          -0.9713,
+          0.1713
+        ],
+        "d_rec_vs_UCB1": 1.28,
+        "d_rec_vs_UCB1_ci": [
+          -0.5781,
+          3.1381
+        ]
+      }
+    }
+  }
+}
