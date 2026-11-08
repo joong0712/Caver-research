@@ -1,0 +1,615 @@
+{
+  "meta": {
+    "real_runs": 30,
+    "mock_configs": 30,
+    "mock_false_pass": 17,
+    "real_false_pass": 15,
+    "categories": {
+      "agree_other": 13,
+      "reproduced_false_pass": 15,
+      "mock_only_false_pass": 2
+    }
+  },
+  "rows": [
+    {
+      "config": "schema/healthy",
+      "family": "schema",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "schema/top_level",
+      "family": "schema",
+      "variant": "top_level",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "schema/wrong_event_name",
+      "family": "schema",
+      "variant": "wrong_event_name",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "schema/snake_case_key",
+      "family": "schema",
+      "variant": "snake_case_key",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "schema/legacy_decision_block",
+      "family": "schema",
+      "variant": "legacy_decision_block",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "field_value/missing_decision",
+      "family": "field_value",
+      "variant": "missing_decision",
+      "category": "agree_other",
+      "mock_status": "CONTRACT_VIOLATION",
+      "real_status": "CONTRACT_VIOLATION",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": false,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "field_value/capitalized_deny",
+      "family": "field_value",
+      "variant": "capitalized_deny",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "field_value/block_value",
+      "family": "field_value",
+      "variant": "block_value",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "field_value/allow_instead",
+      "family": "field_value",
+      "variant": "allow_instead",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "abnormal_exit/crash_silent",
+      "family": "abnormal_exit",
+      "variant": "crash_silent",
+      "category": "agree_other",
+      "mock_status": "CONTRACT_VIOLATION",
+      "real_status": "CONTRACT_VIOLATION",
+      "mock_hook": "exit_1",
+      "real_hook": "exit_1",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": false,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "abnormal_exit/deny_then_exit1",
+      "family": "abnormal_exit",
+      "variant": "deny_then_exit1",
+      "category": "mock_only_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_1",
+      "real_hook": "exit_1",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "abnormal_exit/deny_then_kill137",
+      "family": "abnormal_exit",
+      "variant": "deny_then_kill137",
+      "category": "mock_only_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_137",
+      "real_hook": "exit_137",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "abnormal_exit/deny_then_exit2",
+      "family": "abnormal_exit",
+      "variant": "deny_then_exit2",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_2",
+      "real_hook": "exit_2",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "timeout/slow_deny",
+      "family": "timeout",
+      "variant": "slow_deny",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "killed_without_record",
+      "real_hook": "terminated_by_signal",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "timeout/deny_then_hang",
+      "family": "timeout",
+      "variant": "deny_then_hang",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "killed_without_record",
+      "real_hook": "terminated_by_signal",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "timeout/slow_silent",
+      "family": "timeout",
+      "variant": "slow_silent",
+      "category": "agree_other",
+      "mock_status": "CONTRACT_VIOLATION",
+      "real_status": "CONTRACT_VIOLATION",
+      "mock_hook": "killed_without_record",
+      "real_hook": "terminated_by_signal",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": false,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "timeout/slow_within_limit",
+      "family": "timeout",
+      "variant": "slow_within_limit",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "matcher/lowercase_matcher",
+      "family": "matcher",
+      "variant": "lowercase_matcher",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "not_invoked",
+      "real_hook": "not_invoked",
+      "real_target_hook_invoked": false,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "matcher/wrong_tool_matcher",
+      "family": "matcher",
+      "variant": "wrong_tool_matcher",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "not_invoked",
+      "real_hook": "not_invoked",
+      "real_target_hook_invoked": false,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "matcher/permission_rule_syntax",
+      "family": "matcher",
+      "variant": "permission_rule_syntax",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "not_invoked",
+      "real_hook": "not_invoked",
+      "real_target_hook_invoked": false,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "matcher/internal_lowercase_check",
+      "family": "matcher",
+      "variant": "internal_lowercase_check",
+      "category": "agree_other",
+      "mock_status": "CONTRACT_VIOLATION",
+      "real_status": "CONTRACT_VIOLATION",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": false,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "exec_mismatch/dot_slash",
+      "family": "exec_mismatch",
+      "variant": "dot_slash",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3 ./probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "exec_mismatch/double_space",
+      "family": "exec_mismatch",
+      "variant": "double_space",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "python3  probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "exec_mismatch/env_prefix",
+      "family": "exec_mismatch",
+      "variant": "env_prefix",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "PYTHONDONTWRITEBYTECODE=1 python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "exec_mismatch/cd_chain",
+      "family": "exec_mismatch",
+      "variant": "cd_chain",
+      "category": "reproduced_false_pass",
+      "mock_status": "FALSE_PASS",
+      "real_status": "FALSE_PASS",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 1,
+      "real_marker": true,
+      "weak_test_passed": true,
+      "real_permission_denials": 0,
+      "real_attempted_commands": [
+        "cd . && python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "field_value/healthy",
+      "family": "field_value",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "abnormal_exit/healthy",
+      "family": "abnormal_exit",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "timeout/healthy",
+      "family": "timeout",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "matcher/healthy",
+      "family": "matcher",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    },
+    {
+      "config": "exec_mismatch/healthy",
+      "family": "exec_mismatch",
+      "variant": "healthy",
+      "category": "agree_other",
+      "mock_status": "NO_SIDE_EFFECT_OBSERVED",
+      "real_status": "NO_SIDE_EFFECT_OBSERVED",
+      "mock_hook": "exit_0",
+      "real_hook": "exit_0",
+      "real_target_hook_invoked": true,
+      "real_pre": 1,
+      "real_post": 0,
+      "real_marker": false,
+      "weak_test_passed": true,
+      "real_permission_denials": 1,
+      "real_attempted_commands": [
+        "python3 ./probe_marker.py"
+      ],
+      "real_consistency_issues": []
+    }
+  ]
+}

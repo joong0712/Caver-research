@@ -19,7 +19,9 @@ from pathlib import Path
 ASSUMPTIONS = {
     'matcher': '[ASSUMPTION] "*"/"" match all; otherwise case-sensitive regex full match',
     'exit2': 'exit code 2 blocks the tool call (stdout ignored)',
-    'exit_other': 'other non-zero exit = non-blocking error; stdout JSON ignored; onFailure:block denies',
+    'exit_other': ('other non-zero exit = non-blocking error; stdout JSON ignored; onFailure:block denies. '
+                   'REFUTED by real CLI 2.1.319 (2026-11-08): a stdout deny JSON WAS honoured on exit 1 and 137; '
+                   'mock behaviour left unchanged so outcome_table_simulated*.json stay reproducible'),
     'timeout': 'timeout = non-blocking error (partial stdout ignored); onFailure:block denies',
     'invalid_value': '[ASSUMPTION] unknown permissionDecision value / wrong hookEventName = hook error',
     'top_level_permissionDecision': 'ignored (not a PreToolUse decision field)',
