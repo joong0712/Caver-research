@@ -1,0 +1,3040 @@
+{
+  "meta": {
+    "salt": "v09dev",
+    "seeds": [
+      0,
+      199
+    ],
+    "n_seeds": 200,
+    "table": "reports/v08/outcome_table_real.json",
+    "scenarios": [
+      "stationary",
+      "abrupt",
+      "delayed",
+      "recovery"
+    ],
+    "policies": [
+      "Random",
+      "UCB1",
+      "SW-UCB",
+      "D-UCB",
+      "CAVER-v0.3",
+      "CAVER-v0.6",
+      "A1-Decay.981",
+      "A2-Decay.95",
+      "A3-AlarmShrink.2"
+    ],
+    "train_budget": 90,
+    "eval_budget": 90,
+    "jobs": 2,
+    "wall_s": 11.4,
+    "timing_overhead_us_per_timer_pair": 0.828,
+    "cpu_note": "process CPU time of select + update per probe (2 timer pairs per probe included)",
+    "ci": "normal approx, mean +/- 1.96 sd/sqrt(n); paired on matched seeds",
+    "recovery": "probes after change until first unique defect in an up-weighted family; censored at the caver8 cap"
+  },
+  "summary": {
+    "stationary": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.165,
+        "unique_false_pass_ci": [
+          8.8027,
+          9.5273
+        ],
+        "unique_defects": 11.395,
+        "unique_defects_ci": [
+          10.9957,
+          11.7943
+        ],
+        "fp_recall": 0.5446,
+        "fp_recall_ci": [
+          0.5284,
+          0.5608
+        ],
+        "first_find_at": 8.05,
+        "first_find_at_ci": [
+          7.0475,
+          9.0525
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9938,
+        "eval_entropy_ci": [
+          0.9932,
+          0.9944
+        ],
+        "cpu_us_per_probe": 3.011,
+        "cpu_us_per_probe_ci": [
+          2.8825,
+          3.1394
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -2.51,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.875,
+          -2.145
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -2.57,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.9766,
+          -2.1634
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0535,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0516,
+          0.0555
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.8,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -2.1668,
+          -1.4332
+        ],
+        "diff_unique_defects_vs_UCB1": -1.975,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -2.3778,
+          -1.5722
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": 0.0283,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0261,
+          0.0305
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 10.965,
+        "unique_false_pass_ci": [
+          10.5079,
+          11.4221
+        ],
+        "unique_defects": 13.37,
+        "unique_defects_ci": [
+          12.8959,
+          13.8441
+        ],
+        "fp_recall": 0.6454,
+        "fp_recall_ci": [
+          0.6274,
+          0.6634
+        ],
+        "first_find_at": 6.17,
+        "first_find_at_ci": [
+          5.3585,
+          6.9815
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9655,
+        "eval_entropy_ci": [
+          0.9633,
+          0.9677
+        ],
+        "cpu_us_per_probe": 7.7299,
+        "cpu_us_per_probe_ci": [
+          7.4608,
+          7.9991
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.71,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.9996,
+          -0.4204
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.595,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.9161,
+          -0.2739
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0253,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0227,
+          0.0278
+        ]
+      },
+      "SW-UCB": {
+        "n": 200,
+        "unique_false_pass": 9.845,
+        "unique_false_pass_ci": [
+          9.474,
+          10.216
+        ],
+        "unique_defects": 12.175,
+        "unique_defects_ci": [
+          11.7809,
+          12.5691
+        ],
+        "fp_recall": 0.5838,
+        "fp_recall_ci": [
+          0.5687,
+          0.5988
+        ],
+        "first_find_at": 7.095,
+        "first_find_at_ci": [
+          6.1672,
+          8.0228
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9924,
+        "eval_entropy_ci": [
+          0.9918,
+          0.9931
+        ],
+        "cpu_us_per_probe": 11.8541,
+        "cpu_us_per_probe_ci": [
+          11.4887,
+          12.2194
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.83,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.1376,
+          -1.5224
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.79,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.143,
+          -1.437
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0522,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0503,
+          0.0541
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.12,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.4628,
+          -0.7772
+        ],
+        "diff_unique_defects_vs_UCB1": -1.195,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.5594,
+          -0.8306
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": 0.0269,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.025,
+          0.0288
+        ]
+      },
+      "D-UCB": {
+        "n": 200,
+        "unique_false_pass": 9.96,
+        "unique_false_pass_ci": [
+          9.5898,
+          10.3302
+        ],
+        "unique_defects": 12.3,
+        "unique_defects_ci": [
+          11.9125,
+          12.6875
+        ],
+        "fp_recall": 0.5929,
+        "fp_recall_ci": [
+          0.5768,
+          0.609
+        ],
+        "first_find_at": 7,
+        "first_find_at_ci": [
+          6.0636,
+          7.9364
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9898,
+        "eval_entropy_ci": [
+          0.9889,
+          0.9907
+        ],
+        "cpu_us_per_probe": 9.6426,
+        "cpu_us_per_probe_ci": [
+          9.3507,
+          9.9346
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.715,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.0398,
+          -1.3902
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.665,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.0412,
+          -1.2888
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0496,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0477,
+          0.0515
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.005,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.3392,
+          -0.6708
+        ],
+        "diff_unique_defects_vs_UCB1": -1.07,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.4246,
+          -0.7154
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": 0.0243,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0226,
+          0.0261
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 12.05,
+        "unique_false_pass_ci": [
+          11.5752,
+          12.5248
+        ],
+        "unique_defects": 14.53,
+        "unique_defects_ci": [
+          14.0262,
+          15.0338
+        ],
+        "fp_recall": 0.712,
+        "fp_recall_ci": [
+          0.6941,
+          0.7299
+        ],
+        "first_find_at": 4.755,
+        "first_find_at_ci": [
+          4.1551,
+          5.3549
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9057,
+        "eval_entropy_ci": [
+          0.903,
+          0.9084
+        ],
+        "cpu_us_per_probe": 8.3196,
+        "cpu_us_per_probe_ci": [
+          8.0495,
+          8.5896
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.375,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1079,
+          0.6421
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.565,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.2717,
+          0.8583
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": -0.0345,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          -0.0368,
+          -0.0323
+        ],
+        "diff_unique_false_pass_vs_UCB1": 1.085,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.8103,
+          1.3597
+        ],
+        "diff_unique_defects_vs_UCB1": 1.16,
+        "diff_unique_defects_vs_UCB1_ci": [
+          0.8514,
+          1.4686
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": -0.0598,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0628,
+          -0.0568
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 11.675,
+        "unique_false_pass_ci": [
+          11.2633,
+          12.0867
+        ],
+        "unique_defects": 13.965,
+        "unique_defects_ci": [
+          13.5173,
+          14.4127
+        ],
+        "fp_recall": 0.6931,
+        "fp_recall_ci": [
+          0.6773,
+          0.7089
+        ],
+        "first_find_at": 5.095,
+        "first_find_at_ci": [
+          4.3817,
+          5.8083
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9402,
+        "eval_entropy_ci": [
+          0.9384,
+          0.9421
+        ],
+        "cpu_us_per_probe": 11.0287,
+        "cpu_us_per_probe_ci": [
+          10.6654,
+          11.392
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.19,
+        "false_alarm_rate": 0.19,
+        "diff_unique_false_pass_vs_UCB1": 0.71,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.4204,
+          0.9996
+        ],
+        "diff_unique_defects_vs_UCB1": 0.595,
+        "diff_unique_defects_vs_UCB1_ci": [
+          0.2739,
+          0.9161
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": -0.0253,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0278,
+          -0.0227
+        ]
+      },
+      "A1-Decay.981": {
+        "n": 200,
+        "unique_false_pass": 11.275,
+        "unique_false_pass_ci": [
+          10.8447,
+          11.7053
+        ],
+        "unique_defects": 13.58,
+        "unique_defects_ci": [
+          13.1191,
+          14.0409
+        ],
+        "fp_recall": 0.6672,
+        "fp_recall_ci": [
+          0.651,
+          0.6834
+        ],
+        "first_find_at": 5.37,
+        "first_find_at_ci": [
+          4.6392,
+          6.1008
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9623,
+        "eval_entropy_ci": [
+          0.9604,
+          0.9642
+        ],
+        "cpu_us_per_probe": 12.6826,
+        "cpu_us_per_probe_ci": [
+          12.2867,
+          13.0786
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.13,
+        "false_alarm_rate": 0.13,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.4,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.6577,
+          -0.1423
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.385,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.6676,
+          -0.1024
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0221,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0202,
+          0.024
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.31,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.0211,
+          0.5989
+        ],
+        "diff_unique_defects_vs_UCB1": 0.21,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.0924,
+          0.5124
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": -0.0032,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.005,
+          -0.0014
+        ]
+      },
+      "A2-Decay.95": {
+        "n": 200,
+        "unique_false_pass": 10.335,
+        "unique_false_pass_ci": [
+          9.9306,
+          10.7394
+        ],
+        "unique_defects": 12.675,
+        "unique_defects_ci": [
+          12.2383,
+          13.1117
+        ],
+        "fp_recall": 0.6128,
+        "fp_recall_ci": [
+          0.596,
+          0.6296
+        ],
+        "first_find_at": 6.315,
+        "first_find_at_ci": [
+          5.5085,
+          7.1215
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9842,
+        "eval_entropy_ci": [
+          0.9829,
+          0.9855
+        ],
+        "cpu_us_per_probe": 12.3882,
+        "cpu_us_per_probe_ci": [
+          12.0048,
+          12.7716
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.155,
+        "false_alarm_rate": 0.155,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.34,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.6114,
+          -1.0686
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.29,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.5796,
+          -1.0004
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.044,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0421,
+          0.0459
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.63,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.9332,
+          -0.3268
+        ],
+        "diff_unique_defects_vs_UCB1": -0.695,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.017,
+          -0.373
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": 0.0187,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.017,
+          0.0205
+        ]
+      },
+      "A3-AlarmShrink.2": {
+        "n": 200,
+        "unique_false_pass": 11.7,
+        "unique_false_pass_ci": [
+          11.2954,
+          12.1046
+        ],
+        "unique_defects": 13.97,
+        "unique_defects_ci": [
+          13.5329,
+          14.4071
+        ],
+        "fp_recall": 0.695,
+        "fp_recall_ci": [
+          0.6796,
+          0.7103
+        ],
+        "first_find_at": 5.095,
+        "first_find_at_ci": [
+          4.3817,
+          5.8083
+        ],
+        "recovery_capped": null,
+        "recovery_capped_ci": null,
+        "eval_entropy": 0.9416,
+        "eval_entropy_ci": [
+          0.9397,
+          0.9436
+        ],
+        "cpu_us_per_probe": 10.9475,
+        "cpu_us_per_probe_ci": [
+          10.6285,
+          11.2664
+        ],
+        "up_share_shifted": null,
+        "up_share_shifted_ci": null,
+        "up_share_first20": null,
+        "up_share_first20_ci": null,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.19,
+        "false_alarm_rate": 0.19,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.025,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0347,
+          0.0847
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.005,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0564,
+          0.0664
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": null,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": null,
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0014,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0007,
+          0.0022
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.735,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.4491,
+          1.0209
+        ],
+        "diff_unique_defects_vs_UCB1": 0.6,
+        "diff_unique_defects_vs_UCB1_ci": [
+          0.2829,
+          0.9171
+        ],
+        "diff_recovery_capped_vs_UCB1": null,
+        "diff_recovery_capped_vs_UCB1_ci": null,
+        "diff_eval_entropy_vs_UCB1": -0.0239,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0264,
+          -0.0213
+        ]
+      }
+    },
+    "abrupt": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 10.47,
+        "unique_false_pass_ci": [
+          10.0903,
+          10.8497
+        ],
+        "unique_defects": 12.83,
+        "unique_defects_ci": [
+          12.4275,
+          13.2325
+        ],
+        "fp_recall": 0.5437,
+        "fp_recall_ci": [
+          0.5294,
+          0.558
+        ],
+        "first_find_at": 6.725,
+        "first_find_at_ci": [
+          5.9247,
+          7.5253
+        ],
+        "recovery_capped": 8.125,
+        "recovery_capped_ci": [
+          7.0573,
+          9.1927
+        ],
+        "eval_entropy": 0.9932,
+        "eval_entropy_ci": [
+          0.9926,
+          0.9938
+        ],
+        "cpu_us_per_probe": 3.6435,
+        "cpu_us_per_probe_ci": [
+          3.4462,
+          3.8407
+        ],
+        "up_share_shifted": 0.5074,
+        "up_share_shifted_ci": [
+          0.503,
+          0.5118
+        ],
+        "up_share_first20": 0.5022,
+        "up_share_first20_ci": [
+          0.4877,
+          0.5168
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.72,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.1242,
+          -1.3158
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.365,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.8026,
+          -0.9274
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.745,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.6043,
+          -6.8857
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0426,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0404,
+          0.0447
+        ],
+        "diff_unique_false_pass_vs_UCB1": -2.29,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -2.7226,
+          -1.8574
+        ],
+        "diff_unique_defects_vs_UCB1": -2.29,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -2.7482,
+          -1.8318
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.44,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -3.989,
+          -0.891
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0271,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0251,
+          0.0291
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.76,
+        "unique_false_pass_ci": [
+          12.2325,
+          13.2875
+        ],
+        "unique_defects": 15.12,
+        "unique_defects_ci": [
+          14.5925,
+          15.6475
+        ],
+        "fp_recall": 0.6587,
+        "fp_recall_ci": [
+          0.6391,
+          0.6783
+        ],
+        "first_find_at": 8.535,
+        "first_find_at_ci": [
+          7.5576,
+          9.5124
+        ],
+        "recovery_capped": 10.565,
+        "recovery_capped_ci": [
+          9.3631,
+          11.7669
+        ],
+        "eval_entropy": 0.9661,
+        "eval_entropy_ci": [
+          0.9642,
+          0.968
+        ],
+        "cpu_us_per_probe": 8.7631,
+        "cpu_us_per_probe_ci": [
+          8.4126,
+          9.1137
+        ],
+        "up_share_shifted": 0.599,
+        "up_share_shifted_ci": [
+          0.5924,
+          0.6056
+        ],
+        "up_share_first20": 0.55,
+        "up_share_first20_ci": [
+          0.5327,
+          0.5673
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.57,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2094,
+          0.9306
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.925,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.533,
+          1.317
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -6.305,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -8.3686,
+          -4.2414
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0154,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0128,
+          0.0181
+        ]
+      },
+      "SW-UCB": {
+        "n": 200,
+        "unique_false_pass": 11.965,
+        "unique_false_pass_ci": [
+          11.5297,
+          12.4003
+        ],
+        "unique_defects": 14.355,
+        "unique_defects_ci": [
+          13.9001,
+          14.8099
+        ],
+        "fp_recall": 0.6209,
+        "fp_recall_ci": [
+          0.6048,
+          0.6369
+        ],
+        "first_find_at": 6.54,
+        "first_find_at_ci": [
+          5.7294,
+          7.3506
+        ],
+        "recovery_capped": 7.92,
+        "recovery_capped_ci": [
+          6.9748,
+          8.8652
+        ],
+        "eval_entropy": 0.989,
+        "eval_entropy_ci": [
+          0.9881,
+          0.9898
+        ],
+        "cpu_us_per_probe": 13.8507,
+        "cpu_us_per_probe_ci": [
+          13.394,
+          14.3075
+        ],
+        "up_share_shifted": 0.5641,
+        "up_share_shifted_ci": [
+          0.5606,
+          0.5677
+        ],
+        "up_share_first20": 0.5545,
+        "up_share_first20_ci": [
+          0.542,
+          0.567
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.225,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.6251,
+          0.1751
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.16,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2631,
+          0.5831
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.95,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.8398,
+          -7.0602
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0383,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0362,
+          0.0405
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.795,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.1574,
+          -0.4326
+        ],
+        "diff_unique_defects_vs_UCB1": -0.765,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.1475,
+          -0.3825
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.645,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -4.0708,
+          -1.2192
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0229,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0212,
+          0.0246
+        ]
+      },
+      "D-UCB": {
+        "n": 200,
+        "unique_false_pass": 12.07,
+        "unique_false_pass_ci": [
+          11.6156,
+          12.5244
+        ],
+        "unique_defects": 14.49,
+        "unique_defects_ci": [
+          14.0326,
+          14.9474
+        ],
+        "fp_recall": 0.6254,
+        "fp_recall_ci": [
+          0.6085,
+          0.6423
+        ],
+        "first_find_at": 6.695,
+        "first_find_at_ci": [
+          5.8891,
+          7.5009
+        ],
+        "recovery_capped": 8.52,
+        "recovery_capped_ci": [
+          7.3867,
+          9.6533
+        ],
+        "eval_entropy": 0.9862,
+        "eval_entropy_ci": [
+          0.9852,
+          0.9872
+        ],
+        "cpu_us_per_probe": 11.5889,
+        "cpu_us_per_probe_ci": [
+          11.1609,
+          12.017
+        ],
+        "up_share_shifted": 0.5765,
+        "up_share_shifted_ci": [
+          0.5725,
+          0.5805
+        ],
+        "up_share_first20": 0.562,
+        "up_share_first20_ci": [
+          0.5515,
+          0.5725
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.12,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4958,
+          0.2558
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.295,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1117,
+          0.7017
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.35,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.2773,
+          -6.4227
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0355,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0332,
+          0.0378
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.69,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.0481,
+          -0.3319
+        ],
+        "diff_unique_defects_vs_UCB1": -0.63,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.9969,
+          -0.2631
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.045,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -3.5169,
+          -0.5731
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0201,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0186,
+          0.0216
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 11.935,
+        "unique_false_pass_ci": [
+          11.4294,
+          12.4406
+        ],
+        "unique_defects": 14.185,
+        "unique_defects_ci": [
+          13.6548,
+          14.7152
+        ],
+        "fp_recall": 0.6192,
+        "fp_recall_ci": [
+          0.5985,
+          0.6398
+        ],
+        "first_find_at": 13.36,
+        "first_find_at_ci": [
+          11.8419,
+          14.8781
+        ],
+        "recovery_capped": 23.03,
+        "recovery_capped_ci": [
+          21.0624,
+          24.9976
+        ],
+        "eval_entropy": 0.9136,
+        "eval_entropy_ci": [
+          0.9108,
+          0.9164
+        ],
+        "cpu_us_per_probe": 10.0075,
+        "cpu_us_per_probe_ci": [
+          9.6035,
+          10.4115
+        ],
+        "up_share_shifted": 0.5441,
+        "up_share_shifted_ci": [
+          0.5322,
+          0.5559
+        ],
+        "up_share_first20": 0.265,
+        "up_share_first20_ci": [
+          0.2311,
+          0.2989
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.255,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.6202,
+          0.1102
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.01,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.3995,
+          0.3795
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": 6.16,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          4.013,
+          8.307
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": -0.037,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          -0.0397,
+          -0.0343
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.825,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.2008,
+          -0.4492
+        ],
+        "diff_unique_defects_vs_UCB1": -0.935,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.3446,
+          -0.5254
+        ],
+        "diff_recovery_capped_vs_UCB1": 12.465,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          10.2289,
+          14.7011
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0524,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0555,
+          -0.0494
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.19,
+        "unique_false_pass_ci": [
+          11.7072,
+          12.6728
+        ],
+        "unique_defects": 14.195,
+        "unique_defects_ci": [
+          13.7154,
+          14.6746
+        ],
+        "fp_recall": 0.6322,
+        "fp_recall_ci": [
+          0.6134,
+          0.6509
+        ],
+        "first_find_at": 11.935,
+        "first_find_at_ci": [
+          10.6976,
+          13.1724
+        ],
+        "recovery_capped": 16.87,
+        "recovery_capped_ci": [
+          15.2009,
+          18.5391
+        ],
+        "eval_entropy": 0.9506,
+        "eval_entropy_ci": [
+          0.9486,
+          0.9527
+        ],
+        "cpu_us_per_probe": 12.618,
+        "cpu_us_per_probe_ci": [
+          12.1711,
+          13.0649
+        ],
+        "up_share_shifted": 0.5448,
+        "up_share_shifted_ci": [
+          0.5357,
+          0.554
+        ],
+        "up_share_first20": 0.3085,
+        "up_share_first20_ci": [
+          0.2813,
+          0.3357
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.57,
+        "false_alarm_rate": null,
+        "diff_unique_false_pass_vs_UCB1": -0.57,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.9306,
+          -0.2094
+        ],
+        "diff_unique_defects_vs_UCB1": -0.925,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.317,
+          -0.533
+        ],
+        "diff_recovery_capped_vs_UCB1": 6.305,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          4.2414,
+          8.3686
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0154,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0181,
+          -0.0128
+        ]
+      },
+      "A1-Decay.981": {
+        "n": 200,
+        "unique_false_pass": 13.175,
+        "unique_false_pass_ci": [
+          12.6995,
+          13.6505
+        ],
+        "unique_defects": 15.37,
+        "unique_defects_ci": [
+          14.8823,
+          15.8577
+        ],
+        "fp_recall": 0.6841,
+        "fp_recall_ci": [
+          0.6661,
+          0.7021
+        ],
+        "first_find_at": 8.925,
+        "first_find_at_ci": [
+          7.9458,
+          9.9042
+        ],
+        "recovery_capped": 12.185,
+        "recovery_capped_ci": [
+          10.8502,
+          13.5198
+        ],
+        "eval_entropy": 0.9652,
+        "eval_entropy_ci": [
+          0.9636,
+          0.9669
+        ],
+        "cpu_us_per_probe": 14.5819,
+        "cpu_us_per_probe_ci": [
+          14.1126,
+          15.0512
+        ],
+        "up_share_shifted": 0.5998,
+        "up_share_shifted_ci": [
+          0.5936,
+          0.6059
+        ],
+        "up_share_first20": 0.521,
+        "up_share_first20_ci": [
+          0.4962,
+          0.5458
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.6,
+        "false_alarm_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.985,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.6531,
+          1.3169
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.175,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.8207,
+          1.5293
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -4.685,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -6.3408,
+          -3.0292
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0146,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0122,
+          0.0169
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.415,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.0593,
+          0.7707
+        ],
+        "diff_unique_defects_vs_UCB1": 0.25,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.1258,
+          0.6258
+        ],
+        "diff_recovery_capped_vs_UCB1": 1.62,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -0.044,
+          3.284
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0009,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0028,
+          0.0011
+        ]
+      },
+      "A2-Decay.95": {
+        "n": 200,
+        "unique_false_pass": 12.7,
+        "unique_false_pass_ci": [
+          12.258,
+          13.142
+        ],
+        "unique_defects": 14.98,
+        "unique_defects_ci": [
+          14.5468,
+          15.4132
+        ],
+        "fp_recall": 0.6586,
+        "fp_recall_ci": [
+          0.6433,
+          0.674
+        ],
+        "first_find_at": 7.2,
+        "first_find_at_ci": [
+          6.3181,
+          8.0819
+        ],
+        "recovery_capped": 8.425,
+        "recovery_capped_ci": [
+          7.4422,
+          9.4078
+        ],
+        "eval_entropy": 0.9798,
+        "eval_entropy_ci": [
+          0.9787,
+          0.981
+        ],
+        "cpu_us_per_probe": 14.5525,
+        "cpu_us_per_probe_ci": [
+          14.0147,
+          15.0903
+        ],
+        "up_share_shifted": 0.5893,
+        "up_share_shifted_ci": [
+          0.5851,
+          0.5935
+        ],
+        "up_share_first20": 0.5935,
+        "up_share_first20_ci": [
+          0.579,
+          0.608
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.495,
+        "false_alarm_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.51,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1574,
+          0.8626
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.785,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4053,
+          1.1647
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.445,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.241,
+          -6.649
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0292,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0269,
+          0.0314
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.06,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.3899,
+          0.2699
+        ],
+        "diff_unique_defects_vs_UCB1": -0.14,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.5015,
+          0.2215
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.14,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -3.6051,
+          -0.6749
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0138,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0121,
+          0.0154
+        ]
+      },
+      "A3-AlarmShrink.2": {
+        "n": 200,
+        "unique_false_pass": 12.365,
+        "unique_false_pass_ci": [
+          11.8987,
+          12.8313
+        ],
+        "unique_defects": 14.41,
+        "unique_defects_ci": [
+          13.9462,
+          14.8738
+        ],
+        "fp_recall": 0.6414,
+        "fp_recall_ci": [
+          0.6237,
+          0.659
+        ],
+        "first_find_at": 11.765,
+        "first_find_at_ci": [
+          10.5955,
+          12.9345
+        ],
+        "recovery_capped": 15.905,
+        "recovery_capped_ci": [
+          14.4106,
+          17.3994
+        ],
+        "eval_entropy": 0.9558,
+        "eval_entropy_ci": [
+          0.9536,
+          0.958
+        ],
+        "cpu_us_per_probe": 13.3558,
+        "cpu_us_per_probe_ci": [
+          12.8144,
+          13.8973
+        ],
+        "up_share_shifted": 0.5537,
+        "up_share_shifted_ci": [
+          0.5454,
+          0.562
+        ],
+        "up_share_first20": 0.321,
+        "up_share_first20_ci": [
+          0.2944,
+          0.3476
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.57,
+        "false_alarm_rate": null,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.175,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0116,
+          0.3616
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.215,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0118,
+          0.4182
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -0.965,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -1.5756,
+          -0.3544
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0051,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.004,
+          0.0062
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.395,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.742,
+          -0.048
+        ],
+        "diff_unique_defects_vs_UCB1": -0.71,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.0825,
+          -0.3375
+        ],
+        "diff_recovery_capped_vs_UCB1": 5.34,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          3.3741,
+          7.3059
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0103,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0132,
+          -0.0074
+        ]
+      }
+    },
+    "delayed": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.98,
+        "unique_false_pass_ci": [
+          9.5902,
+          10.3698
+        ],
+        "unique_defects": 12.265,
+        "unique_defects_ci": [
+          11.8275,
+          12.7025
+        ],
+        "fp_recall": 0.3307,
+        "fp_recall_ci": [
+          0.3187,
+          0.3427
+        ],
+        "first_find_at": 7.48,
+        "first_find_at_ci": [
+          6.5304,
+          8.4296
+        ],
+        "recovery_capped": 7.87,
+        "recovery_capped_ci": [
+          6.9277,
+          8.8123
+        ],
+        "eval_entropy": 0.9883,
+        "eval_entropy_ci": [
+          0.9873,
+          0.9893
+        ],
+        "cpu_us_per_probe": 2.917,
+        "cpu_us_per_probe_ci": [
+          2.749,
+          3.085
+        ],
+        "up_share_shifted": 0.506,
+        "up_share_shifted_ci": [
+          0.4969,
+          0.5151
+        ],
+        "up_share_first20": 0.5035,
+        "up_share_first20_ci": [
+          0.4892,
+          0.5178
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -2.355,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.8802,
+          -1.8298
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.99,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.5561,
+          -1.4239
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -9.66,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -11.493,
+          -7.827
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1292,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1234,
+          0.1351
+        ],
+        "diff_unique_false_pass_vs_UCB1": -3.01,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -3.5914,
+          -2.4286
+        ],
+        "diff_unique_defects_vs_UCB1": -3,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -3.6305,
+          -2.3695
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.085,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -3.4955,
+          -0.6745
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0249,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0223,
+          0.0275
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.99,
+        "unique_false_pass_ci": [
+          12.4653,
+          13.5147
+        ],
+        "unique_defects": 15.265,
+        "unique_defects_ci": [
+          14.7239,
+          15.8061
+        ],
+        "fp_recall": 0.4292,
+        "fp_recall_ci": [
+          0.4137,
+          0.4446
+        ],
+        "first_find_at": 6.24,
+        "first_find_at_ci": [
+          5.4001,
+          7.0799
+        ],
+        "recovery_capped": 9.955,
+        "recovery_capped_ci": [
+          8.7776,
+          11.1324
+        ],
+        "eval_entropy": 0.9634,
+        "eval_entropy_ci": [
+          0.9609,
+          0.9658
+        ],
+        "cpu_us_per_probe": 7.6983,
+        "cpu_us_per_probe_ci": [
+          7.1867,
+          8.2099
+        ],
+        "up_share_shifted": 0.5992,
+        "up_share_shifted_ci": [
+          0.5868,
+          0.6116
+        ],
+        "up_share_first20": 0.5673,
+        "up_share_first20_ci": [
+          0.5479,
+          0.5866
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.655,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1004,
+          1.2096
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.01,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4551,
+          1.5649
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -7.575,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -9.4999,
+          -5.6501
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1043,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0981,
+          0.1105
+        ]
+      },
+      "SW-UCB": {
+        "n": 200,
+        "unique_false_pass": 11.43,
+        "unique_false_pass_ci": [
+          10.9695,
+          11.8905
+        ],
+        "unique_defects": 13.73,
+        "unique_defects_ci": [
+          13.2591,
+          14.2009
+        ],
+        "fp_recall": 0.3788,
+        "fp_recall_ci": [
+          0.3645,
+          0.3931
+        ],
+        "first_find_at": 6.26,
+        "first_find_at_ci": [
+          5.4163,
+          7.1037
+        ],
+        "recovery_capped": 8.73,
+        "recovery_capped_ci": [
+          7.6484,
+          9.8116
+        ],
+        "eval_entropy": 0.9925,
+        "eval_entropy_ci": [
+          0.9919,
+          0.993
+        ],
+        "cpu_us_per_probe": 11.4686,
+        "cpu_us_per_probe_ci": [
+          11.0476,
+          11.8896
+        ],
+        "up_share_shifted": 0.5683,
+        "up_share_shifted_ci": [
+          0.5623,
+          0.5744
+        ],
+        "up_share_first20": 0.566,
+        "up_share_first20_ci": [
+          0.5536,
+          0.5784
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.905,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.4143,
+          -0.3957
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.525,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.0706,
+          0.0206
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.8,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.7834,
+          -6.8166
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1334,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1275,
+          0.1393
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.56,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -2.1432,
+          -0.9768
+        ],
+        "diff_unique_defects_vs_UCB1": -1.535,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -2.1373,
+          -0.9327
+        ],
+        "diff_recovery_capped_vs_UCB1": -1.225,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -2.7383,
+          0.2883
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0291,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0266,
+          0.0316
+        ]
+      },
+      "D-UCB": {
+        "n": 200,
+        "unique_false_pass": 11.79,
+        "unique_false_pass_ci": [
+          11.3185,
+          12.2615
+        ],
+        "unique_defects": 14.24,
+        "unique_defects_ci": [
+          13.7382,
+          14.7418
+        ],
+        "fp_recall": 0.3884,
+        "fp_recall_ci": [
+          0.375,
+          0.4019
+        ],
+        "first_find_at": 7.37,
+        "first_find_at_ci": [
+          6.4279,
+          8.3121
+        ],
+        "recovery_capped": 7.83,
+        "recovery_capped_ci": [
+          6.8007,
+          8.8593
+        ],
+        "eval_entropy": 0.9905,
+        "eval_entropy_ci": [
+          0.9897,
+          0.9913
+        ],
+        "cpu_us_per_probe": 9.6827,
+        "cpu_us_per_probe_ci": [
+          9.2941,
+          10.0713
+        ],
+        "up_share_shifted": 0.5857,
+        "up_share_shifted_ci": [
+          0.5793,
+          0.592
+        ],
+        "up_share_first20": 0.5835,
+        "up_share_first20_ci": [
+          0.5739,
+          0.5931
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.545,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.0735,
+          -0.0165
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.015,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5748,
+          0.5448
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -9.7,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -11.6252,
+          -7.7748
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1315,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1253,
+          0.1376
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.2,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.7333,
+          -0.6667
+        ],
+        "diff_unique_defects_vs_UCB1": -1.025,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.6001,
+          -0.4499
+        ],
+        "diff_recovery_capped_vs_UCB1": -2.125,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -3.503,
+          -0.747
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0272,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0247,
+          0.0296
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 11.885,
+        "unique_false_pass_ci": [
+          11.4565,
+          12.3135
+        ],
+        "unique_defects": 13.95,
+        "unique_defects_ci": [
+          13.4909,
+          14.4091
+        ],
+        "fp_recall": 0.3946,
+        "fp_recall_ci": [
+          0.3811,
+          0.4082
+        ],
+        "first_find_at": 4.95,
+        "first_find_at_ci": [
+          4.3247,
+          5.5753
+        ],
+        "recovery_capped": 25.37,
+        "recovery_capped_ci": [
+          23.5324,
+          27.2076
+        ],
+        "eval_entropy": 0.7519,
+        "eval_entropy_ci": [
+          0.7443,
+          0.7595
+        ],
+        "cpu_us_per_probe": 8.5773,
+        "cpu_us_per_probe_ci": [
+          8.202,
+          8.9525
+        ],
+        "up_share_shifted": 0.3527,
+        "up_share_shifted_ci": [
+          0.329,
+          0.3763
+        ],
+        "up_share_first20": 0.1837,
+        "up_share_first20_ci": [
+          0.154,
+          0.2135
+        ],
+        "recovery_censored_rate": 0.11,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.45,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.8997,
+          -0.0003
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.305,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.7742,
+          0.1642
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": 7.84,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          5.7316,
+          9.9484
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": -0.1072,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          -0.1152,
+          -0.0992
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.105,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.6425,
+          -0.5675
+        ],
+        "diff_unique_defects_vs_UCB1": -1.315,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.8667,
+          -0.7633
+        ],
+        "diff_recovery_capped_vs_UCB1": 15.415,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          13.3128,
+          17.5172
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.2115,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.219,
+          -0.2039
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.335,
+        "unique_false_pass_ci": [
+          11.8895,
+          12.7805
+        ],
+        "unique_defects": 14.255,
+        "unique_defects_ci": [
+          13.7789,
+          14.7311
+        ],
+        "fp_recall": 0.4082,
+        "fp_recall_ci": [
+          0.3951,
+          0.4214
+        ],
+        "first_find_at": 4.925,
+        "first_find_at_ci": [
+          4.2503,
+          5.5997
+        ],
+        "recovery_capped": 17.53,
+        "recovery_capped_ci": [
+          15.7955,
+          19.2645
+        ],
+        "eval_entropy": 0.8591,
+        "eval_entropy_ci": [
+          0.8532,
+          0.865
+        ],
+        "cpu_us_per_probe": 10.752,
+        "cpu_us_per_probe_ci": [
+          10.3366,
+          11.1674
+        ],
+        "up_share_shifted": 0.4081,
+        "up_share_shifted_ci": [
+          0.3894,
+          0.4268
+        ],
+        "up_share_first20": 0.2727,
+        "up_share_first20_ci": [
+          0.2494,
+          0.2961
+        ],
+        "recovery_censored_rate": 0.04,
+        "alarm_rate": 0.39,
+        "false_alarm_rate": 0.14,
+        "diff_unique_false_pass_vs_UCB1": -0.655,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.2096,
+          -0.1004
+        ],
+        "diff_unique_defects_vs_UCB1": -1.01,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.5649,
+          -0.4551
+        ],
+        "diff_recovery_capped_vs_UCB1": 7.575,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          5.6501,
+          9.4999
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.1043,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.1105,
+          -0.0981
+        ]
+      },
+      "A1-Decay.981": {
+        "n": 200,
+        "unique_false_pass": 13.525,
+        "unique_false_pass_ci": [
+          13.075,
+          13.975
+        ],
+        "unique_defects": 15.75,
+        "unique_defects_ci": [
+          15.2795,
+          16.2205
+        ],
+        "fp_recall": 0.448,
+        "fp_recall_ci": [
+          0.4345,
+          0.4615
+        ],
+        "first_find_at": 5.32,
+        "first_find_at_ci": [
+          4.521,
+          6.119
+        ],
+        "recovery_capped": 10.69,
+        "recovery_capped_ci": [
+          9.6056,
+          11.7744
+        ],
+        "eval_entropy": 0.9406,
+        "eval_entropy_ci": [
+          0.9372,
+          0.944
+        ],
+        "cpu_us_per_probe": 12.9602,
+        "cpu_us_per_probe_ci": [
+          12.3833,
+          13.5371
+        ],
+        "up_share_shifted": 0.5954,
+        "up_share_shifted_ci": [
+          0.5827,
+          0.6082
+        ],
+        "up_share_first20": 0.511,
+        "up_share_first20_ci": [
+          0.4891,
+          0.5329
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.44,
+        "false_alarm_rate": 0.105,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 1.19,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.757,
+          1.623
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.495,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          1.0306,
+          1.9594
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -6.84,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -8.7111,
+          -4.9689
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0816,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0759,
+          0.0872
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.535,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          0.0405,
+          1.0295
+        ],
+        "diff_unique_defects_vs_UCB1": 0.485,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.0345,
+          1.0045
+        ],
+        "diff_recovery_capped_vs_UCB1": 0.735,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -0.7795,
+          2.2495
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0227,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0264,
+          -0.0191
+        ]
+      },
+      "A2-Decay.95": {
+        "n": 200,
+        "unique_false_pass": 12.465,
+        "unique_false_pass_ci": [
+          11.956,
+          12.974
+        ],
+        "unique_defects": 14.54,
+        "unique_defects_ci": [
+          14.0248,
+          15.0552
+        ],
+        "fp_recall": 0.411,
+        "fp_recall_ci": [
+          0.3964,
+          0.4256
+        ],
+        "first_find_at": 6.8,
+        "first_find_at_ci": [
+          5.8206,
+          7.7794
+        ],
+        "recovery_capped": 8.95,
+        "recovery_capped_ci": [
+          8.0153,
+          9.8847
+        ],
+        "eval_entropy": 0.9797,
+        "eval_entropy_ci": [
+          0.9779,
+          0.9815
+        ],
+        "cpu_us_per_probe": 12.1291,
+        "cpu_us_per_probe_ci": [
+          11.6775,
+          12.5807
+        ],
+        "up_share_shifted": 0.5992,
+        "up_share_shifted_ci": [
+          0.5915,
+          0.6069
+        ],
+        "up_share_first20": 0.574,
+        "up_share_first20_ci": [
+          0.5605,
+          0.5875
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.395,
+        "false_alarm_rate": 0.055,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.13,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.3429,
+          0.6029
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.285,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2214,
+          0.7914
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.58,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.3754,
+          -6.7846
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1207,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1148,
+          0.1265
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.525,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.0741,
+          0.0241
+        ],
+        "diff_unique_defects_vs_UCB1": -0.725,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.2722,
+          -0.1778
+        ],
+        "diff_recovery_capped_vs_UCB1": -1.005,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -2.5144,
+          0.5044
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0164,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0139,
+          0.0189
+        ]
+      },
+      "A3-AlarmShrink.2": {
+        "n": 200,
+        "unique_false_pass": 12.575,
+        "unique_false_pass_ci": [
+          12.1105,
+          13.0395
+        ],
+        "unique_defects": 14.49,
+        "unique_defects_ci": [
+          14.0061,
+          14.9739
+        ],
+        "fp_recall": 0.4162,
+        "fp_recall_ci": [
+          0.4023,
+          0.43
+        ],
+        "first_find_at": 4.925,
+        "first_find_at_ci": [
+          4.2503,
+          5.5997
+        ],
+        "recovery_capped": 16.585,
+        "recovery_capped_ci": [
+          14.8984,
+          18.2716
+        ],
+        "eval_entropy": 0.873,
+        "eval_entropy_ci": [
+          0.866,
+          0.8801
+        ],
+        "cpu_us_per_probe": 10.9021,
+        "cpu_us_per_probe_ci": [
+          10.4636,
+          11.3405
+        ],
+        "up_share_shifted": 0.4402,
+        "up_share_shifted_ci": [
+          0.4205,
+          0.4599
+        ],
+        "up_share_first20": 0.3085,
+        "up_share_first20_ci": [
+          0.2824,
+          0.3346
+        ],
+        "recovery_censored_rate": 0.025,
+        "alarm_rate": 0.39,
+        "false_alarm_rate": 0.14,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.24,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.0603,
+          0.4197
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.235,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0517,
+          0.4183
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -0.945,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -1.9233,
+          0.0333
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.014,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0104,
+          0.0175
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.415,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.977,
+          0.147
+        ],
+        "diff_unique_defects_vs_UCB1": -0.775,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.3357,
+          -0.2143
+        ],
+        "diff_recovery_capped_vs_UCB1": 6.63,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          4.7435,
+          8.5165
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0903,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0979,
+          -0.0828
+        ]
+      }
+    },
+    "recovery": {
+      "Random": {
+        "n": 200,
+        "unique_false_pass": 9.485,
+        "unique_false_pass_ci": [
+          9.0771,
+          9.8929
+        ],
+        "unique_defects": 11.73,
+        "unique_defects_ci": [
+          11.2826,
+          12.1774
+        ],
+        "fp_recall": 0.264,
+        "fp_recall_ci": [
+          0.254,
+          0.274
+        ],
+        "first_find_at": 6.535,
+        "first_find_at_ci": [
+          5.75,
+          7.32
+        ],
+        "recovery_capped": 8.695,
+        "recovery_capped_ci": [
+          7.4703,
+          9.9197
+        ],
+        "eval_entropy": 0.9876,
+        "eval_entropy_ci": [
+          0.9865,
+          0.9886
+        ],
+        "cpu_us_per_probe": 2.8068,
+        "cpu_us_per_probe_ci": [
+          2.678,
+          2.9355
+        ],
+        "up_share_shifted": 0.5008,
+        "up_share_shifted_ci": [
+          0.4912,
+          0.5104
+        ],
+        "up_share_first20": 0.4965,
+        "up_share_first20_ci": [
+          0.4829,
+          0.5101
+        ],
+        "recovery_censored_rate": 0.005,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -2.615,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -3.1036,
+          -2.1264
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -2.28,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.848,
+          -1.712
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -10.77,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -13.328,
+          -8.212
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1806,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1725,
+          0.1887
+        ],
+        "diff_unique_false_pass_vs_UCB1": -2.805,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -3.4045,
+          -2.2055
+        ],
+        "diff_unique_defects_vs_UCB1": -2.92,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -3.5748,
+          -2.2652
+        ],
+        "diff_recovery_capped_vs_UCB1": -0.2,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -1.94,
+          1.54
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0294,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0262,
+          0.0327
+        ]
+      },
+      "UCB1": {
+        "n": 200,
+        "unique_false_pass": 12.29,
+        "unique_false_pass_ci": [
+          11.7296,
+          12.8504
+        ],
+        "unique_defects": 14.65,
+        "unique_defects_ci": [
+          14.0843,
+          15.2157
+        ],
+        "fp_recall": 0.3411,
+        "fp_recall_ci": [
+          0.3277,
+          0.3545
+        ],
+        "first_find_at": 5.7,
+        "first_find_at_ci": [
+          4.8901,
+          6.5099
+        ],
+        "recovery_capped": 8.895,
+        "recovery_capped_ci": [
+          7.539,
+          10.251
+        ],
+        "eval_entropy": 0.9582,
+        "eval_entropy_ci": [
+          0.955,
+          0.9614
+        ],
+        "cpu_us_per_probe": 7.5277,
+        "cpu_us_per_probe_ci": [
+          7.2027,
+          7.8526
+        ],
+        "up_share_shifted": 0.6082,
+        "up_share_shifted_ci": [
+          0.5943,
+          0.622
+        ],
+        "up_share_first20": 0.5925,
+        "up_share_first20_ci": [
+          0.5755,
+          0.6095
+        ],
+        "recovery_censored_rate": 0.01,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.19,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.3655,
+          0.7455
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.64,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0482,
+          1.2318
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -10.57,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -13.1342,
+          -8.0058
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1512,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1426,
+          0.1598
+        ]
+      },
+      "SW-UCB": {
+        "n": 200,
+        "unique_false_pass": 11.005,
+        "unique_false_pass_ci": [
+          10.571,
+          11.439
+        ],
+        "unique_defects": 13.57,
+        "unique_defects_ci": [
+          13.1318,
+          14.0082
+        ],
+        "fp_recall": 0.3066,
+        "fp_recall_ci": [
+          0.2963,
+          0.3169
+        ],
+        "first_find_at": 7.545,
+        "first_find_at_ci": [
+          6.5715,
+          8.5185
+        ],
+        "recovery_capped": 7.885,
+        "recovery_capped_ci": [
+          6.9302,
+          8.8398
+        ],
+        "eval_entropy": 0.9918,
+        "eval_entropy_ci": [
+          0.9912,
+          0.9924
+        ],
+        "cpu_us_per_probe": 11.6578,
+        "cpu_us_per_probe_ci": [
+          11.2076,
+          12.108
+        ],
+        "up_share_shifted": 0.573,
+        "up_share_shifted_ci": [
+          0.5649,
+          0.5811
+        ],
+        "up_share_first20": 0.5607,
+        "up_share_first20_ci": [
+          0.5492,
+          0.5723
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.095,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.5822,
+          -0.6078
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.44,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.9746,
+          0.0946
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -11.58,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -14.1102,
+          -9.0498
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1848,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1766,
+          0.193
+        ],
+        "diff_unique_false_pass_vs_UCB1": -1.285,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.8453,
+          -0.7247
+        ],
+        "diff_unique_defects_vs_UCB1": -1.08,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.686,
+          -0.474
+        ],
+        "diff_recovery_capped_vs_UCB1": -1.01,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -2.3941,
+          0.3741
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0336,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0306,
+          0.0366
+        ]
+      },
+      "D-UCB": {
+        "n": 200,
+        "unique_false_pass": 11.31,
+        "unique_false_pass_ci": [
+          10.8173,
+          11.8027
+        ],
+        "unique_defects": 13.97,
+        "unique_defects_ci": [
+          13.4281,
+          14.5119
+        ],
+        "fp_recall": 0.3143,
+        "fp_recall_ci": [
+          0.3027,
+          0.3258
+        ],
+        "first_find_at": 7.205,
+        "first_find_at_ci": [
+          6.2547,
+          8.1553
+        ],
+        "recovery_capped": 8.155,
+        "recovery_capped_ci": [
+          7.1343,
+          9.1757
+        ],
+        "eval_entropy": 0.9908,
+        "eval_entropy_ci": [
+          0.9901,
+          0.9915
+        ],
+        "cpu_us_per_probe": 10.0479,
+        "cpu_us_per_probe_ci": [
+          9.6126,
+          10.4833
+        ],
+        "up_share_shifted": 0.5843,
+        "up_share_shifted_ci": [
+          0.5766,
+          0.5921
+        ],
+        "up_share_first20": 0.579,
+        "up_share_first20_ci": [
+          0.5687,
+          0.5893
+        ],
+        "recovery_censored_rate": 0.005,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.79,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.294,
+          -0.286
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.04,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5829,
+          0.5029
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -11.31,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -13.9218,
+          -8.6982
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1838,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1757,
+          0.1919
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.98,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.5502,
+          -0.4098
+        ],
+        "diff_unique_defects_vs_UCB1": -0.68,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.2834,
+          -0.0766
+        ],
+        "diff_recovery_capped_vs_UCB1": -0.74,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -2.2991,
+          0.8191
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0326,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0296,
+          0.0356
+        ]
+      },
+      "CAVER-v0.3": {
+        "n": 200,
+        "unique_false_pass": 12.41,
+        "unique_false_pass_ci": [
+          11.9092,
+          12.9108
+        ],
+        "unique_defects": 14.7,
+        "unique_defects_ci": [
+          14.2219,
+          15.1781
+        ],
+        "fp_recall": 0.3445,
+        "fp_recall_ci": [
+          0.3329,
+          0.356
+        ],
+        "first_find_at": 4.9,
+        "first_find_at_ci": [
+          4.2483,
+          5.5517
+        ],
+        "recovery_capped": 27.78,
+        "recovery_capped_ci": [
+          24.9623,
+          30.5977
+        ],
+        "eval_entropy": 0.6481,
+        "eval_entropy_ci": [
+          0.6382,
+          0.658
+        ],
+        "cpu_us_per_probe": 8.3087,
+        "cpu_us_per_probe_ci": [
+          7.9631,
+          8.6544
+        ],
+        "up_share_shifted": 0.3,
+        "up_share_shifted_ci": [
+          0.2715,
+          0.3285
+        ],
+        "up_share_first20": 0.217,
+        "up_share_first20_ci": [
+          0.1857,
+          0.2483
+        ],
+        "recovery_censored_rate": 0.21,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.31,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.117,
+          0.737
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.69,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.2365,
+          1.1435
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": 8.315,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          5.1138,
+          11.5162
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": -0.1589,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          -0.1691,
+          -0.1487
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.12,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.4143,
+          0.6543
+        ],
+        "diff_unique_defects_vs_UCB1": 0.05,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.5116,
+          0.6116
+        ],
+        "diff_recovery_capped_vs_UCB1": 18.885,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          15.7338,
+          22.0362
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.3101,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.3198,
+          -0.3003
+        ]
+      },
+      "CAVER-v0.6": {
+        "n": 200,
+        "unique_false_pass": 12.1,
+        "unique_false_pass_ci": [
+          11.6457,
+          12.5543
+        ],
+        "unique_defects": 14.01,
+        "unique_defects_ci": [
+          13.5362,
+          14.4838
+        ],
+        "fp_recall": 0.3381,
+        "fp_recall_ci": [
+          0.3267,
+          0.3495
+        ],
+        "first_find_at": 5.155,
+        "first_find_at_ci": [
+          4.475,
+          5.835
+        ],
+        "recovery_capped": 19.465,
+        "recovery_capped_ci": [
+          17.0778,
+          21.8522
+        ],
+        "eval_entropy": 0.807,
+        "eval_entropy_ci": [
+          0.7989,
+          0.8151
+        ],
+        "cpu_us_per_probe": 11.0442,
+        "cpu_us_per_probe_ci": [
+          10.6347,
+          11.4537
+        ],
+        "up_share_shifted": 0.3613,
+        "up_share_shifted_ci": [
+          0.3385,
+          0.3842
+        ],
+        "up_share_first20": 0.2975,
+        "up_share_first20_ci": [
+          0.2726,
+          0.3224
+        ],
+        "recovery_censored_rate": 0.095,
+        "alarm_rate": 0.31,
+        "false_alarm_rate": 0.04,
+        "diff_unique_false_pass_vs_UCB1": -0.19,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.7455,
+          0.3655
+        ],
+        "diff_unique_defects_vs_UCB1": -0.64,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.2318,
+          -0.0482
+        ],
+        "diff_recovery_capped_vs_UCB1": 10.57,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          8.0058,
+          13.1342
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.1512,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.1598,
+          -0.1426
+        ]
+      },
+      "A1-Decay.981": {
+        "n": 200,
+        "unique_false_pass": 12.345,
+        "unique_false_pass_ci": [
+          11.8443,
+          12.8457
+        ],
+        "unique_defects": 14.525,
+        "unique_defects_ci": [
+          14.0273,
+          15.0227
+        ],
+        "fp_recall": 0.3446,
+        "fp_recall_ci": [
+          0.332,
+          0.3571
+        ],
+        "first_find_at": 6.66,
+        "first_find_at_ci": [
+          5.6643,
+          7.6557
+        ],
+        "recovery_capped": 11.19,
+        "recovery_capped_ci": [
+          9.7636,
+          12.6164
+        ],
+        "eval_entropy": 0.9327,
+        "eval_entropy_ci": [
+          0.9281,
+          0.9373
+        ],
+        "cpu_us_per_probe": 12.4365,
+        "cpu_us_per_probe_ci": [
+          11.9733,
+          12.8998
+        ],
+        "up_share_shifted": 0.5798,
+        "up_share_shifted_ci": [
+          0.5617,
+          0.5979
+        ],
+        "up_share_first20": 0.5383,
+        "up_share_first20_ci": [
+          0.5159,
+          0.5606
+        ],
+        "recovery_censored_rate": 0.015,
+        "alarm_rate": 0.395,
+        "false_alarm_rate": 0.05,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.245,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1768,
+          0.6668
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.515,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.055,
+          0.975
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -8.275,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -10.5725,
+          -5.9775
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.1257,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1176,
+          0.1339
+        ],
+        "diff_unique_false_pass_vs_UCB1": 0.055,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.5352,
+          0.6452
+        ],
+        "diff_unique_defects_vs_UCB1": -0.125,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -0.7352,
+          0.4852
+        ],
+        "diff_recovery_capped_vs_UCB1": 2.295,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          0.3867,
+          4.2033
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.0255,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.0303,
+          -0.0207
+        ]
+      },
+      "A2-Decay.95": {
+        "n": 200,
+        "unique_false_pass": 11.63,
+        "unique_false_pass_ci": [
+          11.1643,
+          12.0957
+        ],
+        "unique_defects": 13.755,
+        "unique_defects_ci": [
+          13.2935,
+          14.2165
+        ],
+        "fp_recall": 0.3258,
+        "fp_recall_ci": [
+          0.3137,
+          0.3379
+        ],
+        "first_find_at": 6.475,
+        "first_find_at_ci": [
+          5.5691,
+          7.3809
+        ],
+        "recovery_capped": 8.41,
+        "recovery_capped_ci": [
+          7.4912,
+          9.3288
+        ],
+        "eval_entropy": 0.978,
+        "eval_entropy_ci": [
+          0.9761,
+          0.9799
+        ],
+        "cpu_us_per_probe": 12.5727,
+        "cpu_us_per_probe_ci": [
+          12.0957,
+          13.0497
+        ],
+        "up_share_shifted": 0.6038,
+        "up_share_shifted_ci": [
+          0.5932,
+          0.6145
+        ],
+        "up_share_first20": 0.59,
+        "up_share_first20_ci": [
+          0.576,
+          0.604
+        ],
+        "recovery_censored_rate": 0,
+        "alarm_rate": 0.405,
+        "false_alarm_rate": 0.015,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.47,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.9776,
+          0.0376
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.255,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.7859,
+          0.2759
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -11.055,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -13.4648,
+          -8.6452
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.171,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.1631,
+          0.179
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.66,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -1.2111,
+          -0.1089
+        ],
+        "diff_unique_defects_vs_UCB1": -0.895,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.497,
+          -0.293
+        ],
+        "diff_recovery_capped_vs_UCB1": -0.485,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          -2.0469,
+          1.0769
+        ],
+        "diff_eval_entropy_vs_UCB1": 0.0198,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          0.0167,
+          0.0229
+        ]
+      },
+      "A3-AlarmShrink.2": {
+        "n": 200,
+        "unique_false_pass": 12.195,
+        "unique_false_pass_ci": [
+          11.7425,
+          12.6475
+        ],
+        "unique_defects": 14.12,
+        "unique_defects_ci": [
+          13.644,
+          14.596
+        ],
+        "fp_recall": 0.3409,
+        "fp_recall_ci": [
+          0.3295,
+          0.3522
+        ],
+        "first_find_at": 5.12,
+        "first_find_at_ci": [
+          4.4569,
+          5.7831
+        ],
+        "recovery_capped": 18.485,
+        "recovery_capped_ci": [
+          16.225,
+          20.745
+        ],
+        "eval_entropy": 0.8226,
+        "eval_entropy_ci": [
+          0.8131,
+          0.8321
+        ],
+        "cpu_us_per_probe": 11.3293,
+        "cpu_us_per_probe_ci": [
+          10.8226,
+          11.8359
+        ],
+        "up_share_shifted": 0.3798,
+        "up_share_shifted_ci": [
+          0.3567,
+          0.4029
+        ],
+        "up_share_first20": 0.3145,
+        "up_share_first20_ci": [
+          0.2893,
+          0.3397
+        ],
+        "recovery_censored_rate": 0.075,
+        "alarm_rate": 0.31,
+        "false_alarm_rate": 0.04,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.095,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0372,
+          0.2272
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.11,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.056,
+          0.276
+        ],
+        "diff_recovery_capped_vs_CAVER-v0.6": -0.98,
+        "diff_recovery_capped_vs_CAVER-v0.6_ci": [
+          -1.979,
+          0.019
+        ],
+        "diff_eval_entropy_vs_CAVER-v0.6": 0.0156,
+        "diff_eval_entropy_vs_CAVER-v0.6_ci": [
+          0.0114,
+          0.0199
+        ],
+        "diff_unique_false_pass_vs_UCB1": -0.095,
+        "diff_unique_false_pass_vs_UCB1_ci": [
+          -0.6514,
+          0.4614
+        ],
+        "diff_unique_defects_vs_UCB1": -0.53,
+        "diff_unique_defects_vs_UCB1_ci": [
+          -1.1229,
+          0.0629
+        ],
+        "diff_recovery_capped_vs_UCB1": 9.59,
+        "diff_recovery_capped_vs_UCB1_ci": [
+          7.1613,
+          12.0187
+        ],
+        "diff_eval_entropy_vs_UCB1": -0.1356,
+        "diff_eval_entropy_vs_UCB1_ci": [
+          -0.1455,
+          -0.1257
+        ]
+      }
+    }
+  },
+  "nomination": {
+    "primary": null,
+    "verdicts": {
+      "A1-Decay.981": {
+        "criteria": {
+          "stationary_vs_v06_lb>-0.5": false,
+          "abrupt_vs_v06_lb>0": true,
+          "abrupt_vs_UCB1_lb>-0.5": true,
+          "abrupt_recovery_vs_v06_ub<0": true,
+          "delayed_vs_v06_lb>0": true,
+          "delayed_vs_UCB1_lb>-0.5": true,
+          "delayed_recovery_vs_v06_ub<0": true,
+          "recovery_vs_v06_lb>-0.5": true
+        },
+        "passes": false,
+        "mean_shift_gain_vs_v06": 1.0875
+      },
+      "A2-Decay.95": {
+        "criteria": {
+          "stationary_vs_v06_lb>-0.5": false,
+          "abrupt_vs_v06_lb>0": true,
+          "abrupt_vs_UCB1_lb>-0.5": true,
+          "abrupt_recovery_vs_v06_ub<0": true,
+          "delayed_vs_v06_lb>0": false,
+          "delayed_vs_UCB1_lb>-0.5": false,
+          "delayed_recovery_vs_v06_ub<0": true,
+          "recovery_vs_v06_lb>-0.5": false
+        },
+        "passes": false,
+        "mean_shift_gain_vs_v06": 0.32
+      },
+      "A3-AlarmShrink.2": {
+        "criteria": {
+          "stationary_vs_v06_lb>-0.5": true,
+          "abrupt_vs_v06_lb>0": false,
+          "abrupt_vs_UCB1_lb>-0.5": false,
+          "abrupt_recovery_vs_v06_ub<0": true,
+          "delayed_vs_v06_lb>0": true,
+          "delayed_vs_UCB1_lb>-0.5": false,
+          "delayed_recovery_vs_v06_ub<0": false,
+          "recovery_vs_v06_lb>-0.5": true
+        },
+        "passes": false,
+        "mean_shift_gain_vs_v06": 0.2075
+      }
+    }
+  }
+}
