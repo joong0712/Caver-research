@@ -1,0 +1,2867 @@
+{
+  "meta": {
+    "outcome_table_cli_kind": "simulated",
+    "real_claude_code_executed_for_table": false,
+    "benchmark_is_table_replay": true,
+    "salt": "dev",
+    "seeds": [
+      0,
+      199
+    ],
+    "n_seeds": 200,
+    "scenarios": [
+      "stationary",
+      "abrupt",
+      "delayed",
+      "recovery"
+    ],
+    "policies": [
+      "Random",
+      "Uniform",
+      "UCB1",
+      "CAVER-v0.3",
+      "CAVER-v0.5",
+      "CAVER-v0.6",
+      "A-ConfGated",
+      "B-RiskAware",
+      "A+B"
+    ],
+    "train_budget": 90,
+    "eval_budget": 90,
+    "usd_basis": "ESTIMATE: constant 0.0246 USD/run from v0.7 real runs",
+    "ci": "normal approx, mean +/- 1.96 sd/sqrt(n); paired differences on matched seeds"
+  },
+  "summary": {
+    "stationary": {
+      "Random": {
+        "unique_defects": 12.595,
+        "unique_defects_ci": [
+          12.188,
+          13.002
+        ],
+        "unique_false_pass": 10.125,
+        "unique_false_pass_ci": [
+          9.743,
+          10.507
+        ],
+        "fp_recall": 0.5404,
+        "fp_recall_ci": [
+          0.5255,
+          0.5553
+        ],
+        "severity_weighted": 11.113,
+        "severity_weighted_ci": [
+          10.7352,
+          11.4908
+        ],
+        "first_find_at": 5.88,
+        "first_find_at_ci": [
+          5.1378,
+          6.6222
+        ],
+        "wall_ms_per_probe": 140.4394,
+        "wall_ms_per_probe_ci": [
+          138.4083,
+          142.4705
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1867,
+        "usd_per_unique_ci": [
+          0.1799,
+          0.1936
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "diff_unique_defects_vs_CAVER-v0.6": -1.875,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.2994,
+          -1.4506
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.905,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.2735,
+          -1.5365
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.893,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -2.273,
+          -1.513
+        ],
+        "n": 200
+      },
+      "Uniform": {
+        "unique_defects": 12.575,
+        "unique_defects_ci": [
+          12.2171,
+          12.9329
+        ],
+        "unique_false_pass": 10.085,
+        "unique_false_pass_ci": [
+          9.7436,
+          10.4264
+        ],
+        "fp_recall": 0.5407,
+        "fp_recall_ci": [
+          0.5268,
+          0.5545
+        ],
+        "severity_weighted": 11.081,
+        "severity_weighted_ci": [
+          10.7482,
+          11.4138
+        ],
+        "first_find_at": 6.845,
+        "first_find_at_ci": [
+          5.9444,
+          7.7456
+        ],
+        "wall_ms_per_probe": 140.9175,
+        "wall_ms_per_probe_ci": [
+          138.8881,
+          142.9469
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1841,
+        "usd_per_unique_ci": [
+          0.1784,
+          0.1897
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "diff_unique_defects_vs_Random": -0.02,
+        "diff_unique_defects_vs_Random_ci": [
+          -0.3936,
+          0.3536
+        ],
+        "diff_unique_false_pass_vs_Random": -0.04,
+        "diff_unique_false_pass_vs_Random_ci": [
+          -0.3884,
+          0.3084
+        ],
+        "diff_severity_weighted_vs_Random": -0.032,
+        "diff_severity_weighted_vs_Random_ci": [
+          -0.3795,
+          0.3155
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.895,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.2531,
+          -1.5369
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.945,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.2785,
+          -1.6115
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.925,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -2.2564,
+          -1.5936
+        ],
+        "n": 200
+      },
+      "UCB1": {
+        "unique_defects": 14.365,
+        "unique_defects_ci": [
+          13.9623,
+          14.7677
+        ],
+        "unique_false_pass": 11.715,
+        "unique_false_pass_ci": [
+          11.3473,
+          12.0827
+        ],
+        "fp_recall": 0.63,
+        "fp_recall_ci": [
+          0.6149,
+          0.6451
+        ],
+        "severity_weighted": 12.775,
+        "severity_weighted_ci": [
+          12.4085,
+          13.1415
+        ],
+        "first_find_at": 5.83,
+        "first_find_at_ci": [
+          5.0853,
+          6.5747
+        ],
+        "wall_ms_per_probe": 140.903,
+        "wall_ms_per_probe_ci": [
+          138.6375,
+          143.1685
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1609,
+        "usd_per_unique_ci": [
+          0.156,
+          0.1657
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "diff_unique_defects_vs_Random": 1.77,
+        "diff_unique_defects_vs_Random_ci": [
+          1.3683,
+          2.1717
+        ],
+        "diff_unique_false_pass_vs_Random": 1.59,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.2179,
+          1.9621
+        ],
+        "diff_severity_weighted_vs_Random": 1.662,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.2873,
+          2.0367
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.105,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.4508,
+          0.2408
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.315,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.6151,
+          -0.0149
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.231,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.5382,
+          0.0762
+        ],
+        "n": 200
+      },
+      "CAVER-v0.3": {
+        "unique_defects": 14.955,
+        "unique_defects_ci": [
+          14.5112,
+          15.3988
+        ],
+        "unique_false_pass": 12.29,
+        "unique_false_pass_ci": [
+          11.8749,
+          12.7051
+        ],
+        "fp_recall": 0.6588,
+        "fp_recall_ci": [
+          0.6421,
+          0.6754
+        ],
+        "severity_weighted": 13.356,
+        "severity_weighted_ci": [
+          12.9434,
+          13.7686
+        ],
+        "first_find_at": 4.31,
+        "first_find_at_ci": [
+          3.7659,
+          4.8541
+        ],
+        "wall_ms_per_probe": 138.1832,
+        "wall_ms_per_probe_ci": [
+          135.9096,
+          140.4568
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1552,
+        "usd_per_unique_ci": [
+          0.1504,
+          0.1601
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "diff_unique_defects_vs_Random": 2.36,
+        "diff_unique_defects_vs_Random_ci": [
+          1.9277,
+          2.7923
+        ],
+        "diff_unique_false_pass_vs_Random": 2.165,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.7773,
+          2.5527
+        ],
+        "diff_severity_weighted_vs_Random": 2.243,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.8469,
+          2.6391
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.485,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.1706,
+          0.7994
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.26,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0169,
+          0.5369
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.35,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          0.0678,
+          0.6322
+        ],
+        "n": 200
+      },
+      "CAVER-v0.5": {
+        "unique_defects": 14.12,
+        "unique_defects_ci": [
+          13.7284,
+          14.5116
+        ],
+        "unique_false_pass": 11.73,
+        "unique_false_pass_ci": [
+          11.3688,
+          12.0912
+        ],
+        "fp_recall": 0.6304,
+        "fp_recall_ci": [
+          0.6158,
+          0.6451
+        ],
+        "severity_weighted": 12.686,
+        "severity_weighted_ci": [
+          12.3279,
+          13.0441
+        ],
+        "first_find_at": 4.47,
+        "first_find_at_ci": [
+          3.8391,
+          5.1009
+        ],
+        "wall_ms_per_probe": 139.4022,
+        "wall_ms_per_probe_ci": [
+          137.3849,
+          141.4194
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1641,
+        "usd_per_unique_ci": [
+          0.1587,
+          0.1696
+        ],
+        "false_alarm_rate": 0.435,
+        "false_alarm_rate_ci": [
+          0.3661,
+          0.5039
+        ],
+        "alarm_rate": 0.435,
+        "diff_unique_defects_vs_Random": 1.525,
+        "diff_unique_defects_vs_Random_ci": [
+          1.124,
+          1.926
+        ],
+        "diff_unique_false_pass_vs_Random": 1.605,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.2398,
+          1.9702
+        ],
+        "diff_severity_weighted_vs_Random": 1.573,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.206,
+          1.94
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.35,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5419,
+          -0.1581
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.3,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4741,
+          -0.1259
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.32,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.4946,
+          -0.1454
+        ],
+        "n": 200
+      },
+      "CAVER-v0.6": {
+        "unique_defects": 14.47,
+        "unique_defects_ci": [
+          14.0688,
+          14.8712
+        ],
+        "unique_false_pass": 12.03,
+        "unique_false_pass_ci": [
+          11.6528,
+          12.4072
+        ],
+        "fp_recall": 0.6463,
+        "fp_recall_ci": [
+          0.6312,
+          0.6614
+        ],
+        "severity_weighted": 13.006,
+        "severity_weighted_ci": [
+          12.6321,
+          13.3799
+        ],
+        "first_find_at": 4.34,
+        "first_find_at_ci": [
+          3.7564,
+          4.9236
+        ],
+        "wall_ms_per_probe": 138.7895,
+        "wall_ms_per_probe_ci": [
+          136.8594,
+          140.7197
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1601,
+        "usd_per_unique_ci": [
+          0.1548,
+          0.1654
+        ],
+        "false_alarm_rate": 0.15,
+        "false_alarm_rate_ci": [
+          0.1004,
+          0.1996
+        ],
+        "alarm_rate": 0.15,
+        "diff_unique_defects_vs_Random": 1.875,
+        "diff_unique_defects_vs_Random_ci": [
+          1.4506,
+          2.2994
+        ],
+        "diff_unique_false_pass_vs_Random": 1.905,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.5365,
+          2.2735
+        ],
+        "diff_severity_weighted_vs_Random": 1.893,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.513,
+          2.273
+        ],
+        "n": 200
+      },
+      "A-ConfGated": {
+        "unique_defects": 14.465,
+        "unique_defects_ci": [
+          14.0694,
+          14.8606
+        ],
+        "unique_false_pass": 12.06,
+        "unique_false_pass_ci": [
+          11.6832,
+          12.4368
+        ],
+        "fp_recall": 0.6483,
+        "fp_recall_ci": [
+          0.6329,
+          0.6637
+        ],
+        "severity_weighted": 13.022,
+        "severity_weighted_ci": [
+          12.6506,
+          13.3934
+        ],
+        "first_find_at": 4.34,
+        "first_find_at_ci": [
+          3.7564,
+          4.9236
+        ],
+        "wall_ms_per_probe": 138.7619,
+        "wall_ms_per_probe_ci": [
+          136.8218,
+          140.702
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.16,
+        "usd_per_unique_ci": [
+          0.1547,
+          0.1653
+        ],
+        "false_alarm_rate": 0.0,
+        "false_alarm_rate_ci": [
+          0.0,
+          0.0
+        ],
+        "alarm_rate": 0,
+        "diff_unique_defects_vs_Random": 1.87,
+        "diff_unique_defects_vs_Random_ci": [
+          1.4501,
+          2.2899
+        ],
+        "diff_unique_false_pass_vs_Random": 1.935,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.5708,
+          2.2992
+        ],
+        "diff_severity_weighted_vs_Random": 1.909,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.5334,
+          2.2846
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.005,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0901,
+          0.0801
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.03,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0533,
+          0.1133
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.016,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.0662,
+          0.0982
+        ],
+        "n": 200
+      },
+      "B-RiskAware": {
+        "unique_defects": 14.54,
+        "unique_defects_ci": [
+          14.1186,
+          14.9614
+        ],
+        "unique_false_pass": 12.04,
+        "unique_false_pass_ci": [
+          11.6424,
+          12.4376
+        ],
+        "fp_recall": 0.6458,
+        "fp_recall_ci": [
+          0.6295,
+          0.6621
+        ],
+        "severity_weighted": 13.04,
+        "severity_weighted_ci": [
+          12.6457,
+          13.4343
+        ],
+        "first_find_at": 4.87,
+        "first_find_at_ci": [
+          4.1403,
+          5.5997
+        ],
+        "wall_ms_per_probe": 138.302,
+        "wall_ms_per_probe_ci": [
+          136.4334,
+          140.1706
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1602,
+        "usd_per_unique_ci": [
+          0.1546,
+          0.1658
+        ],
+        "false_alarm_rate": 0.14,
+        "false_alarm_rate_ci": [
+          0.0918,
+          0.1882
+        ],
+        "alarm_rate": 0.14,
+        "diff_unique_defects_vs_Random": 1.945,
+        "diff_unique_defects_vs_Random_ci": [
+          1.5302,
+          2.3598
+        ],
+        "diff_unique_false_pass_vs_Random": 1.915,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.5422,
+          2.2878
+        ],
+        "diff_severity_weighted_vs_Random": 1.927,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.5471,
+          2.3069
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.07,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2081,
+          0.3481
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.01,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.2458,
+          0.2658
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.034,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.2234,
+          0.2914
+        ],
+        "n": 200
+      },
+      "A+B": {
+        "unique_defects": 14.62,
+        "unique_defects_ci": [
+          14.1912,
+          15.0488
+        ],
+        "unique_false_pass": 12.09,
+        "unique_false_pass_ci": [
+          11.6856,
+          12.4944
+        ],
+        "fp_recall": 0.6479,
+        "fp_recall_ci": [
+          0.6317,
+          0.6642
+        ],
+        "severity_weighted": 13.102,
+        "severity_weighted_ci": [
+          12.7008,
+          13.5032
+        ],
+        "first_find_at": 4.875,
+        "first_find_at_ci": [
+          4.1424,
+          5.6076
+        ],
+        "wall_ms_per_probe": 138.5442,
+        "wall_ms_per_probe_ci": [
+          136.6754,
+          140.4129
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1595,
+        "usd_per_unique_ci": [
+          0.1538,
+          0.1651
+        ],
+        "false_alarm_rate": 0.005,
+        "false_alarm_rate_ci": [
+          -0.0048,
+          0.0148
+        ],
+        "alarm_rate": 0.005,
+        "diff_unique_defects_vs_Random": 2.025,
+        "diff_unique_defects_vs_Random_ci": [
+          1.6088,
+          2.4412
+        ],
+        "diff_unique_false_pass_vs_Random": 1.965,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.5934,
+          2.3366
+        ],
+        "diff_severity_weighted_vs_Random": 1.989,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.609,
+          2.369
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.15,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1319,
+          0.4319
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.06,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1983,
+          0.3183
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.096,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.1647,
+          0.3567
+        ],
+        "n": 200
+      }
+    },
+    "abrupt": {
+      "Random": {
+        "unique_defects": 13.53,
+        "unique_defects_ci": [
+          13.1109,
+          13.9491
+        ],
+        "unique_false_pass": 11.11,
+        "unique_false_pass_ci": [
+          10.7188,
+          11.5012
+        ],
+        "fp_recall": 0.5421,
+        "fp_recall_ci": [
+          0.5275,
+          0.5567
+        ],
+        "severity_weighted": 12.078,
+        "severity_weighted_ci": [
+          11.6891,
+          12.4669
+        ],
+        "first_find_at": 6.09,
+        "first_find_at_ci": [
+          5.3691,
+          6.8109
+        ],
+        "wall_ms_per_probe": 147.6438,
+        "wall_ms_per_probe_ci": [
+          145.4054,
+          149.8822
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.173,
+        "usd_per_unique_ci": [
+          0.1669,
+          0.1792
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 7.71,
+        "recovery_steps_ci": [
+          6.706,
+          8.714
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_CAVER-v0.6": -1.08,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.5148,
+          -0.6452
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.355,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.7841,
+          -0.9259
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.245,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -1.6697,
+          -0.8203
+        ],
+        "n": 200
+      },
+      "Uniform": {
+        "unique_defects": 13.49,
+        "unique_defects_ci": [
+          13.0778,
+          13.9022
+        ],
+        "unique_false_pass": 11.105,
+        "unique_false_pass_ci": [
+          10.7044,
+          11.5056
+        ],
+        "fp_recall": 0.5404,
+        "fp_recall_ci": [
+          0.5265,
+          0.5543
+        ],
+        "severity_weighted": 12.059,
+        "severity_weighted_ci": [
+          11.6655,
+          12.4525
+        ],
+        "first_find_at": 6.545,
+        "first_find_at_ci": [
+          5.6377,
+          7.4523
+        ],
+        "wall_ms_per_probe": 149.1248,
+        "wall_ms_per_probe_ci": [
+          147.1117,
+          151.1378
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1736,
+        "usd_per_unique_ci": [
+          0.1669,
+          0.1803
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 7.57,
+        "recovery_steps_ci": [
+          6.5664,
+          8.5736
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": -0.04,
+        "diff_unique_defects_vs_Random_ci": [
+          -0.4115,
+          0.3315
+        ],
+        "diff_unique_false_pass_vs_Random": -0.005,
+        "diff_unique_false_pass_vs_Random_ci": [
+          -0.3497,
+          0.3397
+        ],
+        "diff_severity_weighted_vs_Random": -0.019,
+        "diff_severity_weighted_vs_Random_ci": [
+          -0.3669,
+          0.3289
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.12,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.5537,
+          -0.6863
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.36,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.7925,
+          -0.9275
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.264,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -1.69,
+          -0.838
+        ],
+        "n": 200
+      },
+      "UCB1": {
+        "unique_defects": 15.505,
+        "unique_defects_ci": [
+          15.0225,
+          15.9875
+        ],
+        "unique_false_pass": 13.11,
+        "unique_false_pass_ci": [
+          12.6243,
+          13.5957
+        ],
+        "fp_recall": 0.6373,
+        "fp_recall_ci": [
+          0.6207,
+          0.6539
+        ],
+        "severity_weighted": 14.068,
+        "severity_weighted_ci": [
+          13.5946,
+          14.5414
+        ],
+        "first_find_at": 7.22,
+        "first_find_at_ci": [
+          6.3581,
+          8.0819
+        ],
+        "wall_ms_per_probe": 147.2077,
+        "wall_ms_per_probe_ci": [
+          144.4734,
+          149.942
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1507,
+        "usd_per_unique_ci": [
+          0.1456,
+          0.1559
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 9.18,
+        "recovery_steps_ci": [
+          8.1181,
+          10.2419
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 1.975,
+        "diff_unique_defects_vs_Random_ci": [
+          1.5485,
+          2.4015
+        ],
+        "diff_unique_false_pass_vs_Random": 2,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.599,
+          2.401
+        ],
+        "diff_severity_weighted_vs_Random": 1.99,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.5872,
+          2.3928
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.895,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4827,
+          1.3073
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.645,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2472,
+          1.0428
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.745,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          0.3483,
+          1.1417
+        ],
+        "n": 200
+      },
+      "CAVER-v0.3": {
+        "unique_defects": 14.195,
+        "unique_defects_ci": [
+          13.6799,
+          14.7101
+        ],
+        "unique_false_pass": 11.89,
+        "unique_false_pass_ci": [
+          11.3715,
+          12.4085
+        ],
+        "fp_recall": 0.5783,
+        "fp_recall_ci": [
+          0.5576,
+          0.599
+        ],
+        "severity_weighted": 12.812,
+        "severity_weighted_ci": [
+          12.3056,
+          13.3184
+        ],
+        "first_find_at": 12.295,
+        "first_find_at_ci": [
+          11.014,
+          13.576
+        ],
+        "wall_ms_per_probe": 142.0404,
+        "wall_ms_per_probe_ci": [
+          138.7335,
+          145.3473
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1686,
+        "usd_per_unique_ci": [
+          0.1613,
+          0.1759
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 23.52,
+        "recovery_steps_ci": [
+          21.4472,
+          25.5928
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 0.665,
+        "diff_unique_defects_vs_Random_ci": [
+          0.1749,
+          1.1551
+        ],
+        "diff_unique_false_pass_vs_Random": 0.78,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.3234,
+          1.2366
+        ],
+        "diff_severity_weighted_vs_Random": 0.734,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.2715,
+          1.1965
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.415,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.8206,
+          -0.0094
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.575,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.9737,
+          -0.1763
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.511,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.9056,
+          -0.1164
+        ],
+        "n": 200
+      },
+      "CAVER-v0.5": {
+        "unique_defects": 14.25,
+        "unique_defects_ci": [
+          13.8158,
+          14.6842
+        ],
+        "unique_false_pass": 12.025,
+        "unique_false_pass_ci": [
+          11.5886,
+          12.4614
+        ],
+        "fp_recall": 0.586,
+        "fp_recall_ci": [
+          0.5695,
+          0.6026
+        ],
+        "severity_weighted": 12.915,
+        "severity_weighted_ci": [
+          12.4895,
+          13.3405
+        ],
+        "first_find_at": 10.675,
+        "first_find_at_ci": [
+          9.6095,
+          11.7405
+        ],
+        "wall_ms_per_probe": 143.1206,
+        "wall_ms_per_probe_ci": [
+          140.9411,
+          145.3
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1647,
+        "usd_per_unique_ci": [
+          0.1584,
+          0.1711
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": 0.88,
+        "recovery_steps": 16.36,
+        "recovery_steps_ci": [
+          14.8136,
+          17.9064
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 0.72,
+        "diff_unique_defects_vs_Random_ci": [
+          0.2976,
+          1.1424
+        ],
+        "diff_unique_false_pass_vs_Random": 0.915,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.5105,
+          1.3195
+        ],
+        "diff_severity_weighted_vs_Random": 0.837,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.4322,
+          1.2418
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.36,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.6631,
+          -0.0569
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.44,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.7164,
+          -0.1636
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.408,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.6899,
+          -0.1261
+        ],
+        "n": 200
+      },
+      "CAVER-v0.6": {
+        "unique_defects": 14.61,
+        "unique_defects_ci": [
+          14.1393,
+          15.0807
+        ],
+        "unique_false_pass": 12.465,
+        "unique_false_pass_ci": [
+          11.9947,
+          12.9353
+        ],
+        "fp_recall": 0.6075,
+        "fp_recall_ci": [
+          0.5895,
+          0.6254
+        ],
+        "severity_weighted": 13.323,
+        "severity_weighted_ci": [
+          12.8621,
+          13.7839
+        ],
+        "first_find_at": 11.12,
+        "first_find_at_ci": [
+          10.0003,
+          12.2397
+        ],
+        "wall_ms_per_probe": 141.7139,
+        "wall_ms_per_probe_ci": [
+          139.2915,
+          144.1363
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1612,
+        "usd_per_unique_ci": [
+          0.1551,
+          0.1674
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": 0.545,
+        "recovery_steps": 17.325,
+        "recovery_steps_ci": [
+          15.7109,
+          18.9391
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 1.08,
+        "diff_unique_defects_vs_Random_ci": [
+          0.6452,
+          1.5148
+        ],
+        "diff_unique_false_pass_vs_Random": 1.355,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.9259,
+          1.7841
+        ],
+        "diff_severity_weighted_vs_Random": 1.245,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.8203,
+          1.6697
+        ],
+        "n": 200
+      },
+      "A-ConfGated": {
+        "unique_defects": 14.78,
+        "unique_defects_ci": [
+          14.2961,
+          15.2639
+        ],
+        "unique_false_pass": 12.615,
+        "unique_false_pass_ci": [
+          12.1298,
+          13.1002
+        ],
+        "fp_recall": 0.614,
+        "fp_recall_ci": [
+          0.5958,
+          0.6322
+        ],
+        "severity_weighted": 13.481,
+        "severity_weighted_ci": [
+          13.005,
+          13.957
+        ],
+        "first_find_at": 11.205,
+        "first_find_at_ci": [
+          10.0753,
+          12.3347
+        ],
+        "wall_ms_per_probe": 141.7027,
+        "wall_ms_per_probe_ci": [
+          139.288,
+          144.1173
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.16,
+        "usd_per_unique_ci": [
+          0.1536,
+          0.1664
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": 0.025,
+        "recovery_steps": 17.39,
+        "recovery_steps_ci": [
+          15.7835,
+          18.9965
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 1.25,
+        "diff_unique_defects_vs_Random_ci": [
+          0.8149,
+          1.6851
+        ],
+        "diff_unique_false_pass_vs_Random": 1.505,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.0763,
+          1.9337
+        ],
+        "diff_severity_weighted_vs_Random": 1.403,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.9789,
+          1.8271
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.17,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.005,
+          0.335
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.15,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0228,
+          0.3228
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.158,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.0093,
+          0.3253
+        ],
+        "n": 200
+      },
+      "B-RiskAware": {
+        "unique_defects": 14.975,
+        "unique_defects_ci": [
+          14.5179,
+          15.4321
+        ],
+        "unique_false_pass": 12.765,
+        "unique_false_pass_ci": [
+          12.3073,
+          13.2227
+        ],
+        "fp_recall": 0.6228,
+        "fp_recall_ci": [
+          0.6058,
+          0.6398
+        ],
+        "severity_weighted": 13.649,
+        "severity_weighted_ci": [
+          13.2009,
+          14.0971
+        ],
+        "first_find_at": 10.985,
+        "first_find_at_ci": [
+          9.8931,
+          12.0769
+        ],
+        "wall_ms_per_probe": 143.0719,
+        "wall_ms_per_probe_ci": [
+          140.4854,
+          145.6585
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1569,
+        "usd_per_unique_ci": [
+          0.1506,
+          0.1631
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": 0.57,
+        "recovery_steps": 17.03,
+        "recovery_steps_ci": [
+          15.5475,
+          18.5125
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 1.445,
+        "diff_unique_defects_vs_Random_ci": [
+          1.0031,
+          1.8869
+        ],
+        "diff_unique_false_pass_vs_Random": 1.655,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.235,
+          2.075
+        ],
+        "diff_severity_weighted_vs_Random": 1.571,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.1517,
+          1.9903
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.365,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0184,
+          0.7116
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.3,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0258,
+          0.6258
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.326,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.0011,
+          0.6531
+        ],
+        "n": 200
+      },
+      "A+B": {
+        "unique_defects": 14.94,
+        "unique_defects_ci": [
+          14.4728,
+          15.4072
+        ],
+        "unique_false_pass": 12.755,
+        "unique_false_pass_ci": [
+          12.2883,
+          13.2217
+        ],
+        "fp_recall": 0.6215,
+        "fp_recall_ci": [
+          0.6045,
+          0.6385
+        ],
+        "severity_weighted": 13.629,
+        "severity_weighted_ci": [
+          13.1718,
+          14.0862
+        ],
+        "first_find_at": 11.055,
+        "first_find_at_ci": [
+          9.9452,
+          12.1648
+        ],
+        "wall_ms_per_probe": 142.0583,
+        "wall_ms_per_probe_ci": [
+          139.5124,
+          144.6042
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1568,
+        "usd_per_unique_ci": [
+          0.1512,
+          0.1624
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": 0.02,
+        "recovery_steps": 17.23,
+        "recovery_steps_ci": [
+          15.7105,
+          18.7495
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": 1.41,
+        "diff_unique_defects_vs_Random_ci": [
+          0.977,
+          1.843
+        ],
+        "diff_unique_false_pass_vs_Random": 1.645,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.2376,
+          2.0524
+        ],
+        "diff_severity_weighted_vs_Random": 1.551,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.1421,
+          1.9599
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.33,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0084,
+          0.6684
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.29,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0291,
+          0.6091
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.306,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.0143,
+          0.6263
+        ],
+        "n": 200
+      }
+    },
+    "delayed": {
+      "Random": {
+        "unique_defects": 13.145,
+        "unique_defects_ci": [
+          12.7367,
+          13.5533
+        ],
+        "unique_false_pass": 10.765,
+        "unique_false_pass_ci": [
+          10.3868,
+          11.1432
+        ],
+        "fp_recall": 0.3306,
+        "fp_recall_ci": [
+          0.3202,
+          0.341
+        ],
+        "severity_weighted": 11.717,
+        "severity_weighted_ci": [
+          11.3404,
+          12.0936
+        ],
+        "first_find_at": 6.53,
+        "first_find_at_ci": [
+          5.6666,
+          7.3934
+        ],
+        "wall_ms_per_probe": 143.8423,
+        "wall_ms_per_probe_ci": [
+          141.6865,
+          145.9981
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1777,
+        "usd_per_unique_ci": [
+          0.1715,
+          0.1838
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 8.05,
+        "recovery_steps_ci": [
+          7.0426,
+          9.0574
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_CAVER-v0.6": -1.585,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.119,
+          -1.051
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.785,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.2788,
+          -1.2912
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.705,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -2.2026,
+          -1.2074
+        ],
+        "n": 200
+      },
+      "Uniform": {
+        "unique_defects": 13.115,
+        "unique_defects_ci": [
+          12.707,
+          13.523
+        ],
+        "unique_false_pass": 10.715,
+        "unique_false_pass_ci": [
+          10.3314,
+          11.0986
+        ],
+        "fp_recall": 0.3288,
+        "fp_recall_ci": [
+          0.3182,
+          0.3395
+        ],
+        "severity_weighted": 11.675,
+        "severity_weighted_ci": [
+          11.2935,
+          12.0565
+        ],
+        "first_find_at": 7.09,
+        "first_find_at_ci": [
+          6.1938,
+          7.9862
+        ],
+        "wall_ms_per_probe": 144.0721,
+        "wall_ms_per_probe_ci": [
+          142.0975,
+          146.0467
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1791,
+        "usd_per_unique_ci": [
+          0.1722,
+          0.186
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 8.415,
+        "recovery_steps_ci": [
+          7.3779,
+          9.4521
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_Random": -0.03,
+        "diff_unique_defects_vs_Random_ci": [
+          -0.5267,
+          0.4667
+        ],
+        "diff_unique_false_pass_vs_Random": -0.05,
+        "diff_unique_false_pass_vs_Random_ci": [
+          -0.4987,
+          0.3987
+        ],
+        "diff_severity_weighted_vs_Random": -0.042,
+        "diff_severity_weighted_vs_Random_ci": [
+          -0.4977,
+          0.4137
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.615,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -2.1234,
+          -1.1066
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.835,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -2.3248,
+          -1.3452
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.747,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -2.2306,
+          -1.2634
+        ],
+        "n": 200
+      },
+      "UCB1": {
+        "unique_defects": 15.59,
+        "unique_defects_ci": [
+          15.0991,
+          16.0809
+        ],
+        "unique_false_pass": 13,
+        "unique_false_pass_ci": [
+          12.5313,
+          13.4687
+        ],
+        "fp_recall": 0.3993,
+        "fp_recall_ci": [
+          0.3865,
+          0.4122
+        ],
+        "severity_weighted": 14.036,
+        "severity_weighted_ci": [
+          13.5724,
+          14.4996
+        ],
+        "first_find_at": 5.415,
+        "first_find_at_ci": [
+          4.6933,
+          6.1367
+        ],
+        "wall_ms_per_probe": 141.1975,
+        "wall_ms_per_probe_ci": [
+          138.9059,
+          143.489
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1501,
+        "usd_per_unique_ci": [
+          0.1446,
+          0.1556
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 9.25,
+        "recovery_steps_ci": [
+          8.0959,
+          10.4041
+        ],
+        "recovery_censored_rate": 0.01,
+        "diff_unique_defects_vs_Random": 2.445,
+        "diff_unique_defects_vs_Random_ci": [
+          1.8666,
+          3.0234
+        ],
+        "diff_unique_false_pass_vs_Random": 2.235,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.703,
+          2.767
+        ],
+        "diff_severity_weighted_vs_Random": 2.319,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.7821,
+          2.8559
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.86,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3548,
+          1.3652
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.45,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0091,
+          0.9091
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.614,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          0.1502,
+          1.0778
+        ],
+        "n": 200
+      },
+      "CAVER-v0.3": {
+        "unique_defects": 14.32,
+        "unique_defects_ci": [
+          13.8526,
+          14.7874
+        ],
+        "unique_false_pass": 11.855,
+        "unique_false_pass_ci": [
+          11.4073,
+          12.3027
+        ],
+        "fp_recall": 0.3645,
+        "fp_recall_ci": [
+          0.3519,
+          0.3772
+        ],
+        "severity_weighted": 12.841,
+        "severity_weighted_ci": [
+          12.3997,
+          13.2823
+        ],
+        "first_find_at": 4.78,
+        "first_find_at_ci": [
+          4.0363,
+          5.5237
+        ],
+        "wall_ms_per_probe": 135.5175,
+        "wall_ms_per_probe_ci": [
+          132.5851,
+          138.45
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1648,
+        "usd_per_unique_ci": [
+          0.1583,
+          0.1712
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 24.1,
+        "recovery_steps_ci": [
+          22.1918,
+          26.0082
+        ],
+        "recovery_censored_rate": 0.13,
+        "diff_unique_defects_vs_Random": 1.175,
+        "diff_unique_defects_vs_Random_ci": [
+          0.5974,
+          1.7526
+        ],
+        "diff_unique_false_pass_vs_Random": 1.09,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.5519,
+          1.6281
+        ],
+        "diff_severity_weighted_vs_Random": 1.124,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.5846,
+          1.6634
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.41,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.9574,
+          0.1374
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.695,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.2175,
+          -0.1725
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.581,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -1.1025,
+          -0.0595
+        ],
+        "n": 200
+      },
+      "CAVER-v0.5": {
+        "unique_defects": 15.23,
+        "unique_defects_ci": [
+          14.7376,
+          15.7224
+        ],
+        "unique_false_pass": 12.905,
+        "unique_false_pass_ci": [
+          12.4426,
+          13.3674
+        ],
+        "fp_recall": 0.3974,
+        "fp_recall_ci": [
+          0.3839,
+          0.4109
+        ],
+        "severity_weighted": 13.835,
+        "severity_weighted_ci": [
+          13.3717,
+          14.2983
+        ],
+        "first_find_at": 5.1,
+        "first_find_at_ci": [
+          4.4461,
+          5.7539
+        ],
+        "wall_ms_per_probe": 138.4283,
+        "wall_ms_per_probe_ci": [
+          136.3058,
+          140.5508
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1544,
+        "usd_per_unique_ci": [
+          0.1486,
+          0.1601
+        ],
+        "false_alarm_rate": 0.405,
+        "false_alarm_rate_ci": [
+          0.3368,
+          0.4732
+        ],
+        "alarm_rate": 0.6,
+        "recovery_steps": 14.435,
+        "recovery_steps_ci": [
+          12.866,
+          16.004
+        ],
+        "recovery_censored_rate": 0.025,
+        "diff_unique_defects_vs_Random": 2.085,
+        "diff_unique_defects_vs_Random_ci": [
+          1.5389,
+          2.6311
+        ],
+        "diff_unique_false_pass_vs_Random": 2.14,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.6553,
+          2.6247
+        ],
+        "diff_severity_weighted_vs_Random": 2.118,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.6218,
+          2.6142
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.5,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.1689,
+          0.8311
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.355,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.0574,
+          0.6526
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.413,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          0.1079,
+          0.7181
+        ],
+        "n": 200
+      },
+      "CAVER-v0.6": {
+        "unique_defects": 14.73,
+        "unique_defects_ci": [
+          14.2855,
+          15.1745
+        ],
+        "unique_false_pass": 12.55,
+        "unique_false_pass_ci": [
+          12.1046,
+          12.9954
+        ],
+        "fp_recall": 0.3852,
+        "fp_recall_ci": [
+          0.373,
+          0.3974
+        ],
+        "severity_weighted": 13.422,
+        "severity_weighted_ci": [
+          12.9888,
+          13.8552
+        ],
+        "first_find_at": 5.035,
+        "first_find_at_ci": [
+          4.3912,
+          5.6788
+        ],
+        "wall_ms_per_probe": 136.0061,
+        "wall_ms_per_probe_ci": [
+          133.8929,
+          138.1194
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1582,
+        "usd_per_unique_ci": [
+          0.1529,
+          0.1635
+        ],
+        "false_alarm_rate": 0.095,
+        "false_alarm_rate_ci": [
+          0.0543,
+          0.1357
+        ],
+        "alarm_rate": 0.33,
+        "recovery_steps": 16.575,
+        "recovery_steps_ci": [
+          14.8437,
+          18.3063
+        ],
+        "recovery_censored_rate": 0.04,
+        "diff_unique_defects_vs_Random": 1.585,
+        "diff_unique_defects_vs_Random_ci": [
+          1.051,
+          2.119
+        ],
+        "diff_unique_false_pass_vs_Random": 1.785,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.2912,
+          2.2788
+        ],
+        "diff_severity_weighted_vs_Random": 1.705,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.2074,
+          2.2026
+        ],
+        "n": 200
+      },
+      "A-ConfGated": {
+        "unique_defects": 14.685,
+        "unique_defects_ci": [
+          14.2226,
+          15.1474
+        ],
+        "unique_false_pass": 12.55,
+        "unique_false_pass_ci": [
+          12.0884,
+          13.0116
+        ],
+        "fp_recall": 0.3858,
+        "fp_recall_ci": [
+          0.3728,
+          0.3988
+        ],
+        "severity_weighted": 13.404,
+        "severity_weighted_ci": [
+          12.9524,
+          13.8556
+        ],
+        "first_find_at": 5.035,
+        "first_find_at_ci": [
+          4.3912,
+          5.6788
+        ],
+        "wall_ms_per_probe": 135.9541,
+        "wall_ms_per_probe_ci": [
+          133.7644,
+          138.1439
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1594,
+        "usd_per_unique_ci": [
+          0.1538,
+          0.165
+        ],
+        "false_alarm_rate": 0.0,
+        "false_alarm_rate_ci": [
+          0.0,
+          0.0
+        ],
+        "alarm_rate": 0.025,
+        "recovery_steps": 16.945,
+        "recovery_steps_ci": [
+          15.1701,
+          18.7199
+        ],
+        "recovery_censored_rate": 0.06,
+        "diff_unique_defects_vs_Random": 1.54,
+        "diff_unique_defects_vs_Random_ci": [
+          0.9886,
+          2.0914
+        ],
+        "diff_unique_false_pass_vs_Random": 1.785,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.2721,
+          2.2979
+        ],
+        "diff_severity_weighted_vs_Random": 1.687,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.1704,
+          2.2036
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.045,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2198,
+          0.1298
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1584,
+          0.1584
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.018,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.1799,
+          0.1439
+        ],
+        "n": 200
+      },
+      "B-RiskAware": {
+        "unique_defects": 14.75,
+        "unique_defects_ci": [
+          14.264,
+          15.236
+        ],
+        "unique_false_pass": 12.32,
+        "unique_false_pass_ci": [
+          11.8278,
+          12.8122
+        ],
+        "fp_recall": 0.3794,
+        "fp_recall_ci": [
+          0.365,
+          0.3938
+        ],
+        "severity_weighted": 13.292,
+        "severity_weighted_ci": [
+          12.8126,
+          13.7714
+        ],
+        "first_find_at": 4.845,
+        "first_find_at_ci": [
+          4.2252,
+          5.4648
+        ],
+        "wall_ms_per_probe": 138.188,
+        "wall_ms_per_probe_ci": [
+          135.478,
+          140.898
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1596,
+        "usd_per_unique_ci": [
+          0.1537,
+          0.1654
+        ],
+        "false_alarm_rate": 0.11,
+        "false_alarm_rate_ci": [
+          0.0665,
+          0.1535
+        ],
+        "alarm_rate": 0.365,
+        "recovery_steps": 16.065,
+        "recovery_steps_ci": [
+          14.4341,
+          17.6959
+        ],
+        "recovery_censored_rate": 0.04,
+        "diff_unique_defects_vs_Random": 1.605,
+        "diff_unique_defects_vs_Random_ci": [
+          1.0241,
+          2.1859
+        ],
+        "diff_unique_false_pass_vs_Random": 1.555,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.0029,
+          2.1071
+        ],
+        "diff_severity_weighted_vs_Random": 1.575,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.023,
+          2.127
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.02,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.4875,
+          0.5275
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.23,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.7334,
+          0.2734
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.13,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.6258,
+          0.3658
+        ],
+        "n": 200
+      },
+      "A+B": {
+        "unique_defects": 14.795,
+        "unique_defects_ci": [
+          14.3104,
+          15.2796
+        ],
+        "unique_false_pass": 12.415,
+        "unique_false_pass_ci": [
+          11.9277,
+          12.9023
+        ],
+        "fp_recall": 0.3822,
+        "fp_recall_ci": [
+          0.368,
+          0.3964
+        ],
+        "severity_weighted": 13.367,
+        "severity_weighted_ci": [
+          12.8918,
+          13.8422
+        ],
+        "first_find_at": 4.845,
+        "first_find_at_ci": [
+          4.2252,
+          5.4648
+        ],
+        "wall_ms_per_probe": 137.6428,
+        "wall_ms_per_probe_ci": [
+          135.0026,
+          140.2829
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1591,
+        "usd_per_unique_ci": [
+          0.1532,
+          0.165
+        ],
+        "false_alarm_rate": 0.0,
+        "false_alarm_rate_ci": [
+          0.0,
+          0.0
+        ],
+        "alarm_rate": 0.02,
+        "recovery_steps": 16.095,
+        "recovery_steps_ci": [
+          14.4335,
+          17.7565
+        ],
+        "recovery_censored_rate": 0.045,
+        "diff_unique_defects_vs_Random": 1.65,
+        "diff_unique_defects_vs_Random_ci": [
+          1.0711,
+          2.2289
+        ],
+        "diff_unique_false_pass_vs_Random": 1.65,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.0957,
+          2.2043
+        ],
+        "diff_severity_weighted_vs_Random": 1.65,
+        "diff_severity_weighted_vs_Random_ci": [
+          1.0986,
+          2.2014
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.065,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.4344,
+          0.5644
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.135,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.6271,
+          0.3571
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.055,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.5396,
+          0.4296
+        ],
+        "n": 200
+      }
+    },
+    "recovery": {
+      "Random": {
+        "unique_defects": 13.235,
+        "unique_defects_ci": [
+          12.8045,
+          13.6655
+        ],
+        "unique_false_pass": 10.835,
+        "unique_false_pass_ci": [
+          10.4288,
+          11.2412
+        ],
+        "fp_recall": 0.273,
+        "fp_recall_ci": [
+          0.2636,
+          0.2824
+        ],
+        "severity_weighted": 11.795,
+        "severity_weighted_ci": [
+          11.3911,
+          12.1989
+        ],
+        "first_find_at": 6.67,
+        "first_find_at_ci": [
+          5.9211,
+          7.4189
+        ],
+        "wall_ms_per_probe": 143.6402,
+        "wall_ms_per_probe_ci": [
+          141.4914,
+          145.7889
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1776,
+        "usd_per_unique_ci": [
+          0.1711,
+          0.1842
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 7.775,
+        "recovery_steps_ci": [
+          6.7845,
+          8.7655
+        ],
+        "recovery_censored_rate": 0,
+        "diff_unique_defects_vs_CAVER-v0.6": -1.185,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.7186,
+          -0.6514
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.395,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.9107,
+          -0.8793
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.311,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -1.8192,
+          -0.8028
+        ],
+        "n": 200
+      },
+      "Uniform": {
+        "unique_defects": 13.26,
+        "unique_defects_ci": [
+          12.8381,
+          13.6819
+        ],
+        "unique_false_pass": 10.91,
+        "unique_false_pass_ci": [
+          10.4797,
+          11.3403
+        ],
+        "fp_recall": 0.2744,
+        "fp_recall_ci": [
+          0.2646,
+          0.2842
+        ],
+        "severity_weighted": 11.85,
+        "severity_weighted_ci": [
+          11.434,
+          12.266
+        ],
+        "first_find_at": 6.43,
+        "first_find_at_ci": [
+          5.5826,
+          7.2774
+        ],
+        "wall_ms_per_probe": 142.498,
+        "wall_ms_per_probe_ci": [
+          140.5612,
+          144.4347
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1789,
+        "usd_per_unique_ci": [
+          0.1702,
+          0.1875
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 8.32,
+        "recovery_steps_ci": [
+          7.2033,
+          9.4367
+        ],
+        "recovery_censored_rate": 0.005,
+        "diff_unique_defects_vs_Random": 0.025,
+        "diff_unique_defects_vs_Random_ci": [
+          -0.524,
+          0.574
+        ],
+        "diff_unique_false_pass_vs_Random": 0.075,
+        "diff_unique_false_pass_vs_Random_ci": [
+          -0.4497,
+          0.5997
+        ],
+        "diff_severity_weighted_vs_Random": 0.055,
+        "diff_severity_weighted_vs_Random_ci": [
+          -0.467,
+          0.577
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -1.16,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -1.7122,
+          -0.6078
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -1.32,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -1.8448,
+          -0.7952
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -1.256,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -1.7769,
+          -0.7351
+        ],
+        "n": 200
+      },
+      "UCB1": {
+        "unique_defects": 14.745,
+        "unique_defects_ci": [
+          14.254,
+          15.236
+        ],
+        "unique_false_pass": 12.125,
+        "unique_false_pass_ci": [
+          11.6239,
+          12.6261
+        ],
+        "fp_recall": 0.3041,
+        "fp_recall_ci": [
+          0.2934,
+          0.3149
+        ],
+        "severity_weighted": 13.173,
+        "severity_weighted_ci": [
+          12.6882,
+          13.6578
+        ],
+        "first_find_at": 5.93,
+        "first_find_at_ci": [
+          5.162,
+          6.698
+        ],
+        "wall_ms_per_probe": 139.145,
+        "wall_ms_per_probe_ci": [
+          136.7495,
+          141.5406
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1592,
+        "usd_per_unique_ci": [
+          0.1538,
+          0.1647
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 10.66,
+        "recovery_steps_ci": [
+          9.3392,
+          11.9808
+        ],
+        "recovery_censored_rate": 0.005,
+        "diff_unique_defects_vs_Random": 1.51,
+        "diff_unique_defects_vs_Random_ci": [
+          0.9371,
+          2.0829
+        ],
+        "diff_unique_false_pass_vs_Random": 1.29,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.7408,
+          1.8392
+        ],
+        "diff_severity_weighted_vs_Random": 1.378,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.8313,
+          1.9247
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.325,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2575,
+          0.9075
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.105,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.641,
+          0.431
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.067,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.471,
+          0.605
+        ],
+        "n": 200
+      },
+      "CAVER-v0.3": {
+        "unique_defects": 14.805,
+        "unique_defects_ci": [
+          14.3759,
+          15.2341
+        ],
+        "unique_false_pass": 12.175,
+        "unique_false_pass_ci": [
+          11.7217,
+          12.6283
+        ],
+        "fp_recall": 0.3066,
+        "fp_recall_ci": [
+          0.2965,
+          0.3166
+        ],
+        "severity_weighted": 13.227,
+        "severity_weighted_ci": [
+          12.8048,
+          13.6492
+        ],
+        "first_find_at": 4.645,
+        "first_find_at_ci": [
+          4.038,
+          5.252
+        ],
+        "wall_ms_per_probe": 133.6747,
+        "wall_ms_per_probe_ci": [
+          131.0795,
+          136.2699
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.157,
+        "usd_per_unique_ci": [
+          0.1518,
+          0.1622
+        ],
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "alarm_rate": null,
+        "recovery_steps": 33.8,
+        "recovery_steps_ci": [
+          30.7151,
+          36.8849
+        ],
+        "recovery_censored_rate": 0.32,
+        "diff_unique_defects_vs_Random": 1.57,
+        "diff_unique_defects_vs_Random_ci": [
+          1.0513,
+          2.0887
+        ],
+        "diff_unique_false_pass_vs_Random": 1.34,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.8334,
+          1.8466
+        ],
+        "diff_severity_weighted_vs_Random": 1.432,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.9383,
+          1.9257
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.385,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0558,
+          0.8258
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.055,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4815,
+          0.3715
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.121,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.2933,
+          0.5353
+        ],
+        "n": 200
+      },
+      "CAVER-v0.5": {
+        "unique_defects": 14.24,
+        "unique_defects_ci": [
+          13.7945,
+          14.6855
+        ],
+        "unique_false_pass": 11.995,
+        "unique_false_pass_ci": [
+          11.5671,
+          12.4229
+        ],
+        "fp_recall": 0.3025,
+        "fp_recall_ci": [
+          0.2926,
+          0.3123
+        ],
+        "severity_weighted": 12.893,
+        "severity_weighted_ci": [
+          12.4731,
+          13.3129
+        ],
+        "first_find_at": 5.07,
+        "first_find_at_ci": [
+          4.4043,
+          5.7357
+        ],
+        "wall_ms_per_probe": 137.4809,
+        "wall_ms_per_probe_ci": [
+          135.1594,
+          139.8024
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1647,
+        "usd_per_unique_ci": [
+          0.1585,
+          0.1709
+        ],
+        "false_alarm_rate": 0.205,
+        "false_alarm_rate_ci": [
+          0.1489,
+          0.2611
+        ],
+        "alarm_rate": 0.52,
+        "recovery_steps": 19.295,
+        "recovery_steps_ci": [
+          16.8377,
+          21.7523
+        ],
+        "recovery_censored_rate": 0.09,
+        "diff_unique_defects_vs_Random": 1.005,
+        "diff_unique_defects_vs_Random_ci": [
+          0.4686,
+          1.5414
+        ],
+        "diff_unique_false_pass_vs_Random": 1.16,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.6404,
+          1.6796
+        ],
+        "diff_severity_weighted_vs_Random": 1.098,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.5863,
+          1.6097
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.18,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5151,
+          0.1551
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.235,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.5413,
+          0.0713
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.213,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.5246,
+          0.0986
+        ],
+        "n": 200
+      },
+      "CAVER-v0.6": {
+        "unique_defects": 14.42,
+        "unique_defects_ci": [
+          13.9449,
+          14.8951
+        ],
+        "unique_false_pass": 12.23,
+        "unique_false_pass_ci": [
+          11.7647,
+          12.6953
+        ],
+        "fp_recall": 0.3081,
+        "fp_recall_ci": [
+          0.2972,
+          0.3189
+        ],
+        "severity_weighted": 13.106,
+        "severity_weighted_ci": [
+          12.6505,
+          13.5615
+        ],
+        "first_find_at": 5.11,
+        "first_find_at_ci": [
+          4.4379,
+          5.7821
+        ],
+        "wall_ms_per_probe": 135.3938,
+        "wall_ms_per_probe_ci": [
+          133.1269,
+          137.6607
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1637,
+        "usd_per_unique_ci": [
+          0.1572,
+          0.1702
+        ],
+        "false_alarm_rate": 0.06,
+        "false_alarm_rate_ci": [
+          0.027,
+          0.093
+        ],
+        "alarm_rate": 0.255,
+        "recovery_steps": 21.895,
+        "recovery_steps_ci": [
+          19.3186,
+          24.4714
+        ],
+        "recovery_censored_rate": 0.115,
+        "diff_unique_defects_vs_Random": 1.185,
+        "diff_unique_defects_vs_Random_ci": [
+          0.6514,
+          1.7186
+        ],
+        "diff_unique_false_pass_vs_Random": 1.395,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.8793,
+          1.9107
+        ],
+        "diff_severity_weighted_vs_Random": 1.311,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.8028,
+          1.8192
+        ],
+        "n": 200
+      },
+      "A-ConfGated": {
+        "unique_defects": 14.465,
+        "unique_defects_ci": [
+          13.9773,
+          14.9527
+        ],
+        "unique_false_pass": 12.375,
+        "unique_false_pass_ci": [
+          11.9015,
+          12.8485
+        ],
+        "fp_recall": 0.3112,
+        "fp_recall_ci": [
+          0.3005,
+          0.322
+        ],
+        "severity_weighted": 13.211,
+        "severity_weighted_ci": [
+          12.7455,
+          13.6765
+        ],
+        "first_find_at": 5.17,
+        "first_find_at_ci": [
+          4.4761,
+          5.8639
+        ],
+        "wall_ms_per_probe": 135.6395,
+        "wall_ms_per_probe_ci": [
+          133.3541,
+          137.9249
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1636,
+        "usd_per_unique_ci": [
+          0.157,
+          0.1701
+        ],
+        "false_alarm_rate": 0.0,
+        "false_alarm_rate_ci": [
+          0.0,
+          0.0
+        ],
+        "alarm_rate": 0.01,
+        "recovery_steps": 22.07,
+        "recovery_steps_ci": [
+          19.4169,
+          24.7231
+        ],
+        "recovery_censored_rate": 0.125,
+        "diff_unique_defects_vs_Random": 1.23,
+        "diff_unique_defects_vs_Random_ci": [
+          0.69,
+          1.77
+        ],
+        "diff_unique_false_pass_vs_Random": 1.54,
+        "diff_unique_false_pass_vs_Random_ci": [
+          1.0119,
+          2.0681
+        ],
+        "diff_severity_weighted_vs_Random": 1.416,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.8975,
+          1.9345
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.045,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1068,
+          0.1968
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.145,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.01,
+          0.3
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": 0.105,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.0447,
+          0.2547
+        ],
+        "n": 200
+      },
+      "B-RiskAware": {
+        "unique_defects": 14.39,
+        "unique_defects_ci": [
+          13.958,
+          14.822
+        ],
+        "unique_false_pass": 12.16,
+        "unique_false_pass_ci": [
+          11.7101,
+          12.6099
+        ],
+        "fp_recall": 0.3062,
+        "fp_recall_ci": [
+          0.2958,
+          0.3166
+        ],
+        "severity_weighted": 13.052,
+        "severity_weighted_ci": [
+          12.6253,
+          13.4787
+        ],
+        "first_find_at": 4.96,
+        "first_find_at_ci": [
+          4.308,
+          5.612
+        ],
+        "wall_ms_per_probe": 133.4935,
+        "wall_ms_per_probe_ci": [
+          131.682,
+          135.3051
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1628,
+        "usd_per_unique_ci": [
+          0.1565,
+          0.1691
+        ],
+        "false_alarm_rate": 0.055,
+        "false_alarm_rate_ci": [
+          0.0233,
+          0.0867
+        ],
+        "alarm_rate": 0.295,
+        "recovery_steps": 19.54,
+        "recovery_steps_ci": [
+          17.2068,
+          21.8732
+        ],
+        "recovery_censored_rate": 0.095,
+        "diff_unique_defects_vs_Random": 1.155,
+        "diff_unique_defects_vs_Random_ci": [
+          0.6101,
+          1.6999
+        ],
+        "diff_unique_false_pass_vs_Random": 1.325,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.7943,
+          1.8557
+        ],
+        "diff_severity_weighted_vs_Random": 1.257,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.7349,
+          1.7791
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.03,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.4733,
+          0.4133
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.07,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4711,
+          0.3311
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.054,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.4584,
+          0.3504
+        ],
+        "n": 200
+      },
+      "A+B": {
+        "unique_defects": 14.46,
+        "unique_defects_ci": [
+          14.0293,
+          14.8907
+        ],
+        "unique_false_pass": 12.2,
+        "unique_false_pass_ci": [
+          11.7474,
+          12.6526
+        ],
+        "fp_recall": 0.3069,
+        "fp_recall_ci": [
+          0.2968,
+          0.317
+        ],
+        "severity_weighted": 13.104,
+        "severity_weighted_ci": [
+          12.6766,
+          13.5314
+        ],
+        "first_find_at": 4.965,
+        "first_find_at_ci": [
+          4.3119,
+          5.6181
+        ],
+        "wall_ms_per_probe": 133.6527,
+        "wall_ms_per_probe_ci": [
+          131.7423,
+          135.5631
+        ],
+        "usd_per_probe": 0.0246,
+        "usd_per_probe_ci": [
+          0.0246,
+          0.0246
+        ],
+        "usd_per_unique": 0.1614,
+        "usd_per_unique_ci": [
+          0.1557,
+          0.1671
+        ],
+        "false_alarm_rate": 0.0,
+        "false_alarm_rate_ci": [
+          0.0,
+          0.0
+        ],
+        "alarm_rate": 0.005,
+        "recovery_steps": 20.395,
+        "recovery_steps_ci": [
+          17.935,
+          22.855
+        ],
+        "recovery_censored_rate": 0.115,
+        "diff_unique_defects_vs_Random": 1.225,
+        "diff_unique_defects_vs_Random_ci": [
+          0.6786,
+          1.7714
+        ],
+        "diff_unique_false_pass_vs_Random": 1.365,
+        "diff_unique_false_pass_vs_Random_ci": [
+          0.8412,
+          1.8888
+        ],
+        "diff_severity_weighted_vs_Random": 1.309,
+        "diff_severity_weighted_vs_Random_ci": [
+          0.7907,
+          1.8273
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.04,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.3761,
+          0.4561
+        ],
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.03,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4079,
+          0.3479
+        ],
+        "diff_severity_weighted_vs_CAVER-v0.6": -0.002,
+        "diff_severity_weighted_vs_CAVER-v0.6_ci": [
+          -0.38,
+          0.376
+        ],
+        "n": 200
+      }
+    }
+  }
+}

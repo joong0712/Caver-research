@@ -122,3 +122,29 @@ Random and versus CAVER-v0.6.
   check for this.
 * **Arm labels.** Legacy policies are hard-wired to the v0.5 label set, so the six v0.8
   families are mapped one-to-one onto those labels. All policies see the same opaque labels.
+
+## Amendment 1 (written after dev round 1, before the improvement run)
+
+**Observed on dev round 1:**
+
+* B and A+B fail their criteria.
+* A meets its criterion formally, but a post-hoc check shows its GLR detector almost never
+  fires. Post-change detection rate in `abrupt` is 2.5%, vs 54.5% for v0.6. The
+  pre-registered criterion for A omitted detection power; this is recorded as a flaw of the
+  criterion, not changed retroactively.
+* CAVER-v0.6 loses to UCB1 under shift (abrupt Δ unique_false_pass = −0.645, CI
+  [−1.04, −0.25]) and recovers more slowly (about 17–22 vs about 9 probes).
+
+**Causal hypothesis H1.** The 90-probe training posterior is carried into evaluation with
+full weight. Families whose weight rises after the shift keep a low posterior and are sampled
+mostly by the sentinel and ε, so (i) discoveries there are delayed, and (ii) the detector
+rarely sees enough samples from them to alarm (the blind spot).
+
+**Single change: posterior tempering.** At `begin_evaluation()`, multiply each arm's
+training successes, failures and counts by τ = 0.2, fixed a priori (90 observations become an
+effective 18, so about 15–20 evaluation probes can dominate). Nothing else changes. Base:
+CAVER-v0.6. Candidate name: `v0.6+Temper`.
+
+**Dev acceptance (same seeds).** The paired Δ unique_false_pass versus v0.6 has a CI above 0 in
+`abrupt` **and** `delayed`, and is non-inferior (CI lower bound > −0.5) in `stationary` and
+`recovery`. If dev passes, run holdout once. If holdout does not confirm, keep v0.6.

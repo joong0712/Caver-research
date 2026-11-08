@@ -28,7 +28,7 @@ from caver5.policies import RandomPolicy, UCB1Policy, CAVERv03
 from caver5.advanced_policies import CAVERv05, ProbeBalancing
 from caver6.policies import CAVERv06
 from .live import FAMILIES8, VARIANTS_BY_FAMILY, EST_USD_PER_REAL_RUN
-from .policies import ConfidenceGated, RiskAware, ConfGatedRiskAware, SEV_FALSE_PASS, SEV_CONTRACT_VIOLATION
+from .policies import ConfidenceGated, RiskAware, ConfGatedRiskAware, TemperedV06, SEV_FALSE_PASS, SEV_CONTRACT_VIOLATION
 
 ROOT = Path(__file__).resolve().parents[1]
 ARM_TO_FAMILY = dict(zip(ARM_LABELS, FAMILIES8))   # arms are opaque labels to every policy
@@ -40,7 +40,8 @@ class Uniform(ProbeBalancing):
 
 POLICIES = (RandomPolicy, Uniform, UCB1Policy, CAVERv03, CAVERv05, CAVERv06,
             ConfidenceGated, RiskAware, ConfGatedRiskAware)
-REGISTRY = {cls.name: cls for cls in POLICIES}
+CANDIDATES = (TemperedV06,)
+REGISTRY = {cls.name: cls for cls in POLICIES + CANDIDATES}
 SCENARIOS = ('stationary', 'abrupt', 'delayed', 'recovery')
 W_BASE = (0.32, 0.24, 0.16, 0.12, 0.10, 0.06)
 W_SHIFT = (0.04, 0.06, 0.10, 0.18, 0.28, 0.34)
@@ -248,7 +249,7 @@ def summarize(runs: list[Run], names, references=('Random', 'CAVER-v0.6')) -> di
 
 def benchmark(table_doc: dict, salt: str = 'dev', seeds=range(200), scenarios=SCENARIOS,
               names=None, jobs: int = 4) -> dict:
-    names = list(names or REGISTRY)
+    names = list(names or (c.name for c in POLICIES))
     tasks = [(salt, s, sc, names, table_doc) for sc in scenarios for s in seeds]
     if jobs == 1:
         runs = [r for t in tasks for r in run_task(t)]

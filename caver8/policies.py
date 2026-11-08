@@ -181,3 +181,19 @@ class ConfGatedRiskAware(SeverityRiskMixin, ControlledChangeGuard):
     def __init__(self, rng: random.Random):
         super().__init__(rng)
         self.detector = GLRConfidenceDetector()
+
+
+class TemperedV06(ControlledChangeGuard):
+    """Improvement-loop candidate (Amendment 1): v0.6 + one change -- the training
+    posterior is shrunk by TAU at the deployment boundary. TAU fixed a priori."""
+    name = 'v0.6+Temper'
+    confirmation = True
+    reset_scope = 'local'
+    TAU = 0.2
+
+    def begin_evaluation(self):
+        super().begin_evaluation()
+        for f in self.successes:
+            self.successes[f] *= self.TAU
+            self.failures[f] *= self.TAU
+            self.counts[f] *= self.TAU
