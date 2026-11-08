@@ -54,6 +54,7 @@ class TemporalV06Base(CAVERv06):
     """
     name = 'TA-v0.6-equivalent'
     decay_gamma = 1.0
+    decay_eval_only = False
     alarm_shrink = None
 
     def __init__(self, rng: random.Random):
@@ -90,7 +91,7 @@ class TemporalV06Base(CAVERv06):
                 self._scale_all(self.alarm_shrink)
                 self.shrink_log.append({'family': family, 'eval_step': self.detector.step,
                                         'factor': self.alarm_shrink})
-        if self.decay_gamma < 1.0:                     # continuous decay
+        if self.decay_gamma < 1.0 and (self.detector.in_evaluation or not self.decay_eval_only):
             self._scale_all(self.decay_gamma)
         self.successes[family] += int(newly_found)
         self.failures[family] += int(not newly_found)
@@ -159,5 +160,18 @@ class DiscountedUCB(BasePolicy):
         self.S[family] += float(bool(violated))
 
 
+class PostHocEvalOnlyDecay(TemporalV06Base):
+    """POST-HOC EXPLORATORY (added after seeing dev results; NOT a candidate).
+
+    A1's gamma, applied only after begin_evaluation(). Asks whether A1's
+    stationary loss comes from decay during training (an implicit temper at the
+    boundary). Never nominated; results reported as exploratory only.
+    """
+    name = 'PH-EvalOnlyDecay.981'
+    decay_gamma = GM_GAMMA
+    decay_eval_only = True
+
+
 CANDIDATES = (DecayGM, DecayFast, AlarmShrink)
+POST_HOC = (PostHocEvalOnlyDecay,)
 COMPARISON = (DiscountedUCB,)

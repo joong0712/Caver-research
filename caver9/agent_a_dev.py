@@ -25,14 +25,14 @@ from caver5.policies import RandomPolicy, UCB1Policy, SlidingWindowUCB, CAVERv03
 from caver6.policies import CAVERv06
 from caver8.benchmark import (OutcomeTable, schedules, run_policy, SCENARIOS, EVAL_BUDGET,
                               SHIFT_UP, ARM_TO_FAMILY, ci)
-from .temporal import DiscountedUCB, CANDIDATES
+from .temporal import DiscountedUCB, CANDIDATES, POST_HOC
 
 ROOT = Path(__file__).resolve().parents[1]
 SALT = 'v09dev'
 TABLE = ROOT / 'reports/v08/outcome_table_real.json'
 BASELINES = (RandomPolicy, UCB1Policy, SlidingWindowUCB, DiscountedUCB, CAVERv03, CAVERv06)
 POLICIES = BASELINES + CANDIDATES
-REGISTRY = {c.name: c for c in POLICIES}
+REGISTRY = {c.name: c for c in POLICIES + POST_HOC}   # POST_HOC only via --policies
 REFS = ('CAVER-v0.6', 'UCB1')
 
 
