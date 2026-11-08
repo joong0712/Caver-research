@@ -1,0 +1,5 @@
+B-DR-Bayes       ALL_PASS=False  failed=['3_abrupt_faster_recovery_than_v06']
+C9-UCBMean       ALL_PASS=True  failed=[]
+A1-Decay.981     ALL_PASS=False  failed=['1_stationary_noninferior_v06']
+V09-BC           ALL_PASS=False  failed=['1_stationary_noninferior_v06']
+V09-BC[-viol]    ALL_PASS=True  failed=[]
