@@ -176,3 +176,29 @@ A+C and A+B+C are excluded and A1 is reported only. **B+C** is eligible.
 other, prefer the simpler one (fewer components). V09-BC is preferred only if it passes §7 on dev
 and beats **both** B2 and C2 in abrupt **and** delayed with paired CIs above 0. Otherwise the
 simpler component is chosen. The chosen candidate is frozen, then the final holdout runs once.
+
+## Amendment 2 (Lead, after the integration dev run, before the final holdout)
+
+Dev ablation (salt `v09dev`, 200 seeds, real table). Δ is unique FALSE_PASS vs v0.6, 95% CI:
+
+| policy | stationary | abrupt | delayed | recovery | recovery steps abrupt / delayed |
+|---|---|---|---|---|---|
+| B2 B-DR-Bayes | +0.135 [−0.14, 0.41] | +1.035 [0.67, 1.40] | +1.435 [0.98, 1.89] | +0.965 [0.49, 1.44] | 14.5 / 15.1 |
+| C2 C9-UCBMean | −0.02 [−0.31, 0.27] | +0.99 [0.65, 1.33] | +1.255 [0.80, 1.71] | +0.625 [0.14, 1.12] | 12.3 / 12.5 |
+| V09-BC | **−0.455 [−0.72, −0.19]** | +1.225 [0.87, 1.58] | +1.345 [0.87, 1.82] | +0.245 [−0.25, 0.74] | 10.7 / 10.5 |
+| BC − violation (ablation) | +0.025 [−0.27, 0.32] | +1.105 [0.78, 1.44] | +1.41 [0.94, 1.88] | +0.74 [0.24, 1.24] | 11.8 / 11.4 |
+
+(v0.6 recovery steps: 16.9 / 17.5; UCB1: 10.6 / 10.0.)
+
+**Decisions under the Amendment 1 rule:**
+
+* **V09-BC fails §7 criterion 1 on dev** (stationary lower bound −0.72). It is not selected, and
+  the combination is reported as a negative result. Adding the violation model to C2's rule
+  improved recovery but cost stationary discovery.
+* Among the passing candidates, B2 (mean abrupt/delayed Δ 1.235) beats C2 (1.123) by 0.11, more
+  than the 0.1 tie margin. **The frozen v0.9 candidate is `caver9.dual_reward:DualRewardBayes`
+  (B2)**, with constants unchanged from Agent B's pre-registration.
+* C2, A1, V09-BC and BC − violation also go to the final holdout as **reported-only** policies.
+  No adoption decision is made for them.
+* The final holdout follows §4 and §7: salt `v09final`, seeds 0–299, real table, the 4 legacy
+  scenarios plus Agent D's new scenarios, run once.
