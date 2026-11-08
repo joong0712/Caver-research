@@ -27,7 +27,7 @@ from caver5.policies import RandomPolicy, UCB1Policy, CAVERv03
 from caver6.policies import CAVERv06
 from caver8.benchmark import (OutcomeTable, schedules, run_policy, SCENARIOS, Uniform, EVAL_BUDGET,
                               ARM_TO_FAMILY, ci)
-from caver9.exploration import CANDIDATES, MECHANISM_ARMS
+from caver9.exploration import CANDIDATES, MECHANISM_ARMS, POST_HOC, UCBMeanCAVER
 
 ROOT = Path(__file__).resolve().parents[1]
 TABLE = ROOT / 'reports/v08/outcome_table_real.json'
@@ -35,7 +35,9 @@ DEV_SALT = 'v09dev'
 FORBIDDEN_SALTS = frozenset({'v09final', 'dev', 'holdout'})
 BASELINES = (RandomPolicy, Uniform, UCB1Policy, CAVERv03, CAVERv06)
 POLICIES = BASELINES + CANDIDATES + MECHANISM_ARMS
-REGISTRY = {c.name: c for c in POLICIES}
+# post-hoc exploratory set (added after the predeclared dev run; never eligible for nomination)
+POSTHOC_POLICIES = (UCB1Policy, CAVERv06, UCBMeanCAVER) + POST_HOC
+REGISTRY = {c.name: c for c in POLICIES + POST_HOC}
 REF_V06, REF_UCB = 'CAVER-v0.6', 'UCB1'
 
 
@@ -234,13 +236,16 @@ def main():
     ap.add_argument('--jobs', type=int, default=2)
     ap.add_argument('--salt', default=DEV_SALT)
     ap.add_argument('--output', type=Path, default=ROOT / 'reports/v09/agent_c')
+    ap.add_argument('--posthoc', action='store_true', help='run the post-hoc exploratory ablation set')
     a = ap.parse_args()
     check_salt(a.salt)
     if a.jobs > 2:
         raise ValueError('at most 2 worker processes')
     table_doc = json.loads(TABLE.read_text(encoding='utf-8'))
     assert table_doc['meta']['cli_kind'] == 'real'
-    names = [c.name for c in POLICIES]
+    policies = POSTHOC_POLICIES if a.posthoc else POLICIES
+    names = [c.name for c in policies]
+    prefix = 'posthoc_' if a.posthoc else 'dev_'
     tasks = [(a.salt, s, sc, names, table_doc) for sc in SCENARIOS for s in range(a.seeds)]
     t0 = time.time()
     if a.jobs == 1:
@@ -249,7 +254,8 @@ def main():
         with ProcessPoolExecutor(max_workers=a.jobs) as pool:
             rows = [r for rs in pool.map(run_one, tasks, chunksize=10) for r in rs]
     summary = summarize(rows, names)
-    crit = {c.name: criteria(summary, c.name) for c in CANDIDATES + MECHANISM_ARMS}
+    judged = (UCBMeanCAVER,) + POST_HOC if a.posthoc else CANDIDATES + MECHANISM_ARMS
+    crit = {c.name: criteria(summary, c.name) for c in judged}
     report = {
         'meta': {'agent': 'C', 'salt': a.salt, 'seeds': [0, a.seeds - 1], 'n_seeds': a.seeds,
                  'scenarios': list(SCENARIOS), 'table': str(TABLE.relative_to(ROOT)),
@@ -257,6 +263,8 @@ def main():
                  'candidates': [c.name for c in CANDIDATES],
                  'mechanism_arms_not_eligible': [c.name for c in MECHANISM_ARMS],
                  'baselines': [c.name for c in BASELINES],
+                 'set': 'POST-HOC EXPLORATORY (not predeclared, not eligible)' if a.posthoc else 'predeclared',
+                 'policies': names,
                  'ci': 'normal approx, mean +/- 1.96 sd/sqrt(n); paired on matched seeds',
                  'recovery_steps': 'probes after change until first unique defect in an up-weighted family; '
                                    'censored runs counted at the cap (abrupt 91, delayed 46, recovery 61)',
@@ -266,12 +274,12 @@ def main():
         'summary': summary,
         'criteria_dev': crit,
         'boundary_posterior_snapshot': snapshot_summary(rows, names),
-        'stationary_exploration_check': stationary_exploration_check(summary, names),
+        'stationary_exploration_check': None if a.posthoc else stationary_exploration_check(summary, names),
     }
     a.output.mkdir(parents=True, exist_ok=True)
-    (a.output / 'dev_summary.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    (a.output / (prefix + 'summary.json')).write_text(json.dumps(report, indent=2), encoding='utf-8')
     fields = [k for k in rows[0] if k != '_snapshot']
-    with (a.output / 'dev_runs.csv').open('w', newline='', encoding='utf-8') as f:
+    with (a.output / (prefix + 'runs.csv')).open('w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
         w.writeheader()
         w.writerows(rows)
@@ -281,7 +289,7 @@ def main():
             f'd_recovery_vs_{REF_V06}', f'd_recovery_vs_{REF_V06}_ci', f'd_recovery_vs_{REF_UCB}',
             f'd_recovery_vs_{REF_UCB}_ci', 'recovery_censored', 'post_change_fp', 'diversity', 'cpu_us_per_step',
             'sentinel_share', 'epsilon_share']
-    with (a.output / 'dev_table.csv').open('w', newline='', encoding='utf-8') as f:
+    with (a.output / (prefix + 'table.csv')).open('w', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
         w.writerow(['scenario', 'policy'] + cols)
         for sc, block in summary.items():

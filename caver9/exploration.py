@@ -270,3 +270,46 @@ class UCBMean100(UCBMeanCAVER):
 CANDIDATES = (RecencyCAVER, UCBMeanCAVER, AdaptiveEpsCAVER)
 MECHANISM_ARMS = (FreqOnlyCAVER, StaleOnlyCAVER, FixedEps10CAVER, UCBMean025, UCBMean100)
 ALL = CANDIDATES + MECHANISM_ARMS
+
+
+# ====== POST-HOC EXPLORATORY ablations (added after the dev run; NOT predeclared, NOT eligible) ======
+# Purpose: attribute C2's dev gain (bonus vs removal of the sentinel/epsilon vs detector reset).
+
+class _SilentDetector:
+    """Detector stand-in that tracks the train/eval boundary but never alarms."""
+    def __init__(self):
+        self.in_evaluation = False
+        self.alarm_events: list[dict] = []
+        self.step = 0
+
+    def begin_evaluation(self):
+        self.in_evaluation = True
+        self.step = 0
+
+    def observe(self, family, violated):
+        self.step += int(self.in_evaluation)
+        return False
+
+
+class PHv06NoSentinel(ExploreCAVER):
+    """PH1 (post-hoc): CAVER-v0.6 with the sentinel removed (epsilon and bonus as v0.6)."""
+    name = 'PH-v0.6-NoSentinel'
+    SENTINEL = False
+
+
+class PHUCBMeanSentinel(UCBMeanCAVER):
+    """PH2 (post-hoc): C2 plus v0.6's every-7th-step sentinel."""
+    name = 'PH-UCBMean+Sentinel'
+    SENTINEL = True
+
+
+class PHUCBMeanNoReset(UCBMeanCAVER):
+    """PH3 (post-hoc): C2 without change detection / local reset."""
+    name = 'PH-UCBMean-NoReset'
+
+    def __init__(self, rng):
+        super().__init__(rng)
+        self.detector = _SilentDetector()
+
+
+POST_HOC = (PHv06NoSentinel, PHUCBMeanSentinel, PHUCBMeanNoReset)
