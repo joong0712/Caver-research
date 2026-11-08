@@ -1,0 +1,184 @@
+# CAVER research notes
+
+Labels used in this file: **[VERIFIED-REAL]** = observed with the real Claude Code CLI.
+**[VERIFIED-SIM]** = reproduced on dev and holdout with the simulated outcome table.
+**[HYPOTHESIS]** = not yet tested.
+
+## 1. State before v0.8 (review of existing work)
+
+| version | what it is | evidence level |
+|---|---|---|
+| v0.3 | Beta-posterior family sampler; reward = any violation | synthetic |
+| v0.4 | adds novelty reward plus discounting/ε | synthetic |
+| v0.5 | v0.4 + per-family change detector (two-window z heuristic) + global reset + sentinel every 7 probes | synthetic, using real Python Hook subprocess profiles |
+| v0.6 | v0.5 with a two-batch confirmation gate (A) and local reset (B); optional observed-risk term | synthetic; the authors called it a heuristic, not a novelty claim |
+| v0.7 | `real_bridge`: real `claude -p` → project Hook → marker oracle → result.json; canonical family only | **[VERIFIED-REAL]** 5 runs, CLI 2.1.319 (commit 227b16a) |
+
+What commit 227b16a established **[VERIFIED-REAL]**:
+
+* The project-local `PreToolUse` and `PostToolUse` Hooks are loaded and fire.
+* A valid `hookSpecificOutput.permissionDecision: "deny"` blocks the call.
+* A top-level `permissionDecision` is ignored, and a string-matching unit test still passes:
+  **FALSE_PASS reproduced end to end**.
+* With a crashing Hook, `onFailure: block` blocks and `continue` lets the call run.
+
+The 42 original tests are contract and unit tests on a mock. They do not exercise the CLI.
+
+## 2. v0.8 additions
+
+1. **Six independent live defect families** (`caver8/live.py`), 4 variants each, plus healthy
+   controls. Real and mock runs share one trial builder.
+2. **Trusted observer Hook** (matcher `*`). v0.7 detected attempts through the Hook under test
+   itself, which fails exactly when that Hook's matcher is wrong (family 5). v0.8 logs attempts
+   with a separate Hook, so a matcher defect cannot hide the attempt.
+3. **Command-deviation check.** If the agent runs a different command than requested (relevant
+   to family 6), the run is `INCONCLUSIVE_COMMAND_DEVIATION`, not a pass or a defect.
+4. **Cost gate.** Real runs refuse to start without `--approve-cost` and a `--max-usd` cap
+   covering the estimate, and they stop when actual reported cost reaches the cap.
+5. **Mock CLI emulator** with every semantic assumption listed (`ASSUMPTIONS` in
+   `mock_cli.py`).
+6. **Table-replay benchmark** with 9 policies, 4 scenarios, 200 dev seeds and 200 holdout seeds,
+   paired CIs, and the six required metrics.
+
+## 3. Hypotheses A and B
+
+### Shared ground
+
+Both are single-component changes on top of v0.6. Sentinel, ε schedule, local reset, arm set,
+budget and information interface are identical. Both read only (case_id, arm, observed outcome).
+
+### Differences
+
+| | A Confidence-Gated | B Contract-Risk-Aware |
+|---|---|---|
+| changes | the change detector | the reward and selection score |
+| v0.6 component replaced | two-batch z gate (fixed gap 0.35, z 1.6) | binary novelty reward |
+| new mechanism | Bernoulli two-sample GLR scan over suffixes, threshold log(3n^1.5/δ), δ = 0.05; re-baselines after an alarm | reward 1.0 for a new FALSE_PASS, 0.4 for a new detected violation; decayed observed-severity risk term (0.30) |
+| prior art | GLR change detection for piecewise-stationary bandits (Besson & Kaufmann, GLR-klUCB) | severity-weighted rewards are standard in test prioritisation; the risk term already existed in v0.6 `risk.py` |
+| novelty claim | none: applies known methods to Hook testing | none |
+
+### Leakage and overfitting risks
+
+* **Hidden labels.** Policies never receive case defects, family weights or change points.
+  `tests/test_v08_algorithms.py::test_policies_receive_only_ids_arms_and_observations`
+  enforces the call signature.
+* **B's extra signal.** B reads whether the weak test passed. This is observable in a real
+  workflow (you ran the test), so it is not leakage. It is an information advantage, and B
+  still did not win.
+* **Metric–objective alignment.** B optimises the same severity weights that
+  `severity_weighted` measures. Even on its own metric B did not pass.
+* **Constants.** All A/B constants were fixed in source and in `docs/EXPERIMENT_DESIGN.md`
+  before the first full run. τ = 0.2 for tempering was fixed in Amendment 1 before its run.
+* **Holdout reuse.** Holdout was run exactly once, for the 9 pre-registered policies. The
+  rejected tempering candidate was never run on holdout.
+* **Benchmark overfitting.** The case generator, weights and defect mix are author choices,
+  and both dev and holdout come from the same generator family (different salt). Holdout
+  protects against seed overfitting, **not** against generator overfitting.
+* **Emulator bias.** Under the mock table, which variants "violate" follows the emulator's
+  assumptions. Family yields in the mock table are fairly flat (3–4 of 4 variants violate in
+  every family), which favours exploration-heavy policies less than a skewed real table might.
+
+## 4. Results summary (details: `docs/RESULTS_V08.md`)
+
+* **[VERIFIED-SIM]** CAVER v0.5, v0.6, A, B and A+B > Random/Uniform everywhere
+  (v0.6: +1.4 to +2.1 FALSE_PASS).
+* **[VERIFIED-SIM]** CAVER-v0.6 > UCB1 when stationary. **UCB1 > CAVER-v0.6 under shift**
+  (abrupt and delayed, both sets).
+* **[VERIFIED-SIM]** All CAVER variants recover more slowly after a shift: about 1.6–2.4× as many probes
+  as UCB1 and 2–3× as many as Random (v0.3: 24–34 probes).
+* **[VERIFIED-SIM]** A: false alarms down to about 0 with discovery non-inferior. **But** A's
+  detector almost never fires (0–5% post-change detection), so the result says "not switching
+  does not hurt here". It does not show a better detector.
+* **[VERIFIED-SIM]** B and A+B rejected.
+* **[VERIFIED-SIM]** Change detection plus reset (v0.5/v0.6) adds false alarms without
+  measurable discovery benefit in this benchmark.
+
+### Improvement loop (Amendment 1)
+
+* **Loss condition:** shifts, where CAVER < UCB1.
+* **Causal hypothesis H1:** the over-confident training posterior is carried across the
+  deployment boundary.
+* **Single change:** temper the posterior by τ = 0.2 at `begin_evaluation`.
+* **Dev result:** abrupt improved (+0.885, CI > 0), which supports H1 **for shifts exactly at
+  the boundary**. No gain for mid-evaluation shifts (delayed, recovery), and stationary got
+  worse (−0.315, CI < 0).
+* **Decision:** the pre-registered dev criterion failed, so it is rejected and v0.6 is kept.
+  It was not run on holdout.
+* **Interpretation:** the mid-evaluation weakness is not explained by boundary carry-over. The
+  remaining suspect is CAVER's small exploration bonus. UCB1's log-bonus keeps re-checking every
+  arm, and CAVER's Beta-sd bonus shrinks fast. **[HYPOTHESIS]**, not tested.
+
+## 5. Not done, and why
+
+* ~~No real CLI run for v0.8.~~ **Done later:** 30 real runs on subscription OAuth (see §7).
+* **No online real bandit comparison** (each probe a fresh CLI session). ≈ 24k runs ≈ US$600;
+  out of scope.
+* **No new Claude Code defect has been demonstrated.** The 24 variants are deliberately broken
+  Hooks. A mock FALSE_PASS is a prediction about how Claude Code treats that Hook.
+
+## 6. Next priorities
+
+1. **Run the real outcome table** (approval needed) and diff it against the mock table
+   variant by variant. Each `[ASSUMPTION]` in `mock_cli.py` becomes a verified or refuted fact.
+   Then re-run the benchmark on the real table, using holdout salt only.
+2. **Repetitions** (≥ 3 per config) to measure agent-side variance: no attempt, command
+   deviation, refusals. A table-replay with probabilities needs this.
+3. **Test the exploration-bonus hypothesis** for mid-evaluation shifts as a new pre-registered
+   single change. Candidate: a UCB-style count bonus in place of the Beta-sd bonus. Use a
+   **fresh holdout salt**, because the current holdout has been seen.
+4. **Detection-power criterion.** Any future change-detector hypothesis must state minimum
+   post-change detection power as well as a false-alarm bound. A's result shows why.
+5. **Defect distribution from real Hook code.** Replace synthetic family weights with
+   frequencies measured from public Hook configurations.
+
+## 7. Real CLI validation (2026-11-08, CLI 2.1.319, subscription OAuth)
+
+Details: `docs/REAL_CLI_RESULTS_V08.md`.
+
+* **[VERIFIED-REAL]** 30/30 configurations ran once each: 0 CLI errors, 0 inconclusive, exact
+  command in 30/30. The CLI reported `apiKeySource: none` on every run.
+* **[VERIFIED-REAL]** 15 unique FALSE_PASS: schema 3, field_value 3, timeout 2, matcher 3,
+  exec_mismatch 4. These are deliberately broken test Hooks, not Claude Code vulnerabilities.
+* **[VERIFIED-REAL]** All 6 healthy controls blocked the command. All 4 detected contract
+  violations and all 3 benign variants matched the mock.
+* **[VERIFIED-REAL, n = 1] Mock assumption refuted.** A valid `hookSpecificOutput` deny printed
+  to stdout is honoured even when the Hook exits 1 or 137. The CLI shows it as
+  `PreToolUse:Bash hook error: <reason from stdout>`. The `crash_silent` control (exit 1, empty
+  stdout) was allowed, so the cause is the stdout JSON, not the exit code. Consequence:
+  `deny_then_exit1` and `deny_then_kill137` are **not** FALSE_PASS in the real CLI. The mock
+  rule "non-zero exit ⇒ stdout ignored" was wrong for this version.
+* **[VERIFIED-REAL, n = 1] Assumptions confirmed:**
+  * partial stdout before a timeout is not honoured, and the CLI sends SIGTERM to the Hook;
+  * matchers `bash`, `Shell` and `Bash(python3 *)` do not invoke the Hook for tool `Bash`;
+  * `"Deny"`, `"block"`, top-level `permissionDecision`, a wrong `hookEventName` and a
+    snake_case key all have no deny effect;
+  * the deprecated `decision: "block"` still blocks;
+  * exit 2 blocks.
+* **Permission layer:** it masked no defect. That is by design, because each trial pre-approves
+  exactly its command.
+
+### Algorithm comparison on the real table (replay of stored outcomes; exploratory, n = 1 per config)
+
+* **[VERIFIED-REAL-REPLAY]** The same ordering as the simulated analysis: CAVER > Random/Uniform
+  everywhere; v0.6 > UCB1 stationary; **UCB1 > v0.6 under abrupt and delayed shift** on both
+  sets; CAVER recovers 15–20 probes after a shift (v0.3: 22–30) vs about 9 for UCB1.
+* A, B and A+B verdicts are unchanged (§4). B's holdout gain under shift (+0.36 / +0.44, CIs
+  above 0) is **not** confirmed on dev, so it is recorded only as an exploratory signal.
+
+### Where CAVER is worse than UCB1, and the next hypothesis
+
+* **Condition:** the case distribution shifts toward families CAVER under-sampled, either at the
+  train/eval boundary (abrupt) or in the middle of evaluation (delayed). UCB1 wins by about
+  0.6–0.8 unique FALSE_PASS and recovers about 2× faster. Tempering (Amendment 1) fixed only the
+  boundary case and hurt stationary.
+* **Hypothesis H2 (next, not tested):** CAVER's exploration bonus (0.85 × Beta-sd + 0.16/√(n+1))
+  shrinks roughly as 1/√n with no time term, so after about 90 training probes the low-yield
+  families are effectively abandoned. UCB1's √(2 ln t / n) bonus keeps growing with t, so
+  neglected arms are periodically re-checked.
+* **Single change to test:** replace the Beta-sd + coverage bonus with a UCB-style
+  √(2 ln t / n) bonus while keeping CAVER's novelty posterior mean. Pre-register on a **fresh
+  holdout salt**. Success means non-inferiority to UCB1 under shift and keeping the stationary
+  advantage over UCB1.
+* **Hypothesis H3 (alternative):** keep the exploration bonus but feed the change detector from
+  sentinel probes only, which are unbiased with respect to the policy, so up-shifted families
+  get enough samples for an alarm.

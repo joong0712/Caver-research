@@ -1,4 +1,5 @@
 real_trials/
-reports/
+reports/*
+!reports/v08/
 __pycache__/
 *.pyc
