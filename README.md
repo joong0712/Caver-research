@@ -2,6 +2,34 @@
 
 **Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
 
+## CAVER v0.8: six live Hook-defect families and algorithm comparison (branch `research/caver-v08`)
+
+| part | status |
+|---|---|
+| 6 live defect families × 4 variants + healthy controls (`caver8/live.py`) | implemented; **mock-run only** |
+| mock CLI emulator (`caver8/mock_cli.py`) | implemented; outcomes are **simulated**, assumptions listed |
+| real CLI outcome table | **not run**; waiting for cost approval (≈ US$0.74 per 30-run repetition) |
+| 9-policy benchmark, dev + single holdout (`caver8/benchmark.py`) | run on the **simulated** table |
+| hypothesis A (GLR confidence gate) | criterion met formally; detector almost never fires; **not adopted as a better detector** |
+| hypothesis B (severity/risk-aware), A+B | **rejected** |
+| improvement attempt (posterior tempering) | **rejected on dev; v0.6 kept** |
+| tests | 61 passing (42 original + 19 new) |
+
+Main simulated finding: CAVER beats Random/Uniform everywhere and beats UCB1 without shift.
+**UCB1 beats CAVER under distribution shift**, and CAVER recovers about 2× more slowly than UCB1 (2–3× vs Random). See
+[`docs/RESULTS_V08.md`](docs/RESULTS_V08.md), [`RESEARCH_NOTES.md`](RESEARCH_NOTES.md) and
+[`docs/EXPERIMENT_DESIGN.md`](docs/EXPERIMENT_DESIGN.md).
+
+```bash
+python3 -m unittest discover -s tests -v                       # 61 tests, no CLI calls
+python3 -m caver8.live --mock --output reports/v08/outcome_table_simulated.json   # free, simulated
+python3 -m caver8.benchmark --salt dev --output reports/v08/my_dev_run           # table replay
+python3 -m caver8.live --real --estimate-only --reps 1          # prints the cost estimate only
+# Real runs (costs model usage; refuses without both flags):
+python3 -m caver8.live --real --approve-cost --max-usd 1.0 --reps 1
+python3 -m caver8.benchmark --table reports/v08/outcome_table_real.json --salt holdout --output reports/v08/holdout_real
+```
+
 ## Validation results (2026-11-08)
 
 Environment: Claude Code cloud container, Linux, Python 3.13.18, Claude Code CLI **2.1.319**, logged in via OAuth (first-party API). Repository contents are byte-identical to `CAVER_v0.7_Source_Only.zip`, and no files were modified. Raw evidence: [`docs/validation_2026-11-08/`](docs/validation_2026-11-08/). It contains `result.json` and Hook `events.jsonl` per trial plus summary CSVs. CLI stdout with model text is intentionally not committed.
