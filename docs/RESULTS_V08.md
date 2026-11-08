@@ -1,14 +1,34 @@
 # CAVER v0.8 — Results
 
-> **What these numbers are.** Every benchmark number below comes from replaying the
-> **SIMULATED** outcome table (`reports/v08/outcome_table_simulated.json`, produced by
-> `caver8/mock_cli.py`). **No real Claude Code CLI run was made for v0.8.** Real runs are
-> cost-gated and wait for the user's approval (see §5). The only real CLI evidence in this
-> repository is the 5 v0.7 runs (CLI 2.1.319, commit 227b16a).
+> **Update (real CLI):** all 30 configurations have now been run against the real Claude Code
+> CLI 2.1.319 with subscription OAuth, once each. **15 of the 17 mock FALSE_PASS candidates
+> reproduced.** Two `abnormal_exit` variants were blocked by the real CLI because a stdout deny
+> JSON was honoured despite a non-zero exit. Full details: `docs/REAL_CLI_RESULTS_V08.md` and
+> §0 below.
 >
-> US$ columns marked * are a **constant estimate** (US$0.0246 per run, the mean of the five
-> v0.7 real runs), so they are identical per probe across policies. Measured mock wall time
-> per probe is in `runs.csv` (`wall_ms_per_probe`).
+> Sections 1–4 below are the **original SIMULATED-table results** (mock CLI). They are kept
+> unchanged as the record of the pre-real analysis. US$ columns marked * there are a constant
+> estimate.
+
+## 0. Real-table results (summary)
+
+| item | value |
+|---|---|
+| real `claude -p` runs | 30 (one per config), 0 errors, 0 inconclusive |
+| unique real FALSE_PASS | 15 (schema 3, field_value 3, timeout 2, matcher 3, exec_mismatch 4, abnormal_exit 0) |
+| mock → real | 15 reproduced, 2 mock-only (`deny_then_exit1`, `deny_then_kill137`), 0 real-only; 13 other configs identical |
+| reported usage | US$0.7685 API-equivalent (subscription OAuth, `apiKeySource: none`) |
+
+The algorithm comparison on the real table (`reports/v08/real_dev`, `reports/v08/real_holdout`)
+is a **replay of stored real outcomes**, not repeated CLI runs. Conclusions match the simulated
+analysis:
+
+* CAVER beats Random/Uniform everywhere (+1.2 to +3.0 FALSE_PASS).
+* v0.6 beats UCB1 when stationary, and **UCB1 beats v0.6 under shift** (holdout abrupt +0.64,
+  delayed +0.78, CIs above 0).
+* A has false alarms near 0 but 0.5–3% detection power, so it is not adopted.
+* B and A+B are rejected (B: severity CI above 0 in 0/4 on dev and 2/4 on holdout; B shows an
+  exploratory holdout gain under abrupt and delayed shift that dev does not confirm).
 
 ## 1. Live layer (mock emulator, cli_kind = simulated)
 
@@ -178,7 +198,7 @@ the deprecated `decision:block` still work? Does `Bash(cmd)` permit a compound `
 | B-RiskAware | 14.39 | 12.16 [11.71, 12.61] | 0.306 | 5.0 | 0.0246 | 0.1628 | 0.055 | 0.260 | 19.5 (0.10) | -0.07 [-0.47, 0.33] |
 | A+B | 14.46 | 12.20 [11.75, 12.65] | 0.307 | 5.0 | 0.0246 | 0.1614 | 0.000 | 0.005 | 20.4 (0.12) | -0.03 [-0.41, 0.35] |
 
-## 5. Real CLI experiments: not run (waiting for approval)
+## 5. Real CLI experiments (original plan; now executed, see REAL_CLI_RESULTS_V08.md)
 
 | item | value |
 |---|---|

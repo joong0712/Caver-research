@@ -6,27 +6,31 @@
 
 | part | status |
 |---|---|
-| 6 live defect families × 4 variants + healthy controls (`caver8/live.py`) | implemented; **mock-run only** |
-| mock CLI emulator (`caver8/mock_cli.py`) | implemented; outcomes are **simulated**, assumptions listed |
-| real CLI outcome table | **not run**; waiting for cost approval (≈ US$0.74 per 30-run repetition) |
-| 9-policy benchmark, dev + single holdout (`caver8/benchmark.py`) | run on the **simulated** table |
-| hypothesis A (GLR confidence gate) | criterion met formally; detector almost never fires; **not adopted as a better detector** |
-| hypothesis B (severity/risk-aware), A+B | **rejected** |
+| 6 live defect families × 4 variants + healthy controls (`caver8/live.py`) | implemented |
+| real CLI validation (CLI 2.1.319, subscription OAuth, `--billing-mode subscription --max-runs 30`) | **30/30 real runs done**; [`docs/REAL_CLI_RESULTS_V08.md`](docs/REAL_CLI_RESULTS_V08.md) |
+| real FALSE_PASS reproduced | **15 of 17 mock candidates**; 2 mock-only (a stdout deny is honoured on exit 1/137) |
+| mock CLI emulator (`caver8/mock_cli.py`) | simulated; one assumption refuted by the real CLI and annotated |
+| 9-policy benchmark (`caver8/benchmark.py`) | run on the simulated table and on the **real table (replay of stored outcomes)** |
+| hypothesis A (GLR confidence gate) | criterion met formally; detector almost never fires; **not adopted** |
+| hypothesis B (severity/risk-aware), A+B | **rejected** (on both tables) |
 | improvement attempt (posterior tempering) | **rejected on dev; v0.6 kept** |
-| tests | 61 passing (42 original + 19 new) |
+| tests | 77 passing (42 original + 35 new); none call the CLI |
 
-Main simulated finding: CAVER beats Random/Uniform everywhere and beats UCB1 without shift.
+Main finding (simulated table and real-table replay agree): CAVER beats Random/Uniform everywhere and beats UCB1 without shift.
 **UCB1 beats CAVER under distribution shift**, and CAVER recovers about 2× more slowly than UCB1 (2–3× vs Random). See
 [`docs/RESULTS_V08.md`](docs/RESULTS_V08.md), [`RESEARCH_NOTES.md`](RESEARCH_NOTES.md) and
 [`docs/EXPERIMENT_DESIGN.md`](docs/EXPERIMENT_DESIGN.md).
 
 ```bash
-python3 -m unittest discover -s tests -v                       # 61 tests, no CLI calls
+python3 -m unittest discover -s tests -v                       # 77 tests, no CLI calls
 python3 -m caver8.live --mock --output reports/v08/outcome_table_simulated.json   # free, simulated
 python3 -m caver8.benchmark --salt dev --output reports/v08/my_dev_run           # table replay
 python3 -m caver8.live --real --estimate-only --reps 1          # prints the cost estimate only
-# Real runs (costs model usage; refuses without both flags):
+# Real runs, subscription OAuth (run-capped; verifies auth first):
+python3 -m caver8.live --real --billing-mode subscription --max-runs 30 --trials-dir /tmp/caver_trials
+# Real runs, API billing (USD-capped):
 python3 -m caver8.live --real --approve-cost --max-usd 1.0 --reps 1
+python3 -m caver8.compare                                      # real vs mock table
 python3 -m caver8.benchmark --table reports/v08/outcome_table_real.json --salt holdout --output reports/v08/holdout_real
 ```
 

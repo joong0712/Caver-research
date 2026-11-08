@@ -110,8 +110,7 @@ budget and information interface are identical. Both read only (case_id, arm, ob
 
 ## 5. Not done, and why
 
-* **No real CLI run for v0.8.** Instruction: costed repeated experiments need prior approval.
-  Estimate ≈ US$0.74 per repetition of the 30-config table.
+* ~~No real CLI run for v0.8.~~ **Done later:** 30 real runs on subscription OAuth (see §7).
 * **No online real bandit comparison** (each probe a fresh CLI session). ≈ 24k runs ≈ US$600;
   out of scope.
 * **No new Claude Code defect has been demonstrated.** The 24 variants are deliberately broken
@@ -131,3 +130,55 @@ budget and information interface are identical. Both read only (case_id, arm, ob
    post-change detection power as well as a false-alarm bound. A's result shows why.
 5. **Defect distribution from real Hook code.** Replace synthetic family weights with
    frequencies measured from public Hook configurations.
+
+## 7. Real CLI validation (2026-11-08, CLI 2.1.319, subscription OAuth)
+
+Details: `docs/REAL_CLI_RESULTS_V08.md`.
+
+* **[VERIFIED-REAL]** 30/30 configurations ran once each: 0 CLI errors, 0 inconclusive, exact
+  command in 30/30. The CLI reported `apiKeySource: none` on every run.
+* **[VERIFIED-REAL]** 15 unique FALSE_PASS: schema 3, field_value 3, timeout 2, matcher 3,
+  exec_mismatch 4. These are deliberately broken test Hooks, not Claude Code vulnerabilities.
+* **[VERIFIED-REAL]** All 6 healthy controls blocked the command. All 4 detected contract
+  violations and all 3 benign variants matched the mock.
+* **[VERIFIED-REAL, n = 1] Mock assumption refuted.** A valid `hookSpecificOutput` deny printed
+  to stdout is honoured even when the Hook exits 1 or 137. The CLI shows it as
+  `PreToolUse:Bash hook error: <reason from stdout>`. The `crash_silent` control (exit 1, empty
+  stdout) was allowed, so the cause is the stdout JSON, not the exit code. Consequence:
+  `deny_then_exit1` and `deny_then_kill137` are **not** FALSE_PASS in the real CLI. The mock
+  rule "non-zero exit ⇒ stdout ignored" was wrong for this version.
+* **[VERIFIED-REAL, n = 1] Assumptions confirmed:**
+  * partial stdout before a timeout is not honoured, and the CLI sends SIGTERM to the Hook;
+  * matchers `bash`, `Shell` and `Bash(python3 *)` do not invoke the Hook for tool `Bash`;
+  * `"Deny"`, `"block"`, top-level `permissionDecision`, a wrong `hookEventName` and a
+    snake_case key all have no deny effect;
+  * the deprecated `decision: "block"` still blocks;
+  * exit 2 blocks.
+* **Permission layer:** it masked no defect. That is by design, because each trial pre-approves
+  exactly its command.
+
+### Algorithm comparison on the real table (replay of stored outcomes; exploratory, n = 1 per config)
+
+* **[VERIFIED-REAL-REPLAY]** The same ordering as the simulated analysis: CAVER > Random/Uniform
+  everywhere; v0.6 > UCB1 stationary; **UCB1 > v0.6 under abrupt and delayed shift** on both
+  sets; CAVER recovers 15–20 probes after a shift (v0.3: 22–30) vs about 9 for UCB1.
+* A, B and A+B verdicts are unchanged (§4). B's holdout gain under shift (+0.36 / +0.44, CIs
+  above 0) is **not** confirmed on dev, so it is recorded only as an exploratory signal.
+
+### Where CAVER is worse than UCB1, and the next hypothesis
+
+* **Condition:** the case distribution shifts toward families CAVER under-sampled, either at the
+  train/eval boundary (abrupt) or in the middle of evaluation (delayed). UCB1 wins by about
+  0.6–0.8 unique FALSE_PASS and recovers about 2× faster. Tempering (Amendment 1) fixed only the
+  boundary case and hurt stationary.
+* **Hypothesis H2 (next, not tested):** CAVER's exploration bonus (0.85 × Beta-sd + 0.16/√(n+1))
+  shrinks roughly as 1/√n with no time term, so after about 90 training probes the low-yield
+  families are effectively abandoned. UCB1's √(2 ln t / n) bonus keeps growing with t, so
+  neglected arms are periodically re-checked.
+* **Single change to test:** replace the Beta-sd + coverage bonus with a UCB-style
+  √(2 ln t / n) bonus while keeping CAVER's novelty posterior mean. Pre-register on a **fresh
+  holdout salt**. Success means non-inferiority to UCB1 under shift and keeping the stationary
+  advantage over UCB1.
+* **Hypothesis H3 (alternative):** keep the exploration bonus but feed the change detector from
+  sentinel probes only, which are unbiased with respect to the policy, so up-shifted families
+  get enough samples for an alarm.
