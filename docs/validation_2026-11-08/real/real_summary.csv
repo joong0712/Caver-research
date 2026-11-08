@@ -1,0 +1,5 @@
+cli_kind,mode,trials,false_pass,contract_violations,inconclusive,observed_attempts
+real,correct,1,0,0,0,1
+real,crash,2,0,1,0,2
+real,misplaced,1,1,1,0,1
+real,missing,1,0,1,0,1

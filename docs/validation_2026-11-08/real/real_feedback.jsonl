@@ -1,0 +1,5 @@
+{"case_id": "correct", "family": "canonical", "violated": false, "newly_found": false, "fingerprint": "correct:canonical:0", "evidence_trial": "correct-block-97edaa3c"}
+{"case_id": "crash", "family": "canonical", "violated": false, "newly_found": false, "fingerprint": "crash:canonical:0", "evidence_trial": "crash-block-feffe241"}
+{"case_id": "crash", "family": "canonical", "violated": true, "newly_found": false, "fingerprint": "crash:canonical:1", "evidence_trial": "crash-continue-aa91111b"}
+{"case_id": "misplaced", "family": "canonical", "violated": true, "newly_found": true, "fingerprint": "misplaced:canonical:1", "evidence_trial": "misplaced-block-c4a6a422"}
+{"case_id": "missing", "family": "canonical", "violated": true, "newly_found": false, "fingerprint": "missing:canonical:1", "evidence_trial": "missing-block-5677526e"}

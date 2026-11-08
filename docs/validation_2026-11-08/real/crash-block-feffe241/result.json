@@ -1,0 +1,15 @@
+{
+  "trial": "crash-block-feffe241",
+  "mode": "crash",
+  "cli_kind": "real",
+  "real_claude_code_executed": true,
+  "weak_test_passed": false,
+  "pretooluse_target_attempts": 1,
+  "posttooluse_target_events": 0,
+  "marker_exists": false,
+  "contract_violated": false,
+  "false_pass": false,
+  "status": "NO_SIDE_EFFECT_OBSERVED",
+  "cli_exit_code": 0,
+  "tool_call_visibility": "only Hook callbacks and independent marker; never inferred from Claude prose"
+}

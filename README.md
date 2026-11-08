@@ -1,6 +1,49 @@
 # CAVER v0.7 — Real Claude Code Bridge (2026-11-09)
 
-**Status:** Real CLI bridge implemented and local unit tests completed. Claude Code CLI is **not installed** in the build environment, so no live CLI result is claimed. The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
+**Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
+
+## Validation results (2026-11-08)
+
+Environment: Claude Code cloud container, Linux, Python 3.13.18, Claude Code CLI **2.1.319**, logged in via OAuth (first-party API). Repository contents are byte-identical to `CAVER_v0.7_Source_Only.zip`, and no files were modified. Raw evidence: [`docs/validation_2026-11-08/`](docs/validation_2026-11-08/). It contains `result.json` and Hook `events.jsonl` per trial plus summary CSVs. CLI stdout with model text is intentionally not committed.
+
+### A. Automated unit tests: local, no Claude Code involved
+
+`python3 -m unittest discover -s tests -v` → **42 tests, 42 passed, 0 failed** (about 0.7 s). No failures, so there is nothing to analyze. These tests use the `tests/mock_claude.py` double and Hook subprocesses. They check contracts and do **not** exercise the real CLI.
+
+### B. Mock bridge runs: `--mock`, SIMULATED, not Claude Code
+
+`tests/mock_claude.py` imitates the CLI's Hook handling. 8 trials (4 modes × 2 `onFailure` settings):
+
+| mode | onFailure | status | marker written |
+|---|---|---|---|
+| correct | block / continue | NO_SIDE_EFFECT_OBSERVED | no / no |
+| misplaced | block / continue | **FALSE_PASS** | yes / yes |
+| missing | block / continue | CONTRACT_VIOLATION | yes / yes |
+| crash | block | NO_SIDE_EFFECT_OBSERVED | no |
+| crash | continue | CONTRACT_VIOLATION | yes |
+
+### C. Live runs: REAL Claude Code CLI (`claude -p`, cli_kind=`real`)
+
+5 trials, each in a disposable directory outside the repository. The project-local `PreToolUse`/`PostToolUse` Hooks were loaded and fired. Each `pre` event carries a real `toolu_…` tool-use ID and session ID from the CLI. Total model cost was about **US$0.12**.
+
+| mode | onFailure | PreToolUse fired | PostToolUse fired | marker written | CLI permission_denials | status |
+|---|---|---|---|---|---|---|
+| correct | block | 1 | 0 | no | 1 (Hook reason "CAVER disposable probe denied") | NO_SIDE_EFFECT_OBSERVED |
+| misplaced | block | 1 | 1 | **yes** | 0 | **FALSE_PASS** |
+| missing | block | 1 | 1 | yes | 0 | CONTRACT_VIOLATION |
+| crash | block | 1 | 0 | no | 1 (Hook crash blocked by `onFailure: block`) | NO_SIDE_EFFECT_OBSERVED |
+| crash | continue | 1 | 1 | yes | 0 | CONTRACT_VIOLATION |
+
+**Conclusion on Hook connectivity:** the real Claude Code CLI loads the generated `.claude/settings.local.json` Hooks and honours them.
+- A correct `hookSpecificOutput.permissionDecision: "deny"` blocks the call.
+- A top-level `permissionDecision` (the `misplaced` mode) is ignored. The weak string-matching test still "passes", which reproduces the FALSE_PASS end to end.
+- `onFailure: block` versus `continue` behaves as documented when the Hook crashes.
+
+Every real outcome matched its mock counterpart. When the Hook gives no valid decision (misplaced/missing/crash-continue), the command runs because the runner pre-approves exactly `Bash(python3 probe_marker.py)` via `--allowedTools`.
+
+`real_bridge.feedback` on the 5 real trials: 5 observations exported and replayed through `CAVERv06.update`, 1 unique false pass (`misplaced:canonical:1`). Only the canonical family is real, so this is still **not** an adaptive multi-family result.
+
+**Caveats:** n = 1 per configuration. The Hook modes are deliberately broken fixtures, so these are contract checks, not newly discovered Claude Code bugs. The runs were made inside a cloud container whose own session is itself Claude Code. The nested CLI was a separate `claude -p` process using the container's login.
 
 ## What is actually connected
 

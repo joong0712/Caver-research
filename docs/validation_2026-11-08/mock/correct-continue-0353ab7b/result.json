@@ -1,0 +1,15 @@
+{
+  "trial": "correct-continue-0353ab7b",
+  "mode": "correct",
+  "cli_kind": "simulated",
+  "real_claude_code_executed": false,
+  "weak_test_passed": true,
+  "pretooluse_target_attempts": 1,
+  "posttooluse_target_events": 0,
+  "marker_exists": false,
+  "contract_violated": false,
+  "false_pass": false,
+  "status": "NO_SIDE_EFFECT_OBSERVED",
+  "cli_exit_code": 0,
+  "tool_call_visibility": "only Hook callbacks and independent marker; never inferred from Claude prose"
+}

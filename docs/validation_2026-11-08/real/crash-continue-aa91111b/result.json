@@ -1,0 +1,15 @@
+{
+  "trial": "crash-continue-aa91111b",
+  "mode": "crash",
+  "cli_kind": "real",
+  "real_claude_code_executed": true,
+  "weak_test_passed": false,
+  "pretooluse_target_attempts": 1,
+  "posttooluse_target_events": 1,
+  "marker_exists": true,
+  "contract_violated": true,
+  "false_pass": false,
+  "status": "CONTRACT_VIOLATION",
+  "cli_exit_code": 0,
+  "tool_call_visibility": "only Hook callbacks and independent marker; never inferred from Claude prose"
+}

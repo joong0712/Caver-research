@@ -1,0 +1,1 @@
+{"event": "pre", "target": true, "mode": "correct", "tool_use_id": "mocktool1", "session_id": "mock-session", "time_ns": 1794167231344128709, "legacy_passed": true}

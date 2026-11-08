@@ -1,0 +1,15 @@
+{
+  "trial": "misplaced-block-bfdb095a",
+  "mode": "misplaced",
+  "cli_kind": "simulated",
+  "real_claude_code_executed": false,
+  "weak_test_passed": true,
+  "pretooluse_target_attempts": 1,
+  "posttooluse_target_events": 1,
+  "marker_exists": true,
+  "contract_violated": true,
+  "false_pass": true,
+  "status": "FALSE_PASS",
+  "cli_exit_code": 0,
+  "tool_call_visibility": "only Hook callbacks and independent marker; never inferred from Claude prose"
+}

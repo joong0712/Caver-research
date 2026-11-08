@@ -1,0 +1,2 @@
+{"event": "pre", "target": true, "mode": "missing", "tool_use_id": "mocktool1", "session_id": "mock-session", "time_ns": 1794167231864471467, "legacy_passed": false}
+{"event": "post", "target": true, "tool_use_id": "mocktool1", "session_id": "mock-session", "time_ns": 1794167231943066357}

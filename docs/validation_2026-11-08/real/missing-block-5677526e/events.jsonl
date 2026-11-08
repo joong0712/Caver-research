@@ -1,0 +1,2 @@
+{"event": "pre", "target": true, "mode": "missing", "tool_use_id": "toolu_01SZB1uJKhByVG343J2LMWsr", "session_id": "a069eb7a-4be7-4178-805c-510a8e0c136a", "time_ns": 1794167277806796378, "legacy_passed": false}
+{"event": "post", "target": true, "tool_use_id": "toolu_01SZB1uJKhByVG343J2LMWsr", "session_id": "a069eb7a-4be7-4178-805c-510a8e0c136a", "time_ns": 1794167278031977187}
