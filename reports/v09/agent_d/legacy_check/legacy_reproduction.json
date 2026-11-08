@@ -1,0 +1,65 @@
+{
+  "salt": "v09dev",
+  "seeds": [
+    0,
+    199
+  ],
+  "n_seeds": 200,
+  "table": {
+    "path": "reports/v08/outcome_table_real.json",
+    "sha256": "251652446d3dabfdee6167e13175ce9c6c2f9867ea35787768d96d9f0fde544b"
+  },
+  "outcome_stream": "crn",
+  "policies": [
+    "Random",
+    "Uniform",
+    "UCB1",
+    "SW-UCB",
+    "D-UCB",
+    "CAVER-v0.3",
+    "CAVER-v0.6"
+  ],
+  "runs_compared": 5600,
+  "per_run_mismatches": 0,
+  "per_run_mismatch_examples": [],
+  "summary_mismatches": [],
+  "exact_match": true,
+  "caver8_summary_ufp": {
+    "stationary": {
+      "Random": 9.165,
+      "Uniform": 9.38,
+      "UCB1": 10.965,
+      "SW-UCB": 9.845,
+      "D-UCB": 9.96,
+      "CAVER-v0.3": 12.05,
+      "CAVER-v0.6": 11.675
+    },
+    "abrupt": {
+      "Random": 10.47,
+      "Uniform": 10.585,
+      "UCB1": 12.76,
+      "SW-UCB": 11.965,
+      "D-UCB": 12.07,
+      "CAVER-v0.3": 11.935,
+      "CAVER-v0.6": 12.19
+    },
+    "delayed": {
+      "Random": 9.98,
+      "Uniform": 10.075,
+      "UCB1": 12.99,
+      "SW-UCB": 11.43,
+      "D-UCB": 11.79,
+      "CAVER-v0.3": 11.885,
+      "CAVER-v0.6": 12.335
+    },
+    "recovery": {
+      "Random": 9.485,
+      "Uniform": 9.92,
+      "UCB1": 12.29,
+      "SW-UCB": 11.005,
+      "D-UCB": 11.31,
+      "CAVER-v0.3": 12.41,
+      "CAVER-v0.6": 12.1
+    }
+  }
+}

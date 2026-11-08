@@ -182,3 +182,48 @@ Details: `docs/REAL_CLI_RESULTS_V08.md`.
 * **Hypothesis H3 (alternative):** keep the exploration bonus but feed the change detector from
   sentinel probes only, which are unbiased with respect to the policy, so up-shifted families
   get enough samples for an alarm.
+
+## 8. CAVER v0.9: parallel multi-agent study (branch `research/caver-v09`)
+
+Design: `docs/V09_EXPERIMENT_DESIGN.md` (pre-registered, plus Amendments 1–3). Results:
+`docs/V09_RESULTS.md`. Failures: `docs/V09_FAILURE_ANALYSIS.md`.
+
+**Setup.** Four agents ran in isolated git worktrees: A temporal decay, B dual reward, C adaptive
+exploration, D independent evaluation harness. They did not see each other's work. Dev salt
+`v09dev`; new sealed final salt `v09final`, run once per pre-registered table at a frozen commit.
+
+* **[VERIFIED-REAL]** A second independent real repetition of all 30 configurations matched the
+  first 30/30 (60 real runs total; subscription OAuth, `apiKeySource: none`).
+* **[VERIFIED-REPLAY, final holdout] Candidates:**
+
+| candidate | FALSE_PASS outcome | recovery | §7 result |
+|---|---|---|---|
+| B2 `B-DR-Bayes` (frozen v0.9 candidate) | beats UCB1 in all 8 scenarios; non-inferior to v0.6 when stationary (+0.10) | faster than v0.6 in delayed (−4.0); not significant in abrupt (CI upper +0.01) | fails criterion 3 → **not adopted; v0.6 remains recommended** |
+| C2 `C9-UCBMean` (posterior mean + 0.5·√(2 ln t / n), no sentinel or ε) | matches UCB1 under shift; stationary −0.13 (non-inferior) | faster than v0.6 in every shift scenario | passes all 13 checks, but was **not** the frozen candidate |
+| V09-BC (B+C) | – | recovers fastest of the CAVER family | fails stationary (−0.63) |
+| A1 (continuous decay) | – | – | fails stationary (−0.63) |
+
+* **Status of C2.** Its pass is post-selection evidence only. It is the strongest hypothesis for
+  a confirmatory study.
+* **[VERIFIED-REPLAY]** No CAVER-family policy matched UCB1's recovery speed. Fast recovery came
+  with a stationary loss of at least 0.6 in every tested policy.
+* **[VERIFIED-REPLAY]** The reward asymmetry (UCB1 learns from violations, CAVER from new
+  FALSE_PASS) is not the cause of v0.6's gap: reward-matched UCB1 is within ±0.4 of UCB1 in 7 of
+  8 scenarios.
+* **Process findings.**
+  * Case IDs leaked the cohort (found by Agent D; no policy used it; fixed with opaque IDs).
+  * Agent A's first dev run was invalidated by a shadowed constant, which a test caught.
+  * The dev selection rule ignored recovery speed and picked B2 over C2. That is a pre-registration
+    flaw, recorded and not repaired after the fact.
+
+### Next steps
+
+1. **Confirmatory test of C2** (and BC − violation) as the only pre-frozen candidate:
+   * a new sealed salt;
+   * new shift shapes;
+   * a selection rule that covers every adoption criterion.
+2. **Discovery model at the train/eval boundary [HYPOTHESIS].** Test whether B2's abrupt recovery
+   is held back by its undiscounted discovery model. Single change: discount the discovery model
+   during evaluation only.
+3. **More real evidence.** Real repetitions with different prompts or CLI versions, and a small
+   real online pilot (each probe a fresh CLI session) to check that replay conclusions hold.

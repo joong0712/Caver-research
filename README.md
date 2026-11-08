@@ -2,6 +2,29 @@
 
 **Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
 
+## CAVER v0.9: parallel multi-agent study (branch `research/caver-v09`)
+
+| item | status |
+|---|---|
+| design | pre-registered `docs/V09_EXPERIMENT_DESIGN.md`, with Amendments 1–3 recorded before the final run |
+| agents | A temporal decay, B dual reward, C adaptive exploration, D independent evaluation harness (`caver9/evaluation.py`), each in an isolated worktree |
+| real CLI | +30 independent real runs (repetition); **60/60 real runs consistent**, 15 FALSE_PASS |
+| final holdout | new sealed salt `v09final`, 300 seeds, 8 scenarios, real-table **replay** |
+| v0.9 candidate B2 (`caver9.dual_reward:DualRewardBayes`) | beats UCB1 in all 8 scenarios on FALSE_PASS, but misses one recovery criterion (abrupt, CI upper +0.01) → **not adopted** |
+| recommended version | **CAVER v0.6 (unchanged)** |
+| strongest lead for the next study | C2 `caver9.exploration:UCBMeanCAVER` passed all criteria, but was not the frozen candidate |
+| tests | 155 passing; none call the CLI |
+
+Details: [`docs/V09_RESULTS.md`](docs/V09_RESULTS.md), [`docs/V09_FAILURE_ANALYSIS.md`](docs/V09_FAILURE_ANALYSIS.md),
+[`docs/V09_EVALUATION.md`](docs/V09_EVALUATION.md).
+
+```bash
+python3 -m caver9.evaluation --salt v09dev --seeds 200 --scenarios all \
+  --policies UCB1 CAVER-v0.6 caver9.dual_reward:DualRewardBayes caver9.exploration:UCBMeanCAVER \
+  --table reports/v08/outcome_table_real.json --output reports/v09/my_dev_run
+python3 -m caver9.criteria reports/v09/final_real/summary.json B-DR-Bayes C9-UCBMean
+```
+
 ## CAVER v0.8: six live Hook-defect families and algorithm comparison (branch `research/caver-v08`)
 
 | part | status |

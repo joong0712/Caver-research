@@ -1,0 +1,597 @@
+{
+  "stationary": {
+    "Random": {},
+    "UCB1": {},
+    "SW-UCB": {},
+    "D-UCB": {},
+    "CAVER-v0.3": {},
+    "CAVER-v0.6": {
+      "alarms_per_run": 0.195,
+      "prechange_alarms_per_run": 0.195,
+      "postchange_alarms_per_run": 0.0,
+      "postchange_alarm_up_dir_on_up_family": 0,
+      "postchange_alarm_down_dir_on_down_family": 0,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0
+    },
+    "A1-Decay.981": {
+      "alarms_per_run": 0.13,
+      "prechange_alarms_per_run": 0.13,
+      "postchange_alarms_per_run": 0.0,
+      "postchange_alarm_up_dir_on_up_family": 0,
+      "postchange_alarm_down_dir_on_down_family": 0,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0
+    },
+    "A2-Decay.95": {
+      "alarms_per_run": 0.165,
+      "prechange_alarms_per_run": 0.165,
+      "postchange_alarms_per_run": 0.0,
+      "postchange_alarm_up_dir_on_up_family": 0,
+      "postchange_alarm_down_dir_on_down_family": 0,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0
+    },
+    "A3-AlarmShrink.2": {
+      "alarms_per_run": 0.195,
+      "prechange_alarms_per_run": 0.195,
+      "postchange_alarms_per_run": 0.0,
+      "postchange_alarm_up_dir_on_up_family": 0,
+      "postchange_alarm_down_dir_on_down_family": 0,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0
+    }
+  },
+  "abrupt": {
+    "Random": {},
+    "UCB1": {},
+    "SW-UCB": {},
+    "D-UCB": {},
+    "CAVER-v0.3": {
+      "posterior_at_change": {
+        "schema": {
+          "n": 21.85,
+          "mean": 0.2404
+        },
+        "field_value": {
+          "n": 21.795,
+          "mean": 0.2446
+        },
+        "abnormal_exit": {
+          "n": 9.925,
+          "mean": 0.1152
+        },
+        "timeout": {
+          "n": 12.415,
+          "mean": 0.1394
+        },
+        "matcher": {
+          "n": 13.245,
+          "mean": 0.1478
+        },
+        "exec_mismatch": {
+          "n": 10.77,
+          "mean": 0.122
+        }
+      },
+      "max_family_n_at_change": 27.31,
+      "up_family_n_at_change": 36.43
+    },
+    "CAVER-v0.6": {
+      "alarms_per_run": 0.695,
+      "prechange_alarms_per_run": 0.0,
+      "postchange_alarms_per_run": 0.695,
+      "postchange_alarm_up_dir_on_up_family": 102,
+      "postchange_alarm_down_dir_on_down_family": 37,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0.45,
+      "posterior_at_change": {
+        "schema": {
+          "n": 24.15,
+          "mean": 0.2351
+        },
+        "field_value": {
+          "n": 19.96,
+          "mean": 0.1888
+        },
+        "abnormal_exit": {
+          "n": 8.965,
+          "mean": 0.0926
+        },
+        "timeout": {
+          "n": 12.075,
+          "mean": 0.116
+        },
+        "matcher": {
+          "n": 13.01,
+          "mean": 0.1218
+        },
+        "exec_mismatch": {
+          "n": 11.84,
+          "mean": 0.1126
+        }
+      },
+      "max_family_n_at_change": 27.43,
+      "up_family_n_at_change": 36.925
+    },
+    "A1-Decay.981": {
+      "alarms_per_run": 0.72,
+      "prechange_alarms_per_run": 0.0,
+      "postchange_alarms_per_run": 0.72,
+      "postchange_alarm_up_dir_on_up_family": 117,
+      "postchange_alarm_down_dir_on_down_family": 27,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0.535,
+      "posterior_at_change": {
+        "schema": {
+          "n": 10.99,
+          "mean": 0.2522
+        },
+        "field_value": {
+          "n": 9.126,
+          "mean": 0.2172
+        },
+        "abnormal_exit": {
+          "n": 4.911,
+          "mean": 0.1462
+        },
+        "timeout": {
+          "n": 6.213,
+          "mean": 0.1643
+        },
+        "matcher": {
+          "n": 6.343,
+          "mean": 0.1709
+        },
+        "exec_mismatch": {
+          "n": 6.208,
+          "mean": 0.165
+        }
+      },
+      "max_family_n_at_change": 12.42,
+      "up_family_n_at_change": 18.765
+    },
+    "A2-Decay.95": {
+      "alarms_per_run": 0.63,
+      "prechange_alarms_per_run": 0.0,
+      "postchange_alarms_per_run": 0.63,
+      "postchange_alarm_up_dir_on_up_family": 92,
+      "postchange_alarm_down_dir_on_down_family": 33,
+      "postchange_alarm_other": 1,
+      "runs_with_postchange_alarm_on_up_family": 0.41,
+      "posterior_at_change": {
+        "schema": {
+          "n": 4.23,
+          "mean": 0.2968
+        },
+        "field_value": {
+          "n": 3.87,
+          "mean": 0.2766
+        },
+        "abnormal_exit": {
+          "n": 2.608,
+          "mean": 0.2196
+        },
+        "timeout": {
+          "n": 2.935,
+          "mean": 0.2346
+        },
+        "matcher": {
+          "n": 3.134,
+          "mean": 0.2474
+        },
+        "exec_mismatch": {
+          "n": 3.025,
+          "mean": 0.2326
+        }
+      },
+      "max_family_n_at_change": 5.203,
+      "up_family_n_at_change": 9.094
+    },
+    "A3-AlarmShrink.2": {
+      "alarms_per_run": 0.73,
+      "prechange_alarms_per_run": 0.0,
+      "postchange_alarms_per_run": 0.73,
+      "postchange_alarm_up_dir_on_up_family": 109,
+      "postchange_alarm_down_dir_on_down_family": 37,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0.465,
+      "posterior_at_change": {
+        "schema": {
+          "n": 24.15,
+          "mean": 0.2351
+        },
+        "field_value": {
+          "n": 19.96,
+          "mean": 0.1888
+        },
+        "abnormal_exit": {
+          "n": 8.965,
+          "mean": 0.0926
+        },
+        "timeout": {
+          "n": 12.075,
+          "mean": 0.116
+        },
+        "matcher": {
+          "n": 13.01,
+          "mean": 0.1218
+        },
+        "exec_mismatch": {
+          "n": 11.84,
+          "mean": 0.1126
+        }
+      },
+      "max_family_n_at_change": 27.43,
+      "up_family_n_at_change": 36.925
+    }
+  },
+  "delayed": {
+    "Random": {},
+    "UCB1": {},
+    "SW-UCB": {},
+    "D-UCB": {},
+    "CAVER-v0.3": {
+      "posterior_at_change": {
+        "schema": {
+          "n": 36.6,
+          "mean": 0.2348
+        },
+        "field_value": {
+          "n": 37.845,
+          "mean": 0.2326
+        },
+        "abnormal_exit": {
+          "n": 11.555,
+          "mean": 0.1011
+        },
+        "timeout": {
+          "n": 16.845,
+          "mean": 0.1251
+        },
+        "matcher": {
+          "n": 18.095,
+          "mean": 0.1314
+        },
+        "exec_mismatch": {
+          "n": 14.06,
+          "mean": 0.1121
+        }
+      },
+      "max_family_n_at_change": 47.33,
+      "up_family_n_at_change": 49
+    },
+    "CAVER-v0.6": {
+      "alarms_per_run": 0.44,
+      "prechange_alarms_per_run": 0.145,
+      "postchange_alarms_per_run": 0.295,
+      "postchange_alarm_up_dir_on_up_family": 40,
+      "postchange_alarm_down_dir_on_down_family": 18,
+      "postchange_alarm_other": 1,
+      "runs_with_postchange_alarm_on_up_family": 0.2,
+      "posterior_at_change": {
+        "schema": {
+          "n": 36.775,
+          "mean": 0.2403
+        },
+        "field_value": {
+          "n": 29.755,
+          "mean": 0.184
+        },
+        "abnormal_exit": {
+          "n": 11.935,
+          "mean": 0.0726
+        },
+        "timeout": {
+          "n": 17.07,
+          "mean": 0.1019
+        },
+        "matcher": {
+          "n": 18.13,
+          "mean": 0.1096
+        },
+        "exec_mismatch": {
+          "n": 16.7,
+          "mean": 0.1051
+        }
+      },
+      "max_family_n_at_change": 43.825,
+      "up_family_n_at_change": 51.9
+    },
+    "A1-Decay.981": {
+      "alarms_per_run": 0.525,
+      "prechange_alarms_per_run": 0.105,
+      "postchange_alarms_per_run": 0.42,
+      "postchange_alarm_up_dir_on_up_family": 61,
+      "postchange_alarm_down_dir_on_down_family": 20,
+      "postchange_alarm_other": 3,
+      "runs_with_postchange_alarm_on_up_family": 0.28,
+      "posterior_at_change": {
+        "schema": {
+          "n": 13.413,
+          "mean": 0.261
+        },
+        "field_value": {
+          "n": 10.505,
+          "mean": 0.2145
+        },
+        "abnormal_exit": {
+          "n": 5.114,
+          "mean": 0.1419
+        },
+        "timeout": {
+          "n": 6.08,
+          "mean": 0.1591
+        },
+        "matcher": {
+          "n": 6.785,
+          "mean": 0.1685
+        },
+        "exec_mismatch": {
+          "n": 6.576,
+          "mean": 0.1626
+        }
+      },
+      "max_family_n_at_change": 15.235,
+      "up_family_n_at_change": 19.441
+    },
+    "A2-Decay.95": {
+      "alarms_per_run": 0.485,
+      "prechange_alarms_per_run": 0.055,
+      "postchange_alarms_per_run": 0.43,
+      "postchange_alarm_up_dir_on_up_family": 63,
+      "postchange_alarm_down_dir_on_down_family": 23,
+      "postchange_alarm_other": 0,
+      "runs_with_postchange_alarm_on_up_family": 0.29,
+      "posterior_at_change": {
+        "schema": {
+          "n": 4.554,
+          "mean": 0.311
+        },
+        "field_value": {
+          "n": 3.82,
+          "mean": 0.2753
+        },
+        "abnormal_exit": {
+          "n": 2.578,
+          "mean": 0.2212
+        },
+        "timeout": {
+          "n": 2.954,
+          "mean": 0.2406
+        },
+        "matcher": {
+          "n": 2.985,
+          "mean": 0.2404
+        },
+        "exec_mismatch": {
+          "n": 2.957,
+          "mean": 0.2406
+        }
+      },
+      "max_family_n_at_change": 5.385,
+      "up_family_n_at_change": 8.896
+    },
+    "A3-AlarmShrink.2": {
+      "alarms_per_run": 0.47,
+      "prechange_alarms_per_run": 0.145,
+      "postchange_alarms_per_run": 0.325,
+      "postchange_alarm_up_dir_on_up_family": 46,
+      "postchange_alarm_down_dir_on_down_family": 18,
+      "postchange_alarm_other": 1,
+      "runs_with_postchange_alarm_on_up_family": 0.225,
+      "posterior_at_change": {
+        "schema": {
+          "n": 35.167,
+          "mean": 0.243
+        },
+        "field_value": {
+          "n": 27.966,
+          "mean": 0.1875
+        },
+        "abnormal_exit": {
+          "n": 10.852,
+          "mean": 0.0854
+        },
+        "timeout": {
+          "n": 15.495,
+          "mean": 0.1131
+        },
+        "matcher": {
+          "n": 16.474,
+          "mean": 0.1198
+        },
+        "exec_mismatch": {
+          "n": 15.264,
+          "mean": 0.1161
+        }
+      },
+      "max_family_n_at_change": 40.64,
+      "up_family_n_at_change": 47.233
+    }
+  },
+  "recovery": {
+    "Random": {},
+    "UCB1": {},
+    "SW-UCB": {},
+    "D-UCB": {},
+    "CAVER-v0.3": {
+      "posterior_at_change": {
+        "schema": {
+          "n": 32.955,
+          "mean": 0.2304
+        },
+        "field_value": {
+          "n": 33.49,
+          "mean": 0.2332
+        },
+        "abnormal_exit": {
+          "n": 11.16,
+          "mean": 0.1077
+        },
+        "timeout": {
+          "n": 14.835,
+          "mean": 0.1265
+        },
+        "matcher": {
+          "n": 15.485,
+          "mean": 0.1323
+        },
+        "exec_mismatch": {
+          "n": 12.075,
+          "mean": 0.1123
+        }
+      },
+      "max_family_n_at_change": 43.44,
+      "up_family_n_at_change": 42.395
+    },
+    "CAVER-v0.6": {
+      "alarms_per_run": 0.34,
+      "prechange_alarms_per_run": 0.04,
+      "postchange_alarms_per_run": 0.3,
+      "postchange_alarm_up_dir_on_up_family": 29,
+      "postchange_alarm_down_dir_on_down_family": 26,
+      "postchange_alarm_other": 5,
+      "runs_with_postchange_alarm_on_up_family": 0.14,
+      "posterior_at_change": {
+        "schema": {
+          "n": 34.97,
+          "mean": 0.2271
+        },
+        "field_value": {
+          "n": 27.2,
+          "mean": 0.1776
+        },
+        "abnormal_exit": {
+          "n": 10.695,
+          "mean": 0.08
+        },
+        "timeout": {
+          "n": 14.76,
+          "mean": 0.1033
+        },
+        "matcher": {
+          "n": 16.185,
+          "mean": 0.1137
+        },
+        "exec_mismatch": {
+          "n": 14.705,
+          "mean": 0.1066
+        }
+      },
+      "max_family_n_at_change": 41.2,
+      "up_family_n_at_change": 45.65
+    },
+    "A1-Decay.981": {
+      "alarms_per_run": 0.43,
+      "prechange_alarms_per_run": 0.05,
+      "postchange_alarms_per_run": 0.38,
+      "postchange_alarm_up_dir_on_up_family": 49,
+      "postchange_alarm_down_dir_on_down_family": 21,
+      "postchange_alarm_other": 6,
+      "runs_with_postchange_alarm_on_up_family": 0.24,
+      "posterior_at_change": {
+        "schema": {
+          "n": 13.558,
+          "mean": 0.2519
+        },
+        "field_value": {
+          "n": 10.436,
+          "mean": 0.2207
+        },
+        "abnormal_exit": {
+          "n": 4.874,
+          "mean": 0.1472
+        },
+        "timeout": {
+          "n": 6.054,
+          "mean": 0.1678
+        },
+        "matcher": {
+          "n": 6.333,
+          "mean": 0.1737
+        },
+        "exec_mismatch": {
+          "n": 6.128,
+          "mean": 0.1641
+        }
+      },
+      "max_family_n_at_change": 15.469,
+      "up_family_n_at_change": 18.514
+    },
+    "A2-Decay.95": {
+      "alarms_per_run": 0.45,
+      "prechange_alarms_per_run": 0.015,
+      "postchange_alarms_per_run": 0.435,
+      "postchange_alarm_up_dir_on_up_family": 57,
+      "postchange_alarm_down_dir_on_down_family": 26,
+      "postchange_alarm_other": 4,
+      "runs_with_postchange_alarm_on_up_family": 0.28,
+      "posterior_at_change": {
+        "schema": {
+          "n": 4.793,
+          "mean": 0.3001
+        },
+        "field_value": {
+          "n": 3.816,
+          "mean": 0.2765
+        },
+        "abnormal_exit": {
+          "n": 2.537,
+          "mean": 0.223
+        },
+        "timeout": {
+          "n": 2.893,
+          "mean": 0.2329
+        },
+        "matcher": {
+          "n": 2.979,
+          "mean": 0.2411
+        },
+        "exec_mismatch": {
+          "n": 2.868,
+          "mean": 0.2386
+        }
+      },
+      "max_family_n_at_change": 5.61,
+      "up_family_n_at_change": 8.74
+    },
+    "A3-AlarmShrink.2": {
+      "alarms_per_run": 0.35,
+      "prechange_alarms_per_run": 0.04,
+      "postchange_alarms_per_run": 0.31,
+      "postchange_alarm_up_dir_on_up_family": 30,
+      "postchange_alarm_down_dir_on_down_family": 26,
+      "postchange_alarm_other": 6,
+      "runs_with_postchange_alarm_on_up_family": 0.145,
+      "posterior_at_change": {
+        "schema": {
+          "n": 34.611,
+          "mean": 0.2281
+        },
+        "field_value": {
+          "n": 26.694,
+          "mean": 0.1802
+        },
+        "abnormal_exit": {
+          "n": 10.417,
+          "mean": 0.0839
+        },
+        "timeout": {
+          "n": 14.5,
+          "mean": 0.1069
+        },
+        "matcher": {
+          "n": 15.75,
+          "mean": 0.1163
+        },
+        "exec_mismatch": {
+          "n": 14.347,
+          "mean": 0.1101
+        }
+      },
+      "max_family_n_at_change": 40.42,
+      "up_family_n_at_change": 44.597
+    }
+  }
+}
