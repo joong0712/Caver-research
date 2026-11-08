@@ -202,3 +202,29 @@ Dev ablation (salt `v09dev`, 200 seeds, real table). Δ is unique FALSE_PASS vs 
   No adoption decision is made for them.
 * The final holdout follows §4 and §7: salt `v09final`, seeds 0–299, real table, the 4 legacy
   scenarios plus Agent D's new scenarios, run once.
+
+## Amendment 3 (Lead, before the final holdout)
+
+**Agent D's leakage finding.** caver8 case IDs encode the cohort (for example
+`-eval-shift-`), which could reveal the change point. The lead checked:
+
+1. A source audit of `caver9/temporal.py`, `dual_reward.py`, `exploration.py` and
+   `integration.py` found no parsing of `case_id`. It is only passed to `available()` and
+   `BasePolicy.update` as a dictionary key.
+2. Re-running every candidate through Agent D's harness with opaque IDs (`c000…`) on dev gave
+   the **same** unique FALSE_PASS means as the caver8 harness in all 4 legacy scenarios
+   (`reports/v09/lead/dev_opaque/`).
+
+Conclusion: dev results were not affected by the leak.
+
+**Final command, run once** (the primary table, then the pre-registered secondary 2-rep table;
+each invocation is logged in `reports/v09/final_unseal_log.jsonl`):
+
+```
+CAVER_UNSEAL_FINAL=1 python3 -m caver9.evaluation --salt v09final --unseal-final --seeds 300 --scenarios all \
+  --policies Random Uniform UCB1 SW-UCB D-UCB CAVER-v0.3 CAVER-v0.6 caver9.dual_reward:DualRewardBayes \
+  caver9.exploration:UCBMeanCAVER caver9.temporal:DecayGM caver9.integration:DualRewardUCB caver9.integration:BCNoViolation \
+  --reward-matched --table <table> --output reports/v09/final_real[_2reps] --jobs 2
+```
+
+The adoption decision applies to `B-DR-Bayes` only, via `python3 -m caver9.criteria`.
