@@ -1,0 +1,588 @@
+{
+ "scenarios": {
+  "g_sparse": {
+   "type": "stable",
+   "shift_kind": "sparse_stationary",
+   "description": "stationary, heavy healthy share: only 35% of cases carry a defect (caver8: 80%); train and evaluation from the same regime",
+   "regimes": {
+    "S": {
+     "weights": [
+      0.14,
+      0.22,
+      0.12,
+      0.2,
+      0.16,
+      0.16
+     ],
+     "p_defect": 0.35
+    }
+   },
+   "train_regime": "S",
+   "segments": [
+    [
+     1,
+     90,
+     "eval",
+     "S"
+    ]
+   ],
+   "drift": null,
+   "change_points": [],
+   "up_weighted_families": [],
+   "recovery_horizon_end": [],
+   "recovery_cap": [],
+   "false_alarm_window": [
+    1,
+    90
+   ],
+   "horizon": 90
+  },
+  "g_microdrift": {
+   "type": "stable",
+   "shift_kind": "subthreshold_microdrift",
+   "description": "three fresh cohorts (steps 1-30, 31-60, 61-90) whose weights move by < 0.05 per family: no family is up-weighted, so there is no real shift to react to",
+   "regimes": {
+    "M0": {
+     "weights": [
+      0.2,
+      0.12,
+      0.14,
+      0.18,
+      0.18,
+      0.18
+     ],
+     "p_defect": 0.8
+    },
+    "M1": {
+     "weights": [
+      0.17,
+      0.15,
+      0.17,
+      0.15,
+      0.2,
+      0.16
+     ],
+     "p_defect": 0.8
+    },
+    "M2": {
+     "weights": [
+      0.21,
+      0.11,
+      0.13,
+      0.19,
+      0.17,
+      0.19
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "M0",
+   "segments": [
+    [
+     1,
+     30,
+     "m0",
+     "M0"
+    ],
+    [
+     31,
+     60,
+     "m1",
+     "M1"
+    ],
+    [
+     61,
+     90,
+     "m2",
+     "M2"
+    ]
+   ],
+   "drift": null,
+   "change_points": [],
+   "up_weighted_families": [],
+   "recovery_horizon_end": [],
+   "recovery_cap": [],
+   "false_alarm_window": [
+    1,
+    90
+   ],
+   "horizon": 90
+  },
+  "g_partial2": {
+   "type": "abrupt",
+   "shift_kind": "two_family_swap",
+   "description": "only 2 families change at step 30 (timeout 0.30 -> 0.08, schema 0.08 -> 0.30); the other 4 keep their exact weights",
+   "regimes": {
+    "P0": {
+     "weights": [
+      0.08,
+      0.22,
+      0.12,
+      0.3,
+      0.14,
+      0.14
+     ],
+     "p_defect": 0.8
+    },
+    "P1": {
+     "weights": [
+      0.3,
+      0.22,
+      0.12,
+      0.08,
+      0.14,
+      0.14
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "P0",
+   "segments": [
+    [
+     1,
+     30,
+     "pre",
+     "P0"
+    ],
+    [
+     31,
+     90,
+     "post",
+     "P1"
+    ]
+   ],
+   "drift": null,
+   "change_points": [
+    30
+   ],
+   "up_weighted_families": [
+    [
+     "schema"
+    ]
+   ],
+   "recovery_horizon_end": [
+    90
+   ],
+   "recovery_cap": [
+    61
+   ],
+   "false_alarm_window": [
+    1,
+    30
+   ],
+   "horizon": 90
+  },
+  "g_disappear": {
+   "type": "abrupt",
+   "shift_kind": "disappearing_class",
+   "description": "the most frequent class disappears at step 35: field_value 0.42 -> 0.04, mass spread over schema / abnormal_exit / timeout",
+   "regimes": {
+    "D0": {
+     "weights": [
+      0.08,
+      0.42,
+      0.1,
+      0.12,
+      0.14,
+      0.14
+     ],
+     "p_defect": 0.8
+    },
+    "D1": {
+     "weights": [
+      0.2,
+      0.04,
+      0.2,
+      0.2,
+      0.18,
+      0.18
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "D0",
+   "segments": [
+    [
+     1,
+     35,
+     "pre",
+     "D0"
+    ],
+    [
+     36,
+     90,
+     "post",
+     "D1"
+    ]
+   ],
+   "drift": null,
+   "change_points": [
+    35
+   ],
+   "up_weighted_families": [
+    [
+     "abnormal_exit",
+     "schema",
+     "timeout"
+    ]
+   ],
+   "recovery_horizon_end": [
+    90
+   ],
+   "recovery_cap": [
+    56
+   ],
+   "false_alarm_window": [
+    1,
+    35
+   ],
+   "horizon": 90
+  },
+  "g_pingpong": {
+   "type": "abrupt",
+   "shift_kind": "pingpong_nonbase",
+   "description": "repeated abrupt shifts between two non-W_BASE regimes A and B (A 1-20, B 21-45, A 46-65, B 66-90), each segment a fresh cohort",
+   "regimes": {
+    "A": {
+     "weights": [
+      0.3,
+      0.06,
+      0.26,
+      0.06,
+      0.26,
+      0.06
+     ],
+     "p_defect": 0.8
+    },
+    "B": {
+     "weights": [
+      0.06,
+      0.3,
+      0.06,
+      0.26,
+      0.06,
+      0.26
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "A",
+   "segments": [
+    [
+     1,
+     20,
+     "a1",
+     "A"
+    ],
+    [
+     21,
+     45,
+     "b1",
+     "B"
+    ],
+    [
+     46,
+     65,
+     "a2",
+     "A"
+    ],
+    [
+     66,
+     90,
+     "b2",
+     "B"
+    ]
+   ],
+   "drift": null,
+   "change_points": [
+    20,
+    45,
+    65
+   ],
+   "up_weighted_families": [
+    [
+     "exec_mismatch",
+     "field_value",
+     "timeout"
+    ],
+    [
+     "abnormal_exit",
+     "matcher",
+     "schema"
+    ],
+    [
+     "exec_mismatch",
+     "field_value",
+     "timeout"
+    ]
+   ],
+   "recovery_horizon_end": [
+    45,
+    65,
+    90
+   ],
+   "recovery_cap": [
+    26,
+    21,
+    26
+   ],
+   "false_alarm_window": [
+    1,
+    20
+   ],
+   "horizon": 90
+  },
+  "g_density": {
+   "type": "abrupt",
+   "shift_kind": "density_shift",
+   "description": "defect density and family mix change together at step 25: sparse near-uniform (30% defective) -> dense schema + field_value heavy (90% defective)",
+   "regimes": {
+    "N0": {
+     "weights": [
+      0.16,
+      0.16,
+      0.2,
+      0.16,
+      0.16,
+      0.16
+     ],
+     "p_defect": 0.3
+    },
+    "N1": {
+     "weights": [
+      0.32,
+      0.3,
+      0.1,
+      0.1,
+      0.09,
+      0.09
+     ],
+     "p_defect": 0.9
+    }
+   },
+   "train_regime": "N0",
+   "segments": [
+    [
+     1,
+     25,
+     "pre",
+     "N0"
+    ],
+    [
+     26,
+     90,
+     "post",
+     "N1"
+    ]
+   ],
+   "drift": null,
+   "change_points": [
+    25
+   ],
+   "up_weighted_families": [
+    [
+     "field_value",
+     "schema"
+    ]
+   ],
+   "recovery_horizon_end": [
+    90
+   ],
+   "recovery_cap": [
+    66
+   ],
+   "false_alarm_window": [
+    1,
+    25
+   ],
+   "horizon": 90
+  },
+  "g_sine": {
+   "type": "other",
+   "shift_kind": "sinusoidal_drift",
+   "description": "slow sinusoidal drift between regimes A and B: P(case from B) = 0.5*(1 - cos(2*pi*t/90)), i.e. 0 at t=0, 1 at t=45, back to 0 at t=90; events at the onset (t=8, p=0.08) and at the turn (t=45)",
+   "regimes": {
+    "A": {
+     "weights": [
+      0.24,
+      0.08,
+      0.1,
+      0.26,
+      0.08,
+      0.24
+     ],
+     "p_defect": 0.8
+    },
+    "B": {
+     "weights": [
+      0.08,
+      0.26,
+      0.24,
+      0.08,
+      0.26,
+      0.08
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "A",
+   "segments": [],
+   "drift": {
+    "cohorts": [
+     "a",
+     "A",
+     "b",
+     "B"
+    ],
+    "p_b(t)": "0.5*(1-cos(2*pi*t/90))"
+   },
+   "change_points": [
+    8,
+    45
+   ],
+   "up_weighted_families": [
+    [
+     "abnormal_exit",
+     "field_value",
+     "matcher"
+    ],
+    [
+     "exec_mismatch",
+     "schema",
+     "timeout"
+    ]
+   ],
+   "recovery_horizon_end": [
+    45,
+    90
+   ],
+   "recovery_cap": [
+    38,
+    46
+   ],
+   "false_alarm_window": [
+    1,
+    8
+   ],
+   "horizon": 90
+  },
+  "g_burst": {
+   "type": "other",
+   "shift_kind": "burst_return",
+   "description": "stable regime steps 1-50, an 8-step burst of abnormal_exit + timeout (51-58), then a return to the SAME stable cohort (59-90, cases already partly probed)",
+   "regimes": {
+    "S": {
+     "weights": [
+      0.2,
+      0.2,
+      0.16,
+      0.16,
+      0.14,
+      0.14
+     ],
+     "p_defect": 0.8
+    },
+    "B": {
+     "weights": [
+      0.05,
+      0.05,
+      0.4,
+      0.4,
+      0.05,
+      0.05
+     ],
+     "p_defect": 0.8
+    }
+   },
+   "train_regime": "S",
+   "segments": [
+    [
+     1,
+     50,
+     "base",
+     "S"
+    ],
+    [
+     51,
+     58,
+     "burst",
+     "B"
+    ],
+    [
+     59,
+     90,
+     "base",
+     "S"
+    ]
+   ],
+   "drift": null,
+   "change_points": [
+    50,
+    58
+   ],
+   "up_weighted_families": [
+    [
+     "abnormal_exit",
+     "timeout"
+    ],
+    [
+     "exec_mismatch",
+     "field_value",
+     "matcher",
+     "schema"
+    ]
+   ],
+   "recovery_horizon_end": [
+    58,
+    90
+   ],
+   "recovery_cap": [
+    9,
+    33
+   ],
+   "false_alarm_window": [
+    1,
+    50
+   ],
+   "horizon": 90
+  }
+ },
+ "types": {
+  "stable": [
+   "g_sparse",
+   "g_microdrift"
+  ],
+  "abrupt": [
+   "g_partial2",
+   "g_disappear",
+   "g_pingpong",
+   "g_density"
+  ],
+  "other": [
+   "g_sine",
+   "g_burst"
+  ]
+ },
+ "pools": {
+  "final11": {
+   "name": "final11",
+   "share_v011": 0.35,
+   "share_v010": 0.25
+  },
+  "replay42": {
+   "name": "replay42",
+   "share_v011": 0.0,
+   "share_v010": 0.45
+  },
+  "old": {
+   "name": "old",
+   "share_v011": 0.0,
+   "share_v010": 0.0
+  },
+  "v011only": {
+   "name": "v011only",
+   "share_v011": 1.0,
+   "share_v010": 0.0
+  }
+ }
+}
