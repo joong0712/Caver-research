@@ -227,3 +227,32 @@ exploration, D independent evaluation harness. They did not see each other's wor
    during evaluation only.
 3. **More real evidence.** Real repetitions with different prompts or CLI versions, and a small
    real online pilot (each probe a fresh CLI session) to check that replay conclusions hold.
+
+## 9. v0.9 confirmation study (branch `research/caver-v09-confirm`)
+
+Protocol `docs/V09C_PROTOCOL.md`. Results `docs/V09C_RESULTS.md`.
+
+* **Setup.** C2 `C9-UCBMean` was registered as the single pre-frozen candidate, with a hash
+  manifest covering the candidate, the harness and the tables. New sealed salt `v09c-holdout`
+  (500 seeds), run once. 12 scenarios, 4 of them new. Comparators: Random, UCB1, SW-UCB, D-UCB
+  and v0.6.
+* **[REPLAY] Verdict: 채택 보류 (adoption on hold).** 51/53 checks pass. Both failures are in new
+  scenarios: `c_uniform` vs v0.6 (−0.31 [−0.59, −0.04]) and `c_reverse` vs D-UCB (+0.15
+  [−0.05, 0.35]). Stationary is −0.19 [−0.35, −0.03]: inside the margin but significantly below
+  v0.6.
+* **[REPLAY] Reproduced:** C2's shift advantage (abrupt +0.87 vs v0.6 and +0.42 vs UCB1; delayed
+  +1.34 and +1.10; recovery 4–5 probes faster).
+* **[REAL-OBSERVED]** Live online pilot: 30 fresh runs, 30/30 identical to the stored outcomes,
+  covering 8 configurations, 2 of them FALSE_PASS. That makes 90 consistent real runs in total.
+  Live FALSE_PASS counts (C2 0, v0.6 1, UCB1 2 in 10 probes each) are descriptive only.
+* **[HYPOTHESIS]** C2's time-growing bonus over-explores when family yields are flat (uniform
+  weights, stationary), and training on the wrong cohort (`c_reverse`) levels all learners.
+* **Status.** CAVER v0.6 remains recommended. C2 is a shift specialist, not a uniform improvement.
+
+### Next steps
+
+1. Run a real, larger online comparison with more configurations, so that real observations
+   rather than replay decide the ranking.
+2. Pre-register a conditional rule, for example switching C2's bonus off when the recent yield
+   spread across families is small. Test it on a new salt as a new candidate; C2 itself is not
+   changed.

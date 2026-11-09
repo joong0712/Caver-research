@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 !reports/v09/
 .claude/worktrees/
+!reports/v09c/

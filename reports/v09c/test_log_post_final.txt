@@ -1,0 +1,252 @@
+# test log after final evaluation, 2026-11-09T05:49:17Z, commit 01daa46
+test_runner_with_mock_cli_and_oracle (test_live_runner_contract.IntegrationContractTests.test_runner_with_mock_cli_and_oracle) ... ok
+test_detector_abrupt_change (test_policies.AlgorithmTests.test_detector_abrupt_change) ... ok
+test_detector_stable_does_not_alarm (test_policies.AlgorithmTests.test_detector_stable_does_not_alarm) ... ok
+test_end_to_end_is_deterministic (test_policies.AlgorithmTests.test_end_to_end_is_deterministic) ... ok
+test_frozen_never_updates_monitor (test_policies.AlgorithmTests.test_frozen_never_updates_monitor) ... ok
+test_guard_resets_on_change (test_policies.AlgorithmTests.test_guard_resets_on_change) ... ok
+test_no_duplicate_family_before_exhaustion (test_policies.AlgorithmTests.test_no_duplicate_family_before_exhaustion) ... ok
+test_policies_no_access_to_hidden_case_labels (test_policies.AlgorithmTests.test_policies_no_access_to_hidden_case_labels) ... ok
+test_schedules_matched_and_reproducible (test_policies.AlgorithmTests.test_schedules_matched_and_reproducible) ... ok
+test_exit2_blocks_even_with_allow (test_protocol.ProtocolTests.test_exit2_blocks_even_with_allow) ... ok
+test_json_deny (test_protocol.ProtocolTests.test_json_deny) ... ok
+test_onfailure_block_for_exit_nonzero (test_protocol.ProtocolTests.test_onfailure_block_for_exit_nonzero) ... ok
+test_onfailure_block_for_malformed_json (test_protocol.ProtocolTests.test_onfailure_block_for_malformed_json) ... ok
+test_onfailure_block_for_timeout (test_protocol.ProtocolTests.test_onfailure_block_for_timeout) ... ok
+test_permission_ask_is_not_dispatch (test_protocol.ProtocolTests.test_permission_ask_is_not_dispatch) ... ok
+test_safe_guard_contract (test_protocol.ProtocolTests.test_safe_guard_contract) ... ok
+test_top_level_deny_not_decision (test_protocol.ProtocolTests.test_top_level_deny_not_decision) ... ok
+test_true_subprocess_and_independent_oracle (test_protocol.ProtocolTests.test_true_subprocess_and_independent_oracle) ... ok
+test_wrong_schema_modelled_no_decision (test_protocol.ProtocolTests.test_wrong_schema_modelled_no_decision) ... ok
+test_all_other_commands_denied (test_real_bridge.RealBridgeTests.test_all_other_commands_denied) ... ok
+test_bad_schema_weak_pass (test_real_bridge.RealBridgeTests.test_bad_schema_weak_pass) ... ok
+test_cli_error_is_not_hook_success (test_real_bridge.RealBridgeTests.test_cli_error_is_not_hook_success) ... ok
+test_correct_attempt_no_side_effect (test_real_bridge.RealBridgeTests.test_correct_attempt_no_side_effect) ... ok
+test_false_pass_independent_marker (test_real_bridge.RealBridgeTests.test_false_pass_independent_marker) ... ok
+test_inconclusive_no_attempt (test_real_bridge.RealBridgeTests.test_inconclusive_no_attempt) ... ok
+test_valid_deny_schema (test_real_bridge.RealBridgeTests.test_valid_deny_schema) ... ok
+test_no_alarm_without_eval (test_v06.ConfirmedDetectorTests.test_no_alarm_without_eval) ... ok
+test_reversal_in_confirmation_cancels_alarm (test_v06.ConfirmedDetectorTests.test_reversal_in_confirmation_cancels_alarm) ... ok
+test_same_direction_two_batches (test_v06.ConfirmedDetectorTests.test_same_direction_two_batches) ... ok
+test_stable_no_alarm (test_v06.ConfirmedDetectorTests.test_stable_no_alarm) ... ok
+test_unknown_family_rejected (test_v06.ConfirmedDetectorTests.test_unknown_family_rejected) ... ok
+test_combined_has_confirmation_and_local_reset (test_v06.ObservedRiskHypothesisTests.test_combined_has_confirmation_and_local_reset) ... ok
+test_no_risk_updates_in_frozen_eval (test_v06.ObservedRiskHypothesisTests.test_no_risk_updates_in_frozen_eval) ... ok
+test_risk_learning_uses_observed_violation (test_v06.ObservedRiskHypothesisTests.test_risk_learning_uses_observed_violation) ... ok
+test_risk_select_preference_is_not_hidden_input (test_v06.ObservedRiskHypothesisTests.test_risk_select_preference_is_not_hidden_input) ... ok
+test_all_policies_exhaust_families_before_repeat (test_v06.PolicyTests.test_all_policies_exhaust_families_before_repeat) ... ok
+test_confirmed_global_reset (test_v06.PolicyTests.test_confirmed_global_reset) ... ok
+test_frozen_never_updates_detector (test_v06.PolicyTests.test_frozen_never_updates_detector) ... ok
+test_independent_schedules_reproducible (test_v06.PolicyTests.test_independent_schedules_reproducible) ... ok
+test_local_reset_keeps_other_family (test_v06.PolicyTests.test_local_reset_keeps_other_family) ... ok
+test_policies_never_see_hidden_labels (test_v06.PolicyTests.test_policies_never_see_hidden_labels) ... ok
+test_run_seed_deterministic (test_v06.PolicyTests.test_run_seed_deterministic) ... ok
+test_dev_and_holdout_are_disjoint_and_deterministic (test_v08_algorithms.BenchmarkTests.test_dev_and_holdout_are_disjoint_and_deterministic) ... ok
+test_policies_receive_only_ids_arms_and_observations (test_v08_algorithms.BenchmarkTests.test_policies_receive_only_ids_arms_and_observations) ... ok
+test_regression_against_committed_dev_round1 (test_v08_algorithms.BenchmarkTests.test_regression_against_committed_dev_round1) ... /home/user/Caver-research/tests/test_v08_algorithms.py:109: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/user/Caver-research/reports/v08/dev_round1/runs.csv' mode='r' encoding='utf-8'>
+  committed = [r for r in csv.DictReader(open(ROOT / 'reports/v08/dev_round1/runs.csv'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_table_must_be_complete_and_kind_is_propagated (test_v08_algorithms.BenchmarkTests.test_table_must_be_complete_and_kind_is_propagated) ... ok
+test_glr_detects_large_abrupt_change_and_rebaselines (test_v08_algorithms.DetectorTests.test_glr_detects_large_abrupt_change_and_rebaselines) ... ok
+test_glr_quiet_on_stationary_stream (test_v08_algorithms.DetectorTests.test_glr_quiet_on_stationary_stream) ... ok
+test_threshold_grows_with_n (test_v08_algorithms.DetectorTests.test_threshold_grows_with_n) ... ok
+test_a_and_ab_use_glr_detector (test_v08_algorithms.PolicyTests.test_a_and_ab_use_glr_detector) ... ok
+test_severity_reward_values (test_v08_algorithms.PolicyTests.test_severity_reward_values) ... ok
+test_tempering_scales_training_posterior (test_v08_algorithms.PolicyTests.test_tempering_scales_training_posterior) ... ok
+test_command_deviation_is_inconclusive (test_v08_live.LiveLayerTests.test_command_deviation_is_inconclusive) ... ok
+test_mock_interpretation_model (test_v08_live.LiveLayerTests.test_mock_interpretation_model) ... ok
+test_mock_timeout_variant_is_false_pass (test_v08_live.LiveLayerTests.test_mock_timeout_variant_is_false_pass) ... ok
+test_mock_trials_are_labelled_simulated_and_classified (test_v08_live.LiveLayerTests.test_mock_trials_are_labelled_simulated_and_classified) ... ok
+test_no_attempt_is_inconclusive_not_safe (test_v08_live.LiveLayerTests.test_no_attempt_is_inconclusive_not_safe) ... ok
+test_real_runs_refuse_without_cost_approval (test_v08_live.LiveLayerTests.test_real_runs_refuse_without_cost_approval) ... ok
+test_six_families_four_variants_and_healthy (test_v08_live.LiveLayerTests.test_six_families_four_variants_and_healthy) ... ok
+test_trusted_observer_hook_is_independent_of_target_matcher (test_v08_live.LiveLayerTests.test_trusted_observer_hook_is_independent_of_target_matcher) ... ok
+test_weak_test_passes_on_misplaced_schema_and_fails_on_silent_crash (test_v08_live.LiveLayerTests.test_weak_test_passes_on_misplaced_schema_and_fails_on_silent_crash) ... ok
+test_compare_refuses_swapped_tables (test_v08_real_data.RealTableTests.test_compare_refuses_swapped_tables) ... ok
+test_comparison_categories (test_v08_real_data.RealTableTests.test_comparison_categories) ... ok
+test_false_pass_requires_independent_evidence (test_v08_real_data.RealTableTests.test_false_pass_requires_independent_evidence) ... ok
+test_no_model_text_committed (test_v08_real_data.RealTableTests.test_no_model_text_committed) ... ok
+test_real_table_is_complete_real_and_subscription (test_v08_real_data.RealTableTests.test_real_table_is_complete_real_and_subscription) ... ok
+test_api_key_source_reported_by_cli_stops_subscription_mode (test_v08_run_controls.RunControlTests.test_api_key_source_reported_by_cli_stops_subscription_mode) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_api_mode_reserve_and_budget_flag (test_v08_run_controls.RunControlTests.test_api_mode_reserve_and_budget_flag) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_api_mode_stops_when_cost_not_reported (test_v08_run_controls.RunControlTests.test_api_mode_stops_when_cost_not_reported) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_max_runs_stops_and_resume_never_reruns (test_v08_run_controls.RunControlTests.test_max_runs_stops_and_resume_never_reruns) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/missing_decision             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/capitalized_deny             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/block_value                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/allow_instead                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/crash_silent               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit1            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_kill137          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit2            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_deny                        NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/deny_then_hang                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_silent                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_within_limit                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/lowercase_matcher                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/wrong_tool_matcher               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/permission_rule_syntax           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/internal_lowercase_check         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/dot_slash                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/double_space               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/env_prefix                 NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/cd_chain                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/healthy                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_parse_stream_json (test_v08_run_controls.RunControlTests.test_parse_stream_json) ... ok
+test_runs_all_30_once_each_without_duplicates (test_v08_run_controls.RunControlTests.test_runs_all_30_once_each_without_duplicates) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/missing_decision             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/capitalized_deny             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/block_value                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/allow_instead                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/crash_silent               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit1            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_kill137          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit2            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_deny                        NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/deny_then_hang                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_silent                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_within_limit                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/lowercase_matcher                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/wrong_tool_matcher               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/permission_rule_syntax           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/internal_lowercase_check         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/dot_slash                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/double_space               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/env_prefix                 NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/cd_chain                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/healthy                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_subscription_refuses_api_key_or_third_party_provider (test_v08_run_controls.RunControlTests.test_subscription_refuses_api_key_or_third_party_provider) ... ok
+test_subscription_requires_valid_max_runs (test_v08_run_controls.RunControlTests.test_subscription_requires_valid_max_runs) ... ok
+test_two_consecutive_cli_errors_stop (test_v08_run_controls.RunControlTests.test_two_consecutive_cli_errors_stop) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_usage_limit_stops_gracefully_and_saves (test_v08_run_controls.RunControlTests.test_usage_limit_stops_gracefully_and_saves) ... [real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+ok
+test_exit_codes_and_invocation_recorded_through_wrapper (test_v08_run_controls.WrapperTests.test_exit_codes_and_invocation_recorded_through_wrapper) ... ok
+test_combined_ucb_reward (test_v09_dual_reward.FairUCBTests.test_combined_ucb_reward) ... ok
+test_newfp_ucb_ignores_violation_reward (test_v09_dual_reward.FairUCBTests.test_newfp_ucb_ignores_violation_reward) ... ok
+test_criteria_logic (test_v09_dual_reward.HarnessTests.test_criteria_logic) ... ok
+test_disc_only_v06_reproduces_caver_v06 (test_v09_dual_reward.HarnessTests.test_disc_only_v06_reproduces_caver_v06) ... ok
+test_forbidden_salts_refused (test_v09_dual_reward.HarnessTests.test_forbidden_salts_refused) ... ok
+test_instrumentation_is_behaviour_neutral (test_v09_dual_reward.HarnessTests.test_instrumentation_is_behaviour_neutral) ... ok
+test_norm_entropy (test_v09_dual_reward.HarnessTests.test_norm_entropy) ... ok
+test_run_task_fields (test_v09_dual_reward.HarnessTests.test_run_task_fields) ... ok
+test_harness_passes_only_observable_primitives (test_v09_dual_reward.InformationHygieneTests.test_harness_passes_only_observable_primitives) ... ok
+test_observe_outcome_rejects_non_booleans (test_v09_dual_reward.InformationHygieneTests.test_observe_outcome_rejects_non_booleans) ... ok
+test_policies_hold_no_hidden_state_references (test_v09_dual_reward.InformationHygieneTests.test_policies_hold_no_hidden_state_references) ... ok
+test_bayes_score_is_weighted_sum (test_v09_dual_reward.ModelTests.test_bayes_score_is_weighted_sum) ... ok
+test_constants_are_the_preregistered_starting_values (test_v09_dual_reward.ModelTests.test_constants_are_the_preregistered_starting_values) ... ok
+test_discovery_model_is_beta_posterior (test_v09_dual_reward.ModelTests.test_discovery_model_is_beta_posterior) ... ok
+test_exhaustion_rule_inherited (test_v09_dual_reward.ModelTests.test_exhaustion_rule_inherited) ... ok
+test_learn_false_only_tracks_visits (test_v09_dual_reward.ModelTests.test_learn_false_only_tracks_visits) ... ok
+test_recent_model_tracks_a_rate_increase_faster (test_v09_dual_reward.ModelTests.test_recent_model_tracks_a_rate_increase_faster) ... ok
+test_ts_combines_weighted_draws (test_v09_dual_reward.ModelTests.test_ts_combines_weighted_draws) ... ok
+test_unique_names (test_v09_dual_reward.ModelTests.test_unique_names) ... ok
+test_violation_model_discounts_all_arms_and_bounds_memory (test_v09_dual_reward.ModelTests.test_violation_model_discounts_all_arms_and_bounds_memory) ... ok
+test_duplicate_names_refused (test_v09_evaluation.BudgetAndInterface.test_duplicate_names_refused) ... ok
+test_every_policy_gets_exactly_train_plus_eval_probes (test_v09_evaluation.BudgetAndInterface.test_every_policy_gets_exactly_train_plus_eval_probes) ... ok
+test_interface_violations_raise (test_v09_evaluation.BudgetAndInterface.test_interface_violations_raise) ... ok
+test_policy_specs (test_v09_evaluation.BudgetAndInterface.test_policy_specs) ... ok
+test_discounting_forgets (test_v09_evaluation.DUCB.test_discounting_forgets) ... ok
+test_gamma_one_xi_half_equals_ucb1 (test_v09_evaluation.DUCB.test_gamma_one_xi_half_equals_ucb1) ... ok
+test_predeclared_constants (test_v09_evaluation.DUCB.test_predeclared_constants) ... ok
+test_reward_matched_signal (test_v09_evaluation.DUCB.test_reward_matched_signal) ... ok
+test_deterministic_and_jobs_invariant (test_v09_evaluation.DeterminismAndLegacy.test_deterministic_and_jobs_invariant) ... ok
+test_legacy_scenarios_reproduce_caver8_exactly (test_v09_evaluation.DeterminismAndLegacy.test_legacy_scenarios_reproduce_caver8_exactly) ... ok
+test_opaque_ids_do_not_change_baseline_results (test_v09_evaluation.DeterminismAndLegacy.test_opaque_ids_do_not_change_baseline_results) ... ok
+test_case_id_leak_is_closed (test_v09_evaluation.InformationHygiene.test_case_id_leak_is_closed) ... ok
+test_policy_sees_only_interface_fields (test_v09_evaluation.InformationHygiene.test_policy_sees_only_interface_fields) ... ok
+test_labels_and_files (test_v09_evaluation.Reporting.test_labels_and_files) ... ok
+test_dev_then_final_in_one_process_refused (test_v09_evaluation.SaltMixing.test_dev_then_final_in_one_process_refused) ... ok
+test_one_salt_per_call (test_v09_evaluation.SaltMixing.test_one_salt_per_call) ... ok
+test_new_scenarios_define_change_points (test_v09_evaluation.Scenarios.test_new_scenarios_define_change_points) ... ok
+test_schedules_switch_cohort_at_change_points (test_v09_evaluation.Scenarios.test_schedules_switch_cohort_at_change_points) ... ok
+test_final_salt_refused_without_env_and_flag (test_v09_evaluation.SealedFinal.test_final_salt_refused_without_env_and_flag) ... ok
+test_final_schedules_and_cli_refused (test_v09_evaluation.SealedFinal.test_final_schedules_and_cli_refused) ... ok
+test_unseal_mechanism_on_fake_sealed_salt (test_v09_evaluation.SealedFinal.test_unseal_mechanism_on_fake_sealed_salt) ... ok
+test_entropy_and_caps (test_v09_exploration.TestHarness.test_entropy_and_caps) ... ok
+test_forbidden_salts_refused (test_v09_exploration.TestHarness.test_forbidden_salts_refused) ... ok
+test_run_one_rows (test_v09_exploration.TestHarness.test_run_one_rows) ... ok
+test_no_hidden_state_reaches_policy (test_v09_exploration.TestInformationHygiene.test_no_hidden_state_reaches_policy) ... ok
+test_update_receives_only_str_str_bool_bool (test_v09_exploration.TestInformationHygiene.test_update_receives_only_str_str_bool_bool) ... ok
+test_adaptive_epsilon (test_v09_exploration.TestMechanisms.test_adaptive_epsilon) ... ok
+test_fixed_eps_and_epsilon_only_in_evaluation (test_v09_exploration.TestMechanisms.test_fixed_eps_and_epsilon_only_in_evaluation) ... ok
+test_local_reset_on_alarm (test_v09_exploration.TestMechanisms.test_local_reset_on_alarm) ... ok
+test_names_unique_and_constants (test_v09_exploration.TestMechanisms.test_names_unique_and_constants) ... ok
+test_recency_terms (test_v09_exploration.TestMechanisms.test_recency_terms) ... ok
+test_select_respects_per_case_exhaustion (test_v09_exploration.TestMechanisms.test_select_respects_per_case_exhaustion) ... ok
+test_silent_detector_never_alarms (test_v09_exploration.TestMechanisms.test_silent_detector_never_alarms) ... ok
+test_ucb_bonus_grows_for_neglected_arm (test_v09_exploration.TestMechanisms.test_ucb_bonus_grows_for_neglected_arm) ... ok
+test_ucbmean_untested_first_and_formula (test_v09_exploration.TestMechanisms.test_ucbmean_untested_first_and_formula) ... ok
+test_default_configuration_equals_caver_v06 (test_v09_exploration.TestReproducesV06.test_default_configuration_equals_caver_v06) ... ok
+test_instrumentation_preserves_behaviour (test_v09_exploration.TestReproducesV06.test_instrumentation_preserves_behaviour) ... ok
+test_all_pass (test_v09_lead.CriteriaTests.test_all_pass) ... ok
+test_recovery_ci_touching_zero_fails (test_v09_lead.CriteriaTests.test_recovery_ci_touching_zero_fails) ... ok
+test_stationary_margin (test_v09_lead.CriteriaTests.test_stationary_margin) ... ok
+test_committed_final_verdict (test_v09_lead.FinalVerdictRegression.test_committed_final_verdict) ... ok
+test_final_salt_unsealed_exactly_twice_with_frozen_commit (test_v09_lead.FinalVerdictRegression.test_final_salt_unsealed_exactly_twice_with_frozen_commit) ... ok
+test_ablation_ignores_violation_model (test_v09_lead.IntegrationTests.test_ablation_ignores_violation_model) ... ok
+test_unprobed_arms_first_and_update_signature (test_v09_lead.IntegrationTests.test_unprobed_arms_first_and_update_signature) ... ok
+test_predeclared_constants (test_v09_temporal.TestConstants.test_predeclared_constants) ... ok
+test_unique_names (test_v09_temporal.TestConstants.test_unique_names) ... ok
+test_alarm_shrink_only_on_alarm (test_v09_temporal.TestDecayMechanics.test_alarm_shrink_only_on_alarm) ... ok
+test_continuous_decay_scales_all_families (test_v09_temporal.TestDecayMechanics.test_continuous_decay_scales_all_families) ... ok
+test_no_decay_when_frozen (test_v09_temporal.TestDecayMechanics.test_no_decay_when_frozen) ... ok
+test_discounting (test_v09_temporal.TestDiscountedUCB.test_discounting) ... ok
+test_respects_case_exhaustion (test_v09_temporal.TestDiscountedUCB.test_respects_case_exhaustion) ... ok
+test_untested_first_and_index (test_v09_temporal.TestDiscountedUCB.test_untested_first_and_index) ... ok
+test_base_reproduces_v06_run_for_run (test_v09_temporal.TestEquivalenceToV06.test_base_reproduces_v06_run_for_run) ... ok
+test_decay_candidates_actually_differ_from_v06 (test_v09_temporal.TestEquivalenceToV06.test_decay_candidates_actually_differ_from_v06) ... ok
+test_recording_wrapper_is_transparent (test_v09_temporal.TestEquivalenceToV06.test_recording_wrapper_is_transparent) ... ok
+test_dev_script_refuses_other_salts (test_v09_temporal.TestInformationHygiene.test_dev_script_refuses_other_salts) ... ok
+test_no_hidden_channels (test_v09_temporal.TestInformationHygiene.test_no_hidden_channels) ... ok
+test_update_and_select_argument_types (test_v09_temporal.TestInformationHygiene.test_update_and_select_argument_types) ... ok
+test_policies_see_only_opaque_ids (test_v09c.LeakageTests.test_policies_see_only_opaque_ids) ... ok
+test_smoke_evaluation_runs_with_all_comparators (test_v09c.LeakageTests.test_smoke_evaluation_runs_with_all_comparators) ... ok
+test_committed_manifest_matches_current_files (test_v09c.ManifestTests.test_committed_manifest_matches_current_files) ... ok
+test_tampering_is_detected (test_v09c.ManifestTests.test_tampering_is_detected) ... ok
+test_cap_and_overwrite_guards (test_v09c.OnlinePilotTests.test_cap_and_overwrite_guards) ... ok
+test_mock_pilot_pipeline (test_v09c.OnlinePilotTests.test_mock_pilot_pipeline) ... [simulated] C9-UCBMean   step  1 schema/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] C9-UCBMean   step  2 schema/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] UCB1         step  1 timeout/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] UCB1         step  2 field_value/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+ok
+test_real_mode_refuses_without_subscription (test_v09c.OnlinePilotTests.test_real_mode_refuses_without_subscription) ... ok
+test_all_12_scenarios_have_exact_budget_and_events (test_v09c.ScenarioTests.test_all_12_scenarios_have_exact_budget_and_events) ... ok
+test_new_scenario_definitions (test_v09c.ScenarioTests.test_new_scenario_definitions) ... ok
+test_only_study_salts_and_smoke_cap (test_v09c.SealingTests.test_only_study_salts_and_smoke_cap) ... ok
+test_real_holdout_refused_without_unseal_and_never_overwritten (test_v09c.SealingTests.test_real_holdout_refused_without_unseal_and_never_overwritten) ... ok
+test_sealed_salt_needs_env_and_flag (test_v09c.SealingTests.test_sealed_salt_needs_env_and_flag) ... ok
+test_unseal_is_logged_and_only_once (test_v09c.SealingTests.test_unseal_is_logged_and_only_once) ... ok
+test_decisions (test_v09c.VerdictTests.test_decisions) ... ok
+
+----------------------------------------------------------------------
+Ran 169 tests in 11.201s
+
+OK
