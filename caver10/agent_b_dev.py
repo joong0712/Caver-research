@@ -38,6 +38,10 @@ V06 = 'CAVER-v0.6'
 BASELINE_SPECS = ('Random', 'UCB1', 'SW-UCB', 'D-UCB', V06, 'caver9.exploration:UCBMeanCAVER')
 CANDIDATE_SPECS = ('caver10.adaptive:EvidenceUCB', 'caver10.adaptive:VarUCB', 'caver10.adaptive:HybridUCB')
 REFERENCES = (V06, C2, 'UCB1', 'Random', 'SW-UCB', 'D-UCB')
+# post-hoc exploratory set (added after the predeclared dev run; never eligible for nomination)
+POSTHOC_SPECS = (V06, 'caver9.exploration:UCBMeanCAVER', 'caver10.adaptive:EvidenceUCB',
+                 'caver10.adaptive:PHEvidenceNoCusum', 'caver10.adaptive:PHEvidenceNoEvalStart')
+POSTHOC_OUT = ROOT / 'reports/v010/agent_b/posthoc'
 
 # dev scenario types for the predeclared rule (docs/V010_AGENT_B.md section 4)
 STATIONARY_TYPE = ('stationary',)
@@ -90,7 +94,7 @@ def _task(task):
     runs, diags = [], []
     for s in specs:
         cls = ev.resolve_policy(s)
-        if s in CANDIDATE_SPECS:
+        if s in CANDIDATE_SPECS or s in POSTHOC_SPECS[2:]:
             holder: list = []
             runs.append(ev.run_one(instrumented(cls, holder), salt, seed, scenario, table, train, hold, sd))
             diags.append({'seed': seed, 'scenario': scenario, 'policy': cls.name, **_diag(holder[0])})
@@ -212,7 +216,7 @@ def evaluate(*, salt: str = DEV_SALT, seeds=SEEDS, scenarios=SCENARIOS, jobs: in
         for n in names:
             if ev.SCENARIO_DEFS[sc].events:
                 summary[sc][n]['recovery_km_median'] = recovery_km(run_dicts, sc, n)
-    cand_names = [ev.resolve_policy(s).name for s in specs if s in CANDIDATE_SPECS]
+    cand_names = [ev.resolve_policy(s).name for s in specs if s in CANDIDATE_SPECS or s in POSTHOC_SPECS[2:]]
     diag_summary = {}
     for sc in scenarios:
         for n in cand_names:
@@ -237,7 +241,7 @@ def evaluate(*, salt: str = DEV_SALT, seeds=SEEDS, scenarios=SCENARIOS, jobs: in
             'git_commit': ev._git_commit(), 'wall_seconds': round(time.time() - t0, 1), 'jobs': jobs,
             'argv': sys.argv}
     rep = {'meta': meta, 'summary': summary, 'runs': run_dicts, 'diagnostics': diag_summary}
-    if cand_names and set(REFERENCES) <= set(names):
+    if cand_names and set(REFERENCES) <= set(names) and set(SCENARIOS) <= set(scenarios):
         rep['selection'] = apply_rule(summary, cand_names)
     return rep
 
@@ -328,11 +332,18 @@ def main(argv=None):
     p = argparse.ArgumentParser(description='CAVER v0.10 Agent B dev run (salt v010dev only)')
     p.add_argument('--seeds', type=int, default=300)
     p.add_argument('--jobs', type=int, default=2)
-    p.add_argument('--output', type=Path, default=OUT)
+    p.add_argument('--output', type=Path, default=None)
+    p.add_argument('--posthoc', action='store_true', help='post-hoc ablations (not eligible; no selection)')
     a = p.parse_args(argv)
     if a.seeds > 300:
         raise ValueError('dev seeds are 0-299')
-    rep = evaluate(seeds=range(a.seeds), jobs=a.jobs)
+    if a.posthoc:
+        rep = evaluate(seeds=range(a.seeds), jobs=a.jobs, specs=POSTHOC_SPECS)
+        rep['meta']['label'] = 'POST-HOC exploratory ablations; added after the predeclared dev run; not eligible'
+        a.output = a.output or POSTHOC_OUT
+    else:
+        rep = evaluate(seeds=range(a.seeds), jobs=a.jobs)
+        a.output = a.output or OUT
     save(rep, a.output)
     sel = rep.get('selection', {})
     print('saved', a.output, 'wall', rep['meta']['wall_seconds'], 's; nominated:', sel.get('nominated'))

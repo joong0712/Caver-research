@@ -52,6 +52,7 @@ class AdaptiveCUCB(UCBMeanCAVER):
     CUSUM_RHO = 0.3
     CUSUM_H = 2.0
     P0_FLOOR = 0.02
+    EVAL_START_EVENT = True      # begin_evaluation counts as an evidence event (all predeclared classes)
 
     def __init__(self, rng):
         super().__init__(rng)
@@ -76,7 +77,10 @@ class AdaptiveCUCB(UCBMeanCAVER):
         p1 = self.CUSUM_RHO * self.p0
         self._llr_hit = math.log(p1 / self.p0)
         self._llr_miss = math.log((1.0 - p1) / (1.0 - self.p0))
-        self._event('eval_start')
+        if self.EVAL_START_EVENT:
+            self._event('eval_start')
+        else:
+            self.cusum = 0.0
 
     def update(self, case_id: str, arm: str, violated: bool, newly_found: bool, learn: bool = True) -> None:
         in_eval = self.detector.in_evaluation
@@ -161,3 +165,21 @@ class HybridUCB(AdaptiveCUCB):
 
 
 CANDIDATES = (EvidenceUCB, VarUCB, HybridUCB)
+
+
+# ==== POST-HOC ablations (added AFTER the predeclared dev run; NOT eligible for nomination) ====
+# Purpose: attribute B1's dev behaviour to its evidence sources (docs/V010_AGENT_B.md section 8).
+
+class PHEvidenceNoCusum(EvidenceUCB):
+    """PH1 (post-hoc): B1 without the yield-drop CUSUM (events: cohort switch, detector alarm)."""
+    name = 'PH-B1-NoCUSUM'
+    CUSUM_H = float('inf')
+
+
+class PHEvidenceNoEvalStart(EvidenceUCB):
+    """PH2 (post-hoc): B1 without the cohort-switch event (purely reactive: detector + CUSUM)."""
+    name = 'PH-B1-NoEvalStart'
+    EVAL_START_EVENT = False
+
+
+POST_HOC = (PHEvidenceNoCusum, PHEvidenceNoEvalStart)
