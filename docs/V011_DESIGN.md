@@ -101,3 +101,13 @@ for approval.
 * Isolated directories outside the repo; marker-only side effect.
 * Results are labelled **REAL-OBSERVED**. Replay of stored outcomes is labelled **REPLAY**. The two
   are never mixed in one metric without a label.
+
+## Amendment 1: real CLI approval (recorded before any real run)
+
+The user approved real CLI measurement of Agent D's new defect variants:
+
+* **at most 36 runs** (each new config ×2 plus 6 healthy controls ×2);
+* estimate US$0.70–0.90 API-equivalent (about US$0.025 per run, from v0.10 R1), deducted from
+  subscription plan usage;
+* subscription OAuth only;
+* stop and keep results on a usage limit, a non-`none` `apiKeySource`, or two consecutive CLI errors.
