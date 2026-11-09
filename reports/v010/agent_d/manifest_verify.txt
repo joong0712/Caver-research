@@ -1,0 +1,2 @@
+manifest OK /home/user/Caver-research/.claude/worktrees/agent-a8941f598042a6cfb/reports/v010/freeze_manifest.json
+exit=0

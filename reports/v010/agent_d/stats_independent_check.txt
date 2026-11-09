@@ -1,0 +1,13 @@
+bindings: {"stationary": ["f_stat_skew", "f_stat_flat"], "flat_shift": ["f_flat_shift"], "abrupt": ["f_abrupt_boundary", "f_abrupt_after"], "all": ["f_stat_skew", "f_stat_flat", "f_abrupt_boundary", "f_abrupt_after", "f_flat_shift", "f_spike", "f_gradual"], "false_alarm": ["f_stat_skew", "f_stat_flat", "f_abrupt_after", "f_flat_shift", "f_spike", "f_gradual"]}
+independent checks (excluding RV): 48  report checks (excluding RV): 48
+pass/fail agree: True  values agree (report rounds to 4 dp; tol 5e-5): True
+independent failed criteria: ['G', 'K2', 'S1', 'S2']  report failed: ['S1', 'S2', 'K2', 'G']
+IUT verdict: adopt iff no criterion fails -> on hold ; report adopt = False
+  FAILED S1 f_flat_shift -0.3657
+  FAILED S2 f_stat_flat -0.0503
+  FAILED K2 f_abrupt_boundary 5.2001
+  FAILED K2 f_abrupt_after 1.6275
+  FAILED G f_gradual -0.7847
+holm comparisons: 72  independent Holm == report p_holm: True
+spot p f_abrupt_boundary|C9-UCBMean|recovery_steps recomputed 0.0058887089046991675 report 0.0058887089046991675
+expected Holm family = 7 scenarios x 6 refs (FP) + 5 event scenarios x 6 refs (recovery) = 72

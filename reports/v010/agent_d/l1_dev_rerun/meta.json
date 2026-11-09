@@ -1,0 +1,91 @@
+{
+ "evidence_type": "REPLAY of stored real outcomes (not new real observations)",
+ "data_label": "real-table replay",
+ "outcome_table_cli_kind": "real",
+ "independent_real_cli_runs": false,
+ "independent_real_cli_runs_note": "This harness never executes the Claude CLI. Every number here replays recorded outcomes; independent real CLI runs are produced only by caver8.live and are NOT part of this report.",
+ "recorded_observations_per_config": [
+  1
+ ],
+ "replay_caveat": "Replay draws the same 30 recorded outcomes ([1] per configuration) again and again. Seed CIs capture schedule and policy randomness only, NOT the uncertainty of the recorded observations themselves.",
+ "table_path": "reports/v08/outcome_table_real.json",
+ "salt": "v010dev",
+ "seeds": [
+  0,
+  299
+ ],
+ "n_seeds": 300,
+ "scenarios": [
+  "stationary",
+  "abrupt",
+  "delayed",
+  "recovery",
+  "gradual",
+  "early",
+  "double",
+  "single",
+  "c_late",
+  "c_reverse",
+  "c_oscillate",
+  "c_uniform"
+ ],
+ "scenario_types_for_rule": {
+  "stationary_type": [
+   "stationary"
+  ],
+  "flat_shift": [
+   "c_uniform"
+  ],
+  "abrupt_type": [
+   "abrupt",
+   "delayed",
+   "early",
+   "single",
+   "c_late",
+   "c_reverse"
+  ],
+  "other": [
+   "recovery",
+   "gradual",
+   "double",
+   "c_oscillate"
+  ]
+ },
+ "policies": [
+  "Random",
+  "UCB1",
+  "SW-UCB",
+  "D-UCB",
+  "CAVER-v0.6",
+  "C9-UCBMean",
+  "C10-L1-ProfileGated"
+ ],
+ "policy_specs": [
+  "Random",
+  "UCB1",
+  "SW-UCB",
+  "D-UCB",
+  "CAVER-v0.6",
+  "caver9.exploration:UCBMeanCAVER",
+  "caver10.lead_l1:ProfileGatedUCB"
+ ],
+ "candidates": [],
+ "references": [
+  "CAVER-v0.6",
+  "C9-UCBMean",
+  "UCB1",
+  "Random",
+  "SW-UCB",
+  "D-UCB"
+ ],
+ "budget": "90 train + 90 eval probes per run (asserted by run_one)",
+ "ci": "paired, mean +/- 1.96 sd/sqrt(n) on matched seeds",
+ "recovery": "restricted mean (censored events counted at the cap), censoring rate, KM median",
+ "cpu_note": "CPU us/probe is process CPU time in select+update; noisy, order of magnitude only",
+ "git_commit": "3328456e4df231c782b9435548eadcbee7273271",
+ "wall_seconds": 32.6,
+ "jobs": 2,
+ "argv": [
+  "/tmp/claude-0/-home-user-Caver-research/a94556fe-c151-5ee4-9998-496ad6531cb2/scratchpad/dev_l1.py"
+ ]
+}

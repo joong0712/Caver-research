@@ -1,0 +1,29 @@
+selection top-level keys (mine): ['closest_if_none', 'nominated', 'per_candidate', 'rule']
+selection top-level keys (lead): ['closest_if_none', 'nominated', 'per_candidate', 'rule']
+per-candidate keys: ['checks', 'eligible', 'failed', 'n_checks', 'n_failed', 'tiebreak_mean_abrupt_delayed_vs_C2', 'tiebreak_min_S2_lower']
+mine: eligible = False  n_checks = 86  failed = 16
+lead: eligible = False  n_checks = 86  failed = 16
+nominated (mine / lead): None / None
+selection.json identical (JSON-normalised): True
+checks differing: 0
+failed checks (mine):
+   {"id": "S2", "scenario": "stationary", "value": -0.2002, "pass": false}
+   {"id": "S1", "scenario": "c_uniform", "value": -0.4299, "pass": false}
+   {"id": "K1_vs_C2", "scenario": "abrupt", "value": -0.5155, "pass": false}
+   {"id": "K2_rec_vs_v06", "scenario": "abrupt", "value": 0.1771, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "abrupt", "value": 5.6504, "pass": false}
+   {"id": "K1_vs_C2", "scenario": "delayed", "value": -0.3403, "pass": false}
+   {"id": "K2_rec_vs_v06", "scenario": "delayed", "value": 0.8683, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "delayed", "value": 3.0823, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "early", "value": 2.1464, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "single", "value": 2.7516, "pass": false}
+   {"id": "K2_rec_vs_v06", "scenario": "c_late", "value": 0.1173, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "c_late", "value": 1.5322, "pass": false}
+   {"id": "K1_vs_C2", "scenario": "c_reverse", "value": -0.3683, "pass": false}
+   {"id": "K2_rec_vs_v06", "scenario": "c_reverse", "value": 1.144, "pass": false}
+   {"id": "K2_rec_vs_C2", "scenario": "c_reverse", "value": 4.0593, "pass": false}
+   {"id": "G_vs_D-UCB", "scenario": "c_reverse", "value": -0.0171, "pass": false}
+summary scenario x policy cells: 84  differing (excluding cpu): 0
+runs: mine 25200 lead 25200
+same run keys: True
+runs differing in any non-cpu field: 0
