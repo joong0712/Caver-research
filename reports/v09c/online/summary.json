@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "evidence_type": "REAL-OBSERVED",
+    "design": "abrupt, salt v09c-online, seed 0; replay-trained (90 probes), first 10 eval probes live per policy; same case schedule for all policies",
+    "interpretation": "live FALSE_PASS counts are descriptive only (too few probes to rank policies); only table agreement (criterion F) enters the verdict",
+    "policies": [
+      "C9-UCBMean",
+      "CAVER-v0.6",
+      "UCB1"
+    ],
+    "max_runs": 30,
+    "runs_done": 30,
+    "stop_reason": null,
+    "subscription_auth": {
+      "loggedIn": true,
+      "authMethod": "oauth_token",
+      "apiProvider": "firstParty",
+      "billing_env_vars_present": []
+    },
+    "claude_version": "2.1.319 (Claude Code)",
+    "stored_table": "reports/v08/outcome_table_real.json"
+  },
+  "summary": {
+    "by_policy": {
+      "C9-UCBMean": {
+        "live_probes": 10,
+        "live_unique_false_pass": 0,
+        "live_unique_defects": 0,
+        "inconclusive": 0,
+        "status_disagreements": [],
+        "false_pass_contradictions": []
+      },
+      "CAVER-v0.6": {
+        "live_probes": 10,
+        "live_unique_false_pass": 1,
+        "live_unique_defects": 1,
+        "inconclusive": 0,
+        "status_disagreements": [],
+        "false_pass_contradictions": []
+      },
+      "UCB1": {
+        "live_probes": 10,
+        "live_unique_false_pass": 2,
+        "live_unique_defects": 2,
+        "inconclusive": 0,
+        "status_disagreements": [],
+        "false_pass_contradictions": []
+      }
+    },
+    "live_runs": 30,
+    "configs_observed": [
+      "abnormal_exit/deny_then_exit2",
+      "exec_mismatch/env_prefix",
+      "exec_mismatch/healthy",
+      "field_value/healthy",
+      "matcher/healthy",
+      "schema/healthy",
+      "schema/snake_case_key",
+      "timeout/healthy"
+    ],
+    "false_pass_contradictions_total": 0,
+    "criterion_F_replay_validity": "PASS"
+  }
+}
