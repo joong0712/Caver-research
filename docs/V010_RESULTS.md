@@ -211,6 +211,27 @@ multiplicity correction applies.
    generation of such Hook mutations directly serves the end goal: finding real Hook and tool-safety
    defects that conventional tests miss.
 
+## 8. Independent verification (Agent D, `docs/V010_VERIFICATION.md`)
+
+Agent D worked in a separate worktree checked out at the frozen commit `3328456`.
+
+| check | result |
+|---|---|
+| commit order (design → amendments → L1 definition → L1 dev → pre-registration → test log) | PASS |
+| only the test log changed between the pre-registration and the frozen commit | PASS |
+| manifest verification and leakage scan of L1 | PASS |
+| candidate unchanged after the final run | PASS |
+| L1 dev re-run | PASS: 16/86 failed; all 25,200 runs identical |
+| **sealed final reproduced independently** | **PASS: `report.json` and `runs.csv` are byte-identical (same sha256)** |
+| statistics: all 48 non-RV checks recomputed without `caver10/stats.py`; Holm across 72 comparisons; KM spot-check | PASS |
+| real CLI audit (76 runs, apiKeySource `none`, R1 repetitions agree, extended table hashes) | PASS |
+
+Notes from Agent D:
+* Agent B's commit `2ab14a6` also edited its predeclared files. It added a default-off flag and
+  post-hoc classes marked not eligible; the selection rule is unchanged.
+* The false-alarm criterion is a point comparison without a CI, as designed.
+* Multi-event recovery averages events with different caps.
+
 ## 7. Reproduction
 
 ```bash
