@@ -1,0 +1,60 @@
+{
+ "note": "hidden ground truth of the case generator, analysis only (dev salt, 300 seeds x 28 cases)",
+ "W_BASE": {
+  "fp_yield": {
+   "schema": 0.2377,
+   "field_value": 0.1799,
+   "abnormal_exit": 0.0,
+   "timeout": 0.0592,
+   "matcher": 0.0746,
+   "exec_mismatch": 0.0612
+  },
+  "violation_rate": {
+   "schema": 0.2377,
+   "field_value": 0.2368,
+   "abnormal_exit": 0.0387,
+   "timeout": 0.0898,
+   "matcher": 0.0995,
+   "exec_mismatch": 0.0612
+  },
+  "n_cases": 8400
+ },
+ "W_SHIFT": {
+  "fp_yield": {
+   "schema": 0.0301,
+   "field_value": 0.0504,
+   "abnormal_exit": 0.0,
+   "timeout": 0.0974,
+   "matcher": 0.2023,
+   "exec_mismatch": 0.3199
+  },
+  "violation_rate": {
+   "schema": 0.0301,
+   "field_value": 0.0655,
+   "abnormal_exit": 0.0252,
+   "timeout": 0.1442,
+   "matcher": 0.274,
+   "exec_mismatch": 0.3199
+  },
+  "n_cases": 8400
+ },
+ "W_UNIFORM": {
+  "fp_yield": {
+   "schema": 0.1225,
+   "field_value": 0.1318,
+   "abnormal_exit": 0.0,
+   "timeout": 0.0804,
+   "matcher": 0.1254,
+   "exec_mismatch": 0.1592
+  },
+  "violation_rate": {
+   "schema": 0.1225,
+   "field_value": 0.174,
+   "abnormal_exit": 0.0385,
+   "timeout": 0.1227,
+   "matcher": 0.1669,
+   "exec_mismatch": 0.1592
+  },
+  "n_cases": 8400
+ }
+}

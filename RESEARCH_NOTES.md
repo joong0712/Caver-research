@@ -256,3 +256,32 @@ Protocol `docs/V09C_PROTOCOL.md`. Results `docs/V09C_RESULTS.md`.
 2. Pre-register a conditional rule, for example switching C2's bonus off when the recent yield
    spread across families is small. Test it on a new salt as a new candidate; C2 itself is not
    changed.
+
+## 10. CAVER v0.10: adaptive exploration coefficient (branch `research/caver-v010-adaptive`)
+
+Design `docs/V010_DESIGN.md`, pre-registration `docs/V010_PREREGISTRATION.md`, results
+`docs/V010_RESULTS.md`, verification `docs/V010_VERIFICATION.md`.
+
+* **[REPLAY] Verdict: 채택 보류 (adoption on hold).**
+  * No adaptive-C candidate passed the dev rule (B1/B2/B3/L1: 17/17/19/16 of 86 checks failed).
+  * The frozen best-available L1 also fails final criteria S1, S2, K2 and G.
+  * v0.6 remains recommended.
+* **[REPLAY, Agent A] Why C2 loses in stable or flat regimes.** C2 pays an exploration cost at the
+  start of every stable stretch (its bonus spans about 0.9 of the posterior-mean spread), and only a
+  concentrated shift repays it. A fixed C = 0.25 wins stable regimes but loses shift recovery.
+  Freezing the √(2 ln t) term, removing the sentinel and removing resets do not explain the loss.
+* **[REPLAY] Trade-off persists.** Lower C (B2, B3, L1) fixes stable regimes but slows recovery.
+  Evidence-gated C (B1) keeps recovery but not stable performance. The best label-free signal
+  (violation-profile correlation) is too noisy at decision time.
+* **[REAL-OBSERVED]** 76 new runs, all subscription OAuth with `apiKeySource: none`:
+  * R1: 12 new variants, 6 of them new real FALSE_PASS; 18/18 configurations agree across 2
+    repetitions;
+  * R2: new prompt wording; 19/20 agree, 1 INCONCLUSIVE from an extra tool call, no FALSE_PASS
+    flipped;
+  * R3: older CLI 2.1.300; 20/20 agree.
+  * A newer CLI does not exist (2.1.319 is the latest).
+  * The mock wrongly predicted `deny_then_sigterm` as FALSE_PASS; the real CLI honours a stdout
+    deny when the Hook dies, as in v0.8.
+* **Next:** a two-posterior (long/short memory) per-arm model choice, sentinel-based change evidence,
+  a larger real online comparison, and systematic generation of Hook mutations (the R1 kinds) to grow
+  the real defect catalogue.

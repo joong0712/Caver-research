@@ -1,0 +1,6095 @@
+{
+  "meta": {
+    "evidence_type": "REPLAY of stored real outcomes (not new real observations)",
+    "data_label": "real-table replay",
+    "outcome_table_cli_kind": "real",
+    "independent_real_cli_runs": false,
+    "independent_real_cli_runs_note": "This harness never executes the Claude CLI. Every number here replays recorded outcomes; independent real CLI runs are produced only by caver8.live and are NOT part of this report.",
+    "recorded_observations_per_config": [
+      1
+    ],
+    "replay_caveat": "Replay draws the same 30 recorded outcomes ([1] per configuration) again and again. Seed CIs capture schedule and policy randomness only, NOT the uncertainty of the recorded observations themselves.",
+    "table_path": "reports/v08/outcome_table_real.json",
+    "salt": "v010dev",
+    "seeds": [
+      0,
+      299
+    ],
+    "n_seeds": 300,
+    "scenarios": [
+      "stationary",
+      "abrupt",
+      "delayed",
+      "recovery",
+      "gradual",
+      "early",
+      "double",
+      "single",
+      "c_late",
+      "c_reverse",
+      "c_oscillate",
+      "c_uniform"
+    ],
+    "scenario_types_for_rule": {
+      "stationary_type": [
+        "stationary"
+      ],
+      "flat_shift": [
+        "c_uniform"
+      ],
+      "abrupt_type": [
+        "abrupt",
+        "delayed",
+        "early",
+        "single",
+        "c_late",
+        "c_reverse"
+      ],
+      "other": [
+        "recovery",
+        "gradual",
+        "double",
+        "c_oscillate"
+      ]
+    },
+    "policies": [
+      "CAVER-v0.6",
+      "C9-UCBMean",
+      "C10-EvidenceUCB",
+      "PH-B1-NoCUSUM",
+      "PH-B1-NoEvalStart"
+    ],
+    "policy_specs": [
+      "CAVER-v0.6",
+      "caver9.exploration:UCBMeanCAVER",
+      "caver10.adaptive:EvidenceUCB",
+      "caver10.adaptive:PHEvidenceNoCusum",
+      "caver10.adaptive:PHEvidenceNoEvalStart"
+    ],
+    "candidates": [
+      "C10-EvidenceUCB",
+      "PH-B1-NoCUSUM",
+      "PH-B1-NoEvalStart"
+    ],
+    "references": [
+      "CAVER-v0.6",
+      "C9-UCBMean"
+    ],
+    "budget": "90 train + 90 eval probes per run (asserted by run_one)",
+    "ci": "paired, mean +/- 1.96 sd/sqrt(n) on matched seeds",
+    "recovery": "restricted mean (censored events counted at the cap), censoring rate, KM median",
+    "cpu_note": "CPU us/probe is process CPU time in select+update; noisy, order of magnitude only",
+    "git_commit": "2ab14a60e614be4576feae02e2e70c8699f96140",
+    "wall_seconds": 29.5,
+    "jobs": 2,
+    "argv": [
+      "/home/user/Caver-research/.claude/worktrees/agent-a1247da0a690aea09/caver10/agent_b_dev.py",
+      "--posthoc",
+      "--seeds",
+      "300",
+      "--jobs",
+      "2"
+    ],
+    "label": "POST-HOC exploratory ablations; added after the predeclared dev run; not eligible"
+  },
+  "summary": {
+    "stationary": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.6567,
+        "unique_false_pass_ci": [
+          11.3252,
+          11.9881
+        ],
+        "unique_defects": 13.8567,
+        "unique_defects_ci": [
+          13.5188,
+          14.1945
+        ],
+        "fp_recall": 0.6957,
+        "fp_recall_ci": [
+          0.6832,
+          0.7082
+        ],
+        "severity_weighted": 12.5367,
+        "severity_weighted_ci": [
+          12.2126,
+          12.8607
+        ],
+        "first_find_at": 4.4733,
+        "first_find_at_ci": [
+          3.9758,
+          4.9709
+        ],
+        "recovery_steps": null,
+        "recovery_steps_ci": null,
+        "exploration_entropy": 0.9422,
+        "exploration_entropy_ci": [
+          0.9406,
+          0.9438
+        ],
+        "cpu_us_per_probe": 9.5378,
+        "cpu_us_per_probe_ci": [
+          9.227,
+          9.8486
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.14,
+        "false_alarm_rate": 0.14,
+        "false_alarm_rate_ci": [
+          0.1007,
+          0.1793
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.02,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.1811,
+          0.2211
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.0533,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.1793,
+          0.2859
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0032,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0098,
+          0.0162
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": null,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": null,
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0059,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0077,
+          -0.0041
+        ]
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 11.6367,
+        "unique_false_pass_ci": [
+          11.2796,
+          11.9938
+        ],
+        "unique_defects": 13.8033,
+        "unique_defects_ci": [
+          13.4391,
+          14.1675
+        ],
+        "fp_recall": 0.6925,
+        "fp_recall_ci": [
+          0.6783,
+          0.7067
+        ],
+        "severity_weighted": 12.5033,
+        "severity_weighted_ci": [
+          12.1527,
+          12.854
+        ],
+        "first_find_at": 5.74,
+        "first_find_at_ci": [
+          5.1307,
+          6.3493
+        ],
+        "recovery_steps": null,
+        "recovery_steps_ci": null,
+        "exploration_entropy": 0.9481,
+        "exploration_entropy_ci": [
+          0.9463,
+          0.9499
+        ],
+        "cpu_us_per_probe": 9.0872,
+        "cpu_us_per_probe_ci": [
+          8.875,
+          9.2993
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.1467,
+        "false_alarm_rate": 0.1467,
+        "false_alarm_rate_ci": [
+          0.1066,
+          0.1868
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.02,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.2211,
+          0.1811
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.0533,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2859,
+          0.1793
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0032,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0162,
+          0.0098
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": null,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": null,
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0059,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0041,
+          0.0077
+        ]
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 11.61,
+        "unique_false_pass_ci": [
+          11.2697,
+          11.9503
+        ],
+        "unique_defects": 13.8267,
+        "unique_defects_ci": [
+          13.4689,
+          14.1845
+        ],
+        "fp_recall": 0.6926,
+        "fp_recall_ci": [
+          0.6791,
+          0.706
+        ],
+        "severity_weighted": 12.4967,
+        "severity_weighted_ci": [
+          12.1579,
+          12.8354
+        ],
+        "first_find_at": 7.68,
+        "first_find_at_ci": [
+          7.0179,
+          8.3421
+        ],
+        "recovery_steps": null,
+        "recovery_steps_ci": null,
+        "exploration_entropy": 0.9435,
+        "exploration_entropy_ci": [
+          0.9416,
+          0.9454
+        ],
+        "cpu_us_per_probe": 11.0871,
+        "cpu_us_per_probe_ci": [
+          10.8231,
+          11.3512
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.16,
+        "false_alarm_rate": 0.16,
+        "false_alarm_rate_ci": [
+          0.1184,
+          0.2016
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.0467,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.2583,
+          0.1649
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.03,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.2761,
+          0.2161
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0032,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0165,
+          0.0102
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": null,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": null,
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0013,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0006,
+          0.0032
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.0267,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.2474,
+          0.1941
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.0233,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2242,
+          0.2709
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0138,
+          0.0138
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": null,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": null,
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0046,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0063,
+          -0.0029
+        ]
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 11.6867,
+        "unique_false_pass_ci": [
+          11.3481,
+          12.0252
+        ],
+        "unique_defects": 13.93,
+        "unique_defects_ci": [
+          13.5746,
+          14.2854
+        ],
+        "fp_recall": 0.698,
+        "fp_recall_ci": [
+          0.6846,
+          0.7114
+        ],
+        "severity_weighted": 12.584,
+        "severity_weighted_ci": [
+          12.2471,
+          12.9209
+        ],
+        "first_find_at": 7.6567,
+        "first_find_at_ci": [
+          7.0023,
+          8.3111
+        ],
+        "recovery_steps": null,
+        "recovery_steps_ci": null,
+        "exploration_entropy": 0.9382,
+        "exploration_entropy_ci": [
+          0.9364,
+          0.9401
+        ],
+        "cpu_us_per_probe": 11.2753,
+        "cpu_us_per_probe_ci": [
+          10.973,
+          11.5776
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.17,
+        "false_alarm_rate": 0.17,
+        "false_alarm_rate_ci": [
+          0.1274,
+          0.2126
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.03,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1833,
+          0.2433
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.0733,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.174,
+          0.3207
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0023,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0111,
+          0.0157
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": null,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": null,
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.004,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0057,
+          -0.0022
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.05,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.1708,
+          0.2708
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.1267,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.1193,
+          0.3727
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0055,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0083,
+          0.0192
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": null,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": null,
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0099,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0115,
+          -0.0083
+        ]
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 11.8,
+        "unique_false_pass_ci": [
+          11.4532,
+          12.1468
+        ],
+        "unique_defects": 13.96,
+        "unique_defects_ci": [
+          13.6013,
+          14.3187
+        ],
+        "fp_recall": 0.7039,
+        "fp_recall_ci": [
+          0.6905,
+          0.7174
+        ],
+        "severity_weighted": 12.664,
+        "severity_weighted_ci": [
+          12.3206,
+          13.0074
+        ],
+        "first_find_at": 5.0067,
+        "first_find_at_ci": [
+          4.4363,
+          5.577
+        ],
+        "recovery_steps": null,
+        "recovery_steps_ci": null,
+        "exploration_entropy": 0.9392,
+        "exploration_entropy_ci": [
+          0.9371,
+          0.9413
+        ],
+        "cpu_us_per_probe": 11.1343,
+        "cpu_us_per_probe_ci": [
+          10.8576,
+          11.4109
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": null,
+        "alarm_rate": 0.1833,
+        "false_alarm_rate": 0.1833,
+        "false_alarm_rate_ci": [
+          0.1395,
+          0.2272
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.1433,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.0496,
+          0.3362
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.1033,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1245,
+          0.3311
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0082,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0038,
+          0.0203
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": null,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": null,
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.003,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0051,
+          -0.001
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1633,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.032,
+          0.3587
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.1567,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.0625,
+          0.3758
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0114,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0011,
+          0.024
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": null,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": null,
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0089,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0106,
+          -0.0072
+        ]
+      }
+    },
+    "abrupt": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 12.3667,
+        "unique_false_pass_ci": [
+          11.9956,
+          12.7378
+        ],
+        "unique_defects": 14.4667,
+        "unique_defects_ci": [
+          14.0825,
+          14.8509
+        ],
+        "fp_recall": 0.6495,
+        "fp_recall_ci": [
+          0.6343,
+          0.6648
+        ],
+        "severity_weighted": 13.2067,
+        "severity_weighted_ci": [
+          12.838,
+          13.5753
+        ],
+        "first_find_at": 12.03,
+        "first_find_at_ci": [
+          10.9253,
+          13.1347
+        ],
+        "recovery_steps": 16.62,
+        "recovery_steps_ci": [
+          15.2861,
+          17.9539
+        ],
+        "exploration_entropy": 0.9511,
+        "exploration_entropy_ci": [
+          0.9495,
+          0.9528
+        ],
+        "cpu_us_per_probe": 9.4013,
+        "cpu_us_per_probe_ci": [
+          9.1507,
+          9.6519
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.53,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.9333,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -1.2285,
+          -0.6381
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -1.16,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.4756,
+          -0.8444
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0471,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0625,
+          -0.0316
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.87,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          4.3249,
+          7.4151
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": 0.0029,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          0.0008,
+          0.0051
+        ],
+        "recovery_km_median": 14.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 13.3,
+        "unique_false_pass_ci": [
+          12.906,
+          13.694
+        ],
+        "unique_defects": 15.6267,
+        "unique_defects_ci": [
+          15.2268,
+          16.0266
+        ],
+        "fp_recall": 0.6966,
+        "fp_recall_ci": [
+          0.6812,
+          0.712
+        ],
+        "severity_weighted": 14.2307,
+        "severity_weighted_ci": [
+          13.8433,
+          14.6181
+        ],
+        "first_find_at": 8.53,
+        "first_find_at_ci": [
+          7.7909,
+          9.2691
+        ],
+        "recovery_steps": 10.75,
+        "recovery_steps_ci": [
+          9.7526,
+          11.7474
+        ],
+        "exploration_entropy": 0.9482,
+        "exploration_entropy_ci": [
+          0.9464,
+          0.9501
+        ],
+        "cpu_us_per_probe": 9.2286,
+        "cpu_us_per_probe_ci": [
+          8.9837,
+          9.4735
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.5833,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.9333,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.6381,
+          1.2285
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.16,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.8444,
+          1.4756
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0471,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0316,
+          0.0625
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -5.87,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -7.4151,
+          -4.3249
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0029,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0051,
+          -0.0008
+        ],
+        "recovery_km_median": 9.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 13.4233,
+        "unique_false_pass_ci": [
+          13.0497,
+          13.7969
+        ],
+        "unique_defects": 15.62,
+        "unique_defects_ci": [
+          15.2397,
+          16.0003
+        ],
+        "fp_recall": 0.7048,
+        "fp_recall_ci": [
+          0.69,
+          0.7195
+        ],
+        "severity_weighted": 14.302,
+        "severity_weighted_ci": [
+          13.9349,
+          14.6691
+        ],
+        "first_find_at": 8.22,
+        "first_find_at_ci": [
+          7.3916,
+          9.0484
+        ],
+        "recovery_steps": 9.9567,
+        "recovery_steps_ci": [
+          8.8692,
+          11.0441
+        ],
+        "exploration_entropy": 0.9419,
+        "exploration_entropy_ci": [
+          0.9398,
+          0.9439
+        ],
+        "cpu_us_per_probe": 11.2187,
+        "cpu_us_per_probe_ci": [
+          10.9172,
+          11.5202
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.6,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 1.0567,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.7671,
+          1.3462
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.1533,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.8415,
+          1.4652
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0552,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0399,
+          0.0706
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -6.6633,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -8.2842,
+          -5.0424
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0093,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0115,
+          -0.0071
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1233,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.1347,
+          0.3813
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.0067,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2849,
+          0.2716
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0082,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0057,
+          0.022
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": -0.7933,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          -2.0353,
+          0.4486
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0063,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0082,
+          -0.0045
+        ],
+        "recovery_km_median": 6.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 13.2833,
+        "unique_false_pass_ci": [
+          12.9007,
+          13.666
+        ],
+        "unique_defects": 15.4633,
+        "unique_defects_ci": [
+          15.0683,
+          15.8584
+        ],
+        "fp_recall": 0.6971,
+        "fp_recall_ci": [
+          0.6819,
+          0.7122
+        ],
+        "severity_weighted": 14.1553,
+        "severity_weighted_ci": [
+          13.7764,
+          14.5343
+        ],
+        "first_find_at": 8.3967,
+        "first_find_at_ci": [
+          7.5098,
+          9.2835
+        ],
+        "recovery_steps": 10.2267,
+        "recovery_steps_ci": [
+          9.0773,
+          11.376
+        ],
+        "exploration_entropy": 0.9384,
+        "exploration_entropy_ci": [
+          0.9364,
+          0.9404
+        ],
+        "cpu_us_per_probe": 11.2997,
+        "cpu_us_per_probe_ci": [
+          10.9946,
+          11.6049
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.6067,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.9167,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.6163,
+          1.2171
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.9967,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.6699,
+          1.3234
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0475,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0315,
+          0.0635
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -6.3933,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -8.0519,
+          -4.7347
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0127,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0148,
+          -0.0106
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.0167,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.2905,
+          0.2572
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.1633,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.4622,
+          0.1355
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0005,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0143,
+          0.0152
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": -0.5233,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          -1.8134,
+          0.7668
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0098,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0115,
+          -0.008
+        ],
+        "recovery_km_median": 6.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 13.1133,
+        "unique_false_pass_ci": [
+          12.7298,
+          13.4968
+        ],
+        "unique_defects": 15.2667,
+        "unique_defects_ci": [
+          14.8766,
+          15.6567
+        ],
+        "fp_recall": 0.6878,
+        "fp_recall_ci": [
+          0.6728,
+          0.7029
+        ],
+        "severity_weighted": 13.9747,
+        "severity_weighted_ci": [
+          13.597,
+          14.3523
+        ],
+        "first_find_at": 10.1467,
+        "first_find_at_ci": [
+          9.344,
+          10.9493
+        ],
+        "recovery_steps": 13.8633,
+        "recovery_steps_ci": [
+          12.7501,
+          14.9765
+        ],
+        "exploration_entropy": 0.9409,
+        "exploration_entropy_ci": [
+          0.9388,
+          0.943
+        ],
+        "cpu_us_per_probe": 11.2263,
+        "cpu_us_per_probe_ci": [
+          10.9187,
+          11.534
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.5933,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.7467,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.4645,
+          1.0288
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.8,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4978,
+          1.1022
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0383,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0232,
+          0.0534
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -2.7567,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.379,
+          -1.1343
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0103,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0125,
+          -0.008
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.1867,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.4696,
+          0.0963
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.36,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.6742,
+          -0.0458
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0088,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0242,
+          0.0066
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.1133,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.8113,
+          4.4154
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0073,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0094,
+          -0.0053
+        ],
+        "recovery_km_median": 12.0
+      }
+    },
+    "delayed": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 12.2,
+        "unique_false_pass_ci": [
+          11.8092,
+          12.5908
+        ],
+        "unique_defects": 14.2167,
+        "unique_defects_ci": [
+          13.8096,
+          14.6237
+        ],
+        "fp_recall": 0.4105,
+        "fp_recall_ci": [
+          0.3991,
+          0.4219
+        ],
+        "severity_weighted": 13.0067,
+        "severity_weighted_ci": [
+          12.6176,
+          13.3958
+        ],
+        "first_find_at": 4.67,
+        "first_find_at_ci": [
+          4.1525,
+          5.1875
+        ],
+        "recovery_steps": 15.9967,
+        "recovery_steps_ci": [
+          14.6655,
+          17.3278
+        ],
+        "exploration_entropy": 0.8567,
+        "exploration_entropy_ci": [
+          0.8522,
+          0.8613
+        ],
+        "cpu_us_per_probe": 10.8557,
+        "cpu_us_per_probe_ci": [
+          10.6073,
+          11.1042
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0333,
+        "recovery_cap": [
+          46
+        ],
+        "alarm_rate": 0.34,
+        "false_alarm_rate": 0.0833,
+        "false_alarm_rate_ci": [
+          0.052,
+          0.1147
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.8733,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -1.2497,
+          -0.497
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.9367,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.3294,
+          -0.5439
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0286,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0418,
+          -0.0155
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.5067,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.8321,
+          4.1812
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0527,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.059,
+          -0.0464
+        ],
+        "recovery_km_median": 13.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 13.0733,
+        "unique_false_pass_ci": [
+          12.6505,
+          13.4962
+        ],
+        "unique_defects": 15.1533,
+        "unique_defects_ci": [
+          14.7285,
+          15.5782
+        ],
+        "fp_recall": 0.4392,
+        "fp_recall_ci": [
+          0.4269,
+          0.4514
+        ],
+        "severity_weighted": 13.9053,
+        "severity_weighted_ci": [
+          13.4894,
+          14.3212
+        ],
+        "first_find_at": 5.6833,
+        "first_find_at_ci": [
+          5.0484,
+          6.3183
+        ],
+        "recovery_steps": 13.49,
+        "recovery_steps_ci": [
+          12.3358,
+          14.6442
+        ],
+        "exploration_entropy": 0.9095,
+        "exploration_entropy_ci": [
+          0.9042,
+          0.9147
+        ],
+        "cpu_us_per_probe": 10.3706,
+        "cpu_us_per_probe_ci": [
+          10.1342,
+          10.6069
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0167,
+        "recovery_cap": [
+          46
+        ],
+        "alarm_rate": 0.4667,
+        "false_alarm_rate": 0.0933,
+        "false_alarm_rate_ci": [
+          0.0604,
+          0.1263
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.8733,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.497,
+          1.2497
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.9367,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.5439,
+          1.3294
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0286,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0155,
+          0.0418
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -2.5067,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.1812,
+          -0.8321
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0527,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0464,
+          0.059
+        ],
+        "recovery_km_median": 11.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 12.8767,
+        "unique_false_pass_ci": [
+          12.4755,
+          13.2779
+        ],
+        "unique_defects": 14.92,
+        "unique_defects_ci": [
+          14.5217,
+          15.3183
+        ],
+        "fp_recall": 0.4324,
+        "fp_recall_ci": [
+          0.4213,
+          0.4435
+        ],
+        "severity_weighted": 13.694,
+        "severity_weighted_ci": [
+          13.3024,
+          14.0856
+        ],
+        "first_find_at": 7.1833,
+        "first_find_at_ci": [
+          6.5648,
+          7.8019
+        ],
+        "recovery_steps": 15.59,
+        "recovery_steps_ci": [
+          14.3688,
+          16.8112
+        ],
+        "exploration_entropy": 0.8878,
+        "exploration_entropy_ci": [
+          0.8822,
+          0.8934
+        ],
+        "cpu_us_per_probe": 12.7335,
+        "cpu_us_per_probe_ci": [
+          12.4323,
+          13.0347
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.03,
+        "recovery_cap": [
+          46
+        ],
+        "alarm_rate": 0.4033,
+        "false_alarm_rate": 0.1033,
+        "false_alarm_rate_ci": [
+          0.0688,
+          0.1378
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.6767,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2978,
+          1.0555
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.7033,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3079,
+          1.0987
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0219,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0091,
+          0.0347
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.4067,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.0601,
+          1.2467
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.031,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0248,
+          0.0373
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.1967,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.5671,
+          0.1737
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.2333,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.6137,
+          0.147
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0067,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0194,
+          0.0059
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.1,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.7098,
+          3.4902
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0217,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0267,
+          -0.0166
+        ],
+        "recovery_km_median": 13.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 12.64,
+        "unique_false_pass_ci": [
+          12.2358,
+          13.0442
+        ],
+        "unique_defects": 14.6333,
+        "unique_defects_ci": [
+          14.2286,
+          15.0381
+        ],
+        "fp_recall": 0.4258,
+        "fp_recall_ci": [
+          0.414,
+          0.4376
+        ],
+        "severity_weighted": 13.4373,
+        "severity_weighted_ci": [
+          13.041,
+          13.8337
+        ],
+        "first_find_at": 7.2367,
+        "first_find_at_ci": [
+          6.5905,
+          7.8828
+        ],
+        "recovery_steps": 17.2533,
+        "recovery_steps_ci": [
+          15.9033,
+          18.6034
+        ],
+        "exploration_entropy": 0.8717,
+        "exploration_entropy_ci": [
+          0.866,
+          0.8774
+        ],
+        "cpu_us_per_probe": 12.9431,
+        "cpu_us_per_probe_ci": [
+          12.6206,
+          13.2656
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0333,
+        "recovery_cap": [
+          46
+        ],
+        "alarm_rate": 0.3733,
+        "false_alarm_rate": 0.1067,
+        "false_alarm_rate_ci": [
+          0.0717,
+          0.1417
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.44,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.0393,
+          0.8407
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.4167,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0007,
+          0.834
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0152,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0019,
+          0.0286
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 1.2567,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -0.462,
+          2.9753
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0149,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0089,
+          0.021
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.4333,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.8311,
+          -0.0356
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.52,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9301,
+          -0.1099
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0134,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0269,
+          0.0001
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.7633,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.3025,
+          5.2241
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0378,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0425,
+          -0.033
+        ],
+        "recovery_km_median": 15.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 13.2933,
+        "unique_false_pass_ci": [
+          12.8644,
+          13.7223
+        ],
+        "unique_defects": 15.31,
+        "unique_defects_ci": [
+          14.8723,
+          15.7477
+        ],
+        "fp_recall": 0.4475,
+        "fp_recall_ci": [
+          0.4353,
+          0.4598
+        ],
+        "severity_weighted": 14.1,
+        "severity_weighted_ci": [
+          13.6746,
+          14.5254
+        ],
+        "first_find_at": 5.2633,
+        "first_find_at_ci": [
+          4.6751,
+          5.8516
+        ],
+        "recovery_steps": 15.99,
+        "recovery_steps_ci": [
+          14.8193,
+          17.1607
+        ],
+        "exploration_entropy": 0.8751,
+        "exploration_entropy_ci": [
+          0.8694,
+          0.8808
+        ],
+        "cpu_us_per_probe": 12.9091,
+        "cpu_us_per_probe_ci": [
+          12.6011,
+          13.2172
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0233,
+        "recovery_cap": [
+          46
+        ],
+        "alarm_rate": 0.38,
+        "false_alarm_rate": 0.1033,
+        "false_alarm_rate_ci": [
+          0.0688,
+          0.1378
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 1.0933,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.6904,
+          1.4963
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.0933,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.6858,
+          1.5008
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.037,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0234,
+          0.0506
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.0067,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.5643,
+          1.5509
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0183,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0117,
+          0.025
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.22,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.176,
+          0.616
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.1567,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2599,
+          0.5732
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0084,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0053,
+          0.022
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.5,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.0936,
+          3.9064
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0344,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0397,
+          -0.029
+        ],
+        "recovery_km_median": 14.0
+      }
+    },
+    "recovery": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 12.4533,
+        "unique_false_pass_ci": [
+          12.1134,
+          12.7933
+        ],
+        "unique_defects": 14.34,
+        "unique_defects_ci": [
+          13.9779,
+          14.7021
+        ],
+        "fp_recall": 0.3476,
+        "fp_recall_ci": [
+          0.3389,
+          0.3563
+        ],
+        "severity_weighted": 13.208,
+        "severity_weighted_ci": [
+          12.869,
+          13.547
+        ],
+        "first_find_at": 4.7967,
+        "first_find_at_ci": [
+          4.246,
+          5.3473
+        ],
+        "recovery_steps": 18.16,
+        "recovery_steps_ci": [
+          16.3637,
+          19.9563
+        ],
+        "exploration_entropy": 0.8078,
+        "exploration_entropy_ci": [
+          0.8014,
+          0.8141
+        ],
+        "cpu_us_per_probe": 10.6346,
+        "cpu_us_per_probe_ci": [
+          10.3464,
+          10.9228
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0733,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.2533,
+        "false_alarm_rate": 0.0367,
+        "false_alarm_rate_ci": [
+          0.0154,
+          0.058
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.1933,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.5727,
+          0.1861
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.4167,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.8214,
+          -0.0119
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0038,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0143,
+          0.0067
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.6533,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          3.6422,
+          7.6645
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0824,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0908,
+          -0.0741
+        ],
+        "recovery_km_median": 12.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 12.6467,
+        "unique_false_pass_ci": [
+          12.2488,
+          13.0446
+        ],
+        "unique_defects": 14.7567,
+        "unique_defects_ci": [
+          14.3654,
+          15.148
+        ],
+        "fp_recall": 0.3514,
+        "fp_recall_ci": [
+          0.3418,
+          0.3611
+        ],
+        "severity_weighted": 13.4907,
+        "severity_weighted_ci": [
+          13.1039,
+          13.8774
+        ],
+        "first_find_at": 5.92,
+        "first_find_at_ci": [
+          5.2319,
+          6.6081
+        ],
+        "recovery_steps": 12.5067,
+        "recovery_steps_ci": [
+          11.247,
+          13.7663
+        ],
+        "exploration_entropy": 0.8902,
+        "exploration_entropy_ci": [
+          0.8835,
+          0.8969
+        ],
+        "cpu_us_per_probe": 10.1881,
+        "cpu_us_per_probe_ci": [
+          9.9109,
+          10.4653
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.02,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.3833,
+        "false_alarm_rate": 0.0667,
+        "false_alarm_rate_ci": [
+          0.0384,
+          0.0949
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.1933,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1861,
+          0.5727
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.4167,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0119,
+          0.8214
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0038,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0067,
+          0.0143
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -5.6533,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -7.6645,
+          -3.6422
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0824,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0741,
+          0.0908
+        ],
+        "recovery_km_median": 10.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 12.7033,
+        "unique_false_pass_ci": [
+          12.3042,
+          13.1025
+        ],
+        "unique_defects": 14.71,
+        "unique_defects_ci": [
+          14.3082,
+          15.1118
+        ],
+        "fp_recall": 0.3535,
+        "fp_recall_ci": [
+          0.3434,
+          0.3637
+        ],
+        "severity_weighted": 13.506,
+        "severity_weighted_ci": [
+          13.1142,
+          13.8978
+        ],
+        "first_find_at": 6.8967,
+        "first_find_at_ci": [
+          6.3169,
+          7.4765
+        ],
+        "recovery_steps": 16.2733,
+        "recovery_steps_ci": [
+          14.7393,
+          17.8073
+        ],
+        "exploration_entropy": 0.8512,
+        "exploration_entropy_ci": [
+          0.8434,
+          0.859
+        ],
+        "cpu_us_per_probe": 12.4181,
+        "cpu_us_per_probe_ci": [
+          12.1002,
+          12.7361
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.04,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.35,
+        "false_alarm_rate": 0.0733,
+        "false_alarm_rate_ci": [
+          0.0438,
+          0.1029
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.25,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1565,
+          0.6565
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.37,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0703,
+          0.8103
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0059,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0054,
+          0.0172
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -1.8867,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.0078,
+          0.2345
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0434,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0346,
+          0.0522
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.0567,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.373,
+          0.4863
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.0467,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.4916,
+          0.3983
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0021,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0101,
+          0.0143
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.7667,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.0787,
+          5.4547
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.039,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0468,
+          -0.0312
+        ],
+        "recovery_km_median": 13.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 12.7467,
+        "unique_false_pass_ci": [
+          12.3595,
+          13.1339
+        ],
+        "unique_defects": 14.7167,
+        "unique_defects_ci": [
+          14.329,
+          15.1043
+        ],
+        "fp_recall": 0.3552,
+        "fp_recall_ci": [
+          0.3453,
+          0.3652
+        ],
+        "severity_weighted": 13.5347,
+        "severity_weighted_ci": [
+          13.1563,
+          13.913
+        ],
+        "first_find_at": 6.8833,
+        "first_find_at_ci": [
+          6.3076,
+          7.4591
+        ],
+        "recovery_steps": 17.8467,
+        "recovery_steps_ci": [
+          16.1203,
+          19.573
+        ],
+        "exploration_entropy": 0.8317,
+        "exploration_entropy_ci": [
+          0.8242,
+          0.8391
+        ],
+        "cpu_us_per_probe": 12.7724,
+        "cpu_us_per_probe_ci": [
+          12.4071,
+          13.1377
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0567,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.3433,
+        "false_alarm_rate": 0.07,
+        "false_alarm_rate_ci": [
+          0.0411,
+          0.0989
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.2933,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1125,
+          0.6992
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.3767,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0569,
+          0.8102
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0076,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0037,
+          0.0189
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.3133,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.5831,
+          1.9564
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0239,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0159,
+          0.0319
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.3385,
+          0.5385
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.04,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.4892,
+          0.4092
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0038,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0087,
+          0.0163
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.34,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          3.3917,
+          7.2883
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0586,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.066,
+          -0.0511
+        ],
+        "recovery_km_median": 14.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.71,
+        "unique_false_pass_ci": [
+          12.3184,
+          13.1016
+        ],
+        "unique_defects": 14.7967,
+        "unique_defects_ci": [
+          14.404,
+          15.1894
+        ],
+        "fp_recall": 0.3537,
+        "fp_recall_ci": [
+          0.344,
+          0.3634
+        ],
+        "severity_weighted": 13.5447,
+        "severity_weighted_ci": [
+          13.1635,
+          13.9258
+        ],
+        "first_find_at": 4.7767,
+        "first_find_at_ci": [
+          4.2547,
+          5.2987
+        ],
+        "recovery_steps": 16.08,
+        "recovery_steps_ci": [
+          14.5559,
+          17.6041
+        ],
+        "exploration_entropy": 0.8378,
+        "exploration_entropy_ci": [
+          0.8291,
+          0.8465
+        ],
+        "cpu_us_per_probe": 12.851,
+        "cpu_us_per_probe_ci": [
+          12.4853,
+          13.2167
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0433,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.3333,
+        "false_alarm_rate": 0.0433,
+        "false_alarm_rate_ci": [
+          0.0203,
+          0.0664
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.2567,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1152,
+          0.6286
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.4567,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0569,
+          0.8565
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0061,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0044,
+          0.0166
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -2.08,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.2899,
+          0.1299
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.03,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.021,
+          0.0391
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.0633,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.3556,
+          0.4823
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.04,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.3774,
+          0.4574
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0023,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0095,
+          0.014
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.5733,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.827,
+          5.3196
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0524,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0616,
+          -0.0433
+        ],
+        "recovery_km_median": 13.0
+      }
+    },
+    "gradual": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.9167,
+        "unique_false_pass_ci": [
+          11.5639,
+          12.2694
+        ],
+        "unique_defects": 13.8767,
+        "unique_defects_ci": [
+          13.5122,
+          14.2412
+        ],
+        "fp_recall": 0.4002,
+        "fp_recall_ci": [
+          0.3893,
+          0.4111
+        ],
+        "severity_weighted": 12.7007,
+        "severity_weighted_ci": [
+          12.3516,
+          13.0498
+        ],
+        "first_find_at": 5.3233,
+        "first_find_at_ci": [
+          4.7443,
+          5.9023
+        ],
+        "recovery_steps": 27.4667,
+        "recovery_steps_ci": [
+          25.3084,
+          29.6249
+        ],
+        "exploration_entropy": 0.8548,
+        "exploration_entropy_ci": [
+          0.8506,
+          0.859
+        ],
+        "cpu_us_per_probe": 12.6213,
+        "cpu_us_per_probe_ci": [
+          11.9354,
+          13.3073
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.02,
+        "recovery_cap": [
+          76
+        ],
+        "alarm_rate": 0.2933,
+        "false_alarm_rate": 0.0367,
+        "false_alarm_rate_ci": [
+          0.0154,
+          0.058
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.8433,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -1.2401,
+          -0.4466
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -1.0133,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.4358,
+          -0.5908
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0264,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0398,
+          -0.0129
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.67,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.9461,
+          6.3939
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0581,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0637,
+          -0.0525
+        ],
+        "recovery_km_median": 26.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 12.76,
+        "unique_false_pass_ci": [
+          12.3647,
+          13.1553
+        ],
+        "unique_defects": 14.89,
+        "unique_defects_ci": [
+          14.489,
+          15.291
+        ],
+        "fp_recall": 0.4266,
+        "fp_recall_ci": [
+          0.415,
+          0.4382
+        ],
+        "severity_weighted": 13.612,
+        "severity_weighted_ci": [
+          13.2232,
+          14.0008
+        ],
+        "first_find_at": 5.8633,
+        "first_find_at_ci": [
+          5.1885,
+          6.5382
+        ],
+        "recovery_steps": 23.7967,
+        "recovery_steps_ci": [
+          21.8429,
+          25.7504
+        ],
+        "exploration_entropy": 0.9129,
+        "exploration_entropy_ci": [
+          0.9081,
+          0.9177
+        ],
+        "cpu_us_per_probe": 11.8428,
+        "cpu_us_per_probe_ci": [
+          11.4965,
+          12.1892
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0067,
+        "recovery_cap": [
+          76
+        ],
+        "alarm_rate": 0.41,
+        "false_alarm_rate": 0.0167,
+        "false_alarm_rate_ci": [
+          0.0022,
+          0.0312
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.8433,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.4466,
+          1.2401
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.0133,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.5908,
+          1.4358
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0264,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0129,
+          0.0398
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -3.67,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -6.3939,
+          -0.9461
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0581,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0525,
+          0.0637
+        ],
+        "recovery_km_median": 20.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 12.54,
+        "unique_false_pass_ci": [
+          12.1597,
+          12.9203
+        ],
+        "unique_defects": 14.53,
+        "unique_defects_ci": [
+          14.1466,
+          14.9134
+        ],
+        "fp_recall": 0.4197,
+        "fp_recall_ci": [
+          0.4084,
+          0.431
+        ],
+        "severity_weighted": 13.336,
+        "severity_weighted_ci": [
+          12.9624,
+          13.7096
+        ],
+        "first_find_at": 7.1767,
+        "first_find_at_ci": [
+          6.5321,
+          7.8212
+        ],
+        "recovery_steps": 27.2,
+        "recovery_steps_ci": [
+          25.1518,
+          29.2482
+        ],
+        "exploration_entropy": 0.8835,
+        "exploration_entropy_ci": [
+          0.8781,
+          0.8889
+        ],
+        "cpu_us_per_probe": 14.4488,
+        "cpu_us_per_probe_ci": [
+          14.0178,
+          14.8797
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0167,
+        "recovery_cap": [
+          76
+        ],
+        "alarm_rate": 0.3733,
+        "false_alarm_rate": 0.0333,
+        "false_alarm_rate_ci": [
+          0.013,
+          0.0537
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.6233,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2611,
+          0.9856
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.6533,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.2648,
+          1.0418
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0195,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.007,
+          0.0319
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.2667,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.8279,
+          2.2945
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0287,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0232,
+          0.0342
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.22,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.611,
+          0.171
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.36,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.7775,
+          0.0575
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0069,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0202,
+          0.0064
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.4033,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.9815,
+          5.8252
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0294,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0343,
+          -0.0245
+        ],
+        "recovery_km_median": 25.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 12.4467,
+        "unique_false_pass_ci": [
+          12.046,
+          12.8473
+        ],
+        "unique_defects": 14.4,
+        "unique_defects_ci": [
+          13.993,
+          14.807
+        ],
+        "fp_recall": 0.4163,
+        "fp_recall_ci": [
+          0.4045,
+          0.4281
+        ],
+        "severity_weighted": 13.228,
+        "severity_weighted_ci": [
+          12.8323,
+          13.6237
+        ],
+        "first_find_at": 7.15,
+        "first_find_at_ci": [
+          6.5219,
+          7.7781
+        ],
+        "recovery_steps": 29.3033,
+        "recovery_steps_ci": [
+          27.0945,
+          31.5122
+        ],
+        "exploration_entropy": 0.8704,
+        "exploration_entropy_ci": [
+          0.8647,
+          0.876
+        ],
+        "cpu_us_per_probe": 14.7205,
+        "cpu_us_per_probe_ci": [
+          14.2457,
+          15.1952
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0267,
+        "recovery_cap": [
+          76
+        ],
+        "alarm_rate": 0.3733,
+        "false_alarm_rate": 0.0333,
+        "false_alarm_rate_ci": [
+          0.013,
+          0.0537
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.53,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1514,
+          0.9086
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.5233,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.125,
+          0.9217
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0161,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0032,
+          0.0289
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 1.8367,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -0.7887,
+          4.4621
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0155,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0101,
+          0.021
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.3133,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.7024,
+          0.0757
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.49,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9096,
+          -0.0704
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0103,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0233,
+          0.0027
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.5067,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.9934,
+          8.0199
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0426,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0475,
+          -0.0376
+        ],
+        "recovery_km_median": 26.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.8967,
+        "unique_false_pass_ci": [
+          12.518,
+          13.2753
+        ],
+        "unique_defects": 14.9667,
+        "unique_defects_ci": [
+          14.5794,
+          15.3539
+        ],
+        "fp_recall": 0.432,
+        "fp_recall_ci": [
+          0.4208,
+          0.4432
+        ],
+        "severity_weighted": 13.7247,
+        "severity_weighted_ci": [
+          13.3517,
+          14.0976
+        ],
+        "first_find_at": 5.09,
+        "first_find_at_ci": [
+          4.5194,
+          5.6606
+        ],
+        "recovery_steps": 28.84,
+        "recovery_steps_ci": [
+          26.6029,
+          31.0771
+        ],
+        "exploration_entropy": 0.8701,
+        "exploration_entropy_ci": [
+          0.8641,
+          0.8761
+        ],
+        "cpu_us_per_probe": 14.5295,
+        "cpu_us_per_probe_ci": [
+          14.0909,
+          14.9681
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0167,
+        "recovery_cap": [
+          76
+        ],
+        "alarm_rate": 0.38,
+        "false_alarm_rate": 0.0333,
+        "false_alarm_rate_ci": [
+          0.013,
+          0.0537
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.98,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.5965,
+          1.3635
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.09,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.6939,
+          1.4861
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0318,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0188,
+          0.0447
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 1.3733,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.352,
+          4.0987
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0153,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0093,
+          0.0212
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1367,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.2055,
+          0.4788
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.0767,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2889,
+          0.4423
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0054,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0062,
+          0.017
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.0433,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.4822,
+          7.6045
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0428,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0487,
+          -0.037
+        ],
+        "recovery_km_median": 25.0
+      }
+    },
+    "early": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 13.15,
+        "unique_false_pass_ci": [
+          12.7657,
+          13.5343
+        ],
+        "unique_defects": 15.2367,
+        "unique_defects_ci": [
+          14.8443,
+          15.629
+        ],
+        "fp_recall": 0.5489,
+        "fp_recall_ci": [
+          0.5366,
+          0.5611
+        ],
+        "severity_weighted": 13.9847,
+        "severity_weighted_ci": [
+          13.605,
+          14.3643
+        ],
+        "first_find_at": 5.45,
+        "first_find_at_ci": [
+          4.7582,
+          6.1418
+        ],
+        "recovery_steps": 15.52,
+        "recovery_steps_ci": [
+          14.1311,
+          16.9089
+        ],
+        "exploration_entropy": 0.9271,
+        "exploration_entropy_ci": [
+          0.9248,
+          0.9295
+        ],
+        "cpu_us_per_probe": 8.3579,
+        "cpu_us_per_probe_ci": [
+          8.141,
+          8.5749
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          81
+        ],
+        "alarm_rate": 0.4833,
+        "false_alarm_rate": 0.0033,
+        "false_alarm_rate_ci": [
+          -0.0032,
+          0.0099
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.54,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.8705,
+          -0.2095
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.69,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.0369,
+          -0.3431
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0205,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0345,
+          -0.0065
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.1233,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          3.4848,
+          6.7619
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0138,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0169,
+          -0.0107
+        ],
+        "recovery_km_median": 11.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 13.69,
+        "unique_false_pass_ci": [
+          13.2659,
+          14.1141
+        ],
+        "unique_defects": 15.9267,
+        "unique_defects_ci": [
+          15.5102,
+          16.3432
+        ],
+        "fp_recall": 0.5694,
+        "fp_recall_ci": [
+          0.5558,
+          0.5829
+        ],
+        "severity_weighted": 14.5847,
+        "severity_weighted_ci": [
+          14.1715,
+          14.9978
+        ],
+        "first_find_at": 6.1167,
+        "first_find_at_ci": [
+          5.4318,
+          6.8016
+        ],
+        "recovery_steps": 10.3967,
+        "recovery_steps_ci": [
+          9.4234,
+          11.3699
+        ],
+        "exploration_entropy": 0.9409,
+        "exploration_entropy_ci": [
+          0.9384,
+          0.9435
+        ],
+        "cpu_us_per_probe": 8.1322,
+        "cpu_us_per_probe_ci": [
+          7.9065,
+          8.3579
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          81
+        ],
+        "alarm_rate": 0.6033,
+        "false_alarm_rate": 0.0067,
+        "false_alarm_rate_ci": [
+          -0.0026,
+          0.0159
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.54,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2095,
+          0.8705
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.69,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3431,
+          1.0369
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0205,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0065,
+          0.0345
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -5.1233,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -6.7619,
+          -3.4848
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0138,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0107,
+          0.0169
+        ],
+        "recovery_km_median": 8.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 13.34,
+        "unique_false_pass_ci": [
+          12.925,
+          13.755
+        ],
+        "unique_defects": 15.5133,
+        "unique_defects_ci": [
+          15.0931,
+          15.9335
+        ],
+        "fp_recall": 0.5555,
+        "fp_recall_ci": [
+          0.5424,
+          0.5687
+        ],
+        "severity_weighted": 14.2093,
+        "severity_weighted_ci": [
+          13.7992,
+          14.6195
+        ],
+        "first_find_at": 7.62,
+        "first_find_at_ci": [
+          6.8834,
+          8.3566
+        ],
+        "recovery_steps": 12.44,
+        "recovery_steps_ci": [
+          11.2531,
+          13.6269
+        ],
+        "exploration_entropy": 0.9363,
+        "exploration_entropy_ci": [
+          0.9337,
+          0.9389
+        ],
+        "cpu_us_per_probe": 9.8711,
+        "cpu_us_per_probe_ci": [
+          9.6108,
+          10.1314
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          81
+        ],
+        "alarm_rate": 0.53,
+        "false_alarm_rate": 0.01,
+        "false_alarm_rate_ci": [
+          -0.0013,
+          0.0213
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.19,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1315,
+          0.5115
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.2767,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0802,
+          0.6336
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0066,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0067,
+          0.02
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -3.08,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.7256,
+          -1.4344
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0091,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0059,
+          0.0124
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.35,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.675,
+          -0.025
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.4133,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.7656,
+          -0.0611
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0139,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0278,
+          0.0001
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.0433,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.7247,
+          3.362
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0047,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0073,
+          -0.002
+        ],
+        "recovery_km_median": 9.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 13.3733,
+        "unique_false_pass_ci": [
+          12.9601,
+          13.7866
+        ],
+        "unique_defects": 15.53,
+        "unique_defects_ci": [
+          15.1093,
+          15.9507
+        ],
+        "fp_recall": 0.5573,
+        "fp_recall_ci": [
+          0.5442,
+          0.5704
+        ],
+        "severity_weighted": 14.236,
+        "severity_weighted_ci": [
+          13.8267,
+          14.6453
+        ],
+        "first_find_at": 7.8667,
+        "first_find_at_ci": [
+          7.0373,
+          8.6961
+        ],
+        "recovery_steps": 13.11,
+        "recovery_steps_ci": [
+          11.8091,
+          14.4109
+        ],
+        "exploration_entropy": 0.9313,
+        "exploration_entropy_ci": [
+          0.9287,
+          0.9339
+        ],
+        "cpu_us_per_probe": 9.9665,
+        "cpu_us_per_probe_ci": [
+          9.692,
+          10.2409
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          81
+        ],
+        "alarm_rate": 0.5467,
+        "false_alarm_rate": 0.01,
+        "false_alarm_rate_ci": [
+          -0.0013,
+          0.0213
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.2233,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1106,
+          0.5573
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.2933,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0735,
+          0.6602
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0084,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0056,
+          0.0225
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -2.41,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.1255,
+          -0.6945
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0041,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0011,
+          0.0072
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.3167,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.6512,
+          0.0179
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.3967,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.7558,
+          -0.0375
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0121,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0264,
+          0.0023
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.7133,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.3151,
+          4.1116
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0097,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0123,
+          -0.0071
+        ],
+        "recovery_km_median": 9.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 13.8467,
+        "unique_false_pass_ci": [
+          13.4306,
+          14.2628
+        ],
+        "unique_defects": 15.9667,
+        "unique_defects_ci": [
+          15.5465,
+          16.3868
+        ],
+        "fp_recall": 0.5776,
+        "fp_recall_ci": [
+          0.5644,
+          0.5909
+        ],
+        "severity_weighted": 14.6947,
+        "severity_weighted_ci": [
+          14.2841,
+          15.1052
+        ],
+        "first_find_at": 6.05,
+        "first_find_at_ci": [
+          5.3116,
+          6.7884
+        ],
+        "recovery_steps": 14.12,
+        "recovery_steps_ci": [
+          12.9937,
+          15.2463
+        ],
+        "exploration_entropy": 0.9281,
+        "exploration_entropy_ci": [
+          0.9251,
+          0.931
+        ],
+        "cpu_us_per_probe": 10.3066,
+        "cpu_us_per_probe_ci": [
+          9.9933,
+          10.62
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          81
+        ],
+        "alarm_rate": 0.54,
+        "false_alarm_rate": 0.0067,
+        "false_alarm_rate_ci": [
+          -0.0026,
+          0.0159
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.6967,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3849,
+          1.0084
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.73,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3942,
+          1.0658
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0288,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0154,
+          0.0421
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -1.4,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -3.0057,
+          0.2057
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0009,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0024,
+          0.0043
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1567,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.1547,
+          0.468
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.04,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2976,
+          0.3776
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0083,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0048,
+          0.0213
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.7233,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.4082,
+          5.0385
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0129,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0156,
+          -0.0101
+        ],
+        "recovery_km_median": 13.0
+      }
+    },
+    "double": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.5433,
+        "unique_false_pass_ci": [
+          11.1997,
+          11.8869
+        ],
+        "unique_defects": 13.8867,
+        "unique_defects_ci": [
+          13.5127,
+          14.2607
+        ],
+        "fp_recall": 0.3239,
+        "fp_recall_ci": [
+          0.3148,
+          0.333
+        ],
+        "severity_weighted": 12.4807,
+        "severity_weighted_ci": [
+          12.1352,
+          12.8261
+        ],
+        "first_find_at": 5.19,
+        "first_find_at_ci": [
+          4.6073,
+          5.7727
+        ],
+        "recovery_steps": 15.0717,
+        "recovery_steps_ci": [
+          14.3426,
+          15.8008
+        ],
+        "exploration_entropy": 0.817,
+        "exploration_entropy_ci": [
+          0.8104,
+          0.8236
+        ],
+        "cpu_us_per_probe": 9.8116,
+        "cpu_us_per_probe_ci": [
+          9.5578,
+          10.0655
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.24,
+        "recovery_cap": [
+          31,
+          31
+        ],
+        "alarm_rate": 0.27,
+        "false_alarm_rate": 0.0633,
+        "false_alarm_rate_ci": [
+          0.0357,
+          0.0909
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -1.2633,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -1.6698,
+          -0.8568
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -1.4533,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.8873,
+          -1.0193
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0356,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0473,
+          -0.024
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.205,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.33,
+          4.08
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0826,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0906,
+          -0.0745
+        ],
+        "recovery_km_median": 13.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 12.8067,
+        "unique_false_pass_ci": [
+          12.4207,
+          13.1927
+        ],
+        "unique_defects": 15.34,
+        "unique_defects_ci": [
+          14.9483,
+          15.7317
+        ],
+        "fp_recall": 0.3595,
+        "fp_recall_ci": [
+          0.3493,
+          0.3697
+        ],
+        "severity_weighted": 13.82,
+        "severity_weighted_ci": [
+          13.4423,
+          14.1977
+        ],
+        "first_find_at": 5.71,
+        "first_find_at_ci": [
+          5.0469,
+          6.3731
+        ],
+        "recovery_steps": 11.8667,
+        "recovery_steps_ci": [
+          11.1952,
+          12.5382
+        ],
+        "exploration_entropy": 0.8996,
+        "exploration_entropy_ci": [
+          0.8941,
+          0.9051
+        ],
+        "cpu_us_per_probe": 9.5884,
+        "cpu_us_per_probe_ci": [
+          9.3519,
+          9.8248
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.14,
+        "recovery_cap": [
+          31,
+          31
+        ],
+        "alarm_rate": 0.3767,
+        "false_alarm_rate": 0.0733,
+        "false_alarm_rate_ci": [
+          0.0438,
+          0.1029
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 1.2633,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.8568,
+          1.6698
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.4533,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          1.0193,
+          1.8873
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0356,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.024,
+          0.0473
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -3.205,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.08,
+          -2.33
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0826,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0745,
+          0.0906
+        ],
+        "recovery_km_median": 10.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 12.52,
+        "unique_false_pass_ci": [
+          12.1499,
+          12.8901
+        ],
+        "unique_defects": 14.89,
+        "unique_defects_ci": [
+          14.5045,
+          15.2755
+        ],
+        "fp_recall": 0.3503,
+        "fp_recall_ci": [
+          0.3408,
+          0.3597
+        ],
+        "severity_weighted": 13.468,
+        "severity_weighted_ci": [
+          13.1029,
+          13.8331
+        ],
+        "first_find_at": 6.7633,
+        "first_find_at_ci": [
+          6.1979,
+          7.3287
+        ],
+        "recovery_steps": 14.05,
+        "recovery_steps_ci": [
+          13.3801,
+          14.7199
+        ],
+        "exploration_entropy": 0.868,
+        "exploration_entropy_ci": [
+          0.8616,
+          0.8745
+        ],
+        "cpu_us_per_probe": 11.7056,
+        "cpu_us_per_probe_ci": [
+          11.4136,
+          11.9976
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1733,
+        "recovery_cap": [
+          31,
+          31
+        ],
+        "alarm_rate": 0.32,
+        "false_alarm_rate": 0.0567,
+        "false_alarm_rate_ci": [
+          0.0305,
+          0.0829
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.9767,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.5975,
+          1.3558
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.0033,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.5789,
+          1.4278
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0264,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0155,
+          0.0373
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -1.0217,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.9283,
+          -0.115
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.051,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0428,
+          0.0592
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.2867,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.6758,
+          0.1024
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.45,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.8819,
+          -0.0181
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0092,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0205,
+          0.0021
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.1833,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.3902,
+          2.9765
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0316,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0384,
+          -0.0247
+        ],
+        "recovery_km_median": 12.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 12.35,
+        "unique_false_pass_ci": [
+          11.9712,
+          12.7288
+        ],
+        "unique_defects": 14.7867,
+        "unique_defects_ci": [
+          14.3923,
+          15.1811
+        ],
+        "fp_recall": 0.3459,
+        "fp_recall_ci": [
+          0.336,
+          0.3558
+        ],
+        "severity_weighted": 13.3247,
+        "severity_weighted_ci": [
+          12.9511,
+          13.6982
+        ],
+        "first_find_at": 6.8,
+        "first_find_at_ci": [
+          6.1885,
+          7.4115
+        ],
+        "recovery_steps": 14.0867,
+        "recovery_steps_ci": [
+          13.4351,
+          14.7382
+        ],
+        "exploration_entropy": 0.8466,
+        "exploration_entropy_ci": [
+          0.8396,
+          0.8535
+        ],
+        "cpu_us_per_probe": 11.8784,
+        "cpu_us_per_probe_ci": [
+          11.5673,
+          12.1894
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1967,
+        "recovery_cap": [
+          31,
+          31
+        ],
+        "alarm_rate": 0.29,
+        "false_alarm_rate": 0.0567,
+        "false_alarm_rate_ci": [
+          0.0305,
+          0.0829
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.8067,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.4253,
+          1.1881
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.9,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4769,
+          1.3231
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.022,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0112,
+          0.0329
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.985,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.871,
+          -0.099
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0296,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0211,
+          0.038
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.4567,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.8578,
+          -0.0556
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.5533,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9958,
+          -0.1108
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0136,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0251,
+          -0.0021
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.22,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.4359,
+          3.0041
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.053,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0603,
+          -0.0457
+        ],
+        "recovery_km_median": 12.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.5267,
+        "unique_false_pass_ci": [
+          12.1153,
+          12.938
+        ],
+        "unique_defects": 14.92,
+        "unique_defects_ci": [
+          14.4936,
+          15.3464
+        ],
+        "fp_recall": 0.3495,
+        "fp_recall_ci": [
+          0.3391,
+          0.36
+        ],
+        "severity_weighted": 13.484,
+        "severity_weighted_ci": [
+          13.0754,
+          13.8926
+        ],
+        "first_find_at": 5.5033,
+        "first_find_at_ci": [
+          4.8201,
+          6.1865
+        ],
+        "recovery_steps": 14.615,
+        "recovery_steps_ci": [
+          13.941,
+          15.289
+        ],
+        "exploration_entropy": 0.8556,
+        "exploration_entropy_ci": [
+          0.848,
+          0.8632
+        ],
+        "cpu_us_per_probe": 11.9806,
+        "cpu_us_per_probe_ci": [
+          11.6315,
+          12.3297
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1867,
+        "recovery_cap": [
+          31,
+          31
+        ],
+        "alarm_rate": 0.33,
+        "false_alarm_rate": 0.08,
+        "false_alarm_rate_ci": [
+          0.0492,
+          0.1108
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.9833,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.5807,
+          1.3859
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.0333,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.5999,
+          1.4667
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0257,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0142,
+          0.0372
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.4567,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.377,
+          0.4637
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0386,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0297,
+          0.0476
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.28,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.7124,
+          0.1524
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.42,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.8892,
+          0.0492
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.01,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0223,
+          0.0023
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.7483,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.928,
+          3.5686
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0439,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0517,
+          -0.0362
+        ],
+        "recovery_km_median": 13.0
+      }
+    },
+    "single": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.6967,
+        "unique_false_pass_ci": [
+          11.3074,
+          12.0859
+        ],
+        "unique_defects": 15.1067,
+        "unique_defects_ci": [
+          14.6628,
+          15.5505
+        ],
+        "fp_recall": 0.4595,
+        "fp_recall_ci": [
+          0.4469,
+          0.4722
+        ],
+        "severity_weighted": 13.0607,
+        "severity_weighted_ci": [
+          12.6624,
+          13.4589
+        ],
+        "first_find_at": 4.8367,
+        "first_find_at_ci": [
+          4.3022,
+          5.3712
+        ],
+        "recovery_steps": 21.4267,
+        "recovery_steps_ci": [
+          19.6452,
+          23.2081
+        ],
+        "exploration_entropy": 0.8731,
+        "exploration_entropy_ci": [
+          0.869,
+          0.8773
+        ],
+        "cpu_us_per_probe": 8.9005,
+        "cpu_us_per_probe_ci": [
+          8.6546,
+          9.1465
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.05,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.5067,
+        "false_alarm_rate": 0.05,
+        "false_alarm_rate_ci": [
+          0.0253,
+          0.0747
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.5933,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.9685,
+          -0.2182
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -1.35,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.8283,
+          -0.8717
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0235,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0387,
+          -0.0082
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 6.78,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          4.7206,
+          8.8394
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.047,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.052,
+          -0.0419
+        ],
+        "recovery_km_median": 19.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 12.29,
+        "unique_false_pass_ci": [
+          11.8692,
+          12.7108
+        ],
+        "unique_defects": 16.4567,
+        "unique_defects_ci": [
+          15.9529,
+          16.9605
+        ],
+        "fp_recall": 0.483,
+        "fp_recall_ci": [
+          0.4686,
+          0.4973
+        ],
+        "severity_weighted": 13.9567,
+        "severity_weighted_ci": [
+          13.5165,
+          14.3968
+        ],
+        "first_find_at": 5.3033,
+        "first_find_at_ci": [
+          4.7526,
+          5.854
+        ],
+        "recovery_steps": 14.6467,
+        "recovery_steps_ci": [
+          13.2485,
+          16.0449
+        ],
+        "exploration_entropy": 0.9201,
+        "exploration_entropy_ci": [
+          0.9158,
+          0.9243
+        ],
+        "cpu_us_per_probe": 8.5762,
+        "cpu_us_per_probe_ci": [
+          8.3531,
+          8.7994
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.01,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.5633,
+        "false_alarm_rate": 0.04,
+        "false_alarm_rate_ci": [
+          0.0178,
+          0.0622
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.5933,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.2182,
+          0.9685
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.35,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.8717,
+          1.8283
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0235,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0082,
+          0.0387
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -6.78,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -8.8394,
+          -4.7206
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.047,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0419,
+          0.052
+        ],
+        "recovery_km_median": 11.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 12.1167,
+        "unique_false_pass_ci": [
+          11.7143,
+          12.5191
+        ],
+        "unique_defects": 16.08,
+        "unique_defects_ci": [
+          15.6067,
+          16.5533
+        ],
+        "fp_recall": 0.4761,
+        "fp_recall_ci": [
+          0.4626,
+          0.4897
+        ],
+        "severity_weighted": 13.702,
+        "severity_weighted_ci": [
+          13.2867,
+          14.1173
+        ],
+        "first_find_at": 7.07,
+        "first_find_at_ci": [
+          6.4191,
+          7.7209
+        ],
+        "recovery_steps": 19.3167,
+        "recovery_steps_ci": [
+          17.7598,
+          20.8736
+        ],
+        "exploration_entropy": 0.9065,
+        "exploration_entropy_ci": [
+          0.9017,
+          0.9113
+        ],
+        "cpu_us_per_probe": 10.5478,
+        "cpu_us_per_probe_ci": [
+          10.2615,
+          10.8342
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0233,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.53,
+        "false_alarm_rate": 0.06,
+        "false_alarm_rate_ci": [
+          0.0331,
+          0.0869
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.42,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.0423,
+          0.7977
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.9733,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4947,
+          1.452
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0166,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0014,
+          0.0318
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -2.11,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -4.2733,
+          0.0533
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0333,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0281,
+          0.0386
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.1733,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.5444,
+          0.1977
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.3767,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.8275,
+          0.0742
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0068,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0222,
+          0.0085
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 4.67,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.8267,
+          6.5133
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0136,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0179,
+          -0.0093
+        ],
+        "recovery_km_median": 17.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 12.12,
+        "unique_false_pass_ci": [
+          11.7115,
+          12.5285
+        ],
+        "unique_defects": 15.9967,
+        "unique_defects_ci": [
+          15.5112,
+          16.4821
+        ],
+        "fp_recall": 0.4754,
+        "fp_recall_ci": [
+          0.4617,
+          0.4891
+        ],
+        "severity_weighted": 13.6707,
+        "severity_weighted_ci": [
+          13.2469,
+          14.0944
+        ],
+        "first_find_at": 6.98,
+        "first_find_at_ci": [
+          6.3719,
+          7.5881
+        ],
+        "recovery_steps": 21.1567,
+        "recovery_steps_ci": [
+          19.4502,
+          22.8631
+        ],
+        "exploration_entropy": 0.895,
+        "exploration_entropy_ci": [
+          0.89,
+          0.9
+        ],
+        "cpu_us_per_probe": 10.9889,
+        "cpu_us_per_probe_ci": [
+          10.6691,
+          11.3088
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.02,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.5233,
+        "false_alarm_rate": 0.06,
+        "false_alarm_rate_ci": [
+          0.0331,
+          0.0869
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.4233,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.0531,
+          0.7936
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.89,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4217,
+          1.3583
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0159,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0008,
+          0.0309
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.27,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.5334,
+          1.9934
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0219,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0168,
+          0.0269
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.17,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.5387,
+          0.1987
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.46,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9134,
+          -0.0066
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0076,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0226,
+          0.0075
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 6.51,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          4.579,
+          8.441
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0251,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0293,
+          -0.0208
+        ],
+        "recovery_km_median": 18.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.79,
+        "unique_false_pass_ci": [
+          12.3841,
+          13.1959
+        ],
+        "unique_defects": 16.7333,
+        "unique_defects_ci": [
+          16.2763,
+          17.1903
+        ],
+        "fp_recall": 0.5027,
+        "fp_recall_ci": [
+          0.4896,
+          0.5158
+        ],
+        "severity_weighted": 14.3673,
+        "severity_weighted_ci": [
+          13.9558,
+          14.7789
+        ],
+        "first_find_at": 5.2133,
+        "first_find_at_ci": [
+          4.563,
+          5.8637
+        ],
+        "recovery_steps": 19.65,
+        "recovery_steps_ci": [
+          18.0664,
+          21.2336
+        ],
+        "exploration_entropy": 0.8919,
+        "exploration_entropy_ci": [
+          0.8865,
+          0.8974
+        ],
+        "cpu_us_per_probe": 10.8737,
+        "cpu_us_per_probe_ci": [
+          10.5191,
+          11.2283
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0133,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.5633,
+        "false_alarm_rate": 0.0433,
+        "false_alarm_rate_ci": [
+          0.0203,
+          0.0664
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 1.0933,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.7478,
+          1.4388
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 1.6267,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          1.2047,
+          2.0487
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0432,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0293,
+          0.057
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -1.7767,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -3.8559,
+          0.3026
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0188,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0133,
+          0.0243
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.5,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          0.1091,
+          0.8909
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.2767,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.1784,
+          0.7318
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0197,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          0.0043,
+          0.0352
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 5.0033,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          3.3402,
+          6.6665
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0282,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0329,
+          -0.0234
+        ],
+        "recovery_km_median": 17.0
+      }
+    },
+    "c_late": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.1167,
+        "unique_false_pass_ci": [
+          10.7746,
+          11.4588
+        ],
+        "unique_defects": 13.1733,
+        "unique_defects_ci": [
+          12.8188,
+          13.5279
+        ],
+        "fp_recall": 0.4261,
+        "fp_recall_ci": [
+          0.4148,
+          0.4374
+        ],
+        "severity_weighted": 11.9393,
+        "severity_weighted_ci": [
+          11.6006,
+          12.278
+        ],
+        "first_find_at": 5.26,
+        "first_find_at_ci": [
+          4.676,
+          5.844
+        ],
+        "recovery_steps": 15.1433,
+        "recovery_steps_ci": [
+          14.4261,
+          15.8605
+        ],
+        "exploration_entropy": 0.8777,
+        "exploration_entropy_ci": [
+          0.8748,
+          0.8807
+        ],
+        "cpu_us_per_probe": 8.624,
+        "cpu_us_per_probe_ci": [
+          8.4066,
+          8.8413
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.4033,
+        "recovery_cap": [
+          21
+        ],
+        "alarm_rate": 0.1667,
+        "false_alarm_rate": 0.1133,
+        "false_alarm_rate_ci": [
+          0.0774,
+          0.1493
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.6067,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.9041,
+          -0.3092
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.63,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9559,
+          -0.3041
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0241,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0357,
+          -0.0126
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 1.54,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.5807,
+          2.4993
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0247,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.029,
+          -0.0203
+        ],
+        "recovery_km_median": 17.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 11.7233,
+        "unique_false_pass_ci": [
+          11.3876,
+          12.0591
+        ],
+        "unique_defects": 13.8033,
+        "unique_defects_ci": [
+          13.4466,
+          14.1601
+        ],
+        "fp_recall": 0.4503,
+        "fp_recall_ci": [
+          0.4392,
+          0.4614
+        ],
+        "severity_weighted": 12.5553,
+        "severity_weighted_ci": [
+          12.2206,
+          12.8901
+        ],
+        "first_find_at": 5.75,
+        "first_find_at_ci": [
+          5.1366,
+          6.3634
+        ],
+        "recovery_steps": 13.6033,
+        "recovery_steps_ci": [
+          12.8472,
+          14.3595
+        ],
+        "exploration_entropy": 0.9024,
+        "exploration_entropy_ci": [
+          0.898,
+          0.9068
+        ],
+        "cpu_us_per_probe": 8.3868,
+        "cpu_us_per_probe_ci": [
+          8.1783,
+          8.5953
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.3,
+        "recovery_cap": [
+          21
+        ],
+        "alarm_rate": 0.2433,
+        "false_alarm_rate": 0.1233,
+        "false_alarm_rate_ci": [
+          0.0861,
+          0.1606
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.6067,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3092,
+          0.9041
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.63,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3041,
+          0.9559
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0241,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0126,
+          0.0357
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -1.54,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.4993,
+          -0.5807
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0247,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0203,
+          0.029
+        ],
+        "recovery_km_median": 14.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 11.4933,
+        "unique_false_pass_ci": [
+          11.1435,
+          11.8431
+        ],
+        "unique_defects": 13.6133,
+        "unique_defects_ci": [
+          13.2494,
+          13.9773
+        ],
+        "fp_recall": 0.4405,
+        "fp_recall_ci": [
+          0.4291,
+          0.4519
+        ],
+        "severity_weighted": 12.3413,
+        "severity_weighted_ci": [
+          11.9958,
+          12.6869
+        ],
+        "first_find_at": 7.3933,
+        "first_find_at_ci": [
+          6.715,
+          8.0717
+        ],
+        "recovery_steps": 14.7133,
+        "recovery_steps_ci": [
+          14.0004,
+          15.4262
+        ],
+        "exploration_entropy": 0.8875,
+        "exploration_entropy_ci": [
+          0.8832,
+          0.8917
+        ],
+        "cpu_us_per_probe": 10.2403,
+        "cpu_us_per_probe_ci": [
+          9.9716,
+          10.5089
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.3233,
+        "recovery_cap": [
+          21
+        ],
+        "alarm_rate": 0.22,
+        "false_alarm_rate": 0.12,
+        "false_alarm_rate_ci": [
+          0.0832,
+          0.1568
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.3767,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1002,
+          0.6531
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.44,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.1378,
+          0.7422
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0144,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0035,
+          0.0252
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.43,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.3158,
+          0.4558
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0097,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0056,
+          0.0139
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.23,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.523,
+          0.063
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.19,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.5095,
+          0.1295
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0098,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0211,
+          0.0016
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 1.11,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.2249,
+          1.9951
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0149,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0194,
+          -0.0104
+        ],
+        "recovery_km_median": 16.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 11.36,
+        "unique_false_pass_ci": [
+          11.0189,
+          11.7011
+        ],
+        "unique_defects": 13.4,
+        "unique_defects_ci": [
+          13.0325,
+          13.7675
+        ],
+        "fp_recall": 0.4353,
+        "fp_recall_ci": [
+          0.4243,
+          0.4464
+        ],
+        "severity_weighted": 12.176,
+        "severity_weighted_ci": [
+          11.8338,
+          12.5182
+        ],
+        "first_find_at": 7.4133,
+        "first_find_at_ci": [
+          6.7247,
+          8.102
+        ],
+        "recovery_steps": 16.2,
+        "recovery_steps_ci": [
+          15.52,
+          16.88
+        ],
+        "exploration_entropy": 0.87,
+        "exploration_entropy_ci": [
+          0.866,
+          0.874
+        ],
+        "cpu_us_per_probe": 10.5499,
+        "cpu_us_per_probe_ci": [
+          10.2473,
+          10.8524
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.4633,
+        "recovery_cap": [
+          21
+        ],
+        "alarm_rate": 0.2133,
+        "false_alarm_rate": 0.1233,
+        "false_alarm_rate_ci": [
+          0.0861,
+          0.1606
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.2433,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.025,
+          0.5117
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.2267,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.0695,
+          0.5229
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0092,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0013,
+          0.0197
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 1.0567,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          0.1917,
+          1.9216
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0077,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0114,
+          -0.0041
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.3633,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.6494,
+          -0.0772
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.4033,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.7175,
+          -0.0892
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0149,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.026,
+          -0.0039
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.5967,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.7577,
+          3.4357
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0324,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0363,
+          -0.0285
+        ],
+        "recovery_km_median": 19.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 11.7367,
+        "unique_false_pass_ci": [
+          11.3813,
+          12.092
+        ],
+        "unique_defects": 13.7767,
+        "unique_defects_ci": [
+          13.4109,
+          14.1424
+        ],
+        "fp_recall": 0.4485,
+        "fp_recall_ci": [
+          0.4378,
+          0.4592
+        ],
+        "severity_weighted": 12.5527,
+        "severity_weighted_ci": [
+          12.2018,
+          12.9035
+        ],
+        "first_find_at": 5.65,
+        "first_find_at_ci": [
+          4.9759,
+          6.3241
+        ],
+        "recovery_steps": 14.55,
+        "recovery_steps_ci": [
+          13.8196,
+          15.2804
+        ],
+        "exploration_entropy": 0.8791,
+        "exploration_entropy_ci": [
+          0.8744,
+          0.8839
+        ],
+        "cpu_us_per_probe": 10.3231,
+        "cpu_us_per_probe_ci": [
+          10.0442,
+          10.602
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.3667,
+        "recovery_cap": [
+          21
+        ],
+        "alarm_rate": 0.2367,
+        "false_alarm_rate": 0.1333,
+        "false_alarm_rate_ci": [
+          0.0948,
+          0.1719
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.62,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3415,
+          0.8985
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.6033,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.3089,
+          0.8977
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0224,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0116,
+          0.0332
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.5933,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -1.5022,
+          0.3155
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0014,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0032,
+          0.006
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.0133,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.304,
+          0.3307
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.0267,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.3663,
+          0.313
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0018,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0138,
+          0.0103
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 0.9467,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.0539,
+          1.8394
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0233,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0281,
+          -0.0184
+        ],
+        "recovery_km_median": 16.0
+      }
+    },
+    "c_reverse": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 9.9233,
+        "unique_false_pass_ci": [
+          9.5878,
+          10.2589
+        ],
+        "unique_defects": 11.8667,
+        "unique_defects_ci": [
+          11.5192,
+          12.2141
+        ],
+        "fp_recall": 0.5927,
+        "fp_recall_ci": [
+          0.5779,
+          0.6075
+        ],
+        "severity_weighted": 10.7007,
+        "severity_weighted_ci": [
+          10.3698,
+          11.0316
+        ],
+        "first_find_at": 10.6033,
+        "first_find_at_ci": [
+          9.6502,
+          11.5565
+        ],
+        "recovery_steps": 26.15,
+        "recovery_steps_ci": [
+          24.2606,
+          28.0394
+        ],
+        "exploration_entropy": 0.952,
+        "exploration_entropy_ci": [
+          0.9503,
+          0.9538
+        ],
+        "cpu_us_per_probe": 8.4184,
+        "cpu_us_per_probe_ci": [
+          8.1996,
+          8.6372
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0033,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.6167,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.4433,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.6958,
+          -0.1909
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.5167,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.8017,
+          -0.2316
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.027,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0426,
+          -0.0114
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.1233,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.9078,
+          5.3389
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": 0.004,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          0.0015,
+          0.0064
+        ],
+        "recovery_km_median": 24.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 10.3667,
+        "unique_false_pass_ci": [
+          10.0206,
+          10.7127
+        ],
+        "unique_defects": 12.3833,
+        "unique_defects_ci": [
+          12.0199,
+          12.7468
+        ],
+        "fp_recall": 0.6197,
+        "fp_recall_ci": [
+          0.6046,
+          0.6348
+        ],
+        "severity_weighted": 11.1733,
+        "severity_weighted_ci": [
+          10.8307,
+          11.5159
+        ],
+        "first_find_at": 9.9867,
+        "first_find_at_ci": [
+          9.0082,
+          10.9652
+        ],
+        "recovery_steps": 23.0267,
+        "recovery_steps_ci": [
+          21.26,
+          24.7933
+        ],
+        "exploration_entropy": 0.9481,
+        "exploration_entropy_ci": [
+          0.9461,
+          0.95
+        ],
+        "cpu_us_per_probe": 8.0619,
+        "cpu_us_per_probe_ci": [
+          7.8459,
+          8.2779
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0033,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.6667,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.4433,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1909,
+          0.6958
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.5167,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.2316,
+          0.8017
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.027,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0114,
+          0.0426
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -3.1233,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -5.3389,
+          -0.9078
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.004,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0064,
+          -0.0015
+        ],
+        "recovery_km_median": 20.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 10.3667,
+        "unique_false_pass_ci": [
+          10.002,
+          10.7314
+        ],
+        "unique_defects": 12.3033,
+        "unique_defects_ci": [
+          11.936,
+          12.6707
+        ],
+        "fp_recall": 0.6175,
+        "fp_recall_ci": [
+          0.6014,
+          0.6336
+        ],
+        "severity_weighted": 11.1413,
+        "severity_weighted_ci": [
+          10.7842,
+          11.4985
+        ],
+        "first_find_at": 9.05,
+        "first_find_at_ci": [
+          8.1797,
+          9.9203
+        ],
+        "recovery_steps": 18.59,
+        "recovery_steps_ci": [
+          16.7919,
+          20.3881
+        ],
+        "exploration_entropy": 0.9466,
+        "exploration_entropy_ci": [
+          0.9445,
+          0.9487
+        ],
+        "cpu_us_per_probe": 9.8957,
+        "cpu_us_per_probe_ci": [
+          9.6551,
+          10.1364
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0033,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.65,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.4433,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.186,
+          0.7007
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.4367,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.1526,
+          0.7207
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0248,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.009,
+          0.0406
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -7.56,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -9.9936,
+          -5.1264
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0054,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.008,
+          -0.0029
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.2487,
+          0.2487
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.08,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.3503,
+          0.1903
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0022,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0174,
+          0.013
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": -4.4367,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          -6.4893,
+          -2.384
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0015,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0034,
+          0.0005
+        ],
+        "recovery_km_median": 16.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 10.4833,
+        "unique_false_pass_ci": [
+          10.1118,
+          10.8549
+        ],
+        "unique_defects": 12.4067,
+        "unique_defects_ci": [
+          12.0304,
+          12.783
+        ],
+        "fp_recall": 0.6249,
+        "fp_recall_ci": [
+          0.6081,
+          0.6416
+        ],
+        "severity_weighted": 11.2527,
+        "severity_weighted_ci": [
+          10.8877,
+          11.6177
+        ],
+        "first_find_at": 9.3067,
+        "first_find_at_ci": [
+          8.3509,
+          10.2624
+        ],
+        "recovery_steps": 20.6067,
+        "recovery_steps_ci": [
+          18.5731,
+          22.6403
+        ],
+        "exploration_entropy": 0.9384,
+        "exploration_entropy_ci": [
+          0.9363,
+          0.9405
+        ],
+        "cpu_us_per_probe": 10.2136,
+        "cpu_us_per_probe_ci": [
+          9.9353,
+          10.4919
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.6533,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.56,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3118,
+          0.8082
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.54,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.2643,
+          0.8157
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0322,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0172,
+          0.0472
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -5.5433,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -8.0552,
+          -3.0315
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.0136,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.016,
+          -0.0112
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.1167,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.1496,
+          0.3829
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.0233,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2588,
+          0.3055
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0052,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0112,
+          0.0216
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": -2.42,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          -4.5984,
+          -0.2416
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0096,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0116,
+          -0.0077
+        ],
+        "recovery_km_median": 17.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 10.29,
+        "unique_false_pass_ci": [
+          9.9365,
+          10.6435
+        ],
+        "unique_defects": 12.16,
+        "unique_defects_ci": [
+          11.7992,
+          12.5208
+        ],
+        "fp_recall": 0.614,
+        "fp_recall_ci": [
+          0.5983,
+          0.6296
+        ],
+        "severity_weighted": 11.038,
+        "severity_weighted_ci": [
+          10.691,
+          11.385
+        ],
+        "first_find_at": 10.97,
+        "first_find_at_ci": [
+          10.0569,
+          11.8831
+        ],
+        "recovery_steps": 25.2467,
+        "recovery_steps_ci": [
+          23.5723,
+          26.921
+        ],
+        "exploration_entropy": 0.946,
+        "exploration_entropy_ci": [
+          0.9439,
+          0.9481
+        ],
+        "cpu_us_per_probe": 10.1563,
+        "cpu_us_per_probe_ci": [
+          9.6456,
+          10.667
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0,
+        "recovery_cap": [
+          91
+        ],
+        "alarm_rate": 0.65,
+        "false_alarm_rate": null,
+        "false_alarm_rate_ci": null,
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.3667,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.1039,
+          0.6294
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.2933,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.0009,
+          0.5857
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0213,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0048,
+          0.0378
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.9033,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -3.0322,
+          1.2256
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": -0.006,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          -0.0085,
+          -0.0035
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.0767,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.3285,
+          0.1752
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.2233,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.5059,
+          0.0592
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0058,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.021,
+          0.0095
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 2.22,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.2468,
+          4.1932
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.002,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0041,
+          -0.0
+        ],
+        "recovery_km_median": 23.0
+      }
+    },
+    "c_oscillate": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 11.53,
+        "unique_false_pass_ci": [
+          11.1818,
+          11.8782
+        ],
+        "unique_defects": 13.42,
+        "unique_defects_ci": [
+          13.0769,
+          13.7631
+        ],
+        "fp_recall": 0.3837,
+        "fp_recall_ci": [
+          0.3734,
+          0.3941
+        ],
+        "severity_weighted": 12.286,
+        "severity_weighted_ci": [
+          11.9483,
+          12.6237
+        ],
+        "first_find_at": 5.0333,
+        "first_find_at_ci": [
+          4.4507,
+          5.616
+        ],
+        "recovery_steps": 9.08,
+        "recovery_steps_ci": [
+          8.8573,
+          9.3027
+        ],
+        "exploration_entropy": 0.8551,
+        "exploration_entropy_ci": [
+          0.8508,
+          0.8593
+        ],
+        "cpu_us_per_probe": 9.7455,
+        "cpu_us_per_probe_ci": [
+          9.4969,
+          9.994
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.86,
+        "recovery_cap": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "alarm_rate": 0.2467,
+        "false_alarm_rate": 0.0133,
+        "false_alarm_rate_ci": [
+          0.0003,
+          0.0263
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.68,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -1.0592,
+          -0.3008
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.8233,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -1.2199,
+          -0.4268
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0213,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0339,
+          -0.0088
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 0.2373,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          -0.0564,
+          0.5311
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0541,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.06,
+          -0.0481
+        ],
+        "recovery_km_median": 8.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 12.21,
+        "unique_false_pass_ci": [
+          11.8356,
+          12.5844
+        ],
+        "unique_defects": 14.2433,
+        "unique_defects_ci": [
+          13.8685,
+          14.6182
+        ],
+        "fp_recall": 0.4051,
+        "fp_recall_ci": [
+          0.3943,
+          0.4159
+        ],
+        "severity_weighted": 13.0233,
+        "severity_weighted_ci": [
+          12.6563,
+          13.3904
+        ],
+        "first_find_at": 6.06,
+        "first_find_at_ci": [
+          5.3238,
+          6.7962
+        ],
+        "recovery_steps": 8.8427,
+        "recovery_steps_ci": [
+          8.6098,
+          9.0756
+        ],
+        "exploration_entropy": 0.9092,
+        "exploration_entropy_ci": [
+          0.9043,
+          0.914
+        ],
+        "cpu_us_per_probe": 9.2072,
+        "cpu_us_per_probe_ci": [
+          8.9724,
+          9.4421
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.7867,
+        "recovery_cap": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "alarm_rate": 0.3567,
+        "false_alarm_rate": 0.02,
+        "false_alarm_rate_ci": [
+          0.0041,
+          0.0359
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.68,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3008,
+          1.0592
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.8233,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.4268,
+          1.2199
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0213,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0088,
+          0.0339
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.2373,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -0.5311,
+          0.0564
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0541,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0481,
+          0.06
+        ],
+        "recovery_km_median": 8.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 11.77,
+        "unique_false_pass_ci": [
+          11.3791,
+          12.1609
+        ],
+        "unique_defects": 13.71,
+        "unique_defects_ci": [
+          13.3116,
+          14.1084
+        ],
+        "fp_recall": 0.3904,
+        "fp_recall_ci": [
+          0.379,
+          0.4019
+        ],
+        "severity_weighted": 12.546,
+        "severity_weighted_ci": [
+          12.1585,
+          12.9335
+        ],
+        "first_find_at": 7.2967,
+        "first_find_at_ci": [
+          6.6488,
+          7.9445
+        ],
+        "recovery_steps": 9.3193,
+        "recovery_steps_ci": [
+          9.0829,
+          9.5557
+        ],
+        "exploration_entropy": 0.8873,
+        "exploration_entropy_ci": [
+          0.8815,
+          0.8931
+        ],
+        "cpu_us_per_probe": 11.1509,
+        "cpu_us_per_probe_ci": [
+          10.8602,
+          11.4415
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.84,
+        "recovery_cap": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "alarm_rate": 0.31,
+        "false_alarm_rate": 0.0133,
+        "false_alarm_rate_ci": [
+          0.0003,
+          0.0263
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.24,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1429,
+          0.6229
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.29,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1176,
+          0.6976
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0067,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0063,
+          0.0196
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 0.2393,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -0.0432,
+          0.5218
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0322,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0258,
+          0.0387
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.44,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.8338,
+          -0.0462
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.5333,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9445,
+          -0.1222
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0146,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0277,
+          -0.0016
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 0.4767,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.1897,
+          0.7636
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0218,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0277,
+          -0.016
+        ],
+        "recovery_km_median": 9.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 11.7867,
+        "unique_false_pass_ci": [
+          11.3878,
+          12.1855
+        ],
+        "unique_defects": 13.71,
+        "unique_defects_ci": [
+          13.3059,
+          14.1141
+        ],
+        "fp_recall": 0.3906,
+        "fp_recall_ci": [
+          0.3791,
+          0.402
+        ],
+        "severity_weighted": 12.556,
+        "severity_weighted_ci": [
+          12.1622,
+          12.9498
+        ],
+        "first_find_at": 7.3733,
+        "first_find_at_ci": [
+          6.6999,
+          8.0467
+        ],
+        "recovery_steps": 9.1967,
+        "recovery_steps_ci": [
+          8.9585,
+          9.4348
+        ],
+        "exploration_entropy": 0.8703,
+        "exploration_entropy_ci": [
+          0.8648,
+          0.8758
+        ],
+        "cpu_us_per_probe": 11.7102,
+        "cpu_us_per_probe_ci": [
+          11.2927,
+          12.1277
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.84,
+        "recovery_cap": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "alarm_rate": 0.29,
+        "false_alarm_rate": 0.0133,
+        "false_alarm_rate_ci": [
+          0.0003,
+          0.0263
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.2567,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.1236,
+          0.637
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.29,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.1087,
+          0.6887
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0068,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.006,
+          0.0196
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 0.1167,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -0.1602,
+          0.3935
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0152,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0094,
+          0.0211
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.4233,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.8101,
+          -0.0365
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.5333,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.9365,
+          -0.1302
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0145,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0276,
+          -0.0015
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 0.354,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.0645,
+          0.6435
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0388,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0442,
+          -0.0334
+        ],
+        "recovery_km_median": 9.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.2,
+        "unique_false_pass_ci": [
+          11.8198,
+          12.5802
+        ],
+        "unique_defects": 14.2333,
+        "unique_defects_ci": [
+          13.8474,
+          14.6193
+        ],
+        "fp_recall": 0.4042,
+        "fp_recall_ci": [
+          0.3935,
+          0.415
+        ],
+        "severity_weighted": 13.0133,
+        "severity_weighted_ci": [
+          12.6381,
+          13.3885
+        ],
+        "first_find_at": 4.74,
+        "first_find_at_ci": [
+          4.2111,
+          5.2689
+        ],
+        "recovery_steps": 9.4447,
+        "recovery_steps_ci": [
+          9.2283,
+          9.661
+        ],
+        "exploration_entropy": 0.8731,
+        "exploration_entropy_ci": [
+          0.867,
+          0.8792
+        ],
+        "cpu_us_per_probe": 11.6713,
+        "cpu_us_per_probe_ci": [
+          11.2414,
+          12.1013
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.8467,
+        "recovery_cap": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "alarm_rate": 0.2867,
+        "false_alarm_rate": 0.0133,
+        "false_alarm_rate_ci": [
+          0.0003,
+          0.0263
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": 0.67,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          0.3051,
+          1.0349
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": 0.8133,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          0.432,
+          1.1947
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": 0.0205,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          0.0084,
+          0.0325
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": 0.3647,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          0.0785,
+          0.6509
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.018,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0115,
+          0.0245
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": -0.01,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.3843,
+          0.3643
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": -0.01,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.3994,
+          0.3794
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": -0.0009,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0137,
+          0.0119
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 0.602,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.3028,
+          0.9012
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.036,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0419,
+          -0.0302
+        ],
+        "recovery_km_median": 9.0
+      }
+    },
+    "c_uniform": {
+      "CAVER-v0.6": {
+        "n": 300,
+        "unique_false_pass": 12.1533,
+        "unique_false_pass_ci": [
+          11.794,
+          12.5127
+        ],
+        "unique_defects": 14.23,
+        "unique_defects_ci": [
+          13.8814,
+          14.5786
+        ],
+        "fp_recall": 0.4477,
+        "fp_recall_ci": [
+          0.4365,
+          0.4589
+        ],
+        "severity_weighted": 12.984,
+        "severity_weighted_ci": [
+          12.6383,
+          13.3297
+        ],
+        "first_find_at": 4.8367,
+        "first_find_at_ci": [
+          4.3505,
+          5.3228
+        ],
+        "recovery_steps": 30.32,
+        "recovery_steps_ci": [
+          28.2211,
+          32.4189
+        ],
+        "exploration_entropy": 0.8614,
+        "exploration_entropy_ci": [
+          0.8576,
+          0.8652
+        ],
+        "cpu_us_per_probe": 9.4563,
+        "cpu_us_per_probe_ci": [
+          9.2025,
+          9.71
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1333,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.1967,
+        "false_alarm_rate": 0.05,
+        "false_alarm_rate_ci": [
+          0.0253,
+          0.0747
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.4233,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          0.1,
+          0.7467
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.3,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.0496,
+          0.6496
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0176,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          0.0054,
+          0.0297
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 4.7067,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          2.0468,
+          7.3665
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0552,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0603,
+          -0.0501
+        ],
+        "recovery_km_median": 26.0
+      },
+      "C9-UCBMean": {
+        "n": 300,
+        "unique_false_pass": 11.73,
+        "unique_false_pass_ci": [
+          11.3379,
+          12.1221
+        ],
+        "unique_defects": 13.93,
+        "unique_defects_ci": [
+          13.5205,
+          14.3395
+        ],
+        "fp_recall": 0.4302,
+        "fp_recall_ci": [
+          0.4185,
+          0.4419
+        ],
+        "severity_weighted": 12.61,
+        "severity_weighted_ci": [
+          12.2195,
+          13.0005
+        ],
+        "first_find_at": 5.4033,
+        "first_find_at_ci": [
+          4.7674,
+          6.0392
+        ],
+        "recovery_steps": 25.6133,
+        "recovery_steps_ci": [
+          23.5329,
+          27.6938
+        ],
+        "exploration_entropy": 0.9166,
+        "exploration_entropy_ci": [
+          0.9121,
+          0.9212
+        ],
+        "cpu_us_per_probe": 9.0418,
+        "cpu_us_per_probe_ci": [
+          8.8166,
+          9.2671
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.0933,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.2367,
+        "false_alarm_rate": 0.06,
+        "false_alarm_rate_ci": [
+          0.0331,
+          0.0869
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.4233,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.7467,
+          -0.1
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.3,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.6496,
+          0.0496
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0176,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0297,
+          -0.0054
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -4.7067,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -7.3665,
+          -2.0468
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0552,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0501,
+          0.0603
+        ],
+        "recovery_km_median": 20.0
+      },
+      "C10-EvidenceUCB": {
+        "n": 300,
+        "unique_false_pass": 11.9633,
+        "unique_false_pass_ci": [
+          11.5858,
+          12.3409
+        ],
+        "unique_defects": 14.0567,
+        "unique_defects_ci": [
+          13.6806,
+          14.4327
+        ],
+        "fp_recall": 0.4397,
+        "fp_recall_ci": [
+          0.4283,
+          0.451
+        ],
+        "severity_weighted": 12.8007,
+        "severity_weighted_ci": [
+          12.4331,
+          13.1682
+        ],
+        "first_find_at": 7.1033,
+        "first_find_at_ci": [
+          6.4936,
+          7.713
+        ],
+        "recovery_steps": 29.3367,
+        "recovery_steps_ci": [
+          27.269,
+          31.4043
+        ],
+        "exploration_entropy": 0.8897,
+        "exploration_entropy_ci": [
+          0.8846,
+          0.8948
+        ],
+        "cpu_us_per_probe": 10.9327,
+        "cpu_us_per_probe_ci": [
+          10.658,
+          11.2074
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1067,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.1933,
+        "false_alarm_rate": 0.05,
+        "false_alarm_rate_ci": [
+          0.0253,
+          0.0747
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.19,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.5033,
+          0.1233
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.1733,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5122,
+          0.1655
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0081,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0199,
+          0.0038
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.9833,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -3.5086,
+          1.5419
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0283,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0229,
+          0.0336
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.2333,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.0668,
+          0.5335
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.1267,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2166,
+          0.4699
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0095,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0017,
+          0.0207
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 3.7233,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          0.9996,
+          6.4471
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0269,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0311,
+          -0.0227
+        ],
+        "recovery_km_median": 25.0
+      },
+      "PH-B1-NoCUSUM": {
+        "n": 300,
+        "unique_false_pass": 11.9767,
+        "unique_false_pass_ci": [
+          11.5966,
+          12.3567
+        ],
+        "unique_defects": 14.0733,
+        "unique_defects_ci": [
+          13.6937,
+          14.4529
+        ],
+        "fp_recall": 0.4405,
+        "fp_recall_ci": [
+          0.4289,
+          0.4521
+        ],
+        "severity_weighted": 12.8153,
+        "severity_weighted_ci": [
+          12.445,
+          13.1857
+        ],
+        "first_find_at": 7.08,
+        "first_find_at_ci": [
+          6.4786,
+          7.6814
+        ],
+        "recovery_steps": 29.9733,
+        "recovery_steps_ci": [
+          27.8715,
+          32.0752
+        ],
+        "exploration_entropy": 0.8778,
+        "exploration_entropy_ci": [
+          0.8729,
+          0.8828
+        ],
+        "cpu_us_per_probe": 11.2785,
+        "cpu_us_per_probe_ci": [
+          10.9722,
+          11.5848
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.12,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.1967,
+        "false_alarm_rate": 0.05,
+        "false_alarm_rate_ci": [
+          0.0253,
+          0.0747
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.1767,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4902,
+          0.1369
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.1567,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.4925,
+          0.1792
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0072,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0191,
+          0.0046
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.3467,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.8351,
+          2.1418
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0164,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0113,
+          0.0215
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.2467,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.0643,
+          0.5576
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.1433,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.2003,
+          0.4869
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0103,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0013,
+          0.0219
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 4.36,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.5865,
+          7.1335
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0388,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.0428,
+          -0.0347
+        ],
+        "recovery_km_median": 26.0
+      },
+      "PH-B1-NoEvalStart": {
+        "n": 300,
+        "unique_false_pass": 12.0367,
+        "unique_false_pass_ci": [
+          11.6083,
+          12.465
+        ],
+        "unique_defects": 14.0033,
+        "unique_defects_ci": [
+          13.5838,
+          14.4228
+        ],
+        "fp_recall": 0.4415,
+        "fp_recall_ci": [
+          0.4283,
+          0.4548
+        ],
+        "severity_weighted": 12.8233,
+        "severity_weighted_ci": [
+          12.406,
+          13.2407
+        ],
+        "first_find_at": 5.4633,
+        "first_find_at_ci": [
+          4.8531,
+          6.0736
+        ],
+        "recovery_steps": 29.9633,
+        "recovery_steps_ci": [
+          27.952,
+          31.9747
+        ],
+        "exploration_entropy": 0.875,
+        "exploration_entropy_ci": [
+          0.8688,
+          0.8812
+        ],
+        "cpu_us_per_probe": 11.2719,
+        "cpu_us_per_probe_ci": [
+          10.9633,
+          11.5805
+        ],
+        "no_find_rate": 0,
+        "recovery_censored_rate": 0.1,
+        "recovery_cap": [
+          61
+        ],
+        "alarm_rate": 0.1867,
+        "false_alarm_rate": 0.0567,
+        "false_alarm_rate_ci": [
+          0.0305,
+          0.0829
+        ],
+        "rule_violations": 0,
+        "diff_unique_false_pass_vs_CAVER-v0.6": -0.1167,
+        "diff_unique_false_pass_vs_CAVER-v0.6_ci": [
+          -0.4372,
+          0.2039
+        ],
+        "diff_unique_defects_vs_CAVER-v0.6": -0.2267,
+        "diff_unique_defects_vs_CAVER-v0.6_ci": [
+          -0.5689,
+          0.1156
+        ],
+        "diff_fp_recall_vs_CAVER-v0.6": -0.0062,
+        "diff_fp_recall_vs_CAVER-v0.6_ci": [
+          -0.0183,
+          0.0059
+        ],
+        "diff_recovery_steps_vs_CAVER-v0.6": -0.3567,
+        "diff_recovery_steps_vs_CAVER-v0.6_ci": [
+          -2.9649,
+          2.2515
+        ],
+        "diff_exploration_entropy_vs_CAVER-v0.6": 0.0136,
+        "diff_exploration_entropy_vs_CAVER-v0.6_ci": [
+          0.0075,
+          0.0197
+        ],
+        "diff_unique_false_pass_vs_C9-UCBMean": 0.3067,
+        "diff_unique_false_pass_vs_C9-UCBMean_ci": [
+          -0.0334,
+          0.6467
+        ],
+        "diff_unique_defects_vs_C9-UCBMean": 0.0733,
+        "diff_unique_defects_vs_C9-UCBMean_ci": [
+          -0.3027,
+          0.4494
+        ],
+        "diff_fp_recall_vs_C9-UCBMean": 0.0114,
+        "diff_fp_recall_vs_C9-UCBMean_ci": [
+          -0.0014,
+          0.0242
+        ],
+        "diff_recovery_steps_vs_C9-UCBMean": 4.35,
+        "diff_recovery_steps_vs_C9-UCBMean_ci": [
+          1.8733,
+          6.8267
+        ],
+        "diff_exploration_entropy_vs_C9-UCBMean": -0.0416,
+        "diff_exploration_entropy_vs_C9-UCBMean_ci": [
+          -0.047,
+          -0.0362
+        ],
+        "recovery_km_median": 26.0
+      }
+    }
+  },
+  "diagnostics": {
+    "stationary": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.412,
+        "cusum_trigger_rate": 0.41,
+        "mean_cusum_events": 0.5467,
+        "alarm_event_rate": 0.16,
+        "mean_p0": 0.1176
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3891,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.17,
+        "mean_p0": 0.1176
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3312,
+        "cusum_trigger_rate": 0.4533,
+        "mean_cusum_events": 0.6133,
+        "alarm_event_rate": 0.1833,
+        "mean_p0": 0.1176
+      }
+    },
+    "abrupt": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4384,
+        "cusum_trigger_rate": 0.4267,
+        "mean_cusum_events": 0.57,
+        "alarm_event_rate": 0.6,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.4155,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.6067,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3683,
+        "cusum_trigger_rate": 0.45,
+        "mean_cusum_events": 0.6267,
+        "alarm_event_rate": 0.5933,
+        "mean_p0": 0.1198
+      }
+    },
+    "delayed": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4299,
+        "cusum_trigger_rate": 0.4833,
+        "mean_cusum_events": 0.6567,
+        "alarm_event_rate": 0.4033,
+        "mean_p0": 0.1204
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.401,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.3733,
+        "mean_p0": 0.1204
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3453,
+        "cusum_trigger_rate": 0.4733,
+        "mean_cusum_events": 0.6333,
+        "alarm_event_rate": 0.38,
+        "mean_p0": 0.1204
+      }
+    },
+    "recovery": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4289,
+        "cusum_trigger_rate": 0.4667,
+        "mean_cusum_events": 0.63,
+        "alarm_event_rate": 0.35,
+        "mean_p0": 0.12
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.4012,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.3433,
+        "mean_p0": 0.12
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3466,
+        "cusum_trigger_rate": 0.49,
+        "mean_cusum_events": 0.6467,
+        "alarm_event_rate": 0.3333,
+        "mean_p0": 0.12
+      }
+    },
+    "gradual": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4238,
+        "cusum_trigger_rate": 0.4233,
+        "mean_cusum_events": 0.5567,
+        "alarm_event_rate": 0.3733,
+        "mean_p0": 0.1197
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3986,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.3733,
+        "mean_p0": 0.1197
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.346,
+        "cusum_trigger_rate": 0.5067,
+        "mean_cusum_events": 0.63,
+        "alarm_event_rate": 0.38,
+        "mean_p0": 0.1197
+      }
+    },
+    "early": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4396,
+        "cusum_trigger_rate": 0.48,
+        "mean_cusum_events": 0.64,
+        "alarm_event_rate": 0.53,
+        "mean_p0": 0.1217
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.4125,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.5467,
+        "mean_p0": 0.1217
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3636,
+        "cusum_trigger_rate": 0.4433,
+        "mean_cusum_events": 0.6133,
+        "alarm_event_rate": 0.54,
+        "mean_p0": 0.1217
+      }
+    },
+    "double": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4282,
+        "cusum_trigger_rate": 0.4833,
+        "mean_cusum_events": 0.66,
+        "alarm_event_rate": 0.32,
+        "mean_p0": 0.12
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3977,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.29,
+        "mean_p0": 0.12
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3503,
+        "cusum_trigger_rate": 0.4967,
+        "mean_cusum_events": 0.6933,
+        "alarm_event_rate": 0.33,
+        "mean_p0": 0.12
+      }
+    },
+    "single": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4387,
+        "cusum_trigger_rate": 0.48,
+        "mean_cusum_events": 0.6733,
+        "alarm_event_rate": 0.53,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.4103,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.5233,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3587,
+        "cusum_trigger_rate": 0.49,
+        "mean_cusum_events": 0.6433,
+        "alarm_event_rate": 0.5633,
+        "mean_p0": 0.1198
+      }
+    },
+    "c_late": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4176,
+        "cusum_trigger_rate": 0.5267,
+        "mean_cusum_events": 0.6767,
+        "alarm_event_rate": 0.22,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3903,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.2133,
+        "mean_p0": 0.1198
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3348,
+        "cusum_trigger_rate": 0.5333,
+        "mean_cusum_events": 0.7267,
+        "alarm_event_rate": 0.2367,
+        "mean_p0": 0.1198
+      }
+    },
+    "c_reverse": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4725,
+        "cusum_trigger_rate": 0.7333,
+        "mean_cusum_events": 1.4467,
+        "alarm_event_rate": 0.65,
+        "mean_p0": 0.1556
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.4189,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.6533,
+        "mean_p0": 0.1556
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.4139,
+        "cusum_trigger_rate": 0.7667,
+        "mean_cusum_events": 1.4733,
+        "alarm_event_rate": 0.65,
+        "mean_p0": 0.1556
+      }
+    },
+    "c_oscillate": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4271,
+        "cusum_trigger_rate": 0.4767,
+        "mean_cusum_events": 0.69,
+        "alarm_event_rate": 0.31,
+        "mean_p0": 0.1203
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3962,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.29,
+        "mean_p0": 0.1203
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3442,
+        "cusum_trigger_rate": 0.47,
+        "mean_cusum_events": 0.65,
+        "alarm_event_rate": 0.2867,
+        "mean_p0": 0.1203
+      }
+    },
+    "c_uniform": {
+      "C10-EvidenceUCB": {
+        "mean_eval_coef": 0.4146,
+        "cusum_trigger_rate": 0.4267,
+        "mean_cusum_events": 0.54,
+        "alarm_event_rate": 0.1933,
+        "mean_p0": 0.1203
+      },
+      "PH-B1-NoCUSUM": {
+        "mean_eval_coef": 0.3909,
+        "cusum_trigger_rate": 0,
+        "mean_cusum_events": 0,
+        "alarm_event_rate": 0.1967,
+        "mean_p0": 0.1203
+      },
+      "PH-B1-NoEvalStart": {
+        "mean_eval_coef": 0.3328,
+        "cusum_trigger_rate": 0.4367,
+        "mean_cusum_events": 0.59,
+        "alarm_event_rate": 0.1867,
+        "mean_p0": 0.1203
+      }
+    }
+  }
+}

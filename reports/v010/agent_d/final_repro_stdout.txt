@@ -1,0 +1,3 @@
+verdict: 채택 보류 (adoption on hold) failed: ['S1', 'S2', 'K2', 'G']
+saved reports/v010/agent_d/final_repro
+exit=0

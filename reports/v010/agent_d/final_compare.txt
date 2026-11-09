@@ -1,0 +1,17 @@
+top-level keys mine: ['criteria', 'holm', 'manifest_sha256', 'meta', 'stats', 'summary']
+top-level keys lead: ['criteria', 'holm', 'manifest_sha256', 'meta', 'stats', 'summary']
+verdict mine / lead: 채택 보류 (adoption on hold) / 채택 보류 (adoption on hold)
+adopt mine / lead: False / False
+failed mine / lead: ['S1', 'S2', 'K2', 'G'] / ['S1', 'S2', 'K2', 'G']
+checks: 49; failed (mine): 5; differing from lead: 0
+criteria block identical: True
+holm identical: True
+manifest_sha256 mine / lead: 71a6e1b855bc6943c232092c3a61c30e664aeb14ad134a0a53d37c9d259fda5d / 71a6e1b855bc6943c232092c3a61c30e664aeb14ad134a0a53d37c9d259fda5d
+stats cells (scenario x policy): 49; differing (cpu fields excluded): 0
+cells with identical field: {'ufp_mean': 49, 'ufp_ci': 49, 'diff_ci': 49, 'boot_ci': 49, 'p': 49, 'rec_rmst': 49, 'km_median': 49, 'censored': 49, 'fa': 49}
+key 'summary' identical: True
+key 'manifest_sha256' identical: True
+meta keys differing: []
+runs mine / lead: 24500 / 24500  same keys: True
+runs differing in any non-cpu field: 0
+runs differing in cpu field: 0

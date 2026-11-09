@@ -1,0 +1,660 @@
+{
+ "per_candidate": {
+  "C10-L1-ProfileGated": {
+   "n_checks": 86,
+   "n_failed": 16,
+   "eligible": false,
+   "failed": [
+    {
+     "id": "S2",
+     "scenario": "stationary",
+     "value": -0.2002,
+     "pass": false
+    },
+    {
+     "id": "S1",
+     "scenario": "c_uniform",
+     "value": -0.4299,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "abrupt",
+     "value": -0.5155,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "abrupt",
+     "value": 0.1771,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "abrupt",
+     "value": 5.6504,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "delayed",
+     "value": -0.3403,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "delayed",
+     "value": 0.8683,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "delayed",
+     "value": 3.0823,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "early",
+     "value": 2.1464,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "single",
+     "value": 2.7516,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "c_late",
+     "value": 0.1173,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "c_late",
+     "value": 1.5322,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "c_reverse",
+     "value": -0.3683,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "c_reverse",
+     "value": 1.144,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "c_reverse",
+     "value": 4.0593,
+     "pass": false
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "c_reverse",
+     "value": -0.0171,
+     "pass": false
+    }
+   ],
+   "tiebreak_min_S2_lower": -0.2002,
+   "tiebreak_mean_abrupt_delayed_vs_C2": -0.11165,
+   "checks": [
+    {
+     "id": "S1",
+     "scenario": "stationary",
+     "value": -0.2283,
+     "pass": true
+    },
+    {
+     "id": "S2",
+     "scenario": "stationary",
+     "value": -0.2002,
+     "pass": false
+    },
+    {
+     "id": "S1",
+     "scenario": "c_uniform",
+     "value": -0.4299,
+     "pass": false
+    },
+    {
+     "id": "S2",
+     "scenario": "c_uniform",
+     "value": 0.0169,
+     "pass": true
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "abrupt",
+     "value": -0.5155,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "abrupt",
+     "value": 0.3727,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "abrupt",
+     "value": 0.1771,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "abrupt",
+     "value": 5.6504,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "delayed",
+     "value": -0.3403,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "delayed",
+     "value": 0.5232,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "delayed",
+     "value": 0.8683,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "delayed",
+     "value": 3.0823,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "early",
+     "value": 0.1153,
+     "pass": true
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "early",
+     "value": 0.6407,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "early",
+     "value": -2.466,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "early",
+     "value": 2.1464,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "single",
+     "value": -0.1778,
+     "pass": true
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "single",
+     "value": 0.3681,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "single",
+     "value": -3.6022,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "single",
+     "value": 2.7516,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "c_late",
+     "value": -0.2001,
+     "pass": true
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "c_late",
+     "value": 0.403,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "c_late",
+     "value": 0.1173,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "c_late",
+     "value": 1.5322,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_C2",
+     "scenario": "c_reverse",
+     "value": -0.3683,
+     "pass": false
+    },
+    {
+     "id": "K1_vs_v06",
+     "scenario": "c_reverse",
+     "value": 0.0759,
+     "pass": true
+    },
+    {
+     "id": "K2_rec_vs_v06",
+     "scenario": "c_reverse",
+     "value": 1.144,
+     "pass": false
+    },
+    {
+     "id": "K2_rec_vs_C2",
+     "scenario": "c_reverse",
+     "value": 4.0593,
+     "pass": false
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "stationary",
+     "value": 2.1958,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "stationary",
+     "value": 1.2487,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "stationary",
+     "value": 1.3476,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "stationary",
+     "value": -0.2283,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "stationary",
+     "value": [
+      0.1333,
+      0.14
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "abrupt",
+     "value": 2.3467,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "abrupt",
+     "value": 0.8333,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "abrupt",
+     "value": 0.678,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "abrupt",
+     "value": 0.3727,
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "delayed",
+     "value": 2.7337,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "delayed",
+     "value": 1.4015,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "delayed",
+     "value": 1.5142,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "delayed",
+     "value": 0.5232,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "delayed",
+     "value": [
+      0.0967,
+      0.0833
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "recovery",
+     "value": 2.8633,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "recovery",
+     "value": 1.7475,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "recovery",
+     "value": 1.7106,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "recovery",
+     "value": 0.1507,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "recovery",
+     "value": [
+      0.07,
+      0.0367
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "gradual",
+     "value": 2.3429,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "gradual",
+     "value": 1.4789,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "gradual",
+     "value": 1.4852,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "gradual",
+     "value": 0.487,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "gradual",
+     "value": [
+      0.05,
+      0.0367
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "early",
+     "value": 3.3567,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "early",
+     "value": 1.6953,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "early",
+     "value": 1.5346,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "early",
+     "value": 0.6407,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "early",
+     "value": [
+      0.0067,
+      0.0033
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "double",
+     "value": 2.4438,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "double",
+     "value": 1.195,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "double",
+     "value": 0.8673,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "double",
+     "value": 0.6963,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "double",
+     "value": [
+      0.0633,
+      0.0633
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "single",
+     "value": 3.3759,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "single",
+     "value": 1.4653,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "single",
+     "value": 0.9897,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "single",
+     "value": 0.3681,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "single",
+     "value": [
+      0.0333,
+      0.05
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "c_late",
+     "value": 2.0444,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "c_late",
+     "value": 0.8317,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "c_late",
+     "value": 0.6502,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "c_late",
+     "value": 0.403,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "c_late",
+     "value": [
+      0.1167,
+      0.1133
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "c_reverse",
+     "value": 0.6562,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "c_reverse",
+     "value": 0.2,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "c_reverse",
+     "value": -0.0171,
+     "pass": false
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "c_reverse",
+     "value": 0.0759,
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "c_oscillate",
+     "value": 1.8174,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "c_oscillate",
+     "value": 1.1443,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "c_oscillate",
+     "value": 0.7531,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "c_oscillate",
+     "value": 0.4868,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "c_oscillate",
+     "value": [
+      0.0167,
+      0.0133
+     ],
+     "pass": true
+    },
+    {
+     "id": "G_vs_Random",
+     "scenario": "c_uniform",
+     "value": 2.5601,
+     "pass": true
+    },
+    {
+     "id": "G_vs_SW-UCB",
+     "scenario": "c_uniform",
+     "value": 1.5763,
+     "pass": true
+    },
+    {
+     "id": "G_vs_D-UCB",
+     "scenario": "c_uniform",
+     "value": 1.7018,
+     "pass": true
+    },
+    {
+     "id": "G_vs_v06",
+     "scenario": "c_uniform",
+     "value": -0.4299,
+     "pass": true
+    },
+    {
+     "id": "FA",
+     "scenario": "c_uniform",
+     "value": [
+      0.0767,
+      0.05
+     ],
+     "pass": true
+    }
+   ]
+  }
+ },
+ "nominated": null,
+ "closest_if_none": "C10-L1-ProfileGated",
+ "rule": "docs/V010_AGENT_B.md section 4 (predeclared)"
+}

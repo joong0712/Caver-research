@@ -1,0 +1,16 @@
+f_abrupt_boundary / C10-L1-ProfileGated: n runs = 500
+ event 0: cap=91 censored_caps_seen=[91]
+   recomputed: KM median=27  RMST=34.4920  mean(min(T,cap))=34.4920  censored=0.0460
+   report    : KM median=27  RMST=34.492  censored=0.046
+   match: median True, rmst True, censored True
+ per-run restricted mean (recovery_steps) averaged: 34.4920; report recovery_rmst=34.492
+f_spike / CAVER-v0.6: n runs = 500
+ event 0: cap=16 censored_caps_seen=[16]
+   recomputed: KM median=None  RMST=12.2780  mean(min(T,cap))=12.2780  censored=0.5700
+   report    : KM median=None  RMST=12.278  censored=0.57
+   match: median True, rmst True, censored True
+ event 1: cap=36 censored_caps_seen=[36]
+   recomputed: KM median=6  RMST=9.0480  mean(min(T,cap))=9.0480  censored=0.0300
+   report    : KM median=6  RMST=9.048  censored=0.03
+   match: median True, rmst True, censored True
+ per-run restricted mean (recovery_steps) averaged: 10.6630; report recovery_rmst=10.663

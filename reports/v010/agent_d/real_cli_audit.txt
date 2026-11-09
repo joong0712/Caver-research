@@ -1,0 +1,68 @@
+== R1 reports/v010/real/R1_new_variants.json
+  rows: 36  configs: 18
+  meta.cli_kind: real  real_claude_code_executed: True
+  meta.claude_version: 2.1.319 (Claude Code)  prompt_key: std  billing_mode: subscription  complete: True
+  meta.subscription_auth: {'loggedIn': True, 'authMethod': 'oauth_token'}
+  meta keys: ['batch', 'billing_mode', 'claude_version', 'cli_binary', 'cli_kind', 'complete', 'configs', 'max_runs', 'prompt_key', 'prompt_template', 'real_claude_code_executed', 'reported_total_cost_usd', 'reps', 'runs_recorded', 'runs_this_invocation', 'stop_reason', 'subscription_auth', 'total_cost_usd_semantics']
+  row api_key_source: {'none': 36}
+  row cli_kind: {'real': 36}  real_executed: {True: 36}
+  row usage_limit_hit: {False: 36}  cli_is_error: {False: 36}  cli_exit_code: {0: 36}
+  row status: {'FALSE_PASS': 12, 'NO_SIDE_EFFECT_OBSERVED': 22, 'CONTRACT_VIOLATION': 2}
+  distinct cli_model values: 1
+  reps: {0: 18, 1: 18}
+  configs measured >1x: 18  disagreeing on (false_pass, contract_violated): 0 
+  configs disagreeing on status label: 0
+== R2 reports/v010/real/R2_alt_prompt.json
+  rows: 20  configs: 20
+  meta.cli_kind: real  real_claude_code_executed: True
+  meta.claude_version: 2.1.319 (Claude Code)  prompt_key: alt  billing_mode: subscription  complete: True
+  meta.subscription_auth: {'loggedIn': True, 'authMethod': 'oauth_token'}
+  meta keys: ['batch', 'billing_mode', 'claude_version', 'cli_binary', 'cli_kind', 'complete', 'configs', 'max_runs', 'prompt_key', 'prompt_template', 'real_claude_code_executed', 'reported_total_cost_usd', 'reps', 'runs_recorded', 'runs_this_invocation', 'stop_reason', 'subscription_auth', 'total_cost_usd_semantics']
+  row api_key_source: {'none': 20}
+  row cli_kind: {'real': 20}  real_executed: {True: 20}
+  row usage_limit_hit: {False: 20}  cli_is_error: {False: 18, True: 2}  cli_exit_code: {0: 18, 1: 2}
+  row status: {'FALSE_PASS': 15, 'NO_SIDE_EFFECT_OBSERVED': 4, 'INCONCLUSIVE_CLI_ERROR': 1}
+  distinct cli_model values: 1
+  reps: {0: 20}
+  configs measured >1x: 0  disagreeing on (false_pass, contract_violated): 0 
+  configs disagreeing on status label: 0
+== R3 reports/v010/real/R3_cli_2_1_300.json
+  rows: 20  configs: 20
+  meta.cli_kind: real  real_claude_code_executed: True
+  meta.claude_version: 2.1.300 (Claude Code)  prompt_key: std  billing_mode: subscription  complete: True
+  meta.subscription_auth: {'loggedIn': True, 'authMethod': 'oauth_token'}
+  meta keys: ['batch', 'billing_mode', 'claude_version', 'cli_binary', 'cli_kind', 'complete', 'configs', 'max_runs', 'prompt_key', 'prompt_template', 'real_claude_code_executed', 'reported_total_cost_usd', 'reps', 'runs_recorded', 'runs_this_invocation', 'stop_reason', 'subscription_auth', 'total_cost_usd_semantics']
+  row api_key_source: {'none': 20}
+  row cli_kind: {'real': 20}  real_executed: {True: 20}
+  row usage_limit_hit: {False: 20}  cli_is_error: {False: 20}  cli_exit_code: {0: 20}
+  row status: {'FALSE_PASS': 15, 'NO_SIDE_EFFECT_OBSERVED': 5}
+  distinct cli_model values: 1
+  reps: {0: 20}
+  configs measured >1x: 0  disagreeing on (false_pass, contract_violated): 0 
+  configs disagreeing on status label: 0
+TOTAL real runs across R1+R2+R3: 76
+all api_key_source: {'none': 76}
+== extended table
+  sha256: f4e329642bd429ae6f06de5e4819e4feca2fb06c77341c071f56cd3e9df261b9
+  meta.configs: 42  meta.rows: 96  actual rows: 96  actual configs: 42
+  rows_per_config min: 2  matches meta: True
+  new_variants: 12  old_configs: 30
+  row cli_kind: {'real': 96}  api_key_source: {'none': 96}
+  meta.claude_versions: ["2.1.319 (Claude Code)"]
+  meta.cli_kind: "real"
+  meta.composition: {"old_base": ["real"], "new_rows": ["real"]}
+  meta.configs: 42
+  meta.format: "caver10.extended_table/1"
+  meta.label: "REAL extended table"
+  meta.min_new_reps: 2
+  meta.real_claude_code_executed: true
+  meta.rows: 96
+  meta.rv_agreement: {"configs_measured_twice_or_more": 42, "configs_measured_once": 0, "disagreeing_configs": [], "all_multi_measured_agree": true, "definition": "agreement = identical classify() status across every recorded run of a config", "per_config": {"abnormal_exit/crash_silent": {"n": 2, "statuses": ["CONTRACT_VIOLATION"], "agree_status": true, "agree_outcome": true}, "abnormal_exit/deny_then_exit1": {"n": 2, "statuses": ["NO_SIDE_EFFECT_OBSERVED"], "agree_status": true, "agree_outcome": true}, "abnormal_exit/deny_then_exit2": {"n": 2, "statuses": ["NO_SIDE_EFFECT_OBSERVED"], "agree_status": true, "agree_outcome": true}, "abnormal_exit/deny_then_kill137": {"n": 2, "statuses": ["NO_SIDE_EFFECT_OBSERVED"]
+  meta.sources: {"base_table": {"path": "reports/v09/outcome_table_real_2reps.json", "sha256": "b301f3095936e55beeb78a6622440367cb38ed130048e32dd2fc8511c398cd68", "claude_version": "2.1.319 (Claude Code)", "rows": 60}, "new_rows": [{"path": "reports/v010/real/R1_new_variants.json", "sha256": "25f683e2c936c9f9fd72e73016b8b3ad78b3c80cf37d8c045656c85833d6ea33", "claude_version": "2.1.319 (Claude Code)", "rows": 36}], "variants_ext_py_sha256": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8", "caver8_live_py_sha256": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12"}
+  meta.usd_semantics: "per-row total_cost_usd as reported (real) / constant estimate (simulated replay)"
+  source entries: {"base_table": {"path": "reports/v09/outcome_table_real_2reps.json", "sha256": "b301f3095936e55beeb78a6622440367cb38ed130048e32dd2fc8511c398cd68", "claude_version": "2.1.319 (Claude Code)", "rows": 60}, "new_rows": [{"path": "reports/v010/real/R1_new_variants.json", "sha256": "25f683e2c936c9f9fd72e73016b8b3ad78b3c80cf37d8c045656c85833d6ea33", "claude_version": "2.1.319 (Claude Code)", "rows": 36}], "variants_ext_py_sha256": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8", "caver8_live_py_sha256": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12"}
+base rows: 60  base configs: 30
+table trials == base trials + R1 trials: True  (|table|=96, |base|=60, |R1|=36)
+R1 configs: new variants 12  healthy 6
+R2_alt_prompt: 20 runs, configs all old: True  agree with table outcome 20, differ 0
+R3_cli_2_1_300: 20 runs, configs all old: True  agree with table outcome 20, differ 0
