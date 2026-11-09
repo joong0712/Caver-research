@@ -1,0 +1,4 @@
+A11-PooledGLR-Reset: failed 27/142 eligible=False pooled vs v0.6 0.4084 vs C2 0.0368
+A11-PooledGLR-Shrink: failed 25/142 eligible=False pooled vs v0.6 0.4218 vs C2 0.0502
+A11-PooledGLR-Monitor: failed 38/142 eligible=False pooled vs v0.6 0.14 vs C2 -0.2316
+saved reports/v011/agent_a/dev

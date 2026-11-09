@@ -1,0 +1,6 @@
+A11-PooledGLR-Reset: failed 27/142 eligible=False pooled vs v0.6 0.4084 vs C2 0.0368
+A11-X1-NoDetect: failed 30/142 eligible=False pooled vs v0.6 0.3895 vs C2 0.0179
+A11-X2-PerArmLocal: failed 27/142 eligible=False pooled vs v0.6 0.4339 vs C2 0.0623
+A11-X3-PooledResid: failed 29/142 eligible=False pooled vs v0.6 0.3833 vs C2 0.0118
+A11-X4-Sensitive: failed 26/142 eligible=False pooled vs v0.6 0.4496 vs C2 0.0781
+saved reports/v011/agent_a/ablation
