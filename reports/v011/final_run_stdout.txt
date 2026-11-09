@@ -1,0 +1,2 @@
+verdict: 채택 보류 (adoption on hold) failed: ['S', 'K', 'G', 'DEV']
+saved /home/user/Caver-research/reports/v011/final
