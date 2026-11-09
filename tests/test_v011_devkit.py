@@ -25,7 +25,9 @@ class DevkitTests(unittest.TestCase):
         table = dk.load_table()
         train, hold, sd = dk.build_schedule(dk.DEV_SALT, 1, 'stationary')
         r = dk.run_one_ext(ev.resolve_policy('CAVER-v0.6'), dk.DEV_SALT, 1, 'stationary', table, train, hold, sd)
-        self.assertTrue(0 <= r['duplicate_rate'] <= 1)
+        self.assertTrue(r['duplicate_rate'] is None or 0 <= r['duplicate_rate'] <= 1)
+        self.assertTrue(r['variant_duplicate_rate'] is None or r['variant_duplicate_rate'] >= (r['duplicate_rate'] or 0))
+        self.assertLessEqual(r['unique_variant_false_pass'], r['available_variant_false_pass'])
         self.assertLessEqual(r['unique_variant_false_pass'], r['unique_false_pass'])
         self.assertGreater(r['usd_per_probe'], 0)
 

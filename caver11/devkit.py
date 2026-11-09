@@ -92,8 +92,9 @@ def run_one_ext(cls, salt, seed, scenario, table, train, hold, sd) -> dict:
     clock = time.process_time_ns
     ids, visited, occ = {}, {}, {}
     cnt = {'select': 0, 'update': 0, 'cpu_ns': 0, 'viol_rule': 0}
-    extra = {'violating_probes': 0, 'duplicate_violations': 0, 'usd': 0.0, 'wall_ms': 0.0}
+    extra = {'violating_probes': 0, 'duplicate_violations': 0, 'variant_duplicates': 0, 'usd': 0.0, 'wall_ms': 0.0}
     variant_fp = set()
+    variant_viol = set()   # Amendment 2: (family, variant) already found violating in eval
 
     def probe(case, seen, phase):
         cid = ids.setdefault(case.id, f'c{len(ids):03d}')
@@ -121,6 +122,8 @@ def run_one_ext(cls, salt, seed, scenario, table, train, hold, sd) -> dict:
             if o['violated']:
                 extra['violating_probes'] += 1
                 extra['duplicate_violations'] += int(not new)
+                extra['variant_duplicates'] += int((fam, variant) in variant_viol)
+                variant_viol.add((fam, variant))
             if new and o['false_pass']:
                 variant_fp.add((fam, variant))
         t2 = clock()
@@ -178,8 +181,10 @@ def run_one_ext(cls, salt, seed, scenario, table, train, hold, sd) -> dict:
                 recovery_events=rec_txt, exploration_entropy=round(ent, 4),
                 cpu_us_per_probe=round(cnt['cpu_ns'] / budget / 1000, 3), rule_violations=0)
     vp = extra['violating_probes']
-    base.update(duplicate_rate=round(extra['duplicate_violations'] / vp, 4) if vp else 0.0,
-                unique_variant_false_pass=len(variant_fp),
+    avail_var = {(f, v) for c in distinct.values() for f, v in c.defects if table.is_fp_defect(f, v)}
+    base.update(duplicate_rate=round(extra['duplicate_violations'] / vp, 4) if vp else None,
+                variant_duplicate_rate=round(extra['variant_duplicates'] / vp, 4) if vp else None,
+                unique_variant_false_pass=len(variant_fp), available_variant_false_pass=len(avail_var),
                 usd_per_probe=round(extra['usd'] / len(hold), 6), wall_ms_per_probe=round(extra['wall_ms'] / len(hold), 1))
     return base
 
@@ -200,7 +205,8 @@ def _ci(d):
     return round(m, 4), [round(m - h, 4), round(m + h, 4)]
 
 
-EXTRA_METRICS = ('duplicate_rate', 'unique_variant_false_pass', 'usd_per_probe', 'wall_ms_per_probe')
+EXTRA_METRICS = ('duplicate_rate', 'variant_duplicate_rate', 'unique_variant_false_pass', 'available_variant_false_pass',
+                 'usd_per_probe', 'wall_ms_per_probe')
 
 
 def evaluate(specs, *, salt=DEV_SALT, seeds=SEEDS, scenarios=DEV_SCENARIOS, jobs=2, table_path=TABLE_PATH):
@@ -227,7 +233,8 @@ def evaluate(specs, *, salt=DEV_SALT, seeds=SEEDS, scenarios=DEV_SCENARIOS, jobs
                 for ref in REFERENCES:
                     if ref != n:
                         m[f'diff_{k}_vs_{ref}'], m[f'diff_{k}_vs_{ref}_ci'] = _ci(
-                            [by[(sc, n)][s][k] - by[(sc, ref)][s][k] for s in by[(sc, n)]])
+                            [by[(sc, n)][s][k] - by[(sc, ref)][s][k] for s in by[(sc, n)]
+                             if by[(sc, n)][s][k] is not None and by[(sc, ref)][s][k] is not None])
     pooled = {}
     for n in names:
         pooled[n] = {}
@@ -258,7 +265,7 @@ def _hi(m, k):
     return c[1] if c else None
 
 
-def dev_rule(rep: dict, cand: str) -> dict:
+def dev_rule(rep: dict, cand: str, variant_level: bool = False) -> dict:
     """Pre-declared dev selection rule (V011_DESIGN §5), identical for every agent."""
     s, P = rep['summary'], rep['pooled']
     checks = []
@@ -288,6 +295,10 @@ def dev_rule(rep: dict, cand: str) -> dict:
     for ref in (V06, C2):
         c = P[cand].get(f'diff_unique_false_pass_vs_{ref}_ci')
         add(f'U_pooled_vs_{ref}', 'pooled', c, c is not None and c[0] > 0)
+    if variant_level:   # Amendment 2 (final only; not part of the agents' pre-declared dev rule)
+        for ref in (V06, C2):
+            c = P[cand].get(f'diff_unique_variant_false_pass_vs_{ref}_ci')
+            add(f'UV_pooled_variant_vs_{ref}', 'pooled', c, c is not None and c[0] > 0)
     failed = [c for c in checks if not c['pass']]
     return {'candidate': cand, 'n_checks': len(checks), 'n_failed': len(failed), 'eligible': not failed,
             'failed': failed, 'pooled_vs_v06': P[cand].get(f'diff_unique_false_pass_vs_{V06}'),

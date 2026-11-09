@@ -111,3 +111,47 @@ The user approved real CLI measurement of Agent D's new defect variants:
   subscription plan usage;
 * subscription OAuth only;
 * stop and keep results on a usage limit, a non-`none` `apiKeySource`, or two consecutive CLI errors.
+
+## Amendment 2 (lead, after all four agent reports, before freezing and before any final run)
+
+**Agent results (each re-run independently by the lead; all reproduced exactly).** No agent
+nominated a candidate. Failed dev-rule checks:
+
+| agent | candidates (failed checks) |
+|---|---|
+| A (ADR/GLR) | A1 27/142, **A2 25/142**, A3 38/142 |
+| B (dual memory) | B1 18/142, **B2 13/142**, B3 56/142 |
+| C (diversity / unique) | C-A 10/126, **C-B 6/126**, C-C 60/142 |
+
+C-A and C-B have no detector, so they have no FA checks.
+
+**Freeze decision (§4 rule).** No nomination exists, so no combination is allowed. The candidate
+with the fewest failed dev checks is frozen:
+* **C-B `caver11.agent_c:PopDivBUCB` (`C11C-PopBUCB-Div`), labelled "best available; failed dev".**
+* Under v0.10 Amendment 2 it **cannot be adopted**. The final run is confirmatory.
+
+**Metric fixes from Agent C's de-duplication audit** (`caver11/devkit.py`):
+1. `duplicate_rate` returns None when a run has no violating probe (was 0.0).
+2. New `variant_duplicate_rate`: violating eval probes on a (family, variant) already found.
+3. New `available_variant_false_pass`.
+
+* The core fields still equal `caver9.evaluation.run_one` exactly (test).
+* C-B's dev re-run with the fixed devkit (`reports/v011/lead/dev_cb`) gives the same rule outcome
+  (6/126).
+
+**Validity finding (Agent C, verified by the lead).** Unique FALSE_PASS counted per
+(case, family) counts the same defect variant again in every case it appears in (about 2 cases per
+FALSE_PASS variant). At **variant level**, v0.6 is no better than Random (pooled Δ −0.0002
+[−0.055, 0.055]), while C2 +0.18 and UCB1 +0.15. The final criteria therefore **additionally
+require** pooled variant-level unique FALSE_PASS: CI lower bound > 0 vs v0.6 **and** vs C2
+(`UV`). This only makes adoption stricter.
+
+**Isolation incident (Agent A report).** Through the shared scratchpad, a tool notice showed
+Agent A text that mentions the final-environment module. Agent A states it did not run or use it.
+A's candidates are not the frozen candidate. Agent C reported no such exposure. The scratchpad is
+shared between worktrees; future studies should give each agent a private scratch directory.
+
+**Risk recorded for C-B.** Its memory is keyed on the cases seen in the last 20 probes (by opaque
+ID). When each regime brings a fresh case pool, this partly tracks the regime. Agent C's post-hoc
+ablation estimated that the case keying adds only +0.04 [−0.02, 0.11] over a plain 20-probe window.
+The final suite includes `g_burst`, which returns to the same cohort.
