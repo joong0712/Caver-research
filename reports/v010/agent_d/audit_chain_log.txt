@@ -1,0 +1,25 @@
+3328456 2026-11-09 06:33:28 +0000 v0.10: pre-final test log (240 tests)
+6c71367 2026-11-09 06:33:00 +0000 v0.10: pre-registration and hash-frozen manifest for the final run (candidate L1, failed-dev, cannot be adopted per Amendment 2)
+fc2c8ae 2026-11-09 06:31:49 +0000 v0.10 lead: L1 dev result (16/86 checks failed; not eligible). Amendment 2 freeze rule -> L1 is best available (fewest failures vs B1 17, B2 17, B3 19), labelled failed-dev
+354390b 2026-11-09 06:30:35 +0000 v0.10 lead: Amendment 3 - candidate L1 (profile-gated C) with all constants and dev-calibrated threshold, committed before its dev run
+a565725 2026-11-09 06:28:23 +0000 Merge v010/agent-a (C2 failure analysis, regime signals) into research/caver-v010-adaptive
+83f194a 2026-11-09 06:27:31 +0000 v0.10 Agent A: dev failure analysis of C2 (raw outputs, tables, written mechanism analysis)
+f29cc6b 2026-11-09 06:20:12 +0000 v0.10 Agent A: new-case-rate signal (flagged artifact), oracle decomposition table, gzip raw rows, quick tests
+f9792a7 2026-11-09 06:14:06 +0000 v0.10 Agent A: oracle-C and Random references, windowed profile signals, segment yields, yield profiles, table renderer
+b6044a8 2026-11-09 06:02:13 +0000 v0.10 Agent A: instrumented trace harness, dev schedule wrapper, DIAG ablations, regime signals
+f057789 2026-11-09 06:19:07 +0000 Merge v010/agent-b (adaptive-C candidates B1-B3; dev: no nomination) into research/caver-v010-adaptive
+5cd2823 2026-11-09 06:16:41 +0000 v0.10 Agent B: dev results, nomination (none), post-hoc ablations and test log
+2ab14a6 2026-11-09 06:12:28 +0000 v0.10 Agent B: predeclared dev run (v010dev, 300 seeds, 12 scenarios), tests, and post-hoc ablation classes
+15a86ed 2026-11-09 06:07:32 +0000 v0.10 Agent B: predeclare adaptive-C candidates (B1 EvidenceUCB, B2 VarUCB, B3 HybridUCB), constants and dev selection rule before any dev run
+08a72e8 2026-11-09 06:18:56 +0000 v0.10: R1 real batch complete (36 runs, 18/18 agree across reps) + extended real table (42 configs, 96 rows, RV pass); Amendment 2 (procedure after no nomination)
+3be27ee 2026-11-09 06:12:18 +0000 v0.10 real CLI R1: partial snapshot (run in progress; meta.complete=false)
+534ca19 2026-11-09 06:11:30 +0000 Merge v010/agent-c (final environment, new variants, stats, sealing) into research/caver-v010-adaptive
+eda96bb 2026-11-09 06:11:00 +0000 v0.10 agent C: V010_FINAL_ENV.md (scenarios, new variants with SIMULATED mock outcomes, sealing API, final command, statistics, leakage tests) and test log
+c7aeb6f 2026-11-09 06:09:29 +0000 v0.10 agent C: smoke-salt pipeline validation on a SIMULATED hybrid extended table (baselines only), scenario declarations, new-variant share
+a4e77bc 2026-11-09 06:08:40 +0000 v0.10 agent C: tests for variants, extended table, final suite, sealing, manifest, statistics and criteria
+c5d42aa 2026-11-09 06:06:26 +0000 v0.10 agent C: final scenario suite (7 scenarios), sealed v010final salt, smoke salt, freeze manifest, statistics and criteria evaluator
+8e67948 2026-11-09 06:01:36 +0000 v0.10 agent C: 12 new Hook-defect variants (mock-tested only), extended-table builder and ExtOutcomeTable
+65833e9 2026-11-09 06:07:10 +0000 v0.10 real CLI R2 (alt prompt, 2.1.319) and R3 (CLI 2.1.300): 20 runs each, subscription OAuth
+137bab6 2026-11-09 05:58:34 +0000 v0.10 lead: Amendment 1 - R2/R3 subsets (20 old configs each) fixed before any real run
+9c45364 2026-11-09 05:57:47 +0000 v0.10 lead: real CLI batch runner (prompt/CLI-version override, subscription gate, cap 40, resume, stop rules) and mock-only tests
+e588637 2026-11-09 05:55:12 +0000 v0.10: Phase 0 study design (roles A/B/C/D, isolation, dev/final data rules, final-suite spec, criteria skeleton, real CLI plan)
