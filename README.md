@@ -2,6 +2,18 @@
 
 **Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
 
+## CAVER v0.10: adaptive exploration coefficient (branch `research/caver-v010-adaptive`)
+
+| item | status |
+|---|---|
+| agents | A failure analysis, B adaptive-C policies, C final environment and leakage prevention (parallel worktrees); D independent verification |
+| candidates on dev | B1 EvidenceUCB, B2 VarUCB, B3 HybridUCB, L1 ProfileGated: **none passed** the pre-declared dev rule |
+| real CLI (subscription OAuth) | 76 new runs: 12 new defect variants (6 new real FALSE_PASS), new prompt (19/20 agree), older CLI 2.1.300 (20/20 agree) |
+| final run | sealed `v010final`, 500 seeds, 7 new scenarios, extended real table (42 configurations); frozen L1 fails S1, S2, K2 and G |
+| verdict | **채택 보류 (adoption on hold); CAVER v0.6 remains recommended** |
+
+Details: [`docs/V010_RESULTS.md`](docs/V010_RESULTS.md).
+
 ## CAVER v0.9 confirmation study (branch `research/caver-v09-confirm`)
 
 | item | status |
