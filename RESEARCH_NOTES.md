@@ -285,3 +285,25 @@ Design `docs/V010_DESIGN.md`, pre-registration `docs/V010_PREREGISTRATION.md`, r
 * **Next:** a two-posterior (long/short memory) per-arm model choice, sentinel-based change evidence,
   a larger real online comparison, and systematic generation of Hook mutations (the R1 kinds) to grow
   the real defect catalogue.
+
+## 11. CAVER v0.11: literature-based parallel study (branch `research/caver-v011`)
+
+Report `docs/V011_RESULTS.md` · literature `docs/V011_LITERATURE.md` · reproduction
+`docs/V011_REPRODUCTION.md`.
+
+* **[REPLAY] Verdict: 채택 보류 (adoption on hold).**
+  * 9 pre-declared candidates (ADR/GLR, dual memory, diversity/population): none passed the dev rule.
+  * The best available, C-B, passed the pooled case- and variant-level criteria on the final run, but
+    failed S/G (`g_microdrift`) and K (`g_pingpong`, `g_density`), as well as DEV.
+  * v0.6 remains recommended.
+* **[REPLAY] Validity.** Case-level unique FALSE_PASS counts the same defect variant in every case it
+  appears in. **At variant level, v0.6 ≈ Random.** Earlier case-level claims need this caveat.
+* **[REPLAY] The ADR premise fails at our scale.** The pooled change detector fires late (≤ 5%
+  within 20 steps). Stable-regime gains come from removing forced exploration, not from detection.
+* **[REAL-OBSERVED]** 36 approved runs; 7 new real FALSE_PASS among 12 new variants; the mock was
+  wrong on 2. 202 real runs in total, all consistent.
+* **Next:**
+  * variant-level objectives with a label-free outcome-signature proxy;
+  * a real online comparison;
+  * systematic Hook-mutation generation as the main route to finding real defects;
+  * private scratch directories per agent.

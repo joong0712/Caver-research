@@ -2,6 +2,20 @@
 
 **Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
 
+## CAVER v0.11: literature-based parallel study (branch `research/caver-v011`)
+
+| item | status |
+|---|---|
+| literature | GLR-klUCB, ADR-bandit, BOB, Predictive Sampling, Q-gram ART, RETECS read from full text; COLEMAN repo-only (`docs/V011_LITERATURE.md`) |
+| agents | A ADR/GLR windows, B dual memory, C diversity/unique + de-duplication audit, D final environment; independent reproduction |
+| real CLI | 36 approved runs: 12 new variants (7 new real FALSE_PASS), 18/18 configs agree |
+| dev | 9 candidates, **none passed** the shared dev rule |
+| final | sealed `v011final`, 500 seeds, 8 new shift types, 54-config real table. Frozen C-B passes the pooled case/variant criteria but fails S, K and G (and DEV). |
+| validity | case-level "unique" inflates differences; at variant level v0.6 ≈ Random |
+| verdict | **채택 보류 (adoption on hold); CAVER v0.6 remains recommended** |
+
+Details: [`docs/V011_RESULTS.md`](docs/V011_RESULTS.md).
+
 ## CAVER v0.10: adaptive exploration coefficient (branch `research/caver-v010-adaptive`)
 
 | item | status |
