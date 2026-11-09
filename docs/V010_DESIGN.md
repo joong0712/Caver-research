@@ -145,3 +145,37 @@ start on any hash mismatch.
 4. The final run is still executed exactly once on the frozen candidate. It adds confirmatory
    evidence about the trade-off on new scenarios and new real configurations, and it measures C2
    and the baselines on the new real defects.
+
+## Amendment 3 (lead, after Agent A's report, before L1's dev run)
+
+**L1 = `caver10.lead_l1:ProfileGatedUCB` (`C10-L1-ProfileGated`).**
+
+* It is C2 with **C = 0.5 in training**. In evaluation, **C = 0.25** by default and **C = 0.5**
+  for 30 probes after the shift signal fires.
+* **Signal:** Agent A's `win_viol_corr`, recomputed online. It is the Pearson correlation over the
+  6 arms between Beta(1,1)-smoothed per-arm violation rates in training and in the last 30
+  evaluation probes. It is evaluated once at least 15 evaluation probes have been observed.
+* **Constants:** C_TRAIN 0.5, C_LOW 0.25, C_HIGH 0.5, WINDOW 30, MIN_OBS 15, **RHO −0.4**,
+  HOLD 30. The detector and local reset are inherited from C2 unchanged.
+
+**Rationale (dev evidence, Agent A):**
+* C = 0.25 in evaluation alone beats v0.6 on FALSE_PASS in all 12 dev scenarios, but loses
+  0.39 vs C2 in abrupt and recovers more slowly. The lead verified this.
+* `win_viol_corr` was the best label-free separator of stable vs concentrated-shift regimes
+  (0.78–0.89).
+
+**Threshold, calibrated on dev and disclosed.** RHO = −0.4 was chosen from Agent A's dev
+distribution of `win_viol_corr` at eval step 30 for C2:
+
+| scenario | lower quartile | median | upper quartile |
+|---|---|---|---|
+| stationary | −0.46 | −0.04 | 0.36 |
+| abrupt | −0.77 | −0.58 | −0.33 |
+
+The threshold sits between the stationary lower quartile and the abrupt upper quartile. It is
+**expected to misfire in roughly a quarter of stable runs**. This is a known weakness, stated
+before the dev run.
+
+**Evaluation.** L1 runs on dev with Agent B's selection rule (86 checks; same salt `v010dev`,
+seeds 0–299, 12 scenarios, old 30-config table) through `caver10.agent_b_dev.evaluate` and
+`apply_rule`. The freeze rule of Amendment 2 then applies unchanged.
