@@ -1,0 +1,8 @@
+B11-AB-LongOnly: failed 18/142 eligible=False pooled vs v0.6 0.5286 vs C2 0.157
+B11-AB-ShortOnly: failed 20/142 eligible=False pooled vs v0.6 0.5418 vs C2 0.1702
+B11-AB-FixedBlend: failed 10/142 eligible=False pooled vs v0.6 0.6053 vs C2 0.2337
+B11-AB-B1-LongBonus: failed 14/142 eligible=False pooled vs v0.6 0.4993 vs C2 0.1277
+B11-AB-B2-NoCoupling: failed 8/142 eligible=False pooled vs v0.6 0.5758 vs C2 0.2042
+B11-AB-B2-CoupleOnly: failed 12/142 eligible=False pooled vs v0.6 0.5805 vs C2 0.2089
+B11-AB-B3-UniformMeta: failed 55/142 eligible=False pooled vs v0.6 -0.4005 vs C2 -0.7721
+saved reports/v011/agent_b/ablation

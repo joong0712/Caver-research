@@ -1,0 +1,10 @@
+B11-B1-DualMem: failed 18/142 eligible=False pooled vs v0.6 0.4123 vs C2 0.0407
+B11-B2-PooledDualMem: failed 13/142 eligible=False pooled vs v0.6 0.4709 vs C2 0.0993
+B11-B3-MemHedge: failed 56/142 eligible=False pooled vs v0.6 -0.2998 vs C2 -0.6714
+saved reports/v011/agent_b/dev
+
+real	2m44.214s
+user	5m5.158s
+sys	0m11.763s
+
+[exited with code 0]
