@@ -118,3 +118,30 @@ start on any hash mismatch.
 * The 2.1.300 binary passed `--version`, `--help` (flags present) and `auth status` (first-party
   OAuth) checks. `--max-turns` is a hidden flag in both versions. If 2.1.300 rejects it, the
   two-consecutive-errors rule stops R3 and the batch is reported as not possible.
+
+## Amendment 2 (lead, after Agent B's report, before Agent A's report and before any lead candidate exists)
+
+**Facts.**
+* Agent B nominated **no** candidate. B1/B2/B3 failed 17/17/19 of 86 pre-declared dev checks.
+* The lead re-ran 20 key dev cells with its own script, and all reproduced exactly.
+* Real batch R1 is complete (36 runs, 18/18 configurations agree across 2 repetitions). The
+  extended real table `reports/v010/outcome_table_extended_real.json` has 42 configurations, 96
+  rows, and RV passes.
+
+**Procedure from here (fixed now):**
+
+1. The lead may build **at most one** additional candidate, `L1`. Its definition and every
+   constant are committed **before** its first dev run. It may use Agent A's analysis and Agent B's
+   classes. It is evaluated on dev with **Agent B's exact selection rule** (86 checks, same seeds,
+   salt and table).
+2. **Freeze rule:**
+   * if `L1` passes the dev rule, freeze `L1`;
+   * otherwise freeze the candidate with the fewest failed dev checks among {B1, B2, B3, L1}, with
+     ties broken by B's tie rule (larger minimum S2 lower bound). It is labelled
+     **"best available; failed dev"**.
+3. **Adoption requires both** the dev rule **and** every final criterion. A candidate that failed
+   dev **cannot be adopted** even if it passes the final run. In that case the verdict is
+   "채택 보류 — final passed but dev failed; replication needed".
+4. The final run is still executed exactly once on the frozen candidate. It adds confirmatory
+   evidence about the trade-off on new scenarios and new real configurations, and it measures C2
+   and the baselines on the new real defects.
