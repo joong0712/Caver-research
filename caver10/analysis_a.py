@@ -39,7 +39,7 @@ from pathlib import Path
 from statistics import mean, median, pstdev
 
 from caver5.fixtures import FAMILIES as ARM_LABELS
-from caver5.policies import UCB1Policy
+from caver5.policies import UCB1Policy, RandomPolicy
 from caver6.policies import CAVERv06
 from caver8.benchmark import OutcomeTable, ARM_TO_FAMILY, TRAIN_BUDGET, EVAL_BUDGET, ci
 from caver9 import evaluation as ev
@@ -55,7 +55,8 @@ SCENARIOS = tuple(confirm.SCENARIOS)            # the 12 v0.9c scenarios (c_* re
 FAMILIES = tuple(ARM_TO_FAMILY[a] for a in ARM_LABELS)
 E = EVAL_BUDGET
 CHECKPOINTS = (15, 30, 45, 60, 75, 90)
-WINDOW = 20                                    # recent-window length for label-free signals
+WINDOW = 20                                    # recent-window length for yield signals
+PROFILE_WINDOW = 30                            # recent-window length for per-arm profile signals
 
 # Groups fixed BEFORE any v0.10 run, from the published v0.9c holdout (docs/V09C_RESULTS.md):
 # L = C2 below v0.6 (CI excludes 0); W = C2 above v0.6 with CI > 0 under a concentrated shift.
@@ -207,6 +208,25 @@ class DiagC2TrainWeight(UCBMeanCAVER):
             self.counts[f] *= self.W
 
 
+class DiagOracleC(DiagC2EvalC):
+    """ORACLE DIAGNOSTIC (uses the hidden change point; impossible in practice): C2 with
+    C = 0.5 in training, ``C_PRE`` in evaluation before the scenario's first change point and
+    ``C_POST`` after it. It bounds what perfect regime knowledge could buy with C alone.
+    Only ``trace_run`` sets ``regime_shifted``; under plain ``run_one`` it stays at C_PRE."""
+    name = 'DIAG-ORACLE-C0.25to0.5'
+    ORACLE = True
+    C_PRE = 0.25
+    C_POST = 0.5
+
+    def __init__(self, rng):
+        super().__init__(rng)
+        self.regime_shifted = False
+
+    @property
+    def C_EVAL(self):
+        return self.C_POST if self.regime_shifted else self.C_PRE
+
+
 class DiagV06NoSentinel(ExploreCAVER):
     """DIAGNOSTIC: CAVER v0.6 without its sentinel (epsilon and score as v0.6)."""
     name = 'DIAG-v0.6-noSentinel'
@@ -222,9 +242,9 @@ class DiagV06ScoreOnly(ExploreCAVER):
         return 0.0
 
 
-REFERENCES = (UCBMeanCAVER, V06Ref, UCB1Policy, ev.DiscountedUCB)
+REFERENCES = (UCBMeanCAVER, V06Ref, UCB1Policy, ev.DiscountedUCB, RandomPolicy)
 DIAGNOSTICS = (DiagC2Half, DiagC2Double, DiagC2EvalC, DiagC2GreedyEval, DiagC2FrozenT, DiagC2Sentinel,
-               DiagC2NoReset, DiagC2TrainWeight, DiagV06NoSentinel, DiagV06ScoreOnly)
+               DiagC2NoReset, DiagC2TrainWeight, DiagOracleC, DiagV06NoSentinel, DiagV06ScoreOnly)
 ALL_POLICIES = REFERENCES + DIAGNOSTICS
 C2_NAME, V06_NAME = UCBMeanCAVER.name, V06Ref.name
 SIGNAL_POLICIES = (C2_NAME, V06_NAME)
@@ -296,6 +316,13 @@ def _two_prop_z2(k1, n1, k2, n2, floor=0.01) -> float:
     return (k1 / n1 - k2 / n2) ** 2 / var
 
 
+def _corr(x, y) -> float:
+    mx, my = mean(x), mean(y)
+    sx = math.sqrt(sum((a - mx) ** 2 for a in x))
+    sy = math.sqrt(sum((b - my) ** 2 for b in y))
+    return sum((a - mx) * (b - my) for a, b in zip(x, y)) / (sx * sy) if sx > 0 and sy > 0 else 0.0
+
+
 def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict:
     """train_obs / eval_obs: lists of (arm, violated, newly_found). ``policy`` supplies its own
     novelty posterior means and detector alarms. No hidden information is read."""
@@ -330,7 +357,20 @@ def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict
     out['viol_maxz'] = math.sqrt(max(z2)) if z2 else 0.0
     nz2 = [_two_prop_z2(en[f][2], en[f][0], tn[f][2], tn[f][0]) for f in ARM_LABELS if en[f][0] >= 2]
     out['nov_chi2'] = sum(nz2)
-    # signed novelty change on the arms the policy prefers (top-2 by training novelty rate)
+    # windowed per-arm profile: last PROFILE_WINDOW eval probes vs training
+    wn = {f: [0, 0, 0] for f in ARM_LABELS}
+    for a, v, nf in eval_obs[-PROFILE_WINDOW:]:
+        wn[a][0] += 1; wn[a][1] += int(v); wn[a][2] += int(nf)
+    wz2 = [_two_prop_z2(wn[f][1], wn[f][0], tn[f][1], tn[f][0]) for f in ARM_LABELS if wn[f][0] >= 2]
+    out['win_viol_chi2'] = sum(wz2)
+    wnz2 = [_two_prop_z2(wn[f][2], wn[f][0], tn[f][2], tn[f][0]) for f in ARM_LABELS if wn[f][0] >= 2]
+    out['win_nov_chi2'] = sum(wnz2)
+    wrates = [(wn[f][1] + 1) / (wn[f][0] + 2) for f in ARM_LABELS]
+    trates = [(tn[f][1] + 1) / (tn[f][0] + 2) for f in ARM_LABELS]
+    out['win_viol_sd'] = pstdev(wrates)
+    out['win_spread_ratio'] = pstdev(wrates) / pstdev(trates) if pstdev(trates) > 0 else 0.0
+    out['win_viol_corr'] = _corr(trates, wrates)
+    out['win_chi2_x_sd'] = out['win_viol_chi2'] * out['win_viol_sd']     # unfitted product, illustrative
     det = getattr(policy, 'detector', None)
     out['alarms'] = len(getattr(det, 'alarm_events', []) or [])
     cnt = [en[f][0] for f in ARM_LABELS]
@@ -341,7 +381,8 @@ def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict
 
 SIGNAL_NAMES = ('post_mean_sd', 'post_mean_range', 'eval_mean_sd', 'eval_viol_sd', 'recent_yield', 'yield_ratio',
                 'recent_yield_block_var', 'recent_viol_rate', 'viol_rate_change', 'viol_chi2', 'viol_maxz',
-                'nov_chi2', 'alarms', 'alloc_entropy')
+                'nov_chi2', 'alarms', 'alloc_entropy', 'win_viol_chi2', 'win_nov_chi2', 'win_viol_sd',
+                'win_spread_ratio', 'win_viol_corr', 'win_chi2_x_sd')
 
 
 # ======================================================================================
@@ -380,6 +421,8 @@ def trace_run(cls, seed: int, scenario: str, table: OutcomeTable, *, salt: str =
         cid = ids.setdefault(case.id, f'c{len(ids):03d}')
         allowed = [f for f in ARM_LABELS if f not in visited.get(cid, ())] or list(ARM_LABELS)
         rec = None
+        if phase == 'eval' and getattr(policy, 'ORACLE', False):
+            policy.regime_shifted = bool(sd.events) and step > sd.events[0].at
         if phase == 'eval':
             avail = policy.available(cid) if hasattr(policy, 'available') else allowed
             terms = {f: arm_terms(policy, f) for f in avail}
@@ -439,6 +482,7 @@ def _summarize_trace(policy, scenario, seed, sd, steps, seen, rec_ev, sig_at) ->
     fam_counts = {f: 0 for f in FAMILIES}
     n_low_rank = n_low_half = n_greedy = n_flip = n_flip_t = n_flip_t_den = 0
     explo = explo_hit = greedy_hit = n_greedy_probe = 0
+    segx = {sg: [0, 0, 0, 0] for sg in ('pre', 'post')}   # explore n, explore hits, greedy n, greedy hits
     myopic_loss = 0.0
     waste = hit_avail = 0
     ratios, bspread, mrange, gap2 = [], [], [], []
@@ -481,6 +525,11 @@ def _summarize_trace(policy, scenario, seed, sd, steps, seen, rec_ev, sig_at) ->
         if r['source'] == 'untried':
             is_explore = True
         expl_seq.append(int(is_explore))
+        sx = segx['pre' if r['step'] <= change else 'post']
+        if is_explore:
+            sx[0] += 1; sx[1] += int(r['nf'])
+        else:
+            sx[2] += 1; sx[3] += int(r['nf'])
         if is_explore:
             explo += 1
             explo_hit += int(r['nf'])
@@ -515,6 +564,8 @@ def _summarize_trace(policy, scenario, seed, sd, steps, seen, rec_ev, sig_at) ->
         'explore_share': explo / E,
         'explore_yield': (explo_hit / explo) if explo else None,
         'greedy_yield': (greedy_hit / n_greedy_probe) if n_greedy_probe else None,
+        **{f'{k}_{sg}': v for sg, x in segx.items() for k, v in (
+            ('explore_n', x[0]), ('explore_hits', x[1]), ('greedy_n', x[2]), ('greedy_hits', x[3]))},
         'myopic_loss_explore': myopic_loss,        # sum over exploratory probes of P(greedy hit) - hit
         'hit_available_rate': hit_avail / E,
         'waste_rate': waste / E,                   # a hit was available, the probe found nothing new
@@ -629,6 +680,12 @@ def summarize(results: list[dict], scenarios=SCENARIOS) -> dict:
             m = {'n': len(rs)}
             for k in SUMMARY_KEYS:
                 m[k], m[k + '_ci'] = ci([r.get(k) for r in rs])
+            for sg in ('pre', 'post'):
+                for kind in ('explore', 'greedy'):
+                    nn = sum(r.get(f'{kind}_n_{sg}', 0) for r in rs)
+                    hh = sum(r.get(f'{kind}_hits_{sg}', 0) for r in rs)
+                    m[f'{kind}_probes_per_run_{sg}'] = round(nn / len(rs), 3)
+                    m[f'{kind}_yield_pooled_{sg}'] = round(hh / nn, 4) if nn else None
             fa = [r['prechange_alarms'] for r in rs if r['prechange_alarms'] is not None]
             m['false_alarm_rate'] = round(mean(x > 0 for x in fa), 4) if fa else None
             for ref in (C2_NAME, V06_NAME, 'UCB1', 'D-UCB'):
@@ -640,7 +697,9 @@ def summarize(results: list[dict], scenarios=SCENARIOS) -> dict:
     return out
 
 
-def step_curves(results: list[dict], scenarios=SCENARIOS, policies=(C2_NAME, V06_NAME, 'UCB1', 'D-UCB')) -> dict:
+def step_curves(results: list[dict], scenarios=SCENARIOS,
+                policies=(C2_NAME, V06_NAME, 'UCB1', 'D-UCB', 'Random', 'DIAG-C2-c0.25', 'DIAG-C2-evalC0.25',
+                          'DIAG-ORACLE-C0.25to0.5')) -> dict:
     """Per eval step: share of probes per family, new-FP rate, exploratory share (means over seeds)."""
     out = {}
     for sc in scenarios:
@@ -688,6 +747,197 @@ def signal_auc(results: list[dict], policy: str = C2_NAME, seed_split: int | Non
     return out
 
 
+# ======================================================================================
+# Hidden ground truth of the case generator (analysis only, never given to a policy)
+# ======================================================================================
+def family_yield_profile(weights, table: OutcomeTable, *, n_seeds: int = 300, salt: str = DEV_SALT) -> dict:
+    """P(a freshly generated case has a FALSE_PASS-producing defect in family f), estimated
+    from ``caver8.benchmark.make_cases`` with the dev salt. This is the per-probe new-FP yield of
+    arm f on a first visit to a case."""
+    from caver8.benchmark import make_cases
+    check_dev_salt(salt)
+    hits = {f: 0 for f in FAMILIES}
+    viol = {f: 0 for f in FAMILIES}
+    n = 0
+    for seed in range(n_seeds):
+        for c in make_cases(salt, seed, 'agentA-profile', weights):
+            n += 1
+            d = dict(c.defects)
+            for f in FAMILIES:
+                r = table.rows[(f, d.get(f, 'healthy'))][0]
+                v = bool(r['contract_violated']) and not r['status'].startswith('INCONCLUSIVE')
+                viol[f] += int(v)
+                hits[f] += int(v and r['false_pass'])
+    return {'fp_yield': {f: round(hits[f] / n, 4) for f in FAMILIES},
+            'violation_rate': {f: round(viol[f] / n, 4) for f in FAMILIES}, 'n_cases': n}
+
+
+def yield_profiles(table: OutcomeTable) -> dict:
+    from caver8.benchmark import W_BASE, W_SHIFT
+    return {'W_BASE': family_yield_profile(W_BASE, table), 'W_SHIFT': family_yield_profile(W_SHIFT, table),
+            'W_UNIFORM': family_yield_profile(confirm.W_UNIFORM, table)}
+
+
+# ======================================================================================
+# Markdown tables from the saved outputs (every number in docs/V010_AGENT_A.md comes from here)
+# ======================================================================================
+FOCUS = ('stationary', 'c_uniform', 'c_reverse', 'abrupt', 'delayed')
+REF4 = (C2_NAME, V06_NAME, 'UCB1', 'D-UCB')
+
+
+def _f(x, nd=2, sign=False):
+    if x is None:
+        return '–'
+    if isinstance(x, float) and math.isinf(x):
+        return 'inf'
+    return f'{x:+.{nd}f}' if sign else f'{x:.{nd}f}'
+
+
+def _star(c) -> str:
+    return '*' if c and (c[0] > 0 or c[1] < 0) else ''
+
+
+def _d(m, key, nd=2):
+    v, c = m.get(key), m.get(key + '_ci')
+    if v is None:
+        return '–'
+    return f'{v:+.{nd}f} [{c[0]:+.{nd}f}, {c[1]:+.{nd}f}]{_star(c)}' if c else f'{v:+.{nd}f}'
+
+
+def _table(head, rows) -> str:
+    out = ['| ' + ' | '.join(head) + ' |', '|' + '---|' * len(head)]
+    out += ['| ' + ' | '.join(str(x) for x in r) + ' |' for r in rows]
+    return '\n'.join(out)
+
+
+def render_tables(out: Path) -> str:
+    out = Path(out)
+    S = json.loads((out / 'summary.json').read_text())
+    meta, S = S['meta'], S['summary']
+    C = json.loads((out / 'step_curves.json').read_text())['curves']
+    A = json.loads((out / 'signal_auc.json').read_text())
+    Y = json.loads((out / 'yield_profiles.json').read_text()) if (out / 'yield_profiles.json').exists() else None
+    md = [f"<!-- generated by caver10.analysis_a.render_tables from {out.name}; command: {meta['command']}; "
+          f"commit {meta['git_commit']}; salt {meta['salt']}; seeds {meta['seeds']} -->"]
+    # T1
+    md.append('\n### T1. Unique FALSE_PASS (mean over seeds) and C2 paired differences (95% CI; * = CI excludes 0)\n')
+    rows = []
+    for sc in SCENARIOS:
+        b = S[sc]
+        rows.append([sc] + [_f(b[p]['unique_false_pass']) for p in REF4 + ('Random',)] +
+                    [_d(b[C2_NAME], f'diff_unique_false_pass_vs_{r}') for r in (V06_NAME, 'UCB1', 'D-UCB')])
+    md.append(_table(['scenario', 'C2', 'v0.6', 'UCB1', 'D-UCB', 'Random', 'C2−v0.6', 'C2−UCB1', 'C2−D-UCB'], rows))
+    # T2
+    md.append('\n### T2. Where the C2−v0.6 difference accrues\n\nSegment split at the first change point '
+              '(stationary: all steps are "pre").\n')
+    rows = []
+    for sc in SCENARIOS:
+        m = S[sc][C2_NAME]
+        rows.append([sc, _f(m['fp_pre']), _f(S[sc][V06_NAME]['fp_pre']), _d(m, f'diff_fp_pre_vs_{V06_NAME}'),
+                     _f(m['fp_post']), _f(S[sc][V06_NAME]['fp_post']), _d(m, f'diff_fp_post_vs_{V06_NAME}')])
+    md.append(_table(['scenario', 'C2 pre', 'v0.6 pre', 'Δ pre', 'C2 post', 'v0.6 post', 'Δ post'], rows))
+    md.append('\nCumulative mean Δ unique FALSE_PASS (C2 − v0.6) by evaluation step:\n')
+    steps = (10, 20, 30, 45, 60, 75, 90)
+    rows = []
+    for sc in SCENARIOS:
+        a = C[sc][C2_NAME]['new_fp_rate_by_step']
+        b = C[sc][V06_NAME]['new_fp_rate_by_step']
+        rows.append([sc] + [_f(sum(a[:t]) - sum(b[:t]), 2, True) for t in steps])
+    md.append(_table(['scenario'] + [f'step {t}' for t in steps], rows))
+    # T3
+    md.append('\n### T3. Exploration diagnostics (means over seeds)\n\n"exploratory" = sentinel, epsilon, '
+              'untried/reset arm, or a score choice outside the posterior-mean argmax among available arms. '
+              'Yields are pooled (hits / probes). Myopic loss = sum over exploratory probes of '
+              '[P(a mean-argmax arm would have hit now) − hit], hidden outcomes, analysis only. '
+              'Posterior mean = the policy\'s own mean (novelty rate for C2/v0.6, violation rate for UCB1/D-UCB).\n')
+    keys = [('explore share', lambda m, c: _f(m['explore_share'], 3)),
+            ('explore share, steps 1–15', lambda m, c: _f(sum(c['explore_share_by_step'][:15]) / 15, 3)),
+            ('explore probes / run, pre', lambda m, c: _f(m['explore_probes_per_run_pre'], 1)),
+            ('explore yield pre', lambda m, c: _f(m['explore_yield_pooled_pre'], 3)),
+            ('greedy yield pre', lambda m, c: _f(m['greedy_yield_pooled_pre'], 3)),
+            ('explore yield post', lambda m, c: _f(m['explore_yield_pooled_post'], 3)),
+            ('greedy yield post', lambda m, c: _f(m['greedy_yield_pooled_post'], 3)),
+            ('myopic loss of exploration (FP/run)', lambda m, c: _f(m['myopic_loss_explore'], 2, True)),
+            ('share to arms with mean < ½ best', lambda m, c: _f(m['share_low_half'], 3)),
+            ('share to arms ranked 4th–6th by mean', lambda m, c: _f(m['share_low_rank'], 3)),
+            ('share abnormal_exit (zero-FP arm)', lambda m, c: _f(m['share_abnormal_exit'], 3)),
+            ('share schema+field_value', lambda m, c: _f(m['share_schema'] + m['share_field_value'], 3)),
+            ('bonus spread (max−min, avail.)', lambda m, c: _f(m['bonus_spread_mean'], 3)),
+            ('posterior-mean range (avail.)', lambda m, c: _f(m['mean_range_mean'], 3)),
+            ('top-2 mean gap', lambda m, c: _f(m['mean_gap_top2_mean'], 3)),
+            ('median bonus spread / mean range', lambda m, c: _f(m['bonus_over_range_median'], 2)),
+            ('score choice ≠ mean argmax (share of steps)', lambda m, c: _f(m['flip_vs_greedy'], 3)),
+            ('time-growth flips (share of score steps)', lambda m, c: _f(m['flip_vs_frozen_t'], 3)),
+            ('sentinel / epsilon share', lambda m, c: f"{_f(m['src_sentinel'], 3)} / {_f(m['src_epsilon'], 3)}"),
+            ('alarms per run', lambda m, c: _f(m['alarms'], 2)),
+            ('waste rate (hit available, none found)', lambda m, c: _f(m['waste_rate'], 3))]
+    for sc in FOCUS:
+        md.append(f'\n**{sc}**\n')
+        rows = [[k] + [fn(S[sc][p], C[sc][p]) for p in REF4] for k, fn in keys]
+        md.append(_table(['metric', 'C2', 'v0.6', 'UCB1', 'D-UCB'], rows))
+    # T4
+    diag = [c.name for c in DIAGNOSTICS]
+    md.append('\n### T4. Diagnostic ablations (NOT candidates): Δ unique FALSE_PASS vs C2, all 12 scenarios '
+              '(* = 95% CI excludes 0)\n')
+    rows = []
+    for p in (V06_NAME,) + tuple(diag):
+        rows.append([p] + [_f(S[sc][p][f'diff_unique_false_pass_vs_{C2_NAME}'], 2, True)
+                           + _star(S[sc][p][f'diff_unique_false_pass_vs_{C2_NAME}_ci']) for sc in SCENARIOS])
+    md.append(_table(['policy'] + list(SCENARIOS), rows))
+    md.append('\nΔ unique FALSE_PASS vs CAVER-v0.6 (* = 95% CI excludes 0):\n')
+    rows = []
+    for p in (C2_NAME,) + tuple(diag):
+        rows.append([p] + [_f(S[sc][p][f'diff_unique_false_pass_vs_{V06_NAME}'], 2, True)
+                           + _star(S[sc][p][f'diff_unique_false_pass_vs_{V06_NAME}_ci']) for sc in SCENARIOS])
+    md.append(_table(['policy'] + list(SCENARIOS), rows))
+    md.append('\nFocus scenarios with CIs, Δ vs C2:\n')
+    rows = [[p] + [_d(S[sc][p], f'diff_unique_false_pass_vs_{C2_NAME}') for sc in FOCUS] for p in diag]
+    md.append(_table(['policy'] + list(FOCUS), rows))
+    md.append('\nRecovery steps (restricted mean):\n')
+    rows = [[p] + [_f(S[sc][p]['recovery_steps'], 1) for sc in SCENARIOS if sc != 'stationary']
+            for p in REF4 + ('Random',) + tuple(diag)]
+    md.append(_table(['policy'] + [sc for sc in SCENARIOS if sc != 'stationary'], rows))
+    md.append('\nExploration share / pooled yield of exploratory probes before the first change point:\n')
+    rows = [[p] + [f"{_f(S[sc][p]['explore_share'], 2)} / {_f(S[sc][p]['explore_yield_pooled_pre'], 3)}"
+                   for sc in FOCUS] for p in REF4 + tuple(diag)]
+    md.append(_table(['policy'] + list(FOCUS), rows))
+    # T5
+    if Y:
+        md.append('\n### T5. Hidden ground truth: new-FP yield of a first probe per family (analysis only)\n')
+        rows = []
+        for w in ('W_BASE', 'W_SHIFT', 'W_UNIFORM'):
+            fy = Y[w]['fp_yield']
+            nz = [v for k, v in fy.items() if k != 'abnormal_exit']
+            rows.append([w] + [_f(fy[f], 3) for f in FAMILIES] + [_f(max(nz) - min(nz), 3)])
+        md.append(_table(['weights'] + list(FAMILIES) + ['max − min (excl. abnormal_exit)'], rows))
+    # T6
+    md.append('\n### T6. Label-free regime signals: separation on dev\n\nAUC = P(second scenario of the pair, '
+              'or group W, has the larger value), computed from the policy\'s own observations at the given '
+              'evaluation step. 0.5 = no separation; values below 0.5 separate in the opposite direction '
+              '(separation = max(AUC, 1−AUC)). Cells: all seeds / lower half / upper half (stability).\n')
+    contrasts = (('stationary|abrupt', 30), ('stationary|delayed', 75), ('c_uniform|abrupt', 60),
+                 ('c_uniform|delayed', 75), ('stationary|c_uniform', 60), ('c_uniform|single', 60),
+                 ('L|W', 90))
+    for pol in (C2_NAME, V06_NAME):
+        md.append(f'\n**signals from {pol} trajectories**\n')
+        rows = []
+        for sname in SIGNAL_NAMES:
+            r = [sname]
+            for pair, cp in contrasts:
+                k = f'{cp}:{sname}'
+                r.append(' / '.join(_f(A[pol][h][k][pair], 2) for h in ('all', 'seeds_lo', 'seeds_hi')))
+            rows.append(r)
+        md.append(_table(['signal'] + [f'{p} @{cp}' for p, cp in contrasts], rows))
+    md.append('\nAUC over time for selected signals (C2 trajectories, all seeds):\n')
+    rows = []
+    for sname in ('viol_chi2', 'win_viol_chi2', 'win_viol_corr', 'eval_viol_sd', 'win_viol_sd', 'post_mean_sd',
+                  'recent_yield_block_var', 'alarms'):
+        for pair in ('stationary|abrupt', 'stationary|delayed', 'c_uniform|abrupt', 'c_uniform|delayed'):
+            rows.append([sname, pair] + [_f(A[C2_NAME]['all'][f'{cp}:{sname}'][pair], 2) for cp in CHECKPOINTS])
+    md.append(_table(['signal', 'pair'] + [f'@{cp}' for cp in CHECKPOINTS], rows))
+    return '\n'.join(md) + '\n'
+
+
 def _git_commit() -> str | None:
     try:
         return subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True,
@@ -707,7 +957,12 @@ def main(argv=None):
     p.add_argument('--jobs', type=int, default=2)
     p.add_argument('--out', type=Path, default=OUT_DIR)
     p.add_argument('--no-check', action='store_true', help='skip the per-run equality check vs run_one')
+    p.add_argument('--render-only', action='store_true', help='only rebuild tables.md from saved outputs')
     a = p.parse_args(argv)
+    if a.render_only:
+        (Path(a.out) / 'tables.md').write_text(render_tables(Path(a.out)))
+        print('rendered', Path(a.out) / 'tables.md')
+        return
     seeds = _parse_seeds(a.seeds)
     if min(seeds) < 0 or max(seeds) > 299:
         raise ValueError('dev seeds are 0-299')
@@ -737,6 +992,10 @@ def main(argv=None):
         {'meta': {**meta, 'auc_orientation': 'P(second scenario of the pair / group W has the larger value)',
                   'seed_split': split},
          C2_NAME: signal_auc(results, C2_NAME, split), V06_NAME: signal_auc(results, V06_NAME, split)}, indent=1))
+    (out / 'yield_profiles.json').write_text(json.dumps(
+        {'note': 'hidden ground truth of the case generator, analysis only (dev salt, 300 seeds x 28 cases)',
+         **yield_profiles(load_table())}, indent=1))
+    (out / 'tables.md').write_text(render_tables(out))
     print(f'saved {out} ({len(rows)} runs, {elapsed:.0f}s)')
 
 
