@@ -1,0 +1,52 @@
+{
+  "salt": "v010smoke",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "pool": "extended (new_share 0.45)",
+  "note": "counted over every scheduled train+eval probe case (with repeats)",
+  "per_scenario": {
+    "f_stat_skew": {
+      "defects": 580,
+      "new": 270,
+      "share_new": 0.4655
+    },
+    "f_stat_flat": {
+      "defects": 561,
+      "new": 221,
+      "share_new": 0.3939
+    },
+    "f_abrupt_boundary": {
+      "defects": 559,
+      "new": 222,
+      "share_new": 0.3971
+    },
+    "f_abrupt_after": {
+      "defects": 502,
+      "new": 223,
+      "share_new": 0.4442
+    },
+    "f_flat_shift": {
+      "defects": 557,
+      "new": 221,
+      "share_new": 0.3968
+    },
+    "f_spike": {
+      "defects": 531,
+      "new": 271,
+      "share_new": 0.5104
+    },
+    "f_gradual": {
+      "defects": 573,
+      "new": 297,
+      "share_new": 0.5183
+    }
+  },
+  "all": {
+    "defects": 3863,
+    "new": 1725,
+    "share_new": 0.4465
+  }
+}
