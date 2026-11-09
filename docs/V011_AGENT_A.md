@@ -137,3 +137,125 @@ inspired by them.
 * **Shared scratchpad incident.** A calibration draft was first written to the session scratchpad.
   That path was then overwritten by another agent's file, and its text was shown to me in a tool
   notice. I did not run or use it. My calibration script lives only in `reports/v011/agent_a/`.
+
+## Part 2. Dev results (after the pre-declaration commit `7d023da`)
+
+**Evidence: REPLAY** of the extended real table (42 configs), salt `v011dev`, seeds 0–299,
+19 scenarios, devkit at the commits named in each `summary.json`. Candidate run:
+`reports/v011/agent_a/dev/` (tables `dev_tables.md`). Ablation run: `reports/v011/agent_a/ablation/`
+(tables `ablation_tables.md`). Tables are rendered by `reports/v011/agent_a/analyze.py`. CIs are
+paired normal 95% over seeds. "Type" Δ is the per-seed mean over that type's scenarios.
+
+### 2.1 Candidates: Δ unique FALSE_PASS (95% CI)
+
+| policy | stable vs v0.6 | stable vs C2 | abrupt vs v0.6 | abrupt vs C2 | other vs v0.6 | other vs C2 | **pooled-19 vs v0.6** | **pooled-19 vs C2** | pooled variant-FP vs v0.6 / vs C2 |
+|---|---|---|---|---|---|---|---|---|---|
+| A1 Reset | +0.52 [+0.42, +0.62] | +0.83 [+0.72, +0.94] | +0.39 [+0.28, +0.49] | −0.36 [−0.47, −0.25] | +0.35 [+0.22, +0.47] | −0.10 [−0.27, +0.07] | +0.41 [+0.34, +0.47] | +0.04 [−0.04, +0.11] | −0.06* / −0.24* |
+| A2 Shrink | +0.52 [+0.42, +0.62] | +0.83 [+0.72, +0.95] | +0.41 [+0.31, +0.51] | −0.33 [−0.44, −0.22] | +0.35 [+0.23, +0.48] | −0.09 [−0.27, +0.08] | +0.42 [+0.36, +0.49] | +0.05 [−0.03, +0.13] | −0.07* / −0.26* |
+| A3 Monitor | +0.22 [+0.12, +0.32] | +0.53 [+0.42, +0.65] | +0.13 [+0.02, +0.24] | −0.61 [−0.72, −0.50] | +0.09 [−0.04, +0.22] | −0.36 [−0.53, −0.19] | +0.14 [+0.07, +0.21] | −0.23 [−0.31, −0.15] | −0.03 / −0.21* |
+| C2 (ref) | −0.31 [−0.43, −0.20] | – | +0.74 [+0.63, +0.86] | – | +0.45 [+0.29, +0.60] | – | +0.37 [+0.30, +0.45] | – | +0.18* / – |
+| L1 (ref) | −0.09 [−0.20, +0.03] | +0.23 | +0.76 | +0.01 | +0.32 | −0.13 | +0.40 [+0.32, +0.47] | +0.03 [−0.04, +0.09] | +0.16* / −0.02 |
+
+(* CI excludes 0.)
+
+### 2.2 Means over the 19 scenarios
+
+| policy | unique FP | variant FP | first find | duplicate rate | recovery, abrupt-type mean (censored) | alarm rate | FA, mean where defined | USD / probe | CPU µs / probe |
+|---|---|---|---|---|---|---|---|---|---|
+| CAVER-v0.6 | 11.24 | 6.82 | 6.15 | 0.013 | 21.5 (0.063) | 0.314 | 0.059 | 0.0237 | 10.0 |
+| C2 | 11.61 | 7.01 | 6.59 | 0.014 | 16.4 (0.048) | 0.346 | 0.059 | 0.0238 | 9.9 |
+| L1 | 11.63 | 6.98 | 6.15 | 0.014 | 18.4 (0.052) | 0.348 | 0.060 | 0.0239 | 12.2 |
+| A1 | 11.65 | 6.76 | 6.16 | 0.014 | 27.2 (0.108) | 0.134 | 0.006 | 0.0236 | 90.4 |
+| A2 | 11.66 | 6.75 | 6.16 | 0.014 | 27.2 (0.109) | 0.134 | 0.006 | 0.0237 | 90.2 |
+| A3 | 11.38 | 6.79 | 6.18 | 0.013 | 24.1 (0.080) | 0.126 | 0.007 | 0.0237 | 95.2 |
+
+Wall time per probe (replayed) is 10.5–10.6 s for every policy. Cost is the replayed API-equivalent
+USD of the probes chosen; it barely differs between policies. The detector scan raises CPU from about
+10 to about 90 µs per probe, which is negligible next to a real probe.
+
+Recovery Δ vs v0.6 for A1 is positive (slower) in every abrupt scenario: +3.4 (abrupt) to +9.0
+(f_abrupt_boundary), with upper CI bounds +3.8 to +12.2. The per-scenario tables are in
+`dev_tables.md`.
+
+### 2.3 dev_rule (142 checks per candidate)
+
+| candidate | failed | failing checks |
+|---|---|---|
+| A1 | 27 | K_shift_vs_C2 ×6 (abrupt −0.90, delayed −1.26, early −0.91, single −1.00, c_reverse −0.55, f_abrupt_boundary −0.35); K_recovery_vs_v06 ×8 (all abrupt scenarios); K_shift_vs_v06 ×2 (c_reverse −0.07, f_abrupt_boundary −0.01); G_vs_UCB1 ×8; G_vs_SW-UCB, G_vs_D-UCB (c_reverse); U_pooled_vs_C2 [−0.04, +0.11] |
+| **A2** | **25** | K_shift_vs_C2 ×6; K_recovery_vs_v06 ×8; K_shift_vs_v06 ×1 (c_reverse −0.03); G_vs_UCB1 ×8; G_vs_SW-UCB (c_reverse); U_pooled_vs_C2 [−0.03, +0.13] |
+| A3 | 38 | K_shift_vs_v06 ×8; K_shift_vs_C2 ×8; K_recovery_vs_v06 ×8; G_vs_UCB1 ×10; G_vs_D-UCB ×2; G_vs_SW-UCB ×1; U_pooled_vs_C2 [−0.31, −0.15] |
+
+S (stable vs v0.6) and FA pass for all three. G vs v0.6 passes everywhere.
+
+**Nomination: none.** No candidate is eligible. The fewest failures belong to A2 (25/142). It is
+reported as "best available; failed dev" and is **not nominated**.
+
+### 2.4 Ablation (labelled; NOT eligible): Δ (ablation − A1), per-seed mean over each type
+
+| ablation | metric | stable | abrupt | other | pooled-19 | dev_rule failures | alarm rate | FA |
+|---|---|---|---|---|---|---|---|---|
+| X1 NoDetect | unique FP | +0.01 [−0.01, +0.02] | −0.08 [−0.11, −0.04] | +0.03 [−0.00, +0.07] | −0.02 [−0.04, −0.00] | 30 | 0 | 0 |
+| | recovery | −0.01 | +0.42 [+0.29, +0.56] | +0.19 | +0.28 | | | |
+| X2 PerArmLocal | unique FP | −0.00 | +0.02 [−0.02, +0.05] | +0.06 [+0.01, +0.11] | +0.03 [+0.00, +0.05] | 27 | 0.179 | 0.013 |
+| | recovery | −0.30 | +0.16 | −0.04 | +0.03 | | | |
+| X3 PooledResid | unique FP | +0.00 | −0.07 [−0.10, −0.03] | +0.01 | −0.03 [−0.04, −0.01] | 29 | 0.079 | 0.015 |
+| | recovery | −0.16 | +0.07 | +0.07 | +0.04 | | | |
+| X4 Sensitive (X = 2.5) | unique FP | −0.06 [−0.10, −0.03] | +0.18 [+0.12, +0.24] | −0.06 [−0.13, +0.02] | +0.04 [+0.01, +0.08] | 26 (incl. FA f_stat_flat 0.113 vs 0.060) | 0.388 | 0.043 |
+| | recovery | −0.68 | −1.23 [−1.49, −0.98] | −0.62 | −0.93 | | | |
+
+X4's pooled Δ vs C2 is +0.08 [+0.00, +0.15]. That is post-hoc information; X4 is not eligible.
+
+Detector timing for A1 (post-hoc diagnostic, `alarm_timing.txt`). The change point was used for
+labelling only.
+
+| scenario | runs with ≥ 1 alarm | median first alarm (eval step) | alarm within 20 steps after the change |
+|---|---|---|---|
+| stationary | 4/300 | 75.5 | – |
+| abrupt | 92/300 | 53 | 2.0% |
+| c_reverse | 110/300 | 48.5 | 5.0% |
+| single | 90/300 | 62.5 | 3.7% |
+| f_abrupt_boundary | 25/300 | 51 | 1.0% |
+
+### 2.5 Findings
+
+* **F-A1. The stable-regime gain comes from removing forced exploration, not from detection.**
+  * A1/A2 beat v0.6 by +0.52 and C2 by +0.83 in the stable types, and pass all five S checks.
+  * X1 (no detector) is identical in stable (+0.01 [−0.01, +0.02]).
+  * This replicates v0.9's post-hoc `PH-v0.6-NoSentinel` result on a new salt and with 19 scenarios.
+* **F-A2. The ADR premise does not transfer at this horizon.**
+  * The pooled detector fires in about 30% of abrupt runs, at a median of about step 50.
+  * Within 20 steps of a change it fires in ≤ 5% of runs.
+  * Detection plus reset adds only +0.08 FP and −0.4 recovery steps in the abrupt types (A1 vs X1).
+  * Without forced exploration, recovery is 4–9 steps **slower** than v0.6 in every abrupt scenario.
+    This fails all 8 K_recovery checks and 6 of 8 K_shift_vs_C2 checks.
+  * **[HYPOTHESIS]** With ~90 training observations spread over 6 arms and violation rates ≤ 0.3,
+    the training baseline is too uncertain for any split test to reach significance before about
+    40 post-change probes (the synthetic calibration shows the same: median delay 50 at FA 0.08).
+* **F-A3. Pooling form and scope matter little; sensitivity matters more.**
+  * Per-arm local (X2), 1-dof residual (X3) and k-dof sum (A1) are all within ±0.06 FP of each other.
+  * Lowering X to 2.5 (X4) triples alarms (0.39), speeds abrupt recovery by 1.2 steps and adds
+    +0.18 FP there. It costs −0.06 in stable and breaks FA in f_stat_flat.
+  * The trade-off v0.10 found for C reappears here for the detector threshold.
+* **F-A4. Sparse monitoring (A3) is the worst of both.**
+  * Monitoring every 10th step costs −0.30 in stable vs A1.
+  * It improves abrupt recovery by only about 3 steps and loses FP in the abrupt types (−0.26 vs A1).
+  * Undirected monitoring probes are a tax, as v0.6's sentinel was.
+* **F-A5. Variant-level uniqueness.**
+  * The A-family policies find **fewer distinct (family, variant) FALSE_PASS** than v0.6 (−0.06 to
+    −0.10) and C2 (−0.24 to −0.29), even where they find more (case, family) pairs.
+  * Exploitation re-finds the same variants in new cases; C2's exploration spreads over variants.
+  * **[HYPOTHESIS]** The (case, family) unique-FP metric rewards concentration. A variant-level
+    objective would favour exploration.
+* **F-A6. Duplicate rate.** Equal to v0.6 and C2 within 0.001–0.005 in every scenario (0.000–0.038).
+* **F-A7. False alarms.** The pooled detector is very conservative on dev: FA 0.006 vs v0.6's 0.059.
+  The synthetic pool null (0.083) overstated the dev false-alarm rate. Real arm selection
+  concentrates on few arms, and the realized eval/train pool difference is smaller than modelled.
+
+### 2.6 Caveats
+
+* All dev numbers are REPLAY. Seed CIs do not cover uncertainty in the recorded outcomes.
+* X was calibrated on a synthetic null before dev. On dev the detector was more conservative than
+  calibrated (§2.5 F-A7). This is reported, not tuned.
+* The disclosures in §1.8 (one-seed smoke test on a draft; shared-scratchpad incident) apply.
+* The ablations and the timing diagnostic were run after seeing the candidate results. They are
+  labelled and not eligible. The ablation classes and X4's constant were pre-declared in §1.5.
