@@ -2,6 +2,18 @@
 
 **Status:** Real CLI bridge implemented and local unit tests completed. The original build environment had no Claude Code CLI. **Update 2026-11-08:** the bridge has now been run against a real, authenticated Claude Code CLI (see [Validation results](#validation-results-2026-11-08) below). The prior v0.6 synthetic benchmark code is bundled unchanged for reference.
 
+## CAVER v0.9 confirmation study (branch `research/caver-v09-confirm`)
+
+| item | status |
+|---|---|
+| candidate | C2 `caver9.exploration:UCBMeanCAVER`, pre-frozen with a hash manifest (`reports/v09c/freeze_manifest.json`) |
+| replay holdout | new sealed salt `v09c-holdout`, 500 seeds, 12 scenarios (4 new), run once |
+| live online pilot | 30 real CLI runs (subscription OAuth); 30/30 agree with the stored outcomes |
+| verdict | **채택 보류 (adoption on hold)**: 51/53 checks; fails `c_uniform` vs v0.6 and `c_reverse` vs D-UCB |
+| recommended version | **CAVER v0.6 (unchanged)** |
+
+Details: [`docs/V09C_PROTOCOL.md`](docs/V09C_PROTOCOL.md), [`docs/V09C_RESULTS.md`](docs/V09C_RESULTS.md).
+
 ## CAVER v0.9: parallel multi-agent study (branch `research/caver-v09`)
 
 | item | status |
