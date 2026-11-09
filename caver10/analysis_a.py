@@ -28,6 +28,7 @@ import argparse
 import contextlib
 import csv
 import datetime as _dt
+import gzip
 import json
 import math
 import random
@@ -323,7 +324,7 @@ def _corr(x, y) -> float:
     return sum((a - mx) * (b - my) for a, b in zip(x, y)) / (sx * sy) if sx > 0 and sy > 0 else 0.0
 
 
-def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict:
+def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW, new_case_flags=None) -> dict:
     """train_obs / eval_obs: lists of (arm, violated, newly_found). ``policy`` supplies its own
     novelty posterior means and detector alarms. No hidden information is read."""
     out = {}
@@ -373,6 +374,10 @@ def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict
     out['win_chi2_x_sd'] = out['win_viol_chi2'] * out['win_viol_sd']     # unfitted product, illustrative
     det = getattr(policy, 'detector', None)
     out['alarms'] = len(getattr(det, 'alarm_events', []) or [])
+    # share of the last WINDOW eval probes whose (opaque) case id had not been seen before in evaluation.
+    # Label-free, but it reads the benchmark's cohort structure (a fresh case pool per regime): ARTIFACT.
+    nc = (new_case_flags or [])[-window:]
+    out['recent_new_case_rate'] = mean(nc) if nc else 0.0
     cnt = [en[f][0] for f in ARM_LABELS]
     n = sum(cnt)
     out['alloc_entropy'] = (-sum(c / n * math.log(c / n) for c in cnt if c) / math.log(6)) if n else 0.0
@@ -382,7 +387,7 @@ def regime_signals(train_obs, eval_obs, policy, *, window: int = WINDOW) -> dict
 SIGNAL_NAMES = ('post_mean_sd', 'post_mean_range', 'eval_mean_sd', 'eval_viol_sd', 'recent_yield', 'yield_ratio',
                 'recent_yield_block_var', 'recent_viol_rate', 'viol_rate_change', 'viol_chi2', 'viol_maxz',
                 'nov_chi2', 'alarms', 'alloc_entropy', 'win_viol_chi2', 'win_nov_chi2', 'win_viol_sd',
-                'win_spread_ratio', 'win_viol_corr', 'win_chi2_x_sd')
+                'win_spread_ratio', 'win_viol_corr', 'win_chi2_x_sd', 'recent_new_case_rate')
 
 
 # ======================================================================================
@@ -414,11 +419,16 @@ def trace_run(cls, seed: int, scenario: str, table: OutcomeTable, *, salt: str =
     occ: dict = {}
     steps: list[dict] = []
     train_obs, eval_obs = [], []
+    new_case_flags: list[int] = []
+    eval_ids: set = set()
     sig_at: dict[int, dict] = {}
     t0_eval = None
 
     def probe(case, seen, phase, step):
         cid = ids.setdefault(case.id, f'c{len(ids):03d}')
+        if phase == 'eval':
+            new_case_flags.append(int(cid not in eval_ids))
+            eval_ids.add(cid)
         allowed = [f for f in ARM_LABELS if f not in visited.get(cid, ())] or list(ARM_LABELS)
         rec = None
         if phase == 'eval' and getattr(policy, 'ORACLE', False):
@@ -471,7 +481,7 @@ def trace_run(cls, seed: int, scenario: str, table: OutcomeTable, *, salt: str =
                 if rec_ev[i] is None and e.at < step <= e.end and fam in e.up:
                     rec_ev[i] = step - e.at
         if signals and step in CHECKPOINTS:
-            sig_at[step] = regime_signals(train_obs, eval_obs, policy)
+            sig_at[step] = regime_signals(train_obs, eval_obs, policy, new_case_flags=new_case_flags)
     assert len(steps) == E
     return _summarize_trace(policy, scenario, seed, sd, steps, seen, rec_ev, sig_at)
 
@@ -688,7 +698,7 @@ def summarize(results: list[dict], scenarios=SCENARIOS) -> dict:
                     m[f'{kind}_yield_pooled_{sg}'] = round(hh / nn, 4) if nn else None
             fa = [r['prechange_alarms'] for r in rs if r['prechange_alarms'] is not None]
             m['false_alarm_rate'] = round(mean(x > 0 for x in fa), 4) if fa else None
-            for ref in (C2_NAME, V06_NAME, 'UCB1', 'D-UCB'):
+            for ref in (C2_NAME, V06_NAME, 'UCB1', 'D-UCB', DiagC2EvalC.name):
                 if ref != n and (sc, ref) in by:
                     for k in ('unique_false_pass', 'recovery_steps', 'fp_pre', 'fp_post'):
                         m[f'diff_{k}_vs_{ref}'], m[f'diff_{k}_vs_{ref}_ci'] = paired_diff(rs, by[(sc, ref)], k)
@@ -893,6 +903,14 @@ def render_tables(out: Path) -> str:
     md.append('\nFocus scenarios with CIs, Δ vs C2:\n')
     rows = [[p] + [_d(S[sc][p], f'diff_unique_false_pass_vs_{C2_NAME}') for sc in FOCUS] for p in diag]
     md.append(_table(['policy'] + list(FOCUS), rows))
+    md.append('\nValue of the post-change C, holding the pre-change C at 0.25: DIAG-ORACLE-C0.25to0.5 '
+              '(C = 0.5 after the hidden change point) − DIAG-C2-evalC0.25 (C = 0.25 throughout evaluation). '
+              'Both use identical RNG streams and are identical up to the change point. Positive = '
+              'raising C after the change pays.\n')
+    rows = [[sc, _d(S[sc]['DIAG-ORACLE-C0.25to0.5'], f'diff_unique_false_pass_vs_{DiagC2EvalC.name}'),
+             _d(S[sc]['DIAG-ORACLE-C0.25to0.5'], f'diff_recovery_steps_vs_{DiagC2EvalC.name}', 1)]
+            for sc in SCENARIOS if sc != 'stationary']
+    md.append(_table(['scenario', 'Δ unique FALSE_PASS', 'Δ recovery steps'], rows))
     md.append('\nRecovery steps (restricted mean):\n')
     rows = [[p] + [_f(S[sc][p]['recovery_steps'], 1) for sc in SCENARIOS if sc != 'stationary']
             for p in REF4 + ('Random',) + tuple(diag)]
@@ -931,7 +949,7 @@ def render_tables(out: Path) -> str:
     md.append('\nAUC over time for selected signals (C2 trajectories, all seeds):\n')
     rows = []
     for sname in ('viol_chi2', 'win_viol_chi2', 'win_viol_corr', 'eval_viol_sd', 'win_viol_sd', 'post_mean_sd',
-                  'recent_yield_block_var', 'alarms'):
+                  'recent_yield_block_var', 'alarms', 'recent_new_case_rate'):
         for pair in ('stationary|abrupt', 'stationary|delayed', 'c_uniform|abrupt', 'c_uniform|delayed'):
             rows.append([sname, pair] + [_f(A[C2_NAME]['all'][f'{cp}:{sname}'][pair], 2) for cp in CHECKPOINTS])
     md.append(_table(['signal', 'pair'] + [f'@{cp}' for cp in CHECKPOINTS], rows))
@@ -981,10 +999,11 @@ def main(argv=None):
             'groups': {'L': GROUP_L, 'W': GROUP_W}, 'checkpoints': CHECKPOINTS, 'window': WINDOW}
     rows = [r['row'] for r in results]
     cols = list(dict.fromkeys(k for r in rows for k in r))
-    with (out / 'runs.csv').open('w', newline='', encoding='utf-8') as f:
+    rounded = [{k: (round(v, 5) if isinstance(v, float) else v) for k, v in r.items()} for r in rows]
+    with gzip.open(out / 'runs.csv.gz', 'wt', newline='', encoding='utf-8', compresslevel=9) as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
-        w.writerows(rows)
+        w.writerows(rounded)
     (out / 'summary.json').write_text(json.dumps({'meta': meta, 'summary': summarize(results)}, indent=1))
     (out / 'step_curves.json').write_text(json.dumps({'meta': meta, 'curves': step_curves(results)}))
     split = min(seeds) + len(seeds) // 2
