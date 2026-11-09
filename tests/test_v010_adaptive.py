@@ -185,6 +185,21 @@ class TestFormulas(unittest.TestCase):
             self.assertIn(p.select('c1'), FAMILIES)
 
 
+class TestPostHoc(_RestoreSalts):
+    def test_post_hoc_not_eligible_and_ablate_as_labelled(self):
+        self.assertFalse(set(ad.POST_HOC) & set(ad.CANDIDATES))
+        self.assertTrue(all(c.name.startswith('PH-') for c in ad.POST_HOC))
+        self.assertFalse(set(dev.CANDIDATE_SPECS) & set(dev.POSTHOC_SPECS[3:]))   # B1 is the reference
+        holder = []
+        run(dev.instrumented(ad.PHEvidenceNoCusum, holder), 0, 'stationary')
+        self.assertNotIn('cusum', [k for k, _ in holder[0].events])
+        holder = []
+        run(dev.instrumented(ad.PHEvidenceNoEvalStart, holder), 0, 'stationary')
+        self.assertNotIn('eval_start', [k for k, _ in holder[0].events])
+        for cls in ad.POST_HOC:
+            self.assertEqual(strip(run(UCBMeanCAVER, 0, 'abrupt')), strip(run(disabled(cls), 0, 'abrupt')))
+
+
 class TestInformationHygiene(_RestoreSalts):
     def test_update_receives_only_str_str_bool_bool(self):
         for cls in ad.CANDIDATES:

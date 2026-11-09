@@ -4,3 +4,6 @@ python3 -m caver10.agent_b_dev --seeds 4 --jobs 2 --output <scratchpad>/agent_b_
 python3 -m unittest tests.test_v010_adaptive                                                   # 22 tests before the dev run
 python3 -m caver10.agent_b_dev --seeds 300 --jobs 2 --output reports/v010/agent_b/dev           # predeclared dev run (stdout: dev_stdout.txt)
 python3 -m caver10.agent_b_dev --seeds 300 --jobs 2 --output <scratchpad>/agent_b_v010/rerun    # reproducibility check: 32400 runs identical except CPU time
+# 2. after the dev run (post-hoc, not eligible)
+python3 -m caver10.agent_b_dev --posthoc --seeds 300 --jobs 2                                   # -> reports/v010/agent_b/posthoc (stdout: posthoc_stdout.txt)
+python3 -m unittest discover -s tests                                                           # full suite: 192 tests OK (log: test_log.txt)
