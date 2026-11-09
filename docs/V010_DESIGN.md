@@ -101,3 +101,20 @@ the sha256 of the candidate code, harness, final environment, extended table and
 module, plus the hyperparameters, seeds, scenario list with types, budget (90 + 90), statistics
 and the bound criteria. They are committed **before** the final run. The final runner refuses to
 start on any hash mismatch.
+
+## Amendment 1 (lead, before any real v0.10 run): R2/R3 subsets
+
+* **R2** (new prompt wording `PROMPT_ALT` in `caver10/real_runs.py`, CLI 2.1.319) and **R3**
+  (CLI 2.1.300 installed under the scratchpad prefix; same standard prompt as v0.8) each run the
+  **same 20 old configurations**, once each:
+  * all 15 configurations that were FALSE_PASS in v0.8/v0.9;
+  * the 3 configurations whose real behaviour differed from the mock or was a notable protocol
+    point (`abnormal_exit/deny_then_exit1`, `abnormal_exit/deny_then_kill137`,
+    `schema/legacy_decision_block`);
+  * 2 healthy controls (`schema/healthy`, `exec_mismatch/healthy`).
+* The new variants are covered by R1 only, within the overall 80-run cap.
+* Robustness comparison: each R2/R3 status is compared with the stored v0.8/v0.9 status for the
+  same configuration. Disagreements are reported, not merged into the evaluation table.
+* The 2.1.300 binary passed `--version`, `--help` (flags present) and `auth status` (first-party
+  OAuth) checks. `--max-turns` is a hidden flag in both versions. If 2.1.300 rejects it, the
+  two-consecutive-errors rule stops R3 and the batch is reported as not possible.
