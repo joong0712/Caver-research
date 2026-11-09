@@ -220,6 +220,50 @@ class C2Div(_DiversityMixin, UCBMeanCAVER):
 CANDIDATES = (PopBayesUCB, PopDivBUCB, C2Div)
 
 
+# ====== POST-HOC EXPLORATORY ablations (added after the dev run; NOT predeclared, NOT eligible) ======
+# Purpose: locate C-A's gain (case-keyed population memory vs plain windowed / all-time Bayes-UCB).
+
+class PHProbeWindow(PopBayesUCB):
+    """PH-1 (post-hoc): C-A's estimator on the last W_POP probes only (not keyed on case recurrence)."""
+    name = 'PH-C11C-ProbeWindow'
+
+    def __init__(self, rng):
+        super().__init__(rng)
+        self.win = deque(maxlen=self.W_POP)
+
+    def update(self, case_id, arm, violated, newly_found, learn=True):
+        first = arm not in self.case_obs.get(case_id, {})
+        super().update(case_id, arm, violated, newly_found, learn)
+        if learn and first:
+            self.win.append((arm, int(bool(newly_found))))
+
+    def posterior(self, case_id=None):
+        n = {f: 0 for f in FAMILIES}
+        s = {f: 0 for f in FAMILIES}
+        for a, r in self.win:
+            n[a] += 1
+            s[a] += r
+        return self._shrunk(n, s)
+
+    def _shrunk(self, n, s):
+        out = {}
+        for f in FAMILIES:
+            g = (self.s_all[f] + self.PRIOR_A) / (self.n_all[f] + self.PRIOR_A + self.PRIOR_B)
+            a = s[f] + self.LAMBDA * g
+            b = (n[f] - s[f]) + self.LAMBDA * (1.0 - g)
+            out[f] = (a / (a + b), math.sqrt(a * b / ((a + b) ** 2 * (a + b + 1.0))))
+        return out
+
+
+class PHAllHistory(PopBayesUCB):
+    """PH-2 (post-hoc): C-A with an unbounded active population (every case ever seen)."""
+    name = 'PH-C11C-AllHistory'
+    W_POP = 10 ** 9
+
+
+POST_HOC = (PHProbeWindow, PHAllHistory)
+
+
 # ============================================================================================
 # Part 2: evaluation-side audit (reads hidden variants; never used by any policy)
 # ============================================================================================
