@@ -1,0 +1,25 @@
+L1 failed 16 of 86 eligible False min S2 lb -0.2002
+  FAIL S2 stationary -0.2002
+  FAIL S1 c_uniform -0.4299
+  FAIL K1_vs_C2 abrupt -0.5155
+  FAIL K2_rec_vs_v06 abrupt 0.1771
+  FAIL K2_rec_vs_C2 abrupt 5.6504
+  FAIL K1_vs_C2 delayed -0.3403
+  FAIL K2_rec_vs_v06 delayed 0.8683
+  FAIL K2_rec_vs_C2 delayed 3.0823
+  FAIL K2_rec_vs_C2 early 2.1464
+  FAIL K2_rec_vs_C2 single 2.7516
+  FAIL K2_rec_vs_v06 c_late 0.1173
+  FAIL K2_rec_vs_C2 c_late 1.5322
+  FAIL K1_vs_C2 c_reverse -0.3683
+  FAIL K2_rec_vs_v06 c_reverse 1.144
+  FAIL K2_rec_vs_C2 c_reverse 4.0593
+  FAIL G_vs_D-UCB c_reverse -0.0171
+stationary  L1=11.63 dv06=-0.02[-0.2283, 0.1816] dC2=-0.00[-0.2002, 0.1935] rec=None
+c_uniform   L1=12.04 dv06=-0.11[-0.4299, 0.2032] dC2=+0.31[0.0169, 0.6031] rec=26.8633
+c_reverse   L1=10.25 dv06=+0.33[0.0759, 0.5774] dC2=-0.12[-0.3683, 0.135] rec=25.33
+abrupt      L1=13.04 dv06=+0.67[0.3727, 0.9739] dC2=-0.26[-0.5155, -0.0045] rec=15.3267
+delayed     L1=13.11 dv06=+0.91[0.5232, 1.2968] dC2=+0.04[-0.3403, 0.4137] rec=15.2667
+early       L1=14.12 dv06=+0.97[0.6407, 1.2927] dC2=+0.43[0.1153, 0.738] rec=11.4333
+single      L1=12.45 dv06=+0.75[0.3681, 1.1386] dC2=+0.16[-0.1778, 0.4978] rec=15.7433
+c_late      L1=11.81 dv06=+0.70[0.403, 0.9903] dC2=+0.09[-0.2001, 0.3801] rec=14.3233
