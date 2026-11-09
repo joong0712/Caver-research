@@ -7,3 +7,4 @@ __pycache__/
 .claude/worktrees/
 !reports/v09c/
 !reports/v010/
+!reports/v011/
