@@ -1,0 +1,22 @@
+{
+  "candidate": "caver9.exploration:UCBMeanCAVER",
+  "constants": {
+    "name": "C9-UCBMean",
+    "C": 0.5,
+    "SENTINEL": false,
+    "epsilon": 0.0,
+    "detector": "caver6.confirmation.ConfirmedFamilyDetector",
+    "reset": "local"
+  },
+  "files": {
+    "caver9/exploration.py": "11940f7755a7ec8adf2974127856bf0d68e3ab6845e9a88fafdc35dffe7164ef",
+    "caver9/evaluation.py": "b0ffba47fff322a5310228356f6bb6a12e3e5ef7f6ac1590e5ad233a8e2ea675",
+    "caver8/benchmark.py": "07c1b3ad2280d7ae152631c393963ce5047b02a74d635c95091a6e6df74ea314",
+    "caver5/policies.py": "f1b3c831f0fc961b2c1d6c4347762e6327e2be18a1299b99c086bb3188eeeddd",
+    "caver5/advanced_policies.py": "2c7f1bc9fbc1464ea3442aca08510a262ed74928d4b95a4278bb09661edc973a",
+    "caver6/policies.py": "bf443eacddc459b9992c15ce60ee79477f023cd265621ebc42e837f0f25d3c3e",
+    "caver6/confirmation.py": "4629ddbf72176e63655b7d6eed8bf5995bf61cb0e31d0d05cc0067e97b610a2c",
+    "reports/v08/outcome_table_real.json": "251652446d3dabfdee6167e13175ce9c6c2f9867ea35787768d96d9f0fde544b",
+    "reports/v09/outcome_table_real_2reps.json": "b301f3095936e55beeb78a6622440367cb38ed130048e32dd2fc8511c398cd68"
+  }
+}
