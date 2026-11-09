@@ -1,0 +1,14 @@
+# CAVER v0.10 Agent A: commands that produced every file in this directory
+# (dev salt v010dev only; REPLAY of reports/v08/outcome_table_real.json; no Claude CLI)
+
+# full analysis run, code at commit f29cc6b (recorded in summary.json meta.git_commit), 2 worker processes
+python3 -m caver10.analysis_a --seeds 0-299 --jobs 2 --out reports/v010/agent_a
+#   -> runs.csv.gz, summary.json, step_curves.json, signal_auc.json, yield_profiles.json, tables.md
+#   -> stdout + timing in run_stdout.txt (57600 runs, 186 s; every reference run asserted equal to caver9.evaluation.run_one)
+
+# rebuild tables.md from the saved outputs only
+python3 -m caver10.analysis_a --render-only --out reports/v010/agent_a
+
+# tests
+python3 -m unittest tests.test_v010_analysis        # 16 tests, ~2 s
+python3 -m unittest discover -s tests               # full suite
