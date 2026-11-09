@@ -1,0 +1,477 @@
+{
+  "format": "caver10.freeze_manifest/1",
+  "env_version": "caver10.final_env/1",
+  "written_utc": "2026-11-09T06:32:20+00:00",
+  "git_commit_at_write": "fc2c8ae3506f4e0a5a59c5716c9d52aa38ca5547",
+  "candidate": {
+    "spec": "caver10.lead_l1:ProfileGatedUCB",
+    "name": "C10-L1-ProfileGated",
+    "files": {
+      "caver10/lead_l1.py": "f9763f81f7e6f7488d44d146b28639efe97bbc5b0680f5d74d09f5d0cea45c26"
+    },
+    "hyperparameters": {
+      "C_TRAIN": 0.5,
+      "C_LOW": 0.25,
+      "C_HIGH": 0.5,
+      "WINDOW": 30,
+      "MIN_OBS": 15,
+      "RHO": -0.4,
+      "HOLD": 30,
+      "inherited": "C2 confirmed detector + local reset; no sentinel; no epsilon"
+    },
+    "dev_status": "FAILED dev rule (16/86 checks); frozen as best available under V010_DESIGN Amendment 2; cannot be adopted"
+  },
+  "harness": {
+    "caver9/evaluation.py": "b0ffba47fff322a5310228356f6bb6a12e3e5ef7f6ac1590e5ad233a8e2ea675",
+    "caver9/exploration.py": "11940f7755a7ec8adf2974127856bf0d68e3ab6845e9a88fafdc35dffe7164ef",
+    "caver8/benchmark.py": "07c1b3ad2280d7ae152631c393963ce5047b02a74d635c95091a6e6df74ea314",
+    "caver8/live.py": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12",
+    "caver8/policies.py": "62833445aca7c646c54e4fd14801648a2742592500b559be4c66e52a3b548986",
+    "caver5/fixtures.py": "31a109681ae629afefdbbdb5e5c4f1974e449eb597f326291758ce8759aa25bd",
+    "caver5/policies.py": "f1b3c831f0fc961b2c1d6c4347762e6327e2be18a1299b99c086bb3188eeeddd",
+    "caver5/advanced_policies.py": "2c7f1bc9fbc1464ea3442aca08510a262ed74928d4b95a4278bb09661edc973a",
+    "caver5/change.py": "d6e102ae830443bac4887ba017d52ed7c5096bf05afbdfffd3fb4db0470ce519",
+    "caver6/policies.py": "bf443eacddc459b9992c15ce60ee79477f023cd265621ebc42e837f0f25d3c3e",
+    "caver6/confirmation.py": "4629ddbf72176e63655b7d6eed8bf5995bf61cb0e31d0d05cc0067e97b610a2c"
+  },
+  "final_env": {
+    "caver10/final_env.py": "fcd1e87b35fddd6e468246ade55511d074694f0c20db44a40fec2c320e44ae80",
+    "caver10/variants_ext.py": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8"
+  },
+  "stats": {
+    "caver10/stats.py": "1204738e400be8d7189fc46f12811c8cb83d24dc2d048f8160a850d38f1addef"
+  },
+  "table": {
+    "reports/v010/outcome_table_extended_real.json": "f4e329642bd429ae6f06de5e4819e4feca2fb06c77341c071f56cd3e9df261b9"
+  },
+  "protocol": {
+    "salt": "v010final",
+    "seeds": [
+      0,
+      499
+    ],
+    "n_seeds": 500,
+    "scenarios": {
+      "f_stat_skew": {
+        "type": "stationary",
+        "description": "skewed stationary: field_value / abnormal_exit / exec_mismatch heavy, unlike W_BASE; train and evaluation from the same weights",
+        "train_weights": [
+          0.08,
+          0.3,
+          0.22,
+          0.08,
+          0.12,
+          0.2
+        ],
+        "segments": [
+          [
+            1,
+            90,
+            [
+              0.08,
+              0.3,
+              0.22,
+              0.08,
+              0.12,
+              0.2
+            ],
+            "eval"
+          ]
+        ],
+        "change_points": [],
+        "up_weighted_families": [],
+        "recovery_horizon_end": [],
+        "recovery_cap": [],
+        "false_alarm_window": [
+          1,
+          90
+        ]
+      },
+      "f_stat_flat": {
+        "type": "stationary",
+        "description": "near-uniform stationary (weights 0.15-0.18)",
+        "train_weights": [
+          0.18,
+          0.15,
+          0.17,
+          0.16,
+          0.18,
+          0.16
+        ],
+        "segments": [
+          [
+            1,
+            90,
+            [
+              0.18,
+              0.15,
+              0.17,
+              0.16,
+              0.18,
+              0.16
+            ],
+            "eval"
+          ]
+        ],
+        "change_points": [],
+        "up_weighted_families": [],
+        "recovery_horizon_end": [],
+        "recovery_cap": [],
+        "false_alarm_window": [
+          1,
+          90
+        ]
+      },
+      "f_abrupt_boundary": {
+        "type": "abrupt",
+        "description": "abrupt shift at the train/eval boundary: train schema-heavy, evaluation field_value + abnormal_exit heavy from step 1",
+        "train_weights": [
+          0.34,
+          0.06,
+          0.06,
+          0.18,
+          0.18,
+          0.18
+        ],
+        "segments": [
+          [
+            1,
+            90,
+            [
+              0.1,
+              0.36,
+              0.24,
+              0.1,
+              0.1,
+              0.1
+            ],
+            "post"
+          ]
+        ],
+        "change_points": [
+          0
+        ],
+        "up_weighted_families": [
+          [
+            "abnormal_exit",
+            "field_value"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          91
+        ],
+        "false_alarm_window": null
+      },
+      "f_abrupt_after": {
+        "type": "abrupt",
+        "description": "abrupt shift after the boundary: abnormal_exit/timeout/matcher/exec-heavy steps 1-20, schema + field_value heavy steps 21-90",
+        "train_weights": [
+          0.06,
+          0.08,
+          0.26,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "segments": [
+          [
+            1,
+            20,
+            [
+              0.06,
+              0.08,
+              0.26,
+              0.2,
+              0.2,
+              0.2
+            ],
+            "pre"
+          ],
+          [
+            21,
+            90,
+            [
+              0.36,
+              0.3,
+              0.1,
+              0.08,
+              0.08,
+              0.08
+            ],
+            "post"
+          ]
+        ],
+        "change_points": [
+          20
+        ],
+        "up_weighted_families": [
+          [
+            "field_value",
+            "schema"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          71
+        ],
+        "false_alarm_window": [
+          1,
+          20
+        ]
+      },
+      "f_flat_shift": {
+        "type": "flat_shift",
+        "description": "flat shift: timeout + exec_mismatch heavy steps 1-25, near-uniform steps 26-90",
+        "train_weights": [
+          0.06,
+          0.1,
+          0.1,
+          0.34,
+          0.1,
+          0.3
+        ],
+        "segments": [
+          [
+            1,
+            25,
+            [
+              0.06,
+              0.1,
+              0.1,
+              0.34,
+              0.1,
+              0.3
+            ],
+            "pre"
+          ],
+          [
+            26,
+            90,
+            [
+              0.17,
+              0.17,
+              0.17,
+              0.16,
+              0.17,
+              0.16
+            ],
+            "post"
+          ]
+        ],
+        "change_points": [
+          25
+        ],
+        "up_weighted_families": [
+          [
+            "abnormal_exit",
+            "field_value",
+            "matcher",
+            "schema"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          66
+        ],
+        "false_alarm_window": [
+          1,
+          25
+        ]
+      },
+      "f_spike": {
+        "type": "transient",
+        "description": "transient spike: steps 1-40 base, 41-55 matcher spike (0.70), 56-90 fresh base cohort",
+        "train_weights": [
+          0.22,
+          0.22,
+          0.14,
+          0.14,
+          0.14,
+          0.14
+        ],
+        "segments": [
+          [
+            1,
+            40,
+            [
+              0.22,
+              0.22,
+              0.14,
+              0.14,
+              0.14,
+              0.14
+            ],
+            "pre"
+          ],
+          [
+            41,
+            55,
+            [
+              0.06,
+              0.06,
+              0.06,
+              0.06,
+              0.7,
+              0.06
+            ],
+            "spike"
+          ],
+          [
+            56,
+            90,
+            [
+              0.22,
+              0.22,
+              0.14,
+              0.14,
+              0.14,
+              0.14
+            ],
+            "return"
+          ]
+        ],
+        "change_points": [
+          40,
+          55
+        ],
+        "up_weighted_families": [
+          [
+            "matcher"
+          ],
+          [
+            "abnormal_exit",
+            "exec_mismatch",
+            "field_value",
+            "schema",
+            "timeout"
+          ]
+        ],
+        "recovery_horizon_end": [
+          55,
+          90
+        ],
+        "recovery_cap": [
+          16,
+          36
+        ],
+        "false_alarm_window": [
+          1,
+          40
+        ]
+      },
+      "f_gradual": {
+        "type": "gradual",
+        "description": "gradual drift: P(case from the target cohort) = clip((t - 20) / 50, 0, 1), i.e. 0 up to step 20 and 1 from step 70; target is timeout + matcher heavy",
+        "train_weights": [
+          0.2,
+          0.1,
+          0.1,
+          0.1,
+          0.2,
+          0.3
+        ],
+        "segments": [
+          [
+            1,
+            90,
+            "gradual",
+            "pre|post"
+          ]
+        ],
+        "change_points": [
+          20
+        ],
+        "up_weighted_families": [
+          [
+            "matcher",
+            "timeout"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          71
+        ],
+        "false_alarm_window": [
+          1,
+          20
+        ]
+      }
+    },
+    "budget": {
+      "train": 90,
+      "eval": 90
+    },
+    "pool": {
+      "name": "extended",
+      "new_share": 0.45
+    },
+    "baselines": [
+      "Random",
+      "UCB1",
+      "SW-UCB",
+      "D-UCB",
+      "CAVER-v0.6",
+      "caver9.exploration:UCBMeanCAVER"
+    ],
+    "references": [
+      "CAVER-v0.6",
+      "C9-UCBMean",
+      "Random",
+      "SW-UCB",
+      "D-UCB",
+      "UCB1"
+    ],
+    "outcome_stream": "crn",
+    "opaque_case_ids": true,
+    "enforce_available_rule": true,
+    "stats": {
+      "ci": "paired normal approx 95% (primary for criteria)",
+      "bootstrap": {
+        "n": 2000,
+        "seed": 20101,
+        "type": "percentile, paired over seeds"
+      },
+      "p_values": "two-sided normal; Holm across all reported candidate comparisons",
+      "recovery": "paired restricted mean (cap = horizon - change + 1), KM median, censoring rate"
+    },
+    "criteria_bindings": {
+      "stationary": [
+        "f_stat_skew",
+        "f_stat_flat"
+      ],
+      "flat_shift": [
+        "f_flat_shift"
+      ],
+      "abrupt": [
+        "f_abrupt_boundary",
+        "f_abrupt_after"
+      ],
+      "all": [
+        "f_stat_skew",
+        "f_stat_flat",
+        "f_abrupt_boundary",
+        "f_abrupt_after",
+        "f_flat_shift",
+        "f_spike",
+        "f_gradual"
+      ],
+      "false_alarm": [
+        "f_stat_skew",
+        "f_stat_flat",
+        "f_abrupt_after",
+        "f_flat_shift",
+        "f_spike",
+        "f_gradual"
+      ]
+    }
+  }
+}
