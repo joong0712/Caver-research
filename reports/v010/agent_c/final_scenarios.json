@@ -1,0 +1,355 @@
+{
+  "f_stat_skew": {
+    "type": "stationary",
+    "description": "skewed stationary: field_value / abnormal_exit / exec_mismatch heavy, unlike W_BASE; train and evaluation from the same weights",
+    "train_weights": [
+      0.08,
+      0.3,
+      0.22,
+      0.08,
+      0.12,
+      0.2
+    ],
+    "segments": [
+      [
+        1,
+        90,
+        [
+          0.08,
+          0.3,
+          0.22,
+          0.08,
+          0.12,
+          0.2
+        ],
+        "eval"
+      ]
+    ],
+    "change_points": [],
+    "up_weighted_families": [],
+    "recovery_horizon_end": [],
+    "recovery_cap": [],
+    "false_alarm_window": [
+      1,
+      90
+    ]
+  },
+  "f_stat_flat": {
+    "type": "stationary",
+    "description": "near-uniform stationary (weights 0.15-0.18)",
+    "train_weights": [
+      0.18,
+      0.15,
+      0.17,
+      0.16,
+      0.18,
+      0.16
+    ],
+    "segments": [
+      [
+        1,
+        90,
+        [
+          0.18,
+          0.15,
+          0.17,
+          0.16,
+          0.18,
+          0.16
+        ],
+        "eval"
+      ]
+    ],
+    "change_points": [],
+    "up_weighted_families": [],
+    "recovery_horizon_end": [],
+    "recovery_cap": [],
+    "false_alarm_window": [
+      1,
+      90
+    ]
+  },
+  "f_abrupt_boundary": {
+    "type": "abrupt",
+    "description": "abrupt shift at the train/eval boundary: train schema-heavy, evaluation field_value + abnormal_exit heavy from step 1",
+    "train_weights": [
+      0.34,
+      0.06,
+      0.06,
+      0.18,
+      0.18,
+      0.18
+    ],
+    "segments": [
+      [
+        1,
+        90,
+        [
+          0.1,
+          0.36,
+          0.24,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "post"
+      ]
+    ],
+    "change_points": [
+      0
+    ],
+    "up_weighted_families": [
+      [
+        "abnormal_exit",
+        "field_value"
+      ]
+    ],
+    "recovery_horizon_end": [
+      90
+    ],
+    "recovery_cap": [
+      91
+    ],
+    "false_alarm_window": null
+  },
+  "f_abrupt_after": {
+    "type": "abrupt",
+    "description": "abrupt shift after the boundary: abnormal_exit/timeout/matcher/exec-heavy steps 1-20, schema + field_value heavy steps 21-90",
+    "train_weights": [
+      0.06,
+      0.08,
+      0.26,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "segments": [
+      [
+        1,
+        20,
+        [
+          0.06,
+          0.08,
+          0.26,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "pre"
+      ],
+      [
+        21,
+        90,
+        [
+          0.36,
+          0.3,
+          0.1,
+          0.08,
+          0.08,
+          0.08
+        ],
+        "post"
+      ]
+    ],
+    "change_points": [
+      20
+    ],
+    "up_weighted_families": [
+      [
+        "field_value",
+        "schema"
+      ]
+    ],
+    "recovery_horizon_end": [
+      90
+    ],
+    "recovery_cap": [
+      71
+    ],
+    "false_alarm_window": [
+      1,
+      20
+    ]
+  },
+  "f_flat_shift": {
+    "type": "flat_shift",
+    "description": "flat shift: timeout + exec_mismatch heavy steps 1-25, near-uniform steps 26-90",
+    "train_weights": [
+      0.06,
+      0.1,
+      0.1,
+      0.34,
+      0.1,
+      0.3
+    ],
+    "segments": [
+      [
+        1,
+        25,
+        [
+          0.06,
+          0.1,
+          0.1,
+          0.34,
+          0.1,
+          0.3
+        ],
+        "pre"
+      ],
+      [
+        26,
+        90,
+        [
+          0.17,
+          0.17,
+          0.17,
+          0.16,
+          0.17,
+          0.16
+        ],
+        "post"
+      ]
+    ],
+    "change_points": [
+      25
+    ],
+    "up_weighted_families": [
+      [
+        "abnormal_exit",
+        "field_value",
+        "matcher",
+        "schema"
+      ]
+    ],
+    "recovery_horizon_end": [
+      90
+    ],
+    "recovery_cap": [
+      66
+    ],
+    "false_alarm_window": [
+      1,
+      25
+    ]
+  },
+  "f_spike": {
+    "type": "transient",
+    "description": "transient spike: steps 1-40 base, 41-55 matcher spike (0.70), 56-90 fresh base cohort",
+    "train_weights": [
+      0.22,
+      0.22,
+      0.14,
+      0.14,
+      0.14,
+      0.14
+    ],
+    "segments": [
+      [
+        1,
+        40,
+        [
+          0.22,
+          0.22,
+          0.14,
+          0.14,
+          0.14,
+          0.14
+        ],
+        "pre"
+      ],
+      [
+        41,
+        55,
+        [
+          0.06,
+          0.06,
+          0.06,
+          0.06,
+          0.7,
+          0.06
+        ],
+        "spike"
+      ],
+      [
+        56,
+        90,
+        [
+          0.22,
+          0.22,
+          0.14,
+          0.14,
+          0.14,
+          0.14
+        ],
+        "return"
+      ]
+    ],
+    "change_points": [
+      40,
+      55
+    ],
+    "up_weighted_families": [
+      [
+        "matcher"
+      ],
+      [
+        "abnormal_exit",
+        "exec_mismatch",
+        "field_value",
+        "schema",
+        "timeout"
+      ]
+    ],
+    "recovery_horizon_end": [
+      55,
+      90
+    ],
+    "recovery_cap": [
+      16,
+      36
+    ],
+    "false_alarm_window": [
+      1,
+      40
+    ]
+  },
+  "f_gradual": {
+    "type": "gradual",
+    "description": "gradual drift: P(case from the target cohort) = clip((t - 20) / 50, 0, 1), i.e. 0 up to step 20 and 1 from step 70; target is timeout + matcher heavy",
+    "train_weights": [
+      0.2,
+      0.1,
+      0.1,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "segments": [
+      [
+        1,
+        90,
+        "gradual",
+        "pre|post"
+      ]
+    ],
+    "change_points": [
+      20
+    ],
+    "up_weighted_families": [
+      [
+        "matcher",
+        "timeout"
+      ]
+    ],
+    "recovery_horizon_end": [
+      90
+    ],
+    "recovery_cap": [
+      71
+    ],
+    "false_alarm_window": [
+      1,
+      20
+    ]
+  }
+}
