@@ -1,0 +1,1040 @@
+{
+ "R1": {
+  "sha256": "ddeaa5cb31932d3f19ca497a3ff96066c0fcc488989836fa24be8cdcc59ac808",
+  "n_rows": 36,
+  "api_key_source_values": {
+   "none": 36
+  },
+  "cli_kind_values": {
+   "real": 36
+  },
+  "usage_limit_hit_any": false,
+  "n_configs": 18,
+  "reps_per_config": {
+   "2": 18
+  },
+  "rep_ids_per_config_ok": true,
+  "configs_agreeing": 18,
+  "disagreeing": [],
+  "per_config_outcome": {
+   "abnormal_exit/deny_then_sighup": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "abnormal_exit/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "abnormal_exit/partial_json_then_crash": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "exec_mismatch/cwd_gated_hook": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "exec_mismatch/env_launcher": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "exec_mismatch/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "field_value/deny_nonascii_reason": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "field_value/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "field_value/homoglyph_deny": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "matcher/all_caps_matcher": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "matcher/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "matcher/regex_wildcard_matcher": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "schema/bom_prefixed_deny": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "schema/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "schema/json_array_wrapped": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "timeout/deny_then_orphan_holds_stdout": [
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ],
+    [
+     true,
+     true,
+     "FALSE_PASS"
+    ]
+   ],
+   "timeout/healthy": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ],
+   "timeout/slow_deny_wide_timeout": [
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    [
+     false,
+     false,
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   ]
+  },
+  "meta": {
+   "cli_kind": "real",
+   "billing_mode": "subscription",
+   "subscription_auth": {
+    "loggedIn": true,
+    "authMethod": "oauth_token",
+    "apiProvider": "firstParty",
+    "billing_env_vars_present": []
+   },
+   "reps": 2,
+   "configs": 18,
+   "max_runs": 36,
+   "runs_recorded": 36,
+   "complete": true,
+   "stop_reason": null
+  }
+ },
+ "table": {
+  "sha256": "65872526f8fcac16f3de39ff2b221d31d87ca945b2d7a2fc7a7a9f3002fdf248",
+  "top_keys": [
+   "meta",
+   "rows"
+  ],
+  "meta_keys": [
+   "format",
+   "cli_kind",
+   "real_claude_code_executed",
+   "label",
+   "composition",
+   "configs",
+   "rows",
+   "rows_per_config",
+   "v011_new_variants",
+   "base_configs",
+   "variant_fingerprints",
+   "sources",
+   "claude_versions",
+   "rv_agreement",
+   "rv_new_variants",
+   "min_new_reps"
+  ],
+  "n_rows": 132,
+  "n_configs_from_rows": 54,
+  "rows_per_config_hist": {
+   "6": 6,
+   "2": 48
+  },
+  "cli_kind_values": {
+   "real": 132
+  },
+  "api_key_source_values": {
+   "none": 132
+  },
+  "recorded_hashes": {
+   "meta.variant_fingerprints.abnormal_exit/crash_silent": "9d7dc75bb70886bb524bd709827aa9d4bec83f480232b1595b32ecc161a40ef4",
+   "meta.variant_fingerprints.abnormal_exit/deny_then_exit1": "35cb9b603004914e402ffbc3013edae2e7fd75f915d68bf78bd030ed4f81ea8a",
+   "meta.variant_fingerprints.abnormal_exit/deny_then_exit2": "442210e45df9b6eb820dd8508a50068546abef1077c8fcede857dbd921fb0ee0",
+   "meta.variant_fingerprints.abnormal_exit/deny_then_kill137": "49dd487385f0e8e6c9ce4b018d20fbe20b047bc471b444ae12c00ef5a305054a",
+   "meta.variant_fingerprints.abnormal_exit/deny_then_sighup": "3da4a0bf84e73b7607633fd3169cf4777692bacb9285318a3268fa81628cdc9e",
+   "meta.variant_fingerprints.abnormal_exit/deny_then_sigterm": "2d8a5fd092b0e07af93d925829d7cf67b038cec724b63a0259183f3235d88e7c",
+   "meta.variant_fingerprints.abnormal_exit/healthy": "92189fa3ed60418a7f68e6fcca0d642c6cc3517dc2f7772aa9d3d3c1564f9e94",
+   "meta.variant_fingerprints.abnormal_exit/partial_json_then_crash": "bcc668f667eab0bb4e9a5009f1aa8561f17196d4d931886486c9c59ed8e64f52",
+   "meta.variant_fingerprints.abnormal_exit/stderr_reason_exit2": "f9ec6ddae8cbef482044adee5f7da241065d451ed9a9332381debc472c50eab7",
+   "meta.variant_fingerprints.exec_mismatch/bash_c_wrapper": "a34428352dccd6a946c8f00b595ea1598399abd3d239e69857d18529d35270db",
+   "meta.variant_fingerprints.exec_mismatch/cd_chain": "6ead94ca81e8c5cfc9b447f1c2ef198dff5b46bf3d1231223ff98fb0da4295a8",
+   "meta.variant_fingerprints.exec_mismatch/cwd_gated_hook": "2fa6e18b2c4fb6ac3f8b8752dcbc2d121f487ea0b6e9ca2f2efd636404594c6f",
+   "meta.variant_fingerprints.exec_mismatch/dot_slash": "7ddc9f0def26eec25577ed446e8a7fc067629c7827d4dc7273bf75e113233ef5",
+   "meta.variant_fingerprints.exec_mismatch/double_space": "fa8e850add20cbfafb478d418012808490aff292436dbe7aa554d5f325af4a6d",
+   "meta.variant_fingerprints.exec_mismatch/env_launcher": "5dcc97ebe6f1d1ca95068d50d8d72a31e80f56d087f2b56f06849be3ae18db36",
+   "meta.variant_fingerprints.exec_mismatch/env_prefix": "d027e94051a93915f7df2d5f14130d1450c9550bc24830bc7c863b56df0de7ca",
+   "meta.variant_fingerprints.exec_mismatch/healthy": "85b8aa226ca833c523115b6f67c62ce62bbcf89f1bd868d637e86aa3244dfab0",
+   "meta.variant_fingerprints.exec_mismatch/python_B_flag": "6f95a87544ee814be7303f145ac8699c446e2758269a75273e6cf79dc6c71d43",
+   "meta.variant_fingerprints.exec_mismatch/substring_hook_bash_c": "aae5c56c36273bc50fb74c972b258ce39501d47b267bb7beaa54620650205d7c",
+   "meta.variant_fingerprints.field_value/allow_instead": "07ba9020ca92bc68b182345a31a56787012bbb34a6b6e8f8ba3cbdb04e628b26",
+   "meta.variant_fingerprints.field_value/block_value": "c3886aae369c9d351bc40ebfa36560d8ca8c9913f8514532b4d7cfd5c7ea2d54",
+   "meta.variant_fingerprints.field_value/capitalized_deny": "3f8b22060dc75fe0f7bc23704f43a86c6214d05cf1ce2b44993befded4401358",
+   "meta.variant_fingerprints.field_value/deny_nonascii_reason": "45f6aa67c4a1878ad4e1df8bcd67bdc909b2ef67e2e53f1e4cc55740f9e704d9",
+   "meta.variant_fingerprints.field_value/deny_with_extra_fields": "2dc2da0609aab4bfdd5d2f3e5e6f3216bdeb74ad919bbe81d78581845973152c",
+   "meta.variant_fingerprints.field_value/healthy": "945324410f359e297f875f7af416c98ae951a4205e9864210af0a7607dbe00a4",
+   "meta.variant_fingerprints.field_value/homoglyph_deny": "083a05335464936a61ce58921cd1fc1c56d001b1842b2c59d1b0697ded685ad7",
+   "meta.variant_fingerprints.field_value/missing_decision": "d6f042a1e64ebae5bb9a81460cc1572a759ca61e17c9746b0b8d73b5b96e4574",
+   "meta.variant_fingerprints.field_value/padded_deny": "e3b3521ebdce7843e731bc4118a5d281501d9818c119d7451ebe38c46f47cd75",
+   "meta.variant_fingerprints.matcher/all_caps_matcher": "d4d2608ff5854f2690d2a1f808c50f0cd7a44653146cafcf392f50f65a0d1244",
+   "meta.variant_fingerprints.matcher/alternation_matcher": "39f2ab5e513eaf6bc071ea1c5c1ceb971390a8f1abb607bf6666fa8cd17f66ce",
+   "meta.variant_fingerprints.matcher/anchored_lowercase_matcher": "0f7801189c179a60e4717039072d930c1964fbcbfb72ee711a5ce05e22b04b10",
+   "meta.variant_fingerprints.matcher/healthy": "e71851a1892672d6fd7fb3208303435735ee1e7270d7a69ae64ea7d963b2c231",
+   "meta.variant_fingerprints.matcher/internal_lowercase_check": "925d40df61e283e54fb9d5b862e750e229f51bf4b296e14a4e5b2fcdbbe3e115",
+   "meta.variant_fingerprints.matcher/lowercase_matcher": "48b35479753ed4e91e51534e314436dac6bb1250ee9b49af8553f9df84a8e5f1",
+   "meta.variant_fingerprints.matcher/permission_rule_syntax": "f48d6081ca3072dfad974529f8dcf8a64ec346992a2536f9ccaccc8ff73ccd86",
+   "meta.variant_fingerprints.matcher/regex_wildcard_matcher": "dff260ecba8c1bb7bcdcef6de65f798e772c5410cef8d6aacf1d5fa7612e3c68",
+   "meta.variant_fingerprints.matcher/wrong_tool_matcher": "f1c188e2f038f587abe8cc8ff420f64dbd4559f0f235e5b6617404b4a69018ad",
+   "meta.variant_fingerprints.schema/bom_prefixed_deny": "546cb70dca6163ca3d1289ead513fab9395dcc77fa4893633ca095d676d0281b",
+   "meta.variant_fingerprints.schema/deny_then_second_json": "9094c5f479517d9c15340a72fbe31799f8c98e763bb90bb2b570702a636804b5",
+   "meta.variant_fingerprints.schema/deny_then_trailing_text": "5815366b20a699c4aacd0af64673479782581c82a2d6158fbbf27779e9ebc69d",
+   "meta.variant_fingerprints.schema/healthy": "5d6eb55cb865501f292d0282fea00debaddf36448dbff39a663a6fb905470150",
+   "meta.variant_fingerprints.schema/json_array_wrapped": "67eb4cb06a579f52b743a039fdea34b43a0bb4d2118d3d7bea138c07254bed9d",
+   "meta.variant_fingerprints.schema/legacy_decision_block": "06df95ae42374ef3043f0628b4a3ae4e15a05e66d819e599955824069eb1139f",
+   "meta.variant_fingerprints.schema/snake_case_key": "a6fbc919acb47043bdea7acf2f89d043b1687bd04c163d37c7710718de51a273",
+   "meta.variant_fingerprints.schema/top_level": "646687effecaf0edf867673267d7285381563c80d5d7700331ed33ec29161611",
+   "meta.variant_fingerprints.schema/wrong_event_name": "bd1292d0954d627a2ffc1dedd2447c98096ae1a2987d36d20a64af763d46538a",
+   "meta.variant_fingerprints.timeout/deny_then_hang": "7687505724490ecf4b5a9039affdd58e98fcd175d2e7c14dfcc1d84962277bbe",
+   "meta.variant_fingerprints.timeout/deny_then_orphan_holds_stdout": "71c5994f504dabcce703384bd41c7009acb2f30427e8426978e1ef9b6f314e01",
+   "meta.variant_fingerprints.timeout/healthy": "7004c388a067effcb1de694aabc9ceb4c865dc8effd667d83d10c0dd66ab8110",
+   "meta.variant_fingerprints.timeout/slow_deny": "bc4dc9512d6d6e44b223f857fef65a1951d778acf632cea66e9bdcf85880cc6f",
+   "meta.variant_fingerprints.timeout/slow_deny_wide_timeout": "878e61967e37dfc0f9734a445f68860d29740b622a6f3ebfe623aaf38d4a1d07",
+   "meta.variant_fingerprints.timeout/slow_silent": "25b3f43dd0d2afe442bb81c707f04e7ca52ce7ce3eafa7783d6fab1b6f1b06a7",
+   "meta.variant_fingerprints.timeout/slow_within_limit": "f68e2e2ced400609bc426e2515095327127219419741641c5849ec1f10cd7aaa",
+   "meta.variant_fingerprints.timeout/stderr_deny_then_hang": "9cc99c790514adcc5df9edf644f1bc122855d0b2f526ce74fedd6e88c3e8dd15",
+   "meta.sources.base_table.sha256": "f4e329642bd429ae6f06de5e4819e4feca2fb06c77341c071f56cd3e9df261b9",
+   "meta.sources.v011_rows[0].sha256": "ddeaa5cb31932d3f19ca497a3ff96066c0fcc488989836fa24be8cdcc59ac808",
+   "meta.sources.variants11_py_sha256": "27037422a5eee807312afdbd81af93fc561e729f93fd7d505f490cdaf2a67d90",
+   "meta.sources.variants_ext_py_sha256": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8",
+   "meta.sources.caver8_live_py_sha256": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12"
+  },
+  "meta": {
+   "format": "caver11.final_table/1",
+   "cli_kind": "real",
+   "real_claude_code_executed": true,
+   "label": "REAL v0.11 final table",
+   "composition": {
+    "v010_base": [
+     "real"
+    ],
+    "v011_rows": [
+     "real"
+    ]
+   },
+   "configs": 54,
+   "rows": 132,
+   "rows_per_config": {
+    "abnormal_exit/crash_silent": 2,
+    "abnormal_exit/deny_then_exit1": 2,
+    "abnormal_exit/deny_then_exit2": 2,
+    "abnormal_exit/deny_then_kill137": 2,
+    "abnormal_exit/deny_then_sighup": 2,
+    "abnormal_exit/deny_then_sigterm": 2,
+    "abnormal_exit/healthy": 6,
+    "abnormal_exit/partial_json_then_crash": 2,
+    "abnormal_exit/stderr_reason_exit2": 2,
+    "exec_mismatch/bash_c_wrapper": 2,
+    "exec_mismatch/cd_chain": 2,
+    "exec_mismatch/cwd_gated_hook": 2,
+    "exec_mismatch/dot_slash": 2,
+    "exec_mismatch/double_space": 2,
+    "exec_mismatch/env_launcher": 2,
+    "exec_mismatch/env_prefix": 2,
+    "exec_mismatch/healthy": 6,
+    "exec_mismatch/python_B_flag": 2,
+    "exec_mismatch/substring_hook_bash_c": 2,
+    "field_value/allow_instead": 2,
+    "field_value/block_value": 2,
+    "field_value/capitalized_deny": 2,
+    "field_value/deny_nonascii_reason": 2,
+    "field_value/deny_with_extra_fields": 2,
+    "field_value/healthy": 6,
+    "field_value/homoglyph_deny": 2,
+    "field_value/missing_decision": 2,
+    "field_value/padded_deny": 2,
+    "matcher/all_caps_matcher": 2,
+    "matcher/alternation_matcher": 2,
+    "matcher/anchored_lowercase_matcher": 2,
+    "matcher/healthy": 6,
+    "matcher/internal_lowercase_check": 2,
+    "matcher/lowercase_matcher": 2,
+    "matcher/permission_rule_syntax": 2,
+    "matcher/regex_wildcard_matcher": 2,
+    "matcher/wrong_tool_matcher": 2,
+    "schema/bom_prefixed_deny": 2,
+    "schema/deny_then_second_json": 2,
+    "schema/deny_then_trailing_text": 2,
+    "schema/healthy": 6,
+    "schema/json_array_wrapped": 2,
+    "schema/legacy_decision_block": 2,
+    "schema/snake_case_key": 2,
+    "schema/top_level": 2,
+    "schema/wrong_event_name": 2,
+    "timeout/deny_then_hang": 2,
+    "timeout/deny_then_orphan_holds_stdout": 2,
+    "timeout/healthy": 6,
+    "timeout/slow_deny": 2,
+    "timeout/slow_deny_wide_timeout": 2,
+    "timeout/slow_silent": 2,
+    "timeout/slow_within_limit": 2,
+    "timeout/stderr_deny_then_hang": 2
+   },
+   "v011_new_variants": [
+    "abnormal_exit/deny_then_sighup",
+    "abnormal_exit/partial_json_then_crash",
+    "exec_mismatch/cwd_gated_hook",
+    "exec_mismatch/env_launcher",
+    "field_value/deny_nonascii_reason",
+    "field_value/homoglyph_deny",
+    "matcher/all_caps_matcher",
+    "matcher/regex_wildcard_matcher",
+    "schema/bom_prefixed_deny",
+    "schema/json_array_wrapped",
+    "timeout/deny_then_orphan_holds_stdout",
+    "timeout/slow_deny_wide_timeout"
+   ],
+   "base_configs": [
+    "abnormal_exit/crash_silent",
+    "abnormal_exit/deny_then_exit1",
+    "abnormal_exit/deny_then_exit2",
+    "abnormal_exit/deny_then_kill137",
+    "abnormal_exit/deny_then_sigterm",
+    "abnormal_exit/healthy",
+    "abnormal_exit/stderr_reason_exit2",
+    "exec_mismatch/bash_c_wrapper",
+    "exec_mismatch/cd_chain",
+    "exec_mismatch/dot_slash",
+    "exec_mismatch/double_space",
+    "exec_mismatch/env_prefix",
+    "exec_mismatch/healthy",
+    "exec_mismatch/python_B_flag",
+    "exec_mismatch/substring_hook_bash_c",
+    "field_value/allow_instead",
+    "field_value/block_value",
+    "field_value/capitalized_deny",
+    "field_value/deny_with_extra_fields",
+    "field_value/healthy",
+    "field_value/missing_decision",
+    "field_value/padded_deny",
+    "matcher/alternation_matcher",
+    "matcher/anchored_lowercase_matcher",
+    "matcher/healthy",
+    "matcher/internal_lowercase_check",
+    "matcher/lowercase_matcher",
+    "matcher/permission_rule_syntax",
+    "matcher/wrong_tool_matcher",
+    "schema/deny_then_second_json",
+    "schema/deny_then_trailing_text",
+    "schema/healthy",
+    "schema/legacy_decision_block",
+    "schema/snake_case_key",
+    "schema/top_level",
+    "schema/wrong_event_name",
+    "timeout/deny_then_hang",
+    "timeout/healthy",
+    "timeout/slow_deny",
+    "timeout/slow_silent",
+    "timeout/slow_within_limit",
+    "timeout/stderr_deny_then_hang"
+   ],
+   "variant_fingerprints": {
+    "abnormal_exit/crash_silent": "9d7dc75bb70886bb524bd709827aa9d4bec83f480232b1595b32ecc161a40ef4",
+    "abnormal_exit/deny_then_exit1": "35cb9b603004914e402ffbc3013edae2e7fd75f915d68bf78bd030ed4f81ea8a",
+    "abnormal_exit/deny_then_exit2": "442210e45df9b6eb820dd8508a50068546abef1077c8fcede857dbd921fb0ee0",
+    "abnormal_exit/deny_then_kill137": "49dd487385f0e8e6c9ce4b018d20fbe20b047bc471b444ae12c00ef5a305054a",
+    "abnormal_exit/deny_then_sighup": "3da4a0bf84e73b7607633fd3169cf4777692bacb9285318a3268fa81628cdc9e",
+    "abnormal_exit/deny_then_sigterm": "2d8a5fd092b0e07af93d925829d7cf67b038cec724b63a0259183f3235d88e7c",
+    "abnormal_exit/healthy": "92189fa3ed60418a7f68e6fcca0d642c6cc3517dc2f7772aa9d3d3c1564f9e94",
+    "abnormal_exit/partial_json_then_crash": "bcc668f667eab0bb4e9a5009f1aa8561f17196d4d931886486c9c59ed8e64f52",
+    "abnormal_exit/stderr_reason_exit2": "f9ec6ddae8cbef482044adee5f7da241065d451ed9a9332381debc472c50eab7",
+    "exec_mismatch/bash_c_wrapper": "a34428352dccd6a946c8f00b595ea1598399abd3d239e69857d18529d35270db",
+    "exec_mismatch/cd_chain": "6ead94ca81e8c5cfc9b447f1c2ef198dff5b46bf3d1231223ff98fb0da4295a8",
+    "exec_mismatch/cwd_gated_hook": "2fa6e18b2c4fb6ac3f8b8752dcbc2d121f487ea0b6e9ca2f2efd636404594c6f",
+    "exec_mismatch/dot_slash": "7ddc9f0def26eec25577ed446e8a7fc067629c7827d4dc7273bf75e113233ef5",
+    "exec_mismatch/double_space": "fa8e850add20cbfafb478d418012808490aff292436dbe7aa554d5f325af4a6d",
+    "exec_mismatch/env_launcher": "5dcc97ebe6f1d1ca95068d50d8d72a31e80f56d087f2b56f06849be3ae18db36",
+    "exec_mismatch/env_prefix": "d027e94051a93915f7df2d5f14130d1450c9550bc24830bc7c863b56df0de7ca",
+    "exec_mismatch/healthy": "85b8aa226ca833c523115b6f67c62ce62bbcf89f1bd868d637e86aa3244dfab0",
+    "exec_mismatch/python_B_flag": "6f95a87544ee814be7303f145ac8699c446e2758269a75273e6cf79dc6c71d43",
+    "exec_mismatch/substring_hook_bash_c": "aae5c56c36273bc50fb74c972b258ce39501d47b267bb7beaa54620650205d7c",
+    "field_value/allow_instead": "07ba9020ca92bc68b182345a31a56787012bbb34a6b6e8f8ba3cbdb04e628b26",
+    "field_value/block_value": "c3886aae369c9d351bc40ebfa36560d8ca8c9913f8514532b4d7cfd5c7ea2d54",
+    "field_value/capitalized_deny": "3f8b22060dc75fe0f7bc23704f43a86c6214d05cf1ce2b44993befded4401358",
+    "field_value/deny_nonascii_reason": "45f6aa67c4a1878ad4e1df8bcd67bdc909b2ef67e2e53f1e4cc55740f9e704d9",
+    "field_value/deny_with_extra_fields": "2dc2da0609aab4bfdd5d2f3e5e6f3216bdeb74ad919bbe81d78581845973152c",
+    "field_value/healthy": "945324410f359e297f875f7af416c98ae951a4205e9864210af0a7607dbe00a4",
+    "field_value/homoglyph_deny": "083a05335464936a61ce58921cd1fc1c56d001b1842b2c59d1b0697ded685ad7",
+    "field_value/missing_decision": "d6f042a1e64ebae5bb9a81460cc1572a759ca61e17c9746b0b8d73b5b96e4574",
+    "field_value/padded_deny": "e3b3521ebdce7843e731bc4118a5d281501d9818c119d7451ebe38c46f47cd75",
+    "matcher/all_caps_matcher": "d4d2608ff5854f2690d2a1f808c50f0cd7a44653146cafcf392f50f65a0d1244",
+    "matcher/alternation_matcher": "39f2ab5e513eaf6bc071ea1c5c1ceb971390a8f1abb607bf6666fa8cd17f66ce",
+    "matcher/anchored_lowercase_matcher": "0f7801189c179a60e4717039072d930c1964fbcbfb72ee711a5ce05e22b04b10",
+    "matcher/healthy": "e71851a1892672d6fd7fb3208303435735ee1e7270d7a69ae64ea7d963b2c231",
+    "matcher/internal_lowercase_check": "925d40df61e283e54fb9d5b862e750e229f51bf4b296e14a4e5b2fcdbbe3e115",
+    "matcher/lowercase_matcher": "48b35479753ed4e91e51534e314436dac6bb1250ee9b49af8553f9df84a8e5f1",
+    "matcher/permission_rule_syntax": "f48d6081ca3072dfad974529f8dcf8a64ec346992a2536f9ccaccc8ff73ccd86",
+    "matcher/regex_wildcard_matcher": "dff260ecba8c1bb7bcdcef6de65f798e772c5410cef8d6aacf1d5fa7612e3c68",
+    "matcher/wrong_tool_matcher": "f1c188e2f038f587abe8cc8ff420f64dbd4559f0f235e5b6617404b4a69018ad",
+    "schema/bom_prefixed_deny": "546cb70dca6163ca3d1289ead513fab9395dcc77fa4893633ca095d676d0281b",
+    "schema/deny_then_second_json": "9094c5f479517d9c15340a72fbe31799f8c98e763bb90bb2b570702a636804b5",
+    "schema/deny_then_trailing_text": "5815366b20a699c4aacd0af64673479782581c82a2d6158fbbf27779e9ebc69d",
+    "schema/healthy": "5d6eb55cb865501f292d0282fea00debaddf36448dbff39a663a6fb905470150",
+    "schema/json_array_wrapped": "67eb4cb06a579f52b743a039fdea34b43a0bb4d2118d3d7bea138c07254bed9d",
+    "schema/legacy_decision_block": "06df95ae42374ef3043f0628b4a3ae4e15a05e66d819e599955824069eb1139f",
+    "schema/snake_case_key": "a6fbc919acb47043bdea7acf2f89d043b1687bd04c163d37c7710718de51a273",
+    "schema/top_level": "646687effecaf0edf867673267d7285381563c80d5d7700331ed33ec29161611",
+    "schema/wrong_event_name": "bd1292d0954d627a2ffc1dedd2447c98096ae1a2987d36d20a64af763d46538a",
+    "timeout/deny_then_hang": "7687505724490ecf4b5a9039affdd58e98fcd175d2e7c14dfcc1d84962277bbe",
+    "timeout/deny_then_orphan_holds_stdout": "71c5994f504dabcce703384bd41c7009acb2f30427e8426978e1ef9b6f314e01",
+    "timeout/healthy": "7004c388a067effcb1de694aabc9ceb4c865dc8effd667d83d10c0dd66ab8110",
+    "timeout/slow_deny": "bc4dc9512d6d6e44b223f857fef65a1951d778acf632cea66e9bdcf85880cc6f",
+    "timeout/slow_deny_wide_timeout": "878e61967e37dfc0f9734a445f68860d29740b622a6f3ebfe623aaf38d4a1d07",
+    "timeout/slow_silent": "25b3f43dd0d2afe442bb81c707f04e7ca52ce7ce3eafa7783d6fab1b6f1b06a7",
+    "timeout/slow_within_limit": "f68e2e2ced400609bc426e2515095327127219419741641c5849ec1f10cd7aaa",
+    "timeout/stderr_deny_then_hang": "9cc99c790514adcc5df9edf644f1bc122855d0b2f526ce74fedd6e88c3e8dd15"
+   },
+   "sources": {
+    "base_table": {
+     "path": "reports/v010/outcome_table_extended_real.json",
+     "sha256": "f4e329642bd429ae6f06de5e4819e4feca2fb06c77341c071f56cd3e9df261b9",
+     "claude_version": null,
+     "rows": 96
+    },
+    "v011_rows": [
+     {
+      "path": "reports/v011/real/R1_v011_variants.json",
+      "sha256": "ddeaa5cb31932d3f19ca497a3ff96066c0fcc488989836fa24be8cdcc59ac808",
+      "claude_version": "2.1.319 (Claude Code)",
+      "rows": 36
+     }
+    ],
+    "variants11_py_sha256": "27037422a5eee807312afdbd81af93fc561e729f93fd7d505f490cdaf2a67d90",
+    "variants_ext_py_sha256": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8",
+    "caver8_live_py_sha256": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12"
+   },
+   "claude_versions": [
+    "2.1.319 (Claude Code)"
+   ],
+   "rv_agreement": {
+    "configs_measured_twice_or_more": 54,
+    "configs_measured_once": 0,
+    "disagreeing_configs": [],
+    "all_multi_measured_agree": true,
+    "definition": "agreement = identical classify() status across every recorded run of a config",
+    "per_config": {
+     "abnormal_exit/crash_silent": {
+      "n": 2,
+      "statuses": [
+       "CONTRACT_VIOLATION"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/deny_then_exit1": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/deny_then_exit2": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/deny_then_kill137": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/deny_then_sighup": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/deny_then_sigterm": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/partial_json_then_crash": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "abnormal_exit/stderr_reason_exit2": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/bash_c_wrapper": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/cd_chain": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/cwd_gated_hook": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/dot_slash": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/double_space": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/env_launcher": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/env_prefix": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/python_B_flag": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "exec_mismatch/substring_hook_bash_c": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/allow_instead": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/block_value": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/capitalized_deny": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/deny_nonascii_reason": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/deny_with_extra_fields": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/homoglyph_deny": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/missing_decision": {
+      "n": 2,
+      "statuses": [
+       "CONTRACT_VIOLATION"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "field_value/padded_deny": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/all_caps_matcher": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/alternation_matcher": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/anchored_lowercase_matcher": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/internal_lowercase_check": {
+      "n": 2,
+      "statuses": [
+       "CONTRACT_VIOLATION"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/lowercase_matcher": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/permission_rule_syntax": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/regex_wildcard_matcher": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "matcher/wrong_tool_matcher": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/bom_prefixed_deny": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/deny_then_second_json": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/deny_then_trailing_text": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/json_array_wrapped": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/legacy_decision_block": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/snake_case_key": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/top_level": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "schema/wrong_event_name": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/deny_then_hang": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/deny_then_orphan_holds_stdout": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/healthy": {
+      "n": 6,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/slow_deny": {
+      "n": 2,
+      "statuses": [
+       "FALSE_PASS"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/slow_deny_wide_timeout": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/slow_silent": {
+      "n": 2,
+      "statuses": [
+       "CONTRACT_VIOLATION"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/slow_within_limit": {
+      "n": 2,
+      "statuses": [
+       "NO_SIDE_EFFECT_OBSERVED"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     },
+     "timeout/stderr_deny_then_hang": {
+      "n": 2,
+      "statuses": [
+       "CONTRACT_VIOLATION"
+      ],
+      "agree_status": true,
+      "agree_outcome": true
+     }
+    }
+   },
+   "rv_new_variants": {
+    "abnormal_exit/deny_then_sighup": [
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    "abnormal_exit/partial_json_then_crash": [
+     "FALSE_PASS"
+    ],
+    "exec_mismatch/cwd_gated_hook": [
+     "FALSE_PASS"
+    ],
+    "exec_mismatch/env_launcher": [
+     "FALSE_PASS"
+    ],
+    "field_value/deny_nonascii_reason": [
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    "field_value/homoglyph_deny": [
+     "FALSE_PASS"
+    ],
+    "matcher/all_caps_matcher": [
+     "FALSE_PASS"
+    ],
+    "matcher/regex_wildcard_matcher": [
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    "schema/bom_prefixed_deny": [
+     "NO_SIDE_EFFECT_OBSERVED"
+    ],
+    "schema/json_array_wrapped": [
+     "FALSE_PASS"
+    ],
+    "timeout/deny_then_orphan_holds_stdout": [
+     "FALSE_PASS"
+    ],
+    "timeout/slow_deny_wide_timeout": [
+     "NO_SIDE_EFFECT_OBSERVED"
+    ]
+   },
+   "min_new_reps": 2
+  }
+ }
+}

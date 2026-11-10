@@ -1,0 +1,919 @@
+{
+  "format": "caver11.freeze_manifest/1",
+  "env_version": "caver11.final_env11/1",
+  "written_utc": "2026-11-09T17:24:34+00:00",
+  "git_commit_at_write": "de591125f28d9dc1be9a1a79c8e8f4d7c6f0c5c1",
+  "candidate": {
+    "spec": "caver11.agent_c:PopDivBUCB",
+    "name": "C11C-PopBUCB-Div",
+    "files": {
+      "caver11/agent_c.py": "ca380b6b2198b1078cf5dfe07ce3787e51d0d6774c29b594023200ffa11531d3"
+    },
+    "hyperparameters": {}
+  },
+  "dev_rule": {
+    "source": "reports/v011/lead/dev_cb/summary.json",
+    "sha256": "3ef92940481b9dd1047c2570b7ffe6297d93cd5123734e4914148794e890677c",
+    "eligible": false,
+    "n_failed": 6,
+    "n_checks": 126
+  },
+  "leakage_scan": {
+    "files": [
+      "caver11/agent_c.py"
+    ],
+    "blocking": [
+      {
+        "file": "caver11/agent_c.py",
+        "line": 318,
+        "severity": "block",
+        "pattern": "\\.defects\\b",
+        "text": "for f, v in case.defects:"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 378,
+        "severity": "block",
+        "pattern": "\\.defects\\b",
+        "text": "avail_var = {(f, v) for c in cases.values() for f, v in c.defects if table.fp_config(f, v)}"
+      }
+    ],
+    "warnings": [
+      {
+        "file": "caver11/agent_c.py",
+        "line": 25,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "``caver11.devkit.run_one_ext`` independently (own outcome lookup from the raw table JSON, own"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 283,
+        "severity": "warn",
+        "pattern": "read_text|read_bytes|json\\.load",
+        "text": "return cls(json.loads(Path(path).read_text(encoding='utf-8')))"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 283,
+        "severity": "warn",
+        "pattern": "\\bPath\\(",
+        "text": "return cls(json.loads(Path(path).read_text(encoding='utf-8')))"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 346,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "\"\"\"Metrics recomputed from an eval trace, independently of devkit."
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 350,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "* duplicate_rate (devkit definition): violating probes on an already-found (case, family) /"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 397,
+        "severity": "warn",
+        "pattern": "\\bopen\\(",
+        "text": "with gzip.open(path, 'rt', encoding='utf-8') as f:"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 408,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "from runs.csv.gz rows (independent of devkit.evaluate).\"\"\""
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 466,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "from caver11 import devkit as dk"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 478,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "\"\"\"Full audit against a devkit output directory (summary.json + runs.csv.gz).\"\"\""
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 480,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "from caver11 import devkit as dk"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 481,
+        "severity": "warn",
+        "pattern": "\\bPath\\(",
+        "text": "dev_dir = Path(dev_dir)"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 482,
+        "severity": "warn",
+        "pattern": "read_text|read_bytes|json\\.load",
+        "text": "summ = json.loads((dev_dir / 'summary.json').read_text(encoding='utf-8'))"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 544,
+        "severity": "warn",
+        "pattern": "\\bdevkit\\b",
+        "text": "rep = {'meta': {'evidence_type': 'REPLAY audit of devkit metrics (dev salt v011dev)',"
+      },
+      {
+        "file": "caver11/agent_c.py",
+        "line": 555,
+        "severity": "warn",
+        "pattern": "\\bPath\\(",
+        "text": "out_path = Path(out_path)"
+      }
+    ],
+    "patterns": {
+      "block": [
+        "v011final",
+        "v011smoke",
+        "final_env",
+        "variants11",
+        "variants_ext",
+        "outcome_table",
+        "freeze_manifest",
+        "unseal",
+        "CAVER_UNSEAL",
+        "reports/",
+        "\\.defects\\b",
+        "_getframe",
+        "\\binspect\\b",
+        "\\bgc\\b",
+        "traceback",
+        "sys\\.modules",
+        "f_back|f_locals|f_globals|gi_frame|tb_frame",
+        "\\bctypes\\b",
+        "SCENARIOS11|FINAL_SEEDS|FINAL_SALT",
+        "\\b(g_sparse|g_microdrift|g_partial2|g_disappear|g_pingpong|g_density|g_sine|g_burst|all_caps_matcher|bom_prefixed_deny|cwd_gated_hook|deny_nonascii_reason|deny_then_orphan_holds_stdout|deny_then_sighup|env_launcher|homoglyph_deny|json_array_wrapped|partial_json_then_crash|regex_wildcard_matcher|slow_deny_wide_timeout)\\b"
+      ],
+      "warn": [
+        "\\bopen\\(",
+        "read_text|read_bytes|json\\.load",
+        "os\\.environ|getenv",
+        "\\bsubprocess\\b",
+        "\\bpickle\\b|\\bmarshal\\b",
+        "importlib|__import__",
+        "globals\\(\\)|vars\\(\\)",
+        "\\bdevkit\\b",
+        "\\bsocket\\b|urllib|requests|http\\.client",
+        "\\bthreading\\b|multiprocessing",
+        "\\bPath\\(",
+        "caver9c|caver10\\.(?!stats)",
+        "random\\.seed|getstate|setstate"
+      ]
+    },
+    "acknowledged": true
+  },
+  "harness": {
+    "caver11/__init__.py": "865d7e1fe686a66c8b0cb2b981b84a9f3b51959a83266cb4bf3df16b4c4b9bb7",
+    "caver11/devkit.py": "5b544bdeb1fe6db1f8f6d94b430f56636bd2f4fc8de59e724334760cb7d84d30",
+    "caver9/__init__.py": "c6361268aa4d7590e7d1e0c57a99e0570f6dd3a91133fd62440fbb34564a9b03",
+    "caver9/evaluation.py": "b0ffba47fff322a5310228356f6bb6a12e3e5ef7f6ac1590e5ad233a8e2ea675",
+    "caver9/exploration.py": "11940f7755a7ec8adf2974127856bf0d68e3ab6845e9a88fafdc35dffe7164ef",
+    "caver9c/__init__.py": "00fbbcbe4fcf6361c52f22bb89c0f1cf897564280ae5e93ffed9f46d23213cf0",
+    "caver9c/confirm.py": "66562ab08f332b3d381f77c747b5a50c87ce540be8488063d710f771d0e0eb85",
+    "caver9c/manifest.py": "e426dfb69824146a89ce06ab70dbf09d2225bee76c40470e648422b9e2e4dd28",
+    "caver8/__init__.py": "d4f3c89b6f27af8bb03096e1ba7585aabe61abe8117730d5edce9f94e9b9237e",
+    "caver8/benchmark.py": "07c1b3ad2280d7ae152631c393963ce5047b02a74d635c95091a6e6df74ea314",
+    "caver8/live.py": "7cc8ed3095731a4171f127a550837662d75895543cc16902e0960d94d5773e12",
+    "caver8/policies.py": "62833445aca7c646c54e4fd14801648a2742592500b559be4c66e52a3b548986",
+    "caver8/mock_cli.py": "1e6f7047a70b25fbfdbc57143301cf386b1170fb619f212b462d1bcdc420291b",
+    "caver5/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "caver5/fixtures.py": "31a109681ae629afefdbbdb5e5c4f1974e449eb597f326291758ce8759aa25bd",
+    "caver5/policies.py": "f1b3c831f0fc961b2c1d6c4347762e6327e2be18a1299b99c086bb3188eeeddd",
+    "caver5/advanced_policies.py": "2c7f1bc9fbc1464ea3442aca08510a262ed74928d4b95a4278bb09661edc973a",
+    "caver5/change.py": "d6e102ae830443bac4887ba017d52ed7c5096bf05afbdfffd3fb4db0470ce519",
+    "caver6/__init__.py": "af35a67eba53cfc075a4912540d5ce406e4d1ffe42059a8d4b4e89480fe60d78",
+    "caver6/policies.py": "bf443eacddc459b9992c15ce60ee79477f023cd265621ebc42e837f0f25d3c3e",
+    "caver6/confirmation.py": "4629ddbf72176e63655b7d6eed8bf5995bf61cb0e31d0d05cc0067e97b610a2c",
+    "caver10/__init__.py": "4072b78916ac8cc90b2348df81cadff5630c48f9c3b6cadd33ff48761c91b7ae",
+    "caver10/final_env.py": "fcd1e87b35fddd6e468246ade55511d074694f0c20db44a40fec2c320e44ae80",
+    "caver10/variants_ext.py": "fe62d485c270a04ea0d90c8db6f95251b692fcc9f50c55aeb8191196d9532ee8",
+    "caver10/lead_l1.py": "f9763f81f7e6f7488d44d146b28639efe97bbc5b0680f5d74d09f5d0cea45c26"
+  },
+  "final_env": {
+    "caver11/final_env11.py": "4a70a387c1fa4e9d66baf0cd4e9a326bd1fd43eef13a7d738588e4bbe62fed1d",
+    "caver11/variants11.py": "27037422a5eee807312afdbd81af93fc561e729f93fd7d505f490cdaf2a67d90"
+  },
+  "stats": {
+    "caver10/stats.py": "1204738e400be8d7189fc46f12811c8cb83d24dc2d048f8160a850d38f1addef"
+  },
+  "table": {
+    "reports/v011/outcome_table_v011_real.json": "65872526f8fcac16f3de39ff2b221d31d87ca945b2d7a2fc7a7a9f3002fdf248"
+  },
+  "table_label": "REAL v0.11 final table",
+  "evidence_label": "REPLAY of the REAL v0.11 table (54 configs; v0.11 variants measured >= 2x)",
+  "protocol": {
+    "salt": "v011final",
+    "seeds": [
+      0,
+      499
+    ],
+    "n_seeds": 500,
+    "scenarios": {
+      "g_sparse": {
+        "type": "stable",
+        "shift_kind": "sparse_stationary",
+        "description": "stationary, heavy healthy share: only 35% of cases carry a defect (caver8: 80%); train and evaluation from the same regime",
+        "regimes": {
+          "S": {
+            "weights": [
+              0.14,
+              0.22,
+              0.12,
+              0.2,
+              0.16,
+              0.16
+            ],
+            "p_defect": 0.35
+          }
+        },
+        "train_regime": "S",
+        "segments": [
+          [
+            1,
+            90,
+            "eval",
+            "S"
+          ]
+        ],
+        "drift": null,
+        "change_points": [],
+        "up_weighted_families": [],
+        "recovery_horizon_end": [],
+        "recovery_cap": [],
+        "false_alarm_window": [
+          1,
+          90
+        ],
+        "horizon": 90
+      },
+      "g_microdrift": {
+        "type": "stable",
+        "shift_kind": "subthreshold_microdrift",
+        "description": "three fresh cohorts (steps 1-30, 31-60, 61-90) whose weights move by < 0.05 per family: no family is up-weighted, so there is no real shift to react to",
+        "regimes": {
+          "M0": {
+            "weights": [
+              0.2,
+              0.12,
+              0.14,
+              0.18,
+              0.18,
+              0.18
+            ],
+            "p_defect": 0.8
+          },
+          "M1": {
+            "weights": [
+              0.17,
+              0.15,
+              0.17,
+              0.15,
+              0.2,
+              0.16
+            ],
+            "p_defect": 0.8
+          },
+          "M2": {
+            "weights": [
+              0.21,
+              0.11,
+              0.13,
+              0.19,
+              0.17,
+              0.19
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "M0",
+        "segments": [
+          [
+            1,
+            30,
+            "m0",
+            "M0"
+          ],
+          [
+            31,
+            60,
+            "m1",
+            "M1"
+          ],
+          [
+            61,
+            90,
+            "m2",
+            "M2"
+          ]
+        ],
+        "drift": null,
+        "change_points": [],
+        "up_weighted_families": [],
+        "recovery_horizon_end": [],
+        "recovery_cap": [],
+        "false_alarm_window": [
+          1,
+          90
+        ],
+        "horizon": 90
+      },
+      "g_partial2": {
+        "type": "abrupt",
+        "shift_kind": "two_family_swap",
+        "description": "only 2 families change at step 30 (timeout 0.30 -> 0.08, schema 0.08 -> 0.30); the other 4 keep their exact weights",
+        "regimes": {
+          "P0": {
+            "weights": [
+              0.08,
+              0.22,
+              0.12,
+              0.3,
+              0.14,
+              0.14
+            ],
+            "p_defect": 0.8
+          },
+          "P1": {
+            "weights": [
+              0.3,
+              0.22,
+              0.12,
+              0.08,
+              0.14,
+              0.14
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "P0",
+        "segments": [
+          [
+            1,
+            30,
+            "pre",
+            "P0"
+          ],
+          [
+            31,
+            90,
+            "post",
+            "P1"
+          ]
+        ],
+        "drift": null,
+        "change_points": [
+          30
+        ],
+        "up_weighted_families": [
+          [
+            "schema"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          61
+        ],
+        "false_alarm_window": [
+          1,
+          30
+        ],
+        "horizon": 90
+      },
+      "g_disappear": {
+        "type": "abrupt",
+        "shift_kind": "disappearing_class",
+        "description": "the most frequent class disappears at step 35: field_value 0.42 -> 0.04, mass spread over schema / abnormal_exit / timeout",
+        "regimes": {
+          "D0": {
+            "weights": [
+              0.08,
+              0.42,
+              0.1,
+              0.12,
+              0.14,
+              0.14
+            ],
+            "p_defect": 0.8
+          },
+          "D1": {
+            "weights": [
+              0.2,
+              0.04,
+              0.2,
+              0.2,
+              0.18,
+              0.18
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "D0",
+        "segments": [
+          [
+            1,
+            35,
+            "pre",
+            "D0"
+          ],
+          [
+            36,
+            90,
+            "post",
+            "D1"
+          ]
+        ],
+        "drift": null,
+        "change_points": [
+          35
+        ],
+        "up_weighted_families": [
+          [
+            "abnormal_exit",
+            "schema",
+            "timeout"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          56
+        ],
+        "false_alarm_window": [
+          1,
+          35
+        ],
+        "horizon": 90
+      },
+      "g_pingpong": {
+        "type": "abrupt",
+        "shift_kind": "pingpong_nonbase",
+        "description": "repeated abrupt shifts between two non-W_BASE regimes A and B (A 1-20, B 21-45, A 46-65, B 66-90), each segment a fresh cohort",
+        "regimes": {
+          "A": {
+            "weights": [
+              0.3,
+              0.06,
+              0.26,
+              0.06,
+              0.26,
+              0.06
+            ],
+            "p_defect": 0.8
+          },
+          "B": {
+            "weights": [
+              0.06,
+              0.3,
+              0.06,
+              0.26,
+              0.06,
+              0.26
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "A",
+        "segments": [
+          [
+            1,
+            20,
+            "a1",
+            "A"
+          ],
+          [
+            21,
+            45,
+            "b1",
+            "B"
+          ],
+          [
+            46,
+            65,
+            "a2",
+            "A"
+          ],
+          [
+            66,
+            90,
+            "b2",
+            "B"
+          ]
+        ],
+        "drift": null,
+        "change_points": [
+          20,
+          45,
+          65
+        ],
+        "up_weighted_families": [
+          [
+            "exec_mismatch",
+            "field_value",
+            "timeout"
+          ],
+          [
+            "abnormal_exit",
+            "matcher",
+            "schema"
+          ],
+          [
+            "exec_mismatch",
+            "field_value",
+            "timeout"
+          ]
+        ],
+        "recovery_horizon_end": [
+          45,
+          65,
+          90
+        ],
+        "recovery_cap": [
+          26,
+          21,
+          26
+        ],
+        "false_alarm_window": [
+          1,
+          20
+        ],
+        "horizon": 90
+      },
+      "g_density": {
+        "type": "abrupt",
+        "shift_kind": "density_shift",
+        "description": "defect density and family mix change together at step 25: sparse near-uniform (30% defective) -> dense schema + field_value heavy (90% defective)",
+        "regimes": {
+          "N0": {
+            "weights": [
+              0.16,
+              0.16,
+              0.2,
+              0.16,
+              0.16,
+              0.16
+            ],
+            "p_defect": 0.3
+          },
+          "N1": {
+            "weights": [
+              0.32,
+              0.3,
+              0.1,
+              0.1,
+              0.09,
+              0.09
+            ],
+            "p_defect": 0.9
+          }
+        },
+        "train_regime": "N0",
+        "segments": [
+          [
+            1,
+            25,
+            "pre",
+            "N0"
+          ],
+          [
+            26,
+            90,
+            "post",
+            "N1"
+          ]
+        ],
+        "drift": null,
+        "change_points": [
+          25
+        ],
+        "up_weighted_families": [
+          [
+            "field_value",
+            "schema"
+          ]
+        ],
+        "recovery_horizon_end": [
+          90
+        ],
+        "recovery_cap": [
+          66
+        ],
+        "false_alarm_window": [
+          1,
+          25
+        ],
+        "horizon": 90
+      },
+      "g_sine": {
+        "type": "other",
+        "shift_kind": "sinusoidal_drift",
+        "description": "slow sinusoidal drift between regimes A and B: P(case from B) = 0.5*(1 - cos(2*pi*t/90)), i.e. 0 at t=0, 1 at t=45, back to 0 at t=90; events at the onset (t=8, p=0.08) and at the turn (t=45)",
+        "regimes": {
+          "A": {
+            "weights": [
+              0.24,
+              0.08,
+              0.1,
+              0.26,
+              0.08,
+              0.24
+            ],
+            "p_defect": 0.8
+          },
+          "B": {
+            "weights": [
+              0.08,
+              0.26,
+              0.24,
+              0.08,
+              0.26,
+              0.08
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "A",
+        "segments": [],
+        "drift": {
+          "cohorts": [
+            "a",
+            "A",
+            "b",
+            "B"
+          ],
+          "p_b(t)": "0.5*(1-cos(2*pi*t/90))"
+        },
+        "change_points": [
+          8,
+          45
+        ],
+        "up_weighted_families": [
+          [
+            "abnormal_exit",
+            "field_value",
+            "matcher"
+          ],
+          [
+            "exec_mismatch",
+            "schema",
+            "timeout"
+          ]
+        ],
+        "recovery_horizon_end": [
+          45,
+          90
+        ],
+        "recovery_cap": [
+          38,
+          46
+        ],
+        "false_alarm_window": [
+          1,
+          8
+        ],
+        "horizon": 90
+      },
+      "g_burst": {
+        "type": "other",
+        "shift_kind": "burst_return",
+        "description": "stable regime steps 1-50, an 8-step burst of abnormal_exit + timeout (51-58), then a return to the SAME stable cohort (59-90, cases already partly probed)",
+        "regimes": {
+          "S": {
+            "weights": [
+              0.2,
+              0.2,
+              0.16,
+              0.16,
+              0.14,
+              0.14
+            ],
+            "p_defect": 0.8
+          },
+          "B": {
+            "weights": [
+              0.05,
+              0.05,
+              0.4,
+              0.4,
+              0.05,
+              0.05
+            ],
+            "p_defect": 0.8
+          }
+        },
+        "train_regime": "S",
+        "segments": [
+          [
+            1,
+            50,
+            "base",
+            "S"
+          ],
+          [
+            51,
+            58,
+            "burst",
+            "B"
+          ],
+          [
+            59,
+            90,
+            "base",
+            "S"
+          ]
+        ],
+        "drift": null,
+        "change_points": [
+          50,
+          58
+        ],
+        "up_weighted_families": [
+          [
+            "abnormal_exit",
+            "timeout"
+          ],
+          [
+            "exec_mismatch",
+            "field_value",
+            "matcher",
+            "schema"
+          ]
+        ],
+        "recovery_horizon_end": [
+          58,
+          90
+        ],
+        "recovery_cap": [
+          9,
+          33
+        ],
+        "false_alarm_window": [
+          1,
+          50
+        ],
+        "horizon": 90
+      }
+    },
+    "budget": {
+      "train": 90,
+      "eval": 90
+    },
+    "pool": {
+      "name": "final11",
+      "share_v011": 0.35,
+      "share_v010": 0.25
+    },
+    "pool_variant_keys": [
+      "abnormal_exit/crash_silent",
+      "abnormal_exit/deny_then_exit1",
+      "abnormal_exit/deny_then_exit2",
+      "abnormal_exit/deny_then_kill137",
+      "abnormal_exit/deny_then_sighup",
+      "abnormal_exit/deny_then_sigterm",
+      "abnormal_exit/partial_json_then_crash",
+      "abnormal_exit/stderr_reason_exit2",
+      "exec_mismatch/bash_c_wrapper",
+      "exec_mismatch/cd_chain",
+      "exec_mismatch/cwd_gated_hook",
+      "exec_mismatch/dot_slash",
+      "exec_mismatch/double_space",
+      "exec_mismatch/env_launcher",
+      "exec_mismatch/env_prefix",
+      "exec_mismatch/python_B_flag",
+      "exec_mismatch/substring_hook_bash_c",
+      "field_value/allow_instead",
+      "field_value/block_value",
+      "field_value/capitalized_deny",
+      "field_value/deny_nonascii_reason",
+      "field_value/deny_with_extra_fields",
+      "field_value/homoglyph_deny",
+      "field_value/missing_decision",
+      "field_value/padded_deny",
+      "matcher/all_caps_matcher",
+      "matcher/alternation_matcher",
+      "matcher/anchored_lowercase_matcher",
+      "matcher/internal_lowercase_check",
+      "matcher/lowercase_matcher",
+      "matcher/permission_rule_syntax",
+      "matcher/regex_wildcard_matcher",
+      "matcher/wrong_tool_matcher",
+      "schema/bom_prefixed_deny",
+      "schema/deny_then_second_json",
+      "schema/deny_then_trailing_text",
+      "schema/json_array_wrapped",
+      "schema/legacy_decision_block",
+      "schema/snake_case_key",
+      "schema/top_level",
+      "schema/wrong_event_name",
+      "timeout/deny_then_hang",
+      "timeout/deny_then_orphan_holds_stdout",
+      "timeout/slow_deny",
+      "timeout/slow_deny_wide_timeout",
+      "timeout/slow_silent",
+      "timeout/slow_within_limit",
+      "timeout/stderr_deny_then_hang"
+    ],
+    "pool_label": null,
+    "baselines": [
+      "Random",
+      "UCB1",
+      "SW-UCB",
+      "D-UCB",
+      "CAVER-v0.6",
+      "caver9.exploration:UCBMeanCAVER",
+      "caver10.lead_l1:ProfileGatedUCB"
+    ],
+    "references": [
+      "CAVER-v0.6",
+      "C9-UCBMean",
+      "C10-L1-ProfileGated",
+      "Random",
+      "UCB1",
+      "SW-UCB",
+      "D-UCB"
+    ],
+    "single_run": "caver11.devkit.run_one_ext (crn outcomes, opaque case ids, available() enforced)",
+    "metrics_extra": [
+      "unique_variant_false_pass",
+      "duplicate_rate",
+      "usd_per_probe",
+      "wall_ms_per_probe",
+      "cpu_us_per_probe",
+      "unique_defects",
+      "exploration_entropy"
+    ],
+    "stats": {
+      "ci": "paired normal approx 95% over seeds (primary for criteria)",
+      "bootstrap": {
+        "n": 2000,
+        "seed": 20101,
+        "type": "percentile, paired over seeds"
+      },
+      "p_values": "two-sided normal; Holm across all supplementary candidate comparisons",
+      "pooled": "per-seed mean difference across all final scenarios",
+      "recovery": "paired restricted mean (cap = horizon - change + 1), KM median, RMST, censoring rate"
+    },
+    "criteria_rule": {
+      "S": "each stable-type scenario: dFP vs v0.6 CI lower bound > -0.25",
+      "K": "each abrupt-type scenario: dFP vs v0.6 lo > 0; dFP vs C2 lo > -0.3; dRecovery vs v0.6 hi < 0",
+      "G": "every scenario: dFP vs Random, UCB1, SW-UCB, D-UCB lo > 0; dFP vs v0.6 lo > -0.5",
+      "FA": "where a false-alarm window is defined: FA rate <= v0.6 + 0.05",
+      "U": "pooled per-seed mean dFP over all scenarios: lo > 0 vs v0.6 AND lo > 0 vs C2",
+      "RV": "repeated real runs of every config agree (table rv_agreement)",
+      "DEV": "the candidate passed the shared dev rule (devkit.dev_rule eligible = true)"
+    },
+    "criteria_bindings": {
+      "stable": [
+        "g_sparse",
+        "g_microdrift"
+      ],
+      "abrupt": [
+        "g_partial2",
+        "g_disappear",
+        "g_pingpong",
+        "g_density"
+      ],
+      "all": [
+        "g_sparse",
+        "g_microdrift",
+        "g_partial2",
+        "g_disappear",
+        "g_pingpong",
+        "g_density",
+        "g_sine",
+        "g_burst"
+      ],
+      "false_alarm": [
+        "g_sparse",
+        "g_microdrift",
+        "g_partial2",
+        "g_disappear",
+        "g_pingpong",
+        "g_density",
+        "g_sine",
+        "g_burst"
+      ]
+    },
+    "criteria_metric_primary": "unique_false_pass",
+    "criteria_metric_supplementary": "unique_variant_false_pass"
+  }
+}

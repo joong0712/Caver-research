@@ -1,0 +1,32 @@
+{
+ "pool": {
+  "name": "final11",
+  "share_v011": 0.35,
+  "share_v010": 0.25
+ },
+ "salt": "v011smoke",
+ "n_seeds": 3,
+ "scenarios": [
+  "g_sparse",
+  "g_microdrift",
+  "g_partial2",
+  "g_disappear",
+  "g_pingpong",
+  "g_density",
+  "g_sine",
+  "g_burst"
+ ],
+ "probes": 4320,
+ "healthy_probe_share": 0.2907,
+ "defects": 3879,
+ "by_source": {
+  "old": 1549,
+  "v010": 1034,
+  "v011": 1296
+ },
+ "share_by_source": {
+  "old": 0.3993,
+  "v010": 0.2666,
+  "v011": 0.3341
+ }
+}

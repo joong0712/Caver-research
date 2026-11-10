@@ -1,0 +1,32 @@
+{
+ "pool": {
+  "name": "replay42",
+  "share_v011": 0.0,
+  "share_v010": 0.45
+ },
+ "salt": "v011smoke",
+ "n_seeds": 3,
+ "scenarios": [
+  "g_sparse",
+  "g_microdrift",
+  "g_partial2",
+  "g_disappear",
+  "g_pingpong",
+  "g_density",
+  "g_sine",
+  "g_burst"
+ ],
+ "probes": 4320,
+ "healthy_probe_share": 0.3014,
+ "defects": 3830,
+ "by_source": {
+  "old": 2138,
+  "v010": 1692,
+  "v011": 0
+ },
+ "share_by_source": {
+  "old": 0.5582,
+  "v010": 0.4418,
+  "v011": 0.0
+ }
+}

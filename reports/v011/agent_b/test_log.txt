@@ -1,0 +1,87 @@
+...........................................................saved /tmp/tmpodenjvyk (192 runs, 1s)
+....................................[T rep0] schema/top_level                             FALSE_PASS                       hook=exit_0                 src=None
+[T rep0] schema/healthy                               NO_SIDE_EFFECT_OBSERVED          hook=exit_0                 src=None
+[T rep1] schema/top_level                             FALSE_PASS                       hook=exit_0                 src=None
+[T rep1] schema/healthy                               NO_SIDE_EFFECT_OBSERVED          hook=exit_0                 src=None
+.................................../home/user/Caver-research/.claude/worktrees/agent-a6b94815a5a8199e6/tests/test_v08_algorithms.py:109: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/user/Caver-research/.claude/worktrees/agent-a6b94815a5a8199e6/reports/v08/dev_round1/runs.csv' mode='r' encoding='utf-8'>
+  committed = [r for r in csv.DictReader(open(ROOT / 'reports/v08/dev_round1/runs.csv'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......................[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+.[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+.[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+.[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/missing_decision             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/capitalized_deny             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/block_value                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/allow_instead                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/crash_silent               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit1            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_kill137          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit2            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_deny                        NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/deny_then_hang                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_silent                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_within_limit                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/lowercase_matcher                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/wrong_tool_matcher               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/permission_rule_syntax           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/internal_lowercase_check         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/dot_slash                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/double_space               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/env_prefix                 NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/cd_chain                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/healthy                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+..[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/wrong_event_name                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/snake_case_key                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/legacy_decision_block             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/missing_decision             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/capitalized_deny             NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/block_value                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/allow_instead                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/crash_silent               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit1            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_kill137          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/deny_then_exit2            NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_deny                        NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/deny_then_hang                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_silent                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/slow_within_limit                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/lowercase_matcher                NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/wrong_tool_matcher               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/permission_rule_syntax           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/internal_lowercase_check         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/dot_slash                  NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/double_space               NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/env_prefix                 NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/cd_chain                   NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] field_value/healthy                      NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] abnormal_exit/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] timeout/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] matcher/healthy                          NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] exec_mismatch/healthy                    NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+...[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+[real] schema/top_level                         NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+.[real] schema/healthy                           NO_SIDE_EFFECT_OBSERVED            hook=exit_0                        1 ms
+.....................................................................................[simulated] C9-UCBMean   step  1 schema/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] C9-UCBMean   step  2 schema/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] UCB1         step  1 timeout/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+[simulated] UCB1         step  2 field_value/healthy                  live=NO_SIDE_EFFECT_OBSERVED  stored=NO_SIDE_EFFECT_OBSERVED
+.........
+----------------------------------------------------------------------
+Ran 255 tests in 18.446s
+
+OK

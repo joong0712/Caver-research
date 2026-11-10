@@ -1,0 +1,644 @@
+{
+ "PH-C11C-ProbeWindow": {
+  "pooled_CA_minus_ablation": [
+   0.0444,
+   [
+    -0.0237,
+    0.1125
+   ]
+  ],
+  "per_scenario_CA_minus_ablation": {
+   "stationary": [
+    -0.0533,
+    [
+     -0.2198,
+     0.1131
+    ]
+   ],
+   "abrupt": [
+    0.22,
+    [
+     -0.0443,
+     0.4843
+    ]
+   ],
+   "delayed": [
+    0.1867,
+    [
+     -0.2077,
+     0.581
+    ]
+   ],
+   "recovery": [
+    -0.4633,
+    [
+     -0.8341,
+     -0.0925
+    ]
+   ],
+   "gradual": [
+    0.3633,
+    [
+     -0.0305,
+     0.7572
+    ]
+   ],
+   "early": [
+    0.16,
+    [
+     -0.1535,
+     0.4735
+    ]
+   ],
+   "double": [
+    -0.5133,
+    [
+     -0.9198,
+     -0.1069
+    ]
+   ],
+   "single": [
+    0.18,
+    [
+     -0.1831,
+     0.5431
+    ]
+   ],
+   "c_late": [
+    0.08,
+    [
+     -0.2347,
+     0.3947
+    ]
+   ],
+   "c_reverse": [
+    0.2267,
+    [
+     -0.0113,
+     0.4647
+    ]
+   ],
+   "c_oscillate": [
+    0.33,
+    [
+     -0.0401,
+     0.7001
+    ]
+   ],
+   "c_uniform": [
+    -0.2467,
+    [
+     -0.5437,
+     0.0503
+    ]
+   ],
+   "f_stat_skew": [
+    0.17,
+    [
+     -0.0307,
+     0.3707
+    ]
+   ],
+   "f_stat_flat": [
+    -0.0633,
+    [
+     -0.281,
+     0.1543
+    ]
+   ],
+   "f_abrupt_boundary": [
+    0.11,
+    [
+     -0.1334,
+     0.3534
+    ]
+   ],
+   "f_abrupt_after": [
+    0.31,
+    [
+     0.0009,
+     0.6191
+    ]
+   ],
+   "f_flat_shift": [
+    -0.17,
+    [
+     -0.4702,
+     0.1302
+    ]
+   ],
+   "f_spike": [
+    -0.1033,
+    [
+     -0.4827,
+     0.276
+    ]
+   ],
+   "f_gradual": [
+    0.12,
+    [
+     -0.1562,
+     0.3962
+    ]
+   ]
+  }
+ },
+ "PH-C11C-AllHistory": {
+  "pooled_CA_minus_ablation": [
+   0.3939,
+   [
+    0.317,
+    0.4707
+   ]
+  ],
+  "per_scenario_CA_minus_ablation": {
+   "stationary": [
+    -0.26,
+    [
+     -0.4521,
+     -0.0679
+    ]
+   ],
+   "abrupt": [
+    1.2233,
+    [
+     0.9308,
+     1.5159
+    ]
+   ],
+   "delayed": [
+    1.9567,
+    [
+     1.5636,
+     2.3498
+    ]
+   ],
+   "recovery": [
+    -0.1367,
+    [
+     -0.5023,
+     0.229
+    ]
+   ],
+   "gradual": [
+    1.16,
+    [
+     0.7779,
+     1.5421
+    ]
+   ],
+   "early": [
+    1.4033,
+    [
+     1.0436,
+     1.7631
+    ]
+   ],
+   "double": [
+    0.9467,
+    [
+     0.5621,
+     1.3312
+    ]
+   ],
+   "single": [
+    1.1767,
+    [
+     0.8078,
+     1.5456
+    ]
+   ],
+   "c_late": [
+    0.49,
+    [
+     0.184,
+     0.796
+    ]
+   ],
+   "c_reverse": [
+    0.89,
+    [
+     0.6491,
+     1.1309
+    ]
+   ],
+   "c_oscillate": [
+    0.25,
+    [
+     -0.099,
+     0.599
+    ]
+   ],
+   "c_uniform": [
+    -0.5567,
+    [
+     -0.8413,
+     -0.272
+    ]
+   ],
+   "f_stat_skew": [
+    -0.2867,
+    [
+     -0.4632,
+     -0.1102
+    ]
+   ],
+   "f_stat_flat": [
+    -0.39,
+    [
+     -0.5805,
+     -0.1995
+    ]
+   ],
+   "f_abrupt_boundary": [
+    0.4167,
+    [
+     0.1823,
+     0.6511
+    ]
+   ],
+   "f_abrupt_after": [
+    0.7533,
+    [
+     0.4285,
+     1.0782
+    ]
+   ],
+   "f_flat_shift": [
+    -0.64,
+    [
+     -0.9252,
+     -0.3548
+    ]
+   ],
+   "f_spike": [
+    -0.41,
+    [
+     -0.745,
+     -0.075
+    ]
+   ],
+   "f_gradual": [
+    -0.5033,
+    [
+     -0.8039,
+     -0.2028
+    ]
+   ]
+  }
+ },
+ "rules": {
+  "C11C-PopBUCB": {
+   "n_failed": 10,
+   "n_checks": 126,
+   "pooled_vs_v06": 0.6798,
+   "pooled_vs_C2": 0.3082,
+   "failed": [
+    [
+     "K_recovery_vs_v06",
+     "abrupt",
+     1.2729
+    ],
+    [
+     "K_recovery_vs_v06",
+     "delayed",
+     0.8233
+    ],
+    [
+     "K_recovery_vs_v06",
+     "early",
+     0.7235
+    ],
+    [
+     "K_recovery_vs_v06",
+     "single",
+     2.6248
+    ],
+    [
+     "K_recovery_vs_v06",
+     "c_late",
+     0.03
+    ],
+    [
+     "K_recovery_vs_v06",
+     "c_reverse",
+     3.7288
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_boundary",
+     5.6736
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_after",
+     0.6089
+    ],
+    [
+     "G_vs_UCB1",
+     "double",
+     -0.2968
+    ],
+    [
+     "G_vs_UCB1",
+     "single",
+     -0.2975
+    ]
+   ]
+  },
+  "PH-C11C-ProbeWindow": {
+   "n_failed": 14,
+   "n_checks": 126,
+   "pooled_vs_v06": 0.6354,
+   "pooled_vs_C2": 0.2639,
+   "failed": [
+    [
+     "K_shift_vs_C2",
+     "abrupt",
+     -0.4639
+    ],
+    [
+     "K_recovery_vs_v06",
+     "delayed",
+     0.8862
+    ],
+    [
+     "K_shift_vs_C2",
+     "early",
+     -0.3284
+    ],
+    [
+     "K_recovery_vs_v06",
+     "early",
+     0.8763
+    ],
+    [
+     "K_shift_vs_C2",
+     "single",
+     -0.434
+    ],
+    [
+     "K_recovery_vs_v06",
+     "single",
+     2.8041
+    ],
+    [
+     "K_recovery_vs_v06",
+     "c_reverse",
+     3.6141
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_boundary",
+     4.6969
+    ],
+    [
+     "K_shift_vs_v06",
+     "f_abrupt_after",
+     -0.0428
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_after",
+     1.207
+    ],
+    [
+     "G_vs_UCB1",
+     "abrupt",
+     -0.2142
+    ],
+    [
+     "G_vs_UCB1",
+     "single",
+     -0.4787
+    ],
+    [
+     "G_vs_UCB1",
+     "c_reverse",
+     -0.1414
+    ],
+    [
+     "G_vs_UCB1",
+     "c_oscillate",
+     -0.1366
+    ]
+   ]
+  },
+  "PH-C11C-AllHistory": {
+   "n_failed": 41,
+   "n_checks": 126,
+   "pooled_vs_v06": 0.286,
+   "pooled_vs_C2": -0.0856,
+   "failed": [
+    [
+     "K_shift_vs_v06",
+     "abrupt",
+     -0.4031
+    ],
+    [
+     "K_shift_vs_C2",
+     "abrupt",
+     -1.497
+    ],
+    [
+     "K_recovery_vs_v06",
+     "abrupt",
+     6.0926
+    ],
+    [
+     "K_shift_vs_v06",
+     "delayed",
+     -0.6618
+    ],
+    [
+     "K_shift_vs_C2",
+     "delayed",
+     -1.951
+    ],
+    [
+     "K_recovery_vs_v06",
+     "delayed",
+     9.6019
+    ],
+    [
+     "K_shift_vs_v06",
+     "early",
+     -0.3699
+    ],
+    [
+     "K_shift_vs_C2",
+     "early",
+     -1.6248
+    ],
+    [
+     "K_recovery_vs_v06",
+     "early",
+     7.6768
+    ],
+    [
+     "K_shift_vs_v06",
+     "single",
+     -0.3994
+    ],
+    [
+     "K_shift_vs_C2",
+     "single",
+     -1.4383
+    ],
+    [
+     "K_recovery_vs_v06",
+     "single",
+     15.3583
+    ],
+    [
+     "K_shift_vs_C2",
+     "c_late",
+     -0.3604
+    ],
+    [
+     "K_recovery_vs_v06",
+     "c_late",
+     4.1643
+    ],
+    [
+     "K_shift_vs_v06",
+     "c_reverse",
+     -0.4197
+    ],
+    [
+     "K_shift_vs_C2",
+     "c_reverse",
+     -0.8954
+    ],
+    [
+     "K_recovery_vs_v06",
+     "c_reverse",
+     14.0194
+    ],
+    [
+     "K_shift_vs_v06",
+     "f_abrupt_boundary",
+     -0.0333
+    ],
+    [
+     "K_shift_vs_C2",
+     "f_abrupt_boundary",
+     -0.3858
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_boundary",
+     17.5542
+    ],
+    [
+     "K_shift_vs_v06",
+     "f_abrupt_after",
+     -0.469
+    ],
+    [
+     "K_shift_vs_C2",
+     "f_abrupt_after",
+     -0.6247
+    ],
+    [
+     "K_recovery_vs_v06",
+     "f_abrupt_after",
+     8.8424
+    ],
+    [
+     "G_vs_UCB1",
+     "abrupt",
+     -1.2764
+    ],
+    [
+     "G_vs_SW-UCB",
+     "abrupt",
+     -0.0691
+    ],
+    [
+     "G_vs_D-UCB",
+     "abrupt",
+     -0.3754
+    ],
+    [
+     "G_vs_UCB1",
+     "delayed",
+     -1.3545
+    ],
+    [
+     "G_vs_SW-UCB",
+     "delayed",
+     -0.0122
+    ],
+    [
+     "G_vs_D-UCB",
+     "delayed",
+     -0.0026
+    ],
+    [
+     "G_vs_v06",
+     "delayed",
+     -0.6618
+    ],
+    [
+     "G_vs_UCB1",
+     "gradual",
+     -0.1707
+    ],
+    [
+     "G_vs_UCB1",
+     "early",
+     -1.1075
+    ],
+    [
+     "G_vs_D-UCB",
+     "early",
+     -0.1377
+    ],
+    [
+     "G_vs_UCB1",
+     "double",
+     -1.2478
+    ],
+    [
+     "G_vs_UCB1",
+     "single",
+     -1.4956
+    ],
+    [
+     "G_vs_UCB1",
+     "c_late",
+     -0.3144
+    ],
+    [
+     "G_vs_UCB1",
+     "c_reverse",
+     -0.8158
+    ],
+    [
+     "G_vs_SW-UCB",
+     "c_reverse",
+     -0.463
+    ],
+    [
+     "G_vs_D-UCB",
+     "c_reverse",
+     -0.3706
+    ],
+    [
+     "G_vs_UCB1",
+     "c_oscillate",
+     -0.0346
+    ],
+    [
+     "U_pooled_vs_C9-UCBMean",
+     "pooled",
+     [
+      -0.1733,
+      0.0021
+     ]
+    ]
+   ]
+  }
+ }
+}
