@@ -216,6 +216,32 @@ Deviations are listed in each agent document.
    miss, and may matter more than further selection-policy tuning.
 4. Give each agent a private scratch directory in future parallel studies.
 
+## 8. Independent reproduction (`docs/V011_REPRODUCTION.md`)
+
+A separate worktree checked out at the frozen commit `ae948ef` re-ran everything.
+
+| check | result |
+|---|---|
+| commit chain (literature → design → approval → real runs → Amendment 2 → pre-registration → final) | PASS |
+| agents' pre-declarations precede their dev runs | PASS |
+| manifest verifies; candidate, devkit and final env unchanged after the final run | PASS |
+| leakage-scan hits outside the policy classes (own AST check) | PASS |
+| dev re-run: C-B fails 6/126 | PASS: 34,212 result values identical |
+| **sealed final reproduced** | **PASS: every result value identical** (all 27 non-CPU columns of all 32,000 runs; all criterion checks, pooled differences, KM medians, Holm values) |
+| statistics recomputed with the standard library only (pooled CI, 80 KM medians, 224 Holm p-values) | PASS |
+| real-CLI audit (36 runs, apiKeySource `none`, 18/18 agree; table rebuilt byte-identically) | PASS |
+
+**Differences, fully listed:**
+* `cpu_us_per_probe` (measured CPU time) differs, so the file sha256s differ. That column is in no
+  criterion.
+
+**Disclosed by the reproduction:**
+* The lead's dev evidence run (`reports/v011/lead/dev_cb`) records commit `de7ca5f`: it ran with
+  the Amendment 2 devkit fixes **not yet committed**, and they were committed in `de59112`. A re-run
+  on the committed devkit gives identical numbers.
+* The real-run files carry no run timestamps, so "approval before any real run" rests on commit
+  order (approval `7ddeb23` precedes the real-run commit `c7b3c0d`).
+
 ## 7. Reproduction
 
 ```bash
