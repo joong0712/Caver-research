@@ -1,0 +1,155 @@
+{
+ "n_rows": 32000,
+ "scenarios": [
+  "g_sparse",
+  "g_microdrift",
+  "g_partial2",
+  "g_disappear",
+  "g_pingpong",
+  "g_density",
+  "g_sine",
+  "g_burst"
+ ],
+ "policies": [
+  "Random",
+  "UCB1",
+  "SW-UCB",
+  "D-UCB",
+  "CAVER-v0.6",
+  "C9-UCBMean",
+  "C10-L1-ProfileGated",
+  "C11C-PopBUCB-Div"
+ ],
+ "n_seeds": 500,
+ "pooled_vs_v06": {
+  "recomputed": {
+   "n": 500,
+   "mean": 0.1055,
+   "ci": [
+    0.014897746612996463,
+    0.19610225338700354
+   ],
+   "se": 0.04622648890574652,
+   "p": 0.022475100739124593
+  },
+  "saved": {
+   "n": 500,
+   "mean": 0.1055,
+   "ci": [
+    0.0149,
+    0.1961
+   ],
+   "se": 0.04623,
+   "p": 0.022475100739124593,
+   "boot_ci": [
+    0.0155,
+    0.1953
+   ],
+   "boot_p": 0.01999000499750125
+  },
+  "match_4dp": true
+ },
+ "km": {
+  "n": 80,
+  "n_match": 80,
+  "mismatches": [],
+  "examples": [
+   {
+    "scenario": "g_partial2",
+    "policy": "CAVER-v0.6",
+    "event": 0,
+    "n": 500,
+    "censored": 145,
+    "km_median": 40,
+    "saved": 40,
+    "match": true
+   },
+   {
+    "scenario": "g_partial2",
+    "policy": "C11C-PopBUCB-Div",
+    "event": 0,
+    "n": 500,
+    "censored": 120,
+    "km_median": 36,
+    "saved": 36,
+    "match": true
+   },
+   {
+    "scenario": "g_disappear",
+    "policy": "CAVER-v0.6",
+    "event": 0,
+    "n": 500,
+    "censored": 74,
+    "km_median": 28,
+    "saved": 28,
+    "match": true
+   },
+   {
+    "scenario": "g_disappear",
+    "policy": "C11C-PopBUCB-Div",
+    "event": 0,
+    "n": 500,
+    "censored": 58,
+    "km_median": 23,
+    "saved": 23,
+    "match": true
+   },
+   {
+    "scenario": "g_pingpong",
+    "policy": "CAVER-v0.6",
+    "event": 0,
+    "n": 500,
+    "censored": 134,
+    "km_median": 15,
+    "saved": 15,
+    "match": true
+   },
+   {
+    "scenario": "g_pingpong",
+    "policy": "CAVER-v0.6",
+    "event": 1,
+    "n": 500,
+    "censored": 77,
+    "km_median": 7,
+    "saved": 7,
+    "match": true
+   }
+  ]
+ },
+ "holm": {
+  "family_size_recomputed": 224,
+  "family_size_saved": 224,
+  "same_keys": true,
+  "n_mismatch_rel1e-9": 0,
+  "mismatches": [],
+  "example": {
+   "key": "g_sparse|CAVER-v0.6|unique_false_pass",
+   "raw_p": 0.486404578398995,
+   "p_holm": 1.0,
+   "saved": {
+    "p": 0.486404578398995,
+    "p_holm": 1.0
+   }
+  },
+  "example_pooled": {
+   "key": "pooled|CAVER-v0.6|unique_false_pass",
+   "raw_p": 0.022475100739124593,
+   "p_holm": 1.0,
+   "saved": {
+    "p": 0.022475100739124593,
+    "p_holm": 1.0
+   }
+  },
+  "example_largest_p_holm_below_1": {
+   "key": "g_sparse|Random|unique_variant_false_pass",
+   "raw_p": 0.009328770776628944,
+   "p_holm": 0.998178473099297,
+   "saved": {
+    "p": 0.009328770776628952,
+    "p_holm": 0.9981784730992979
+   }
+  },
+  "n_p_holm_below_0_05": 83,
+  "max_abs_diff_p_holm": 1.4432899320127035e-15
+ }
+}

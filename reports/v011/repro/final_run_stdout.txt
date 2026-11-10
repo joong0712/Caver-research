@@ -1,0 +1,6 @@
+verdict: 채택 보류 (adoption on hold) failed: ['S', 'K', 'G', 'DEV']
+saved /home/user/Caver-research/.claude/worktrees/agent-ac5b7cc3085f47529/reports/v011/final
+
+real	3m0.266s
+user	4m22.760s
+sys	0m7.470s

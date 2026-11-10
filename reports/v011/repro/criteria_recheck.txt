@@ -1,0 +1,3 @@
+primary: verdict=채택 보류 (adoption on hold) failed=['S', 'K', 'G', 'DEV'] (8/66 checks)
+supplementary_bootstrap: verdict=채택 보류 (adoption on hold) failed=['S', 'K', 'G', 'DEV'] (8/66 checks)
+supplementary_variant_level: verdict=채택 보류 (adoption on hold) failed=['K', 'G', 'DEV'] (16/66 checks)
