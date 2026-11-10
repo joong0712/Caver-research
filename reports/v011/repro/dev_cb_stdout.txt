@@ -1,0 +1,6 @@
+C11C-PopBUCB-Div: failed 6/126 eligible=False pooled vs v0.6 0.6611 vs C2 0.2895
+saved reports/v011/repro/dev_cb
+
+real	2m9.420s
+user	4m0.946s
+sys	0m9.296s

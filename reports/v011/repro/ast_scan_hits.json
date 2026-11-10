@@ -1,0 +1,114 @@
+{
+ "file": "caver11/agent_c.py",
+ "ast_hits": [
+  {
+   "line": 318,
+   "attr": "defects",
+   "enclosing": [
+    "FunctionDef:audit_trace (lines 296-342)",
+    "FunctionDef:one (lines 307-330)"
+   ],
+   "top_level_scope": "audit_trace",
+   "inside_policy_class": false
+  },
+  {
+   "line": 378,
+   "attr": "defects",
+   "enclosing": [
+    "FunctionDef:audit_metrics (lines 345-383)"
+   ],
+   "top_level_scope": "audit_metrics",
+   "inside_policy_class": false
+  }
+ ],
+ "regex_hit_lines": [
+  318,
+  378
+ ],
+ "all_hits_outside_policy_classes": true,
+ "policy_classes": {
+  "_DiversityMixin": {
+   "lines": [
+    57,
+    93
+   ],
+   "bases": [],
+   "module_level_defs_referenced": [
+    "_entropy"
+   ],
+   "suspect_attrs_used": [],
+   "attributes_used": [
+    "DELTA",
+    "DIV_SMOOTH",
+    "div_choices",
+    "entropy_gain",
+    "found",
+    "isinf"
+   ]
+  },
+  "PopBayesUCB": {
+   "lines": [
+    96,
+    167
+   ],
+   "bases": [
+    "BasePolicy"
+   ],
+   "module_level_defs_referenced": [],
+   "suspect_attrs_used": [],
+   "attributes_used": [
+    "KAPPA",
+    "LAMBDA",
+    "PRIOR_A",
+    "PRIOR_B",
+    "Random",
+    "W_POP",
+    "__init__",
+    "active_cases",
+    "append",
+    "available",
+    "case_obs",
+    "choose",
+    "fromkeys",
+    "get",
+    "in_eval",
+    "items",
+    "n_all",
+    "posterior",
+    "recent",
+    "rng",
+    "s_all",
+    "score_from",
+    "setdefault",
+    "shuffle",
+    "sqrt",
+    "t",
+    "update"
+   ]
+  },
+  "PopDivBUCB": {
+   "lines": [
+    170,
+    188
+   ],
+   "bases": [
+    "_DiversityMixin",
+    "PopBayesUCB"
+   ],
+   "module_level_defs_referenced": [
+    "PopBayesUCB",
+    "_DiversityMixin"
+   ],
+   "suspect_attrs_used": [],
+   "attributes_used": [
+    "__init__",
+    "_div_count",
+    "_div_init",
+    "_div_pick",
+    "_div_reset",
+    "begin_evaluation",
+    "update"
+   ]
+  }
+ }
+}
